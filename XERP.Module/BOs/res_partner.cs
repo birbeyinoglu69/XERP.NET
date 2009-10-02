@@ -249,6 +249,74 @@ namespace XERP
                 set { SetPropertyValue("invoice_warn_msg", ref finvoice_warn_msg, value); }
             }
     
+            private System.Boolean fis_doctor;
+            [Custom("Caption", "Is Doctor")]
+            public System.Boolean is_doctor {
+                get { return fis_doctor; }
+                set { SetPropertyValue("is_doctor", ref fis_doctor, value); }
+            }
+    
+            private System.Boolean fis_patient;
+            [Custom("Caption", "Is Patient")]
+            public System.Boolean is_patient {
+                get { return fis_patient; }
+                set { SetPropertyValue("is_patient", ref fis_patient, value); }
+            }
+    
+            private System.String flastname;
+            [Size(128)]
+            [Custom("Caption", "Lastname")]
+            public System.String lastname {
+                get { return flastname; }
+                set { SetPropertyValue("lastname", ref flastname, value); }
+            }
+    
+            private System.Boolean fis_institution;
+            [Custom("Caption", "Is Institution")]
+            public System.Boolean is_institution {
+                get { return fis_institution; }
+                set { SetPropertyValue("is_institution", ref fis_institution, value); }
+            }
+    
+            private System.String falias;
+            [Size(64)]
+            [Custom("Caption", "Alias")]
+            public System.String alias {
+                get { return falias; }
+                set { SetPropertyValue("alias", ref falias, value); }
+            }
+    
+        
+            private res_partner fassociate_member;
+            //FK FK_res_partner_associate_member
+            [Custom("Caption", "Associate Member")]
+            public res_partner associate_member {
+                get { return fassociate_member; }
+                set { SetPropertyValue<res_partner>("associate_member", ref fassociate_member, value); }
+            }
+    
+            private System.Boolean ffree_member;
+            [Custom("Caption", "Free Member")]
+            public System.Boolean free_member {
+                get { return ffree_member; }
+                set { SetPropertyValue("free_member", ref ffree_member, value); }
+            }
+    
+            private System.Double fmembership_amount;
+            [Custom("Caption", "Membership Amount")]
+            public System.Double membership_amount {
+                get { return fmembership_amount; }
+                set { SetPropertyValue("membership_amount", ref fmembership_amount, value); }
+            }
+    
+            private System.String fmembership_state1;
+            [Size(-1)]
+            [Custom("Caption", "Membership State1")]
+            public System.String membership_state1 {
+                get { return fmembership_state1; }
+                set { SetPropertyValue("membership_state1", ref fmembership_state1, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

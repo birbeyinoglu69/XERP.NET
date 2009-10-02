@@ -11,14 +11,14 @@
 	</SchemaModules>
 	<Templates>
 		<Template ID="DevExpress.ExpressApp.Win.Templates.DetailViewForm" IsNewNode="True">
-			<FormState ID="account_fiscal_position_tax_DetailView" State="Normal" X="22" Y="22" Width="800" Height="593" IsNewNode="True" />
 			<XtraBarsCustomization ID="Default" IsNewNode="True" />
 			<NavBarCustomization IsNewNode="True" />
-			<FormState ID="res_users_DetailView" State="Normal" X="66" Y="66" Width="800" Height="593" IsNewNode="True" />
+			<FormState ID="res_users_DetailView" State="Normal" X="44" Y="44" Width="800" Height="593" IsNewNode="True" />
+			<FormState ID="wkf_DetailView" State="Normal" X="198" Y="198" Width="800" Height="593" IsNewNode="True" />
 		</Template>
 		<Template ID="DevExpress.ExpressApp.Win.Templates.MainForm" NavigationWidth="200" NavigationDock="Left" NavigationVisibility="Visible" IsNewNode="True">
-			<FormState ID="Default" State="Normal" X="88" Y="88" Width="800" Height="593" IsNewNode="True" />
 			<XtraBarsCustomization ID="Default" IsNewNode="True" />
+			<FormState ID="Default" State="Normal" X="176" Y="176" Width="800" Height="593" IsNewNode="True" />
 			<NavBarCustomization Width="192" IsNewNode="True" />
 		</Template>
 	</Templates>

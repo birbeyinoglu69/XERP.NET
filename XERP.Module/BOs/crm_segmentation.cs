@@ -143,6 +143,22 @@ namespace XERP
                 set { SetPropertyValue("description", ref fdescription, value); }
             }
     
+            private System.Boolean fprofiling_active;
+            [Custom("Caption", "Profiling Active")]
+            public System.Boolean profiling_active {
+                get { return fprofiling_active; }
+                set { SetPropertyValue("profiling_active", ref fprofiling_active, value); }
+            }
+    
+        
+            private crm_segmentation fparent_id;
+            //FK FK_crm_segmentation_parent_id
+            [Custom("Caption", "Parent Id")]
+            public crm_segmentation parent_id {
+                get { return fparent_id; }
+                set { SetPropertyValue<crm_segmentation>("parent_id", ref fparent_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

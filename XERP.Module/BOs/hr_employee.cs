@@ -211,6 +211,63 @@ namespace XERP
                 set { SetPropertyValue("notes", ref fnotes, value); }
             }
     
+            private System.String faudiens_num;
+            [Size(30)]
+            [Custom("Caption", "Audiens Num")]
+            public System.String audiens_num {
+                get { return faudiens_num; }
+                set { SetPropertyValue("audiens_num", ref faudiens_num, value); }
+            }
+    
+            private System.Boolean fmanager;
+            [Custom("Caption", "Manager")]
+            public System.Boolean manager {
+                get { return fmanager; }
+                set { SetPropertyValue("manager", ref fmanager, value); }
+            }
+    
+            private System.Int32 fchildren;
+            [Custom("Caption", "Children")]
+            public System.Int32 children {
+                get { return fchildren; }
+                set { SetPropertyValue("children", ref fchildren, value); }
+            }
+    
+        
+            private hr_employee_marital_status fmarital_status;
+            //FK FK_hr_employee_marital_status
+            [Custom("Caption", "Marital Status")]
+            public hr_employee_marital_status marital_status {
+                get { return fmarital_status; }
+                set { SetPropertyValue<hr_employee_marital_status>("marital_status", ref fmarital_status, value); }
+            }
+    
+            private System.String fplace_of_birth;
+            [Size(30)]
+            [Custom("Caption", "Place Of birth")]
+            public System.String place_of_birth {
+                get { return fplace_of_birth; }
+                set { SetPropertyValue("place_of_birth", ref fplace_of_birth, value); }
+            }
+    
+        
+            private product_product fproduct_id;
+            //FK FK_hr_employee_product_id
+            [Custom("Caption", "Product Id")]
+            public product_product product_id {
+                get { return fproduct_id; }
+                set { SetPropertyValue<product_product>("product_id", ref fproduct_id, value); }
+            }
+    
+        
+            private account_analytic_journal fjournal_id;
+            //FK FK_hr_employee_journal_id
+            [Custom("Caption", "Journal Id")]
+            public account_analytic_journal journal_id {
+                get { return fjournal_id; }
+                set { SetPropertyValue<account_analytic_journal>("journal_id", ref fjournal_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

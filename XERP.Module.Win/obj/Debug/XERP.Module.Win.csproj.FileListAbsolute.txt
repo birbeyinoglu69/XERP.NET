@@ -1,9 +1,0 @@
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\bin\Debug\XERP.Module.Win.dll
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\bin\Debug\XERP.Module.Win.pdb
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\bin\Debug\XERP.Module.dll
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\bin\Debug\XERP.Module.pdb
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\obj\Debug\XERP.Module.Win.XERPWindowsFormsModule.resources
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\obj\Debug\XERP.Module.Win.csproj.GenerateResource.Cache
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\obj\Debug\XERP.Module.Win.dll
-C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Module.Win\obj\Debug\XERP.Module.Win.pdb

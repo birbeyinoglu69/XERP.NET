@@ -118,6 +118,22 @@ namespace XERP
                 set { SetPropertyValue("to_check", ref fto_check, value); }
             }
     
+            private System.String fvoucher_type;
+            [Size(19)]
+            [Custom("Caption", "Voucher Type")]
+            public System.String voucher_type {
+                get { return fvoucher_type; }
+                set { SetPropertyValue("voucher_type", ref fvoucher_type, value); }
+            }
+    
+            private System.String fnarration;
+            [Size(-1)]
+            [Custom("Caption", "Narration")]
+            public System.String narration {
+                get { return fnarration; }
+                set { SetPropertyValue("narration", ref fnarration, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

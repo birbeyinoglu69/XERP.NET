@@ -180,6 +180,37 @@ namespace XERP
                 set { SetPropertyValue("type", ref ftype, value); }
             }
     
+            private System.Decimal fopen_bal;
+            [Custom("Caption", "Open Bal")]
+            public System.Decimal open_bal {
+                get { return fopen_bal; }
+                set { SetPropertyValue("open_bal", ref fopen_bal, value); }
+            }
+    
+            private System.Int32 flevel;
+            [Custom("Caption", "Level")]
+            public System.Int32 level {
+                get { return flevel; }
+                set { SetPropertyValue("level", ref flevel, value); }
+            }
+    
+            private System.String ftype1;
+            [Size(16)]
+            [Custom("Caption", "Type1")]
+            public System.String type1 {
+                get { return ftype1; }
+                set { SetPropertyValue("type1", ref ftype1, value); }
+            }
+    
+        
+            private account_journal fjournal_id;
+            //FK FK_account_account_journal_id
+            [Custom("Caption", "Journal Id")]
+            public account_journal journal_id {
+                get { return fjournal_id; }
+                set { SetPropertyValue<account_journal>("journal_id", ref fjournal_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

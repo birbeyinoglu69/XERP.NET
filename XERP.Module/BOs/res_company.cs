@@ -193,6 +193,29 @@ namespace XERP
                 set { SetPropertyValue("bvr_delta_horz", ref fbvr_delta_horz, value); }
             }
     
+            private System.String fproject_time_mode;
+            [Size(16)]
+            [Custom("Caption", "Project Time mode")]
+            public System.String project_time_mode {
+                get { return fproject_time_mode; }
+                set { SetPropertyValue("project_time_mode", ref fproject_time_mode, value); }
+            }
+    
+            private System.Double ftimesheet_max_difference;
+            [Custom("Caption", "Timesheet Max difference")]
+            public System.Double timesheet_max_difference {
+                get { return ftimesheet_max_difference; }
+                set { SetPropertyValue("timesheet_max_difference", ref ftimesheet_max_difference, value); }
+            }
+    
+            private System.String ftimesheet_range;
+            [Size(16)]
+            [Custom("Caption", "Timesheet Range")]
+            public System.String timesheet_range {
+                get { return ftimesheet_range; }
+                set { SetPropertyValue("timesheet_range", ref ftimesheet_range, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

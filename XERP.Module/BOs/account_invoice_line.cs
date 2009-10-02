@@ -165,6 +165,30 @@ namespace XERP
                 set { SetPropertyValue("price_subtotal_incl", ref fprice_subtotal_incl, value); }
             }
     
+            private System.Int32 fsequence;
+            [Custom("Caption", "Sequence")]
+            public System.Int32 sequence {
+                get { return fsequence; }
+                set { SetPropertyValue("sequence", ref fsequence, value); }
+            }
+    
+            private System.String fstate1;
+            [Size(16)]
+            [Custom("Caption", "State1")]
+            public System.String state1 {
+                get { return fstate1; }
+                set { SetPropertyValue("state1", ref fstate1, value); }
+            }
+    
+        
+            private account_analytic_plan_instance fanalytics_id;
+            //FK FK_account_invoice_line_analytics_id
+            [Custom("Caption", "Analytics Id")]
+            public account_analytic_plan_instance analytics_id {
+                get { return fanalytics_id; }
+                set { SetPropertyValue<account_analytic_plan_instance>("analytics_id", ref fanalytics_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

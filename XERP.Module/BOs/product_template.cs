@@ -303,6 +303,13 @@ namespace XERP
                 set { SetPropertyValue("produce_delay", ref fproduce_delay, value); }
             }
     
+            private System.Decimal fmember_price;
+            [Custom("Caption", "Member Price")]
+            public System.Decimal member_price {
+                get { return fmember_price; }
+                set { SetPropertyValue("member_price", ref fmember_price, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

@@ -162,6 +162,24 @@ namespace XERP
                 set { SetPropertyValue<account_analytic_account>("account_id", ref faccount_id, value); }
             }
     
+        
+            private hr_timesheet_invoice_factor fto_invoice;
+            //FK FK_account_analytic_line_to_invoice
+            [Custom("Caption", "To Invoice")]
+            public hr_timesheet_invoice_factor to_invoice {
+                get { return fto_invoice; }
+                set { SetPropertyValue<hr_timesheet_invoice_factor>("to_invoice", ref fto_invoice, value); }
+            }
+    
+        
+            private account_invoice finvoice_id;
+            //FK FK_account_analytic_line_invoice_id
+            [Custom("Caption", "Invoice Id")]
+            public account_invoice invoice_id {
+                get { return finvoice_id; }
+                set { SetPropertyValue<account_invoice>("invoice_id", ref finvoice_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

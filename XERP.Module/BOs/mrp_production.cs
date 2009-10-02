@@ -209,6 +209,13 @@ namespace XERP
                 set { SetPropertyValue<stock_picking>("picking_id", ref fpicking_id, value); }
             }
     
+            private System.Boolean fallow_reorder;
+            [Custom("Caption", "Allow Reorder")]
+            public System.Boolean allow_reorder {
+                get { return fallow_reorder; }
+                set { SetPropertyValue("allow_reorder", ref fallow_reorder, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

@@ -184,6 +184,34 @@ namespace XERP
                 set { SetPropertyValue("sale_line_warn", ref fsale_line_warn, value); }
             }
     
+            private System.Boolean fis_medicament;
+            [Custom("Caption", "Is Medicament")]
+            public System.Boolean is_medicament {
+                get { return fis_medicament; }
+                set { SetPropertyValue("is_medicament", ref fis_medicament, value); }
+            }
+    
+            private System.Boolean fis_vaccine;
+            [Custom("Caption", "Is Vaccine")]
+            public System.Boolean is_vaccine {
+                get { return fis_vaccine; }
+                set { SetPropertyValue("is_vaccine", ref fis_vaccine, value); }
+            }
+    
+            private System.Boolean fmembership;
+            [Custom("Caption", "Membership")]
+            public System.Boolean membership {
+                get { return fmembership; }
+                set { SetPropertyValue("membership", ref fmembership, value); }
+            }
+    
+            private System.Boolean fhr_expense_ok;
+            [Custom("Caption", "Hr Expense ok")]
+            public System.Boolean hr_expense_ok {
+                get { return fhr_expense_ok; }
+                set { SetPropertyValue("hr_expense_ok", ref fhr_expense_ok, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

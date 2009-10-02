@@ -135,6 +135,14 @@ namespace XERP
                 set { SetPropertyValue("type", ref ftype, value); }
             }
     
+            private System.String ftype1;
+            [Size(16)]
+            [Custom("Caption", "Type1")]
+            public System.String type1 {
+                get { return ftype1; }
+                set { SetPropertyValue("type1", ref ftype1, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

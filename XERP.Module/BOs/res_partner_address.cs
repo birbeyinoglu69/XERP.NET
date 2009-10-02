@@ -200,6 +200,23 @@ namespace XERP
                 set { SetPropertyValue("email", ref femail, value); }
             }
     
+            private System.String frelationship;
+            [Size(64)]
+            [Custom("Caption", "Relationship")]
+            public System.String relationship {
+                get { return frelationship; }
+                set { SetPropertyValue("relationship", ref frelationship, value); }
+            }
+    
+        
+            private res_partner frelative_id;
+            //FK FK_res_partner_address_relative_id
+            [Custom("Caption", "Relative Id")]
+            public res_partner relative_id {
+                get { return frelative_id; }
+                set { SetPropertyValue<res_partner>("relative_id", ref frelative_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

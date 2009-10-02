@@ -108,6 +108,42 @@ namespace XERP
                 set { SetPropertyValue("cycle", ref fcycle, value); }
             }
     
+            private DateTime? fdate_finnished;
+            [Custom("Caption", "Date Finnished")]
+            public DateTime? date_finnished {
+                get { return fdate_finnished; }
+                set { SetPropertyValue("date_finnished", ref fdate_finnished, value); }
+            }
+    
+            private DateTime? fdate_planned;
+            [Custom("Caption", "Date Planned")]
+            public DateTime? date_planned {
+                get { return fdate_planned; }
+                set { SetPropertyValue("date_planned", ref fdate_planned, value); }
+            }
+    
+            private DateTime? fdate_start;
+            [Custom("Caption", "Date Start")]
+            public DateTime? date_start {
+                get { return fdate_start; }
+                set { SetPropertyValue("date_start", ref fdate_start, value); }
+            }
+    
+            private System.Double fdelay;
+            [Custom("Caption", "Delay")]
+            public System.Double delay {
+                get { return fdelay; }
+                set { SetPropertyValue("delay", ref fdelay, value); }
+            }
+    
+            private System.String fstate1;
+            [Size(16)]
+            [Custom("Caption", "State1")]
+            public System.String state1 {
+                get { return fstate1; }
+                set { SetPropertyValue("state1", ref fstate1, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

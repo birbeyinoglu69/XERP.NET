@@ -98,6 +98,14 @@ namespace XERP
                 set { SetPropertyValue("accuracy", ref faccuracy, value); }
             }
     
+            private System.String fsub_name;
+            [Size(32)]
+            [Custom("Caption", "Sub Name")]
+            public System.String sub_name {
+                get { return fsub_name; }
+                set { SetPropertyValue("sub_name", ref fsub_name, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

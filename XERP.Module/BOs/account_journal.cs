@@ -199,6 +199,22 @@ namespace XERP
                 set { SetPropertyValue<account_analytic_journal>("analytic_journal_id", ref fanalytic_journal_id, value); }
             }
     
+            private System.Boolean fallow_date;
+            [Custom("Caption", "Allow Date")]
+            public System.Boolean allow_date {
+                get { return fallow_date; }
+                set { SetPropertyValue("allow_date", ref fallow_date, value); }
+            }
+    
+        
+            private account_analytic_plan fplan_id;
+            //FK FK_account_journal_plan_id
+            [Custom("Caption", "Plan Id")]
+            public account_analytic_plan plan_id {
+                get { return fplan_id; }
+                set { SetPropertyValue<account_analytic_plan>("plan_id", ref fplan_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

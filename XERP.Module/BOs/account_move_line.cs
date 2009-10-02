@@ -268,6 +268,24 @@ namespace XERP
                 set { SetPropertyValue("quantity", ref fquantity, value); }
             }
     
+        
+            private account_followup_followup_line ffollowup_line_id;
+            //FK FK_account_move_line_followup_line_id
+            [Custom("Caption", "Followup Line id")]
+            public account_followup_followup_line followup_line_id {
+                get { return ffollowup_line_id; }
+                set { SetPropertyValue<account_followup_followup_line>("followup_line_id", ref ffollowup_line_id, value); }
+            }
+    
+        
+            private account_analytic_plan_instance fanalytics_id;
+            //FK FK_account_move_line_analytics_id
+            [Custom("Caption", "Analytics Id")]
+            public account_analytic_plan_instance analytics_id {
+                get { return fanalytics_id; }
+                set { SetPropertyValue<account_analytic_plan_instance>("analytics_id", ref fanalytics_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections

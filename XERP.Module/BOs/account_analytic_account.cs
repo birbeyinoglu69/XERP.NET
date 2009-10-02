@@ -160,6 +160,31 @@ namespace XERP
                 set { SetPropertyValue("type", ref ftype, value); }
             }
     
+            private System.Double famount_max;
+            [Custom("Caption", "Amount Max")]
+            public System.Double amount_max {
+                get { return famount_max; }
+                set { SetPropertyValue("amount_max", ref famount_max, value); }
+            }
+    
+        
+            private hr_timesheet_invoice_factor fto_invoice;
+            //FK FK_account_analytic_account_to_invoice
+            [Custom("Caption", "To Invoice")]
+            public hr_timesheet_invoice_factor to_invoice {
+                get { return fto_invoice; }
+                set { SetPropertyValue<hr_timesheet_invoice_factor>("to_invoice", ref fto_invoice, value); }
+            }
+    
+        
+            private product_pricelist fpricelist_id;
+            //FK FK_account_analytic_account_pricelist_id
+            [Custom("Caption", "Pricelist Id")]
+            public product_pricelist pricelist_id {
+                get { return fpricelist_id; }
+                set { SetPropertyValue<product_pricelist>("pricelist_id", ref fpricelist_id, value); }
+            }
+    
 		#endregion
 	
 		#region Collections
