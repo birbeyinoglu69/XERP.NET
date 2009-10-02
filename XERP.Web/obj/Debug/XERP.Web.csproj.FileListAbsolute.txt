@@ -1,0 +1,12 @@
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\bin\Model.xafml
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\bin\XERP.Web.dll
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\bin\XERP.Web.pdb
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\bin\XERP.Module.dll
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\bin\XERP.Module.Web.dll
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\bin\XERP.Module.pdb
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\bin\XERP.Module.Web.pdb
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\obj\Debug\XERP.Web.XERPAspNetApplication.resources
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\obj\Debug\XERP.Web.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\obj\Debug\XERP.Web.dll
+C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Web\obj\Debug\XERP.Web.pdb
