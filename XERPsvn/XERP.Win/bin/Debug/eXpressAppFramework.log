@@ -1,0 +1,971 @@
+01.10.09 23:26:49.467	================================================================================
+01.10.09 23:26:49.472	Trace Log for XERP.Win.vshost.exe is started
+01.10.09 23:26:49.474	================================================================================
+01.10.09 23:26:49.482	System Environment
+	OS Version: Microsoft Windows NT 6.0.6002 Service Pack 2
+	.Net Framework Versions: v2.0.50727
+
+	CLR Version: 2.0.50727.4016
+	eXpressApp Version: 9.2.6.0
+Application config
+	Modules=
+	NewVersionServer=
+	EnableDiagnosticActions=False
+01.10.09 23:26:49.483	Initialize application
+01.10.09 23:26:49.484	=======================
+01.10.09 23:26:49.488		Command line arguments: 
+		C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Win\bin\Debug\XERP.Win.vshost.exe
+01.10.09 23:26:49.729	--------------------------------------------------------------------------------
+01.10.09 23:26:49.730	Initialize Modules Manager
+01.10.09 23:26:49.736	--------------------------------------------------------------------------------
+01.10.09 23:26:49.736	
+01.10.09 23:26:49.940	The ValueManagerType is initialized by the default value: SimpleValueManager.
+01.10.09 23:26:49.944	Stack trace:
+   at DevExpress.Persistent.Base.ValueManager.CreateValueManager[ValueType]()
+   at DevExpress.ExpressApp.SecuritySystem.SetInstance(ISecurity instance)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, IObjectSpaceProvider objectSpaceProvider, ApplicationModulesManager modulesManager, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup()
+   at XERP.Win.Program.Main() in C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Win\Program.cs:line 42
+   at System.AppDomain._nExecuteAssembly(Assembly assembly, String[] args)
+   at Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()
+
+01.10.09 23:26:49.960	--------------------------------------------------------------------------------
+Loaded assemblies
+	DevExpress.BonusSkins.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, Location=
+	DevExpress.Data.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.EasyTest.WinAdapter.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Images.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Objects.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Security.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.Base.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.BaseImpl.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Utils.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Xpo.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraBars.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraEditors.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraLayout.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraNavBar.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	Microsoft.VisualStudio.Debugger.Runtime, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities.Sync, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	vshost, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XERP.Module, Version=1.0.3561.42202, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Module.Win, Version=1.0.3561.42203, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Win, Version=1.0.3561.42203, Culture=neutral, PublicKeyToken=null, Location=
+01.10.09 23:26:51.313	--------------------------------------------------------------------------------
+01.10.09 23:26:51.313	Load Model
+01.10.09 23:26:51.313	Load Schema
+01.10.09 23:26:51.316	SetupModules
+01.10.09 23:26:52.883	Customize XPDictionary
+01.10.09 23:26:53.224	Load object model
+01.10.09 23:26:53.461	Generate default Model for Actions
+01.10.09 23:26:53.518	Generate default image sources
+01.10.09 23:26:53.520	Generate default Model for Property editors
+01.10.09 23:26:53.533	Generate default Model for Views
+01.10.09 23:26:54.763	Load DictionaryDifferenceStores' dictionaries
+01.10.09 23:26:54.771	Collect aspects
+01.10.09 23:26:54.795	Update model
+01.10.09 23:26:54.903	Generate default Model for Action containers
+01.10.09 23:26:54.980	Process localized attribute values
+01.10.09 23:26:54.984	Load Model Diffs
+01.10.09 23:26:55.482	Validate Model
+01.10.09 23:26:56.316	--------------------------------------------------------------------------------
+01.10.09 23:26:56.317	Start logon process
+01.10.09 23:26:56.321	--------------------------------------------------------------------------------
+01.10.09 23:26:56.321	Checking Compatibility
+01.10.09 23:26:56.328		ConnectionString: Data Source=OSCARS\SQLEXPRESS;Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+01.10.09 23:26:57.506	Check App Name Compatibility
+01.10.09 23:26:57.518	Check stored module versions against the versions of the loaded modules
+01.10.09 23:26:57.520	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:26:57.520	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:26:57.521	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:26:57.521	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42202, Version on DB: 1.0.3561.35443
+01.10.09 23:26:57.522	DatabaseIsOld
+01.10.09 23:26:57.585	--------------------------------------------------------------------------------
+01.10.09 23:26:57.586	UpdateDB
+01.10.09 23:26:57.587		ConnectionString: Data Source=OSCARS\SQLEXPRESS;Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+01.10.09 23:26:58.219	Check App Name Compatibility
+01.10.09 23:26:58.219	Check stored module versions against the versions of the loaded modules
+01.10.09 23:26:58.219	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:26:58.219	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:26:58.219	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:26:58.219	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42202, Version on DB: 1.0.3561.35443
+01.10.09 23:26:58.219	DatabaseIsOld
+01.10.09 23:26:59.882	Module: SystemModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:26:59.882	Module: SystemWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:26:59.882	Module: BusinessClassLibraryCustomizationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:27:00.120	Module: XERPModule. Old version: 1.0.3561.35443. New version: 1.0.3561.42202
+01.10.09 23:27:00.124	Module: XERPWindowsFormsModule. Old version: 1.0.3561.35443. New version: 1.0.3561.42203
+01.10.09 23:27:00.124	Module: ValidationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:27:00.124	Module: ValidationWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:27:00.124	Module: SecurityModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:27:00.130	Check App Name Compatibility
+01.10.09 23:27:00.130	Check stored module versions against the versions of the loaded modules
+01.10.09 23:27:00.131	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:00.131	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:00.131	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:00.132	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42202, Version on DB: 1.0.3561.42202
+01.10.09 23:27:00.132	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3561.42203, Version on DB: 1.0.3561.42203
+01.10.09 23:27:00.132	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:00.133	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:00.133	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:00.163	--------------------------------------------------------------------------------
+01.10.09 23:27:00.163	Logon successful
+01.10.09 23:27:00.224	--------------------------------------------------------------------------------
+01.10.09 23:27:00.225	Logon completed
+01.10.09 23:27:00.261		startUpActions: 1
+01.10.09 23:27:00.341	--------------------------------------------------------------------------------
+01.10.09 23:27:00.341	Initialize 'ShowNavigationItem' action items
+01.10.09 23:27:00.550	--------------------------------------------------------------------------------
+01.10.09 23:27:00.551	Execute action
+01.10.09 23:27:00.554		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:27:00.554		ID: ChooseSkin
+01.10.09 23:27:00.555		Category: Tools
+01.10.09 23:27:00.560		SelectedItem: Windows Theme
+01.10.09 23:27:00.564	Action 'ChooseSkin' done
+01.10.09 23:27:02.896	--------------------------------------------------------------------------------
+01.10.09 23:27:02.897	Execute action
+01.10.09 23:27:02.897		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:27:02.898		ID: ShowNavigationItem
+01.10.09 23:27:02.898		Category: ViewsNavigation
+01.10.09 23:27:02.898		SelectedItem: wkf
+01.10.09 23:27:04.404	Action 'ShowNavigationItem' done
+01.10.09 23:27:05.144	Application startup done
+01.10.09 23:27:05.145	=========================
+01.10.09 23:27:05.145	Application running
+01.10.09 23:27:05.145	====================
+01.10.09 23:27:09.537	--------------------------------------------------------------------------------
+01.10.09 23:27:09.538	Execute action
+01.10.09 23:27:09.538		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:27:09.539		ID: ShowNavigationItem
+01.10.09 23:27:09.539		Category: ViewsNavigation
+01.10.09 23:27:09.540		ContextName: wkf
+01.10.09 23:27:09.540		IsRoot: True
+01.10.09 23:27:09.541		Selection.Count: 0
+01.10.09 23:27:09.541		CurrentObject: <not specified>
+01.10.09 23:27:09.542		SelectedItem: res_users
+01.10.09 23:27:09.926	Action 'ShowNavigationItem' done
+01.10.09 23:27:14.199	--------------------------------------------------------------------------------
+01.10.09 23:27:14.200	Execute action
+01.10.09 23:27:14.201		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:27:14.202		ID: ShowNavigationItem
+01.10.09 23:27:14.203		Category: ViewsNavigation
+01.10.09 23:27:14.204		ContextName: res_users
+01.10.09 23:27:14.205		IsRoot: True
+01.10.09 23:27:14.205		Selection.Count: 0
+01.10.09 23:27:14.206		CurrentObject: <not specified>
+01.10.09 23:27:14.207		SelectedItem: wkf
+01.10.09 23:27:14.415	Action 'ShowNavigationItem' done
+01.10.09 23:27:15.055	--------------------------------------------------------------------------------
+01.10.09 23:27:15.056	Execute action
+01.10.09 23:27:15.056		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:27:15.056		ID: New
+01.10.09 23:27:15.057		Category: ObjectsCreation
+01.10.09 23:27:15.057		ContextName: wkf
+01.10.09 23:27:15.057		IsRoot: True
+01.10.09 23:27:15.058		Selection.Count: 0
+01.10.09 23:27:15.058		CurrentObject: <not specified>
+01.10.09 23:27:15.058		SelectedItem: wkf
+01.10.09 23:27:15.610	Check App Name Compatibility
+01.10.09 23:27:15.611	Check stored module versions against the versions of the loaded modules
+01.10.09 23:27:15.611	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:15.612	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:15.612	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:15.612	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42202, Version on DB: 1.0.3561.42202
+01.10.09 23:27:15.613	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3561.42203, Version on DB: 1.0.3561.42203
+01.10.09 23:27:15.613	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:15.613	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:15.614	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:27:16.637	Action 'New' done
+01.10.09 23:27:19.368	Window closing: wkf
+01.10.09 23:27:19.395	ConfirmationRequest: NeedSaveChanges
+01.10.09 23:27:19.396		DefaultConfirmationResult: No
+01.10.09 23:27:20.402		UserConfirmationResult: No
+01.10.09 23:27:20.428	Window closing: wkf
+01.10.09 23:27:20.431	Window closed: wkf
+01.10.09 23:27:21.541	Window closing: wkf - XERP
+01.10.09 23:27:21.551	Window closing: wkf - XERP
+01.10.09 23:27:21.553	Window closed: wkf - XERP
+01.10.09 23:27:21.716	Save model changes
+01.10.09 23:27:21.717	===================
+01.10.09 23:27:22.293	Application stopping
+01.10.09 23:27:22.295	=====================
+01.10.09 23:28:23.606	================================================================================
+01.10.09 23:28:23.610	Trace Log for XERP.Win.vshost.exe is started
+01.10.09 23:28:23.610	================================================================================
+01.10.09 23:28:23.617	System Environment
+	OS Version: Microsoft Windows NT 6.0.6002 Service Pack 2
+	.Net Framework Versions: v2.0.50727
+
+	CLR Version: 2.0.50727.4016
+	eXpressApp Version: 9.2.6.0
+Application config
+	Modules=
+	NewVersionServer=
+	EnableDiagnosticActions=False
+01.10.09 23:28:23.618	Initialize application
+01.10.09 23:28:23.618	=======================
+01.10.09 23:28:23.621		Command line arguments: 
+		C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Win\bin\Debug\XERP.Win.vshost.exe
+01.10.09 23:28:23.848	--------------------------------------------------------------------------------
+01.10.09 23:28:23.849	Initialize Modules Manager
+01.10.09 23:28:23.855	--------------------------------------------------------------------------------
+01.10.09 23:28:23.856	
+01.10.09 23:28:24.050	The ValueManagerType is initialized by the default value: SimpleValueManager.
+01.10.09 23:28:24.054	Stack trace:
+   at DevExpress.Persistent.Base.ValueManager.CreateValueManager[ValueType]()
+   at DevExpress.ExpressApp.SecuritySystem.SetInstance(ISecurity instance)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, IObjectSpaceProvider objectSpaceProvider, ApplicationModulesManager modulesManager, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup()
+   at XERP.Win.Program.Main() in C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Win\Program.cs:line 42
+   at System.AppDomain._nExecuteAssembly(Assembly assembly, String[] args)
+   at Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()
+
+01.10.09 23:28:24.071	--------------------------------------------------------------------------------
+Loaded assemblies
+	DevExpress.BonusSkins.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, Location=
+	DevExpress.Data.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.EasyTest.WinAdapter.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Images.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Objects.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Security.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.Base.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.BaseImpl.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Utils.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Xpo.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraBars.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraEditors.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraLayout.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraNavBar.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	Microsoft.VisualStudio.Debugger.Runtime, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities.Sync, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	vshost, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XERP.Module, Version=1.0.3561.42250, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Module.Win, Version=1.0.3561.42251, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Win, Version=1.0.3561.42251, Culture=neutral, PublicKeyToken=null, Location=
+01.10.09 23:28:25.093	--------------------------------------------------------------------------------
+01.10.09 23:28:25.093	Load Model
+01.10.09 23:28:25.093	Load Schema
+01.10.09 23:28:25.096	SetupModules
+01.10.09 23:28:25.556	Customize XPDictionary
+01.10.09 23:28:25.901	Load object model
+01.10.09 23:28:25.995	Generate default Model for Actions
+01.10.09 23:28:26.033	Generate default image sources
+01.10.09 23:28:26.034	Generate default Model for Property editors
+01.10.09 23:28:26.048	Generate default Model for Views
+01.10.09 23:28:26.283	Load DictionaryDifferenceStores' dictionaries
+01.10.09 23:28:26.293	Collect aspects
+01.10.09 23:28:26.321	Update model
+01.10.09 23:28:26.403	Generate default Model for Action containers
+01.10.09 23:28:26.445	Process localized attribute values
+01.10.09 23:28:26.449	Load Model Diffs
+01.10.09 23:28:26.635	Validate Model
+01.10.09 23:28:26.847	--------------------------------------------------------------------------------
+01.10.09 23:28:26.847	Start logon process
+01.10.09 23:28:26.852	--------------------------------------------------------------------------------
+01.10.09 23:28:26.852	Checking Compatibility
+01.10.09 23:28:26.858		ConnectionString: Data Source=OSCARS\SQLEXPRESS;Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+01.10.09 23:28:27.999	Check App Name Compatibility
+01.10.09 23:28:28.010	Check stored module versions against the versions of the loaded modules
+01.10.09 23:28:28.012	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.013	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.013	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.013	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42250, Version on DB: 1.0.3561.42202
+01.10.09 23:28:28.014	DatabaseIsOld
+01.10.09 23:28:28.071	--------------------------------------------------------------------------------
+01.10.09 23:28:28.072	UpdateDB
+01.10.09 23:28:28.074		ConnectionString: Data Source=OSCARS\SQLEXPRESS;Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+01.10.09 23:28:28.506	Check App Name Compatibility
+01.10.09 23:28:28.506	Check stored module versions against the versions of the loaded modules
+01.10.09 23:28:28.506	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.506	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.506	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.506	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42250, Version on DB: 1.0.3561.42202
+01.10.09 23:28:28.506	DatabaseIsOld
+01.10.09 23:28:28.518	Module: SystemModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:28:28.518	Module: SystemWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:28:28.518	Module: BusinessClassLibraryCustomizationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:28:28.721	Module: XERPModule. Old version: 1.0.3561.42202. New version: 1.0.3561.42250
+01.10.09 23:28:28.724	Module: XERPWindowsFormsModule. Old version: 1.0.3561.42203. New version: 1.0.3561.42251
+01.10.09 23:28:28.724	Module: ValidationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:28:28.724	Module: ValidationWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:28:28.724	Module: SecurityModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:28:28.730	Check App Name Compatibility
+01.10.09 23:28:28.730	Check stored module versions against the versions of the loaded modules
+01.10.09 23:28:28.731	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.731	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.731	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.732	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42250, Version on DB: 1.0.3561.42250
+01.10.09 23:28:28.732	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3561.42251, Version on DB: 1.0.3561.42251
+01.10.09 23:28:28.732	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.733	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.733	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:28:28.764	--------------------------------------------------------------------------------
+01.10.09 23:28:28.764	Logon successful
+01.10.09 23:28:28.775	--------------------------------------------------------------------------------
+01.10.09 23:28:28.776	Logon completed
+01.10.09 23:28:28.810		startUpActions: 1
+01.10.09 23:28:28.883	--------------------------------------------------------------------------------
+01.10.09 23:28:28.883	Initialize 'ShowNavigationItem' action items
+01.10.09 23:28:28.968	--------------------------------------------------------------------------------
+01.10.09 23:28:28.968	Execute action
+01.10.09 23:28:28.970		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:28:28.971		ID: ChooseSkin
+01.10.09 23:28:28.971		Category: Tools
+01.10.09 23:28:28.974		SelectedItem: Windows Theme
+01.10.09 23:28:28.978	Action 'ChooseSkin' done
+01.10.09 23:28:30.921	--------------------------------------------------------------------------------
+01.10.09 23:28:30.922	Execute action
+01.10.09 23:28:30.922		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:28:30.922		ID: ShowNavigationItem
+01.10.09 23:28:30.923		Category: ViewsNavigation
+01.10.09 23:28:30.923		SelectedItem: User
+01.10.09 23:28:32.215	Action 'ShowNavigationItem' done
+01.10.09 23:28:33.141	Application startup done
+01.10.09 23:28:33.141	=========================
+01.10.09 23:28:33.142	Application running
+01.10.09 23:28:33.142	====================
+01.10.09 23:28:35.652	Window closing: User - XERP
+01.10.09 23:28:35.737	Window closing: User - XERP
+01.10.09 23:28:35.740	Window closed: User - XERP
+01.10.09 23:28:36.059	Save model changes
+01.10.09 23:28:36.060	===================
+01.10.09 23:28:36.175	Application stopping
+01.10.09 23:28:36.175	=====================
+01.10.09 23:29:08.264	================================================================================
+01.10.09 23:29:08.268	Trace Log for XERP.Win.vshost.exe is started
+01.10.09 23:29:08.269	================================================================================
+01.10.09 23:29:08.276	System Environment
+	OS Version: Microsoft Windows NT 6.0.6002 Service Pack 2
+	.Net Framework Versions: v2.0.50727
+
+	CLR Version: 2.0.50727.4016
+	eXpressApp Version: 9.2.6.0
+Application config
+	Modules=
+	NewVersionServer=
+	EnableDiagnosticActions=False
+01.10.09 23:29:08.277	Initialize application
+01.10.09 23:29:08.277	=======================
+01.10.09 23:29:08.281		Command line arguments: 
+		C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Win\bin\Debug\XERP.Win.vshost.exe
+01.10.09 23:29:08.518	--------------------------------------------------------------------------------
+01.10.09 23:29:08.519	Initialize Modules Manager
+01.10.09 23:29:08.525	--------------------------------------------------------------------------------
+01.10.09 23:29:08.526	
+01.10.09 23:29:08.737	The ValueManagerType is initialized by the default value: SimpleValueManager.
+01.10.09 23:29:08.740	Stack trace:
+   at DevExpress.Persistent.Base.ValueManager.CreateValueManager[ValueType]()
+   at DevExpress.ExpressApp.SecuritySystem.SetInstance(ISecurity instance)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, IObjectSpaceProvider objectSpaceProvider, ApplicationModulesManager modulesManager, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup()
+   at XERP.Win.Program.Main() in C:\Users\Administrator\Documents\Visual Studio 2008\Projects\XERP\XERP.Win\Program.cs:line 42
+   at System.AppDomain._nExecuteAssembly(Assembly assembly, String[] args)
+   at Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()
+
+01.10.09 23:29:08.756	--------------------------------------------------------------------------------
+Loaded assemblies
+	DevExpress.BonusSkins.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, Location=
+	DevExpress.Data.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.EasyTest.WinAdapter.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Images.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Objects.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Security.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.Base.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.BaseImpl.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Utils.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Xpo.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraBars.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraEditors.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraLayout.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraNavBar.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	Microsoft.VisualStudio.Debugger.Runtime, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities.Sync, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	vshost, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XERP.Module, Version=1.0.3561.42272, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Module.Win, Version=1.0.3561.42273, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Win, Version=1.0.3561.42273, Culture=neutral, PublicKeyToken=null, Location=
+01.10.09 23:29:10.240	--------------------------------------------------------------------------------
+01.10.09 23:29:10.240	Load Model
+01.10.09 23:29:10.240	Load Schema
+01.10.09 23:29:10.243	SetupModules
+01.10.09 23:29:12.568	Customize XPDictionary
+01.10.09 23:29:12.904	Load object model
+01.10.09 23:29:13.349	Generate default Model for Actions
+01.10.09 23:29:13.418	Generate default image sources
+01.10.09 23:29:13.420	Generate default Model for Property editors
+01.10.09 23:29:13.433	Generate default Model for Views
+01.10.09 23:29:15.331	Load DictionaryDifferenceStores' dictionaries
+01.10.09 23:29:15.341	Collect aspects
+01.10.09 23:29:15.379	Update model
+01.10.09 23:29:15.507	Generate default Model for Action containers
+01.10.09 23:29:15.599	Process localized attribute values
+01.10.09 23:29:15.602	Load Model Diffs
+01.10.09 23:29:16.286	Validate Model
+01.10.09 23:29:17.541	--------------------------------------------------------------------------------
+01.10.09 23:29:17.542	Start logon process
+01.10.09 23:29:17.546	--------------------------------------------------------------------------------
+01.10.09 23:29:17.546	Checking Compatibility
+01.10.09 23:29:17.552		ConnectionString: Data Source=OSCARS\SQLEXPRESS;Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+01.10.09 23:29:18.673	Check App Name Compatibility
+01.10.09 23:29:18.685	Check stored module versions against the versions of the loaded modules
+01.10.09 23:29:18.687	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:18.687	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:18.688	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:18.688	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42272, Version on DB: 1.0.3561.42250
+01.10.09 23:29:18.688	DatabaseIsOld
+01.10.09 23:29:18.745	--------------------------------------------------------------------------------
+01.10.09 23:29:18.746	UpdateDB
+01.10.09 23:29:18.747		ConnectionString: Data Source=OSCARS\SQLEXPRESS;Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+01.10.09 23:29:19.072	Check App Name Compatibility
+01.10.09 23:29:19.072	Check stored module versions against the versions of the loaded modules
+01.10.09 23:29:19.072	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:19.072	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:19.072	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:19.072	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42272, Version on DB: 1.0.3561.42250
+01.10.09 23:29:19.072	DatabaseIsOld
+01.10.09 23:29:22.708	Module: SystemModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:29:22.708	Module: SystemWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:29:22.708	Module: BusinessClassLibraryCustomizationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:29:22.897	Module: XERPModule. Old version: 1.0.3561.42250. New version: 1.0.3561.42272
+01.10.09 23:29:22.901	Module: XERPWindowsFormsModule. Old version: 1.0.3561.42251. New version: 1.0.3561.42273
+01.10.09 23:29:22.901	Module: ValidationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:29:22.901	Module: ValidationWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:29:22.901	Module: SecurityModule. Old version: 9.2.6.0. New version: 9.2.6.0
+01.10.09 23:29:22.908	Check App Name Compatibility
+01.10.09 23:29:22.909	Check stored module versions against the versions of the loaded modules
+01.10.09 23:29:22.910	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:22.911	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:22.912	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:22.912	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42272, Version on DB: 1.0.3561.42272
+01.10.09 23:29:22.913	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3561.42273, Version on DB: 1.0.3561.42273
+01.10.09 23:29:22.914	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:22.915	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:22.915	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:22.947	--------------------------------------------------------------------------------
+01.10.09 23:29:22.948	Logon successful
+01.10.09 23:29:22.982	--------------------------------------------------------------------------------
+01.10.09 23:29:22.983	Logon completed
+01.10.09 23:29:23.018		startUpActions: 1
+01.10.09 23:29:23.091	--------------------------------------------------------------------------------
+01.10.09 23:29:23.091	Initialize 'ShowNavigationItem' action items
+01.10.09 23:29:23.362	--------------------------------------------------------------------------------
+01.10.09 23:29:23.363	Execute action
+01.10.09 23:29:23.365		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:29:23.365		ID: ChooseSkin
+01.10.09 23:29:23.366		Category: Tools
+01.10.09 23:29:23.368		SelectedItem: Windows Theme
+01.10.09 23:29:23.373	Action 'ChooseSkin' done
+01.10.09 23:29:25.960	--------------------------------------------------------------------------------
+01.10.09 23:29:25.961	Execute action
+01.10.09 23:29:25.961		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:29:25.961		ID: ShowNavigationItem
+01.10.09 23:29:25.962		Category: ViewsNavigation
+01.10.09 23:29:25.962		SelectedItem: account_bank_state1ment_reconcile
+01.10.09 23:29:27.571	Action 'ShowNavigationItem' done
+01.10.09 23:29:28.301	Application startup done
+01.10.09 23:29:28.303	=========================
+01.10.09 23:29:28.304	Application running
+01.10.09 23:29:28.304	====================
+01.10.09 23:29:31.546	--------------------------------------------------------------------------------
+01.10.09 23:29:31.547	Execute action
+01.10.09 23:29:31.548		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:29:31.549		ID: ShowNavigationItem
+01.10.09 23:29:31.549		Category: ViewsNavigation
+01.10.09 23:29:31.550		ContextName: account_bank_state1ment_reconcile
+01.10.09 23:29:31.551		IsRoot: True
+01.10.09 23:29:31.552		Selection.Count: 0
+01.10.09 23:29:31.553		CurrentObject: <not specified>
+01.10.09 23:29:31.553		SelectedItem: res_users
+01.10.09 23:29:32.049	Action 'ShowNavigationItem' done
+01.10.09 23:29:33.849	--------------------------------------------------------------------------------
+01.10.09 23:29:33.850	Execute action
+01.10.09 23:29:33.851		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+01.10.09 23:29:33.851		ID: New
+01.10.09 23:29:33.852		Category: ObjectsCreation
+01.10.09 23:29:33.853		ContextName: res_users
+01.10.09 23:29:33.854		IsRoot: True
+01.10.09 23:29:33.854		Selection.Count: 0
+01.10.09 23:29:33.855		CurrentObject: <not specified>
+01.10.09 23:29:33.856		SelectedItem: res_users
+01.10.09 23:29:34.432	Check App Name Compatibility
+01.10.09 23:29:34.433	Check stored module versions against the versions of the loaded modules
+01.10.09 23:29:34.433	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:34.434	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:34.434	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:34.434	module 'XERPModule' (XERP.Module). Local version: 1.0.3561.42272, Version on DB: 1.0.3561.42272
+01.10.09 23:29:34.435	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3561.42273, Version on DB: 1.0.3561.42273
+01.10.09 23:29:34.435	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:34.436	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:34.436	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+01.10.09 23:29:35.843	Action 'New' done
+01.10.09 23:29:41.049	Window closing: res_users
+01.10.09 23:29:41.067	ConfirmationRequest: NeedSaveChanges
+01.10.09 23:29:41.068		DefaultConfirmationResult: No
+01.10.09 23:29:42.772		UserConfirmationResult: No
+01.10.09 23:29:42.827	Window closing: res_users
+01.10.09 23:29:42.829	Window closed: res_users
+01.10.09 23:29:51.508	Window closing: res_users - XERP
+01.10.09 23:29:51.525	Window closing: res_users - XERP
+01.10.09 23:29:51.529	Window closed: res_users - XERP
+01.10.09 23:29:51.703	Save model changes
+01.10.09 23:29:51.704	===================
+01.10.09 23:29:52.599	Application stopping
+01.10.09 23:29:52.600	=====================
+02.10.09 15:25:28.243	================================================================================
+02.10.09 15:25:28.321	Trace Log for XERP.Win.vshost.exe is started
+02.10.09 15:25:28.322	================================================================================
+02.10.09 15:25:28.329	System Environment
+	OS Version: Microsoft Windows NT 6.0.6002 Service Pack 2
+	.Net Framework Versions: v2.0.50727
+
+	CLR Version: 2.0.50727.4016
+	eXpressApp Version: 9.2.6.0
+Application config
+	Modules=
+	NewVersionServer=
+	EnableDiagnosticActions=False
+02.10.09 15:25:28.330	Initialize application
+02.10.09 15:25:28.330	=======================
+02.10.09 15:25:28.333		Command line arguments: 
+		C:\XERPsvn\XERP.Win\bin\Debug\XERP.Win.vshost.exe
+02.10.09 15:25:28.719	--------------------------------------------------------------------------------
+02.10.09 15:25:28.720	Initialize Modules Manager
+02.10.09 15:25:28.727	--------------------------------------------------------------------------------
+02.10.09 15:25:28.727	
+02.10.09 15:25:28.948	The ValueManagerType is initialized by the default value: SimpleValueManager.
+02.10.09 15:25:28.987	Stack trace:
+   at DevExpress.Persistent.Base.ValueManager.CreateValueManager[ValueType]()
+   at DevExpress.ExpressApp.SecuritySystem.get_valueManager()
+   at DevExpress.ExpressApp.SecuritySystem.SetInstance(ISecurity instance)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, IObjectSpaceProvider objectSpaceProvider, ApplicationModulesManager modulesManager, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, IObjectSpaceProvider objectSpaceProvider, String[] moduleAssemblies, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, String connectionString, String[] moduleAssemblies, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup()
+   at XERP.Win.Program.Main() in C:\XERPsvn\XERP.Win\Program.cs:line 42
+   at System.AppDomain._nExecuteAssembly(Assembly assembly, String[] args)
+   at System.AppDomain.ExecuteAssembly(String assemblyFile, Evidence assemblySecurity, String[] args)
+   at Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+   at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()
+
+02.10.09 15:25:28.996	--------------------------------------------------------------------------------
+Loaded assemblies
+	DevExpress.BonusSkins.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, Location=
+	DevExpress.Data.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.EasyTest.WinAdapter.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Images.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Objects.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Security.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.Base.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.BaseImpl.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Utils.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Xpo.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraBars.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraEditors.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraLayout.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraNavBar.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	Microsoft.VisualStudio.Debugger.Runtime, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities.Sync, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	vshost, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XERP.Module, Version=1.0.3562.27761, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Module.Win, Version=1.0.3562.27762, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Win, Version=1.0.3562.27763, Culture=neutral, PublicKeyToken=null, Location=
+02.10.09 15:25:31.406	--------------------------------------------------------------------------------
+02.10.09 15:25:31.406	Load Model
+02.10.09 15:25:31.406	Load Schema
+02.10.09 15:25:31.407	SetupModules
+02.10.09 15:25:33.657	Customize XPDictionary
+02.10.09 15:25:33.918	Load object model
+02.10.09 15:25:34.208	Generate default Model for Actions
+02.10.09 15:25:34.265	Generate default image sources
+02.10.09 15:25:34.265	Generate default Model for Property editors
+02.10.09 15:25:34.275	Generate default Model for Views
+02.10.09 15:25:36.207	Load DictionaryDifferenceStores' dictionaries
+02.10.09 15:25:36.211	Collect aspects
+02.10.09 15:25:36.228	Update model
+02.10.09 15:25:36.420	Generate default Model for Action containers
+02.10.09 15:25:36.495	Process localized attribute values
+02.10.09 15:25:36.496	Load Model Diffs
+02.10.09 15:25:37.146	Validate Model
+02.10.09 15:25:38.559	--------------------------------------------------------------------------------
+02.10.09 15:25:38.559	Start logon process
+02.10.09 15:25:38.561	--------------------------------------------------------------------------------
+02.10.09 15:25:38.561	Checking Compatibility
+02.10.09 15:25:38.603		ConnectionString: Data Source=(local);Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+02.10.09 15:25:39.166	--------------------------------------------------------------------------------
+02.10.09 15:25:39.166	UpdateDB
+02.10.09 15:25:41.465		ConnectionString: Data Source=(local);Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+02.10.09 15:25:42.142	Check App Name Compatibility
+02.10.09 15:25:43.216	Check stored module versions against the versions of the loaded modules
+02.10.09 15:25:43.216	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 0.0.0.0
+02.10.09 15:25:43.216	DatabaseIsOld
+02.10.09 15:25:52.383	Module: SystemModule. Old version: 0.0.0.0. New version: 9.2.6.0
+02.10.09 15:25:52.385	Module: SystemWindowsFormsModule. Old version: 0.0.0.0. New version: 9.2.6.0
+02.10.09 15:25:52.388	Module: BusinessClassLibraryCustomizationModule. Old version: 0.0.0.0. New version: 9.2.6.0
+02.10.09 15:25:52.390	Module: XERPModule. Old version: 0.0.0.0. New version: 1.0.3562.27761
+02.10.09 15:25:52.392	Module: XERPWindowsFormsModule. Old version: 0.0.0.0. New version: 1.0.3562.27762
+02.10.09 15:25:52.394	Module: ValidationModule. Old version: 0.0.0.0. New version: 9.2.6.0
+02.10.09 15:25:52.395	Module: ValidationWindowsFormsModule. Old version: 0.0.0.0. New version: 9.2.6.0
+02.10.09 15:25:52.395	Module: SecurityModule. Old version: 0.0.0.0. New version: 9.2.6.0
+02.10.09 15:25:52.428	Check App Name Compatibility
+02.10.09 15:25:52.429	Check stored module versions against the versions of the loaded modules
+02.10.09 15:25:52.430	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:25:52.430	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:25:52.430	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:25:52.431	module 'XERPModule' (XERP.Module). Local version: 1.0.3562.27761, Version on DB: 1.0.3562.27761
+02.10.09 15:25:52.431	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3562.27762, Version on DB: 1.0.3562.27762
+02.10.09 15:25:52.432	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:25:52.432	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:25:52.433	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:25:52.500	--------------------------------------------------------------------------------
+02.10.09 15:25:52.500	Logon successful
+02.10.09 15:25:52.542	--------------------------------------------------------------------------------
+02.10.09 15:25:52.543	Logon completed
+02.10.09 15:25:52.585		startUpActions: 1
+02.10.09 15:25:52.641	--------------------------------------------------------------------------------
+02.10.09 15:25:52.641	Initialize 'ShowNavigationItem' action items
+02.10.09 15:25:52.869	--------------------------------------------------------------------------------
+02.10.09 15:25:52.869	Execute action
+02.10.09 15:25:52.870		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:25:52.871		ID: ChooseSkin
+02.10.09 15:25:52.872		Category: Tools
+02.10.09 15:25:52.873		SelectedItem: Windows Theme
+02.10.09 15:25:52.875	Action 'ChooseSkin' done
+02.10.09 15:25:55.871	--------------------------------------------------------------------------------
+02.10.09 15:25:55.872	Execute action
+02.10.09 15:25:55.872		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:25:55.873		ID: ShowNavigationItem
+02.10.09 15:25:55.873		Category: ViewsNavigation
+02.10.09 15:25:55.874		SelectedItem: product_uom_categ
+02.10.09 15:25:57.307	Action 'ShowNavigationItem' done
+02.10.09 15:25:57.825	Application startup done
+02.10.09 15:25:57.826	=========================
+02.10.09 15:25:57.827	Application running
+02.10.09 15:25:57.827	====================
+02.10.09 15:26:02.030	--------------------------------------------------------------------------------
+02.10.09 15:26:02.031	Execute action
+02.10.09 15:26:02.031		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:26:02.032		ID: ShowNavigationItem
+02.10.09 15:26:02.033		Category: ViewsNavigation
+02.10.09 15:26:02.034		ContextName: product_uom_categ
+02.10.09 15:26:02.035		IsRoot: True
+02.10.09 15:26:02.035		Selection.Count: 0
+02.10.09 15:26:02.036		CurrentObject: <not specified>
+02.10.09 15:26:02.037		SelectedItem: product_uom_categ
+02.10.09 15:26:02.436	Action 'ShowNavigationItem' done
+02.10.09 15:26:04.405	--------------------------------------------------------------------------------
+02.10.09 15:26:04.406	Execute action
+02.10.09 15:26:04.408		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:26:04.408		ID: New
+02.10.09 15:26:04.409		Category: ObjectsCreation
+02.10.09 15:26:04.410		ContextName: product_uom_categ
+02.10.09 15:26:04.411		IsRoot: True
+02.10.09 15:26:04.411		Selection.Count: 0
+02.10.09 15:26:04.412		CurrentObject: <not specified>
+02.10.09 15:26:04.412		SelectedItem: product_uom_categ
+02.10.09 15:26:04.905	Check App Name Compatibility
+02.10.09 15:26:04.906	Check stored module versions against the versions of the loaded modules
+02.10.09 15:26:04.907	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:26:04.907	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:26:04.908	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:26:04.909	module 'XERPModule' (XERP.Module). Local version: 1.0.3562.27761, Version on DB: 1.0.3562.27761
+02.10.09 15:26:04.910	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3562.27762, Version on DB: 1.0.3562.27762
+02.10.09 15:26:04.910	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:26:04.911	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:26:04.912	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:26:06.007	Action 'New' done
+02.10.09 15:26:08.614	Window closing: product_uom_categ
+02.10.09 15:26:08.622	ConfirmationRequest: NeedSaveChanges
+02.10.09 15:26:08.623		DefaultConfirmationResult: No
+02.10.09 15:26:10.241		UserConfirmationResult: No
+02.10.09 15:26:10.285	Window closing: product_uom_categ
+02.10.09 15:26:10.287	Window closed: product_uom_categ
+02.10.09 15:26:21.538	Window closing: product_uom_categ - XERP
+02.10.09 15:26:21.552	Window closing: product_uom_categ - XERP
+02.10.09 15:26:21.554	Window closed: product_uom_categ - XERP
+02.10.09 15:26:21.722	Save model changes
+02.10.09 15:26:21.722	===================
+02.10.09 15:26:22.737	Application stopping
+02.10.09 15:26:22.739	=====================
+02.10.09 15:34:28.499	================================================================================
+02.10.09 15:34:28.502	Trace Log for XERP.Win.vshost.exe is started
+02.10.09 15:34:28.503	================================================================================
+02.10.09 15:34:28.508	System Environment
+	OS Version: Microsoft Windows NT 6.0.6002 Service Pack 2
+	.Net Framework Versions: v2.0.50727
+
+	CLR Version: 2.0.50727.4016
+	eXpressApp Version: 9.2.6.0
+Application config
+	Modules=
+	NewVersionServer=
+	EnableDiagnosticActions=False
+02.10.09 15:34:28.509	Initialize application
+02.10.09 15:34:28.510	=======================
+02.10.09 15:34:28.512		Command line arguments: 
+		C:\XERPsvn\XERP.Win\bin\Debug\XERP.Win.vshost.exe
+02.10.09 15:34:28.767	--------------------------------------------------------------------------------
+02.10.09 15:34:28.767	Initialize Modules Manager
+02.10.09 15:34:28.773	--------------------------------------------------------------------------------
+02.10.09 15:34:28.774	
+02.10.09 15:34:28.930	The ValueManagerType is initialized by the default value: SimpleValueManager.
+02.10.09 15:34:28.935	Stack trace:
+   at DevExpress.Persistent.Base.ValueManager.CreateValueManager[ValueType]()
+   at DevExpress.ExpressApp.SecuritySystem.get_valueManager()
+   at DevExpress.ExpressApp.SecuritySystem.SetInstance(ISecurity instance)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, IObjectSpaceProvider objectSpaceProvider, ApplicationModulesManager modulesManager, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, IObjectSpaceProvider objectSpaceProvider, String[] moduleAssemblies, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup(String applicationName, String connectionString, String[] moduleAssemblies, ISecurity security)
+   at DevExpress.ExpressApp.XafApplication.Setup()
+   at XERP.Win.Program.Main() in C:\XERPsvn\XERP.Win\Program.cs:line 42
+   at System.AppDomain._nExecuteAssembly(Assembly assembly, String[] args)
+   at System.AppDomain.ExecuteAssembly(String assemblyFile, Evidence assemblySecurity, String[] args)
+   at Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+   at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()
+
+02.10.09 15:34:28.945	--------------------------------------------------------------------------------
+Loaded assemblies
+	DevExpress.BonusSkins.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, Location=
+	DevExpress.Data.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.EasyTest.WinAdapter.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Images.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Objects.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Security.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Validation.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.ExpressApp.Win.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.Base.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Persistent.BaseImpl.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Utils.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.Xpo.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraBars.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraEditors.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraLayout.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	DevExpress.XtraNavBar.v9.2, Version=9.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, Location=
+	Microsoft.VisualStudio.Debugger.Runtime, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	Microsoft.VisualStudio.HostingProcess.Utilities.Sync, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, Location=
+	vshost, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, Location=
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XafDomain, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null, Location=InMemory Module
+	XERP.Module, Version=1.0.3562.28030, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Module.Win, Version=1.0.3562.28031, Culture=neutral, PublicKeyToken=null, Location=
+	XERP.Win, Version=1.0.3562.28032, Culture=neutral, PublicKeyToken=null, Location=
+02.10.09 15:34:30.858	--------------------------------------------------------------------------------
+02.10.09 15:34:30.858	Load Model
+02.10.09 15:34:30.858	Load Schema
+02.10.09 15:34:30.859	SetupModules
+02.10.09 15:34:33.077	Customize XPDictionary
+02.10.09 15:34:33.303	Load object model
+02.10.09 15:34:33.628	Generate default Model for Actions
+02.10.09 15:34:33.684	Generate default image sources
+02.10.09 15:34:33.685	Generate default Model for Property editors
+02.10.09 15:34:33.694	Generate default Model for Views
+02.10.09 15:34:35.749	Load DictionaryDifferenceStores' dictionaries
+02.10.09 15:34:35.753	Collect aspects
+02.10.09 15:34:35.771	Update model
+02.10.09 15:34:35.949	Generate default Model for Action containers
+02.10.09 15:34:36.045	Process localized attribute values
+02.10.09 15:34:36.047	Load Model Diffs
+02.10.09 15:34:36.656	Validate Model
+02.10.09 15:34:37.945	--------------------------------------------------------------------------------
+02.10.09 15:34:37.946	Start logon process
+02.10.09 15:34:37.947	--------------------------------------------------------------------------------
+02.10.09 15:34:37.948	Checking Compatibility
+02.10.09 15:34:37.952		ConnectionString: Data Source=(local);Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+02.10.09 15:34:38.164	Check App Name Compatibility
+02.10.09 15:34:38.172	Check stored module versions against the versions of the loaded modules
+02.10.09 15:34:38.173	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:38.173	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:38.173	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:38.174	module 'XERPModule' (XERP.Module). Local version: 1.0.3562.28030, Version on DB: 1.0.3562.27761
+02.10.09 15:34:38.174	DatabaseIsOld
+02.10.09 15:34:38.227	--------------------------------------------------------------------------------
+02.10.09 15:34:38.228	UpdateDB
+02.10.09 15:34:38.229		ConnectionString: Data Source=(local);Initial Catalog=XERP;Integrated Security=SSPI;Pooling=false;
+02.10.09 15:34:38.658	Check App Name Compatibility
+02.10.09 15:34:38.658	Check stored module versions against the versions of the loaded modules
+02.10.09 15:34:38.658	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:38.658	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:38.658	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:38.658	module 'XERPModule' (XERP.Module). Local version: 1.0.3562.28030, Version on DB: 1.0.3562.27761
+02.10.09 15:34:38.658	DatabaseIsOld
+02.10.09 15:34:41.414	Module: SystemModule. Old version: 9.2.6.0. New version: 9.2.6.0
+02.10.09 15:34:41.414	Module: SystemWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+02.10.09 15:34:41.414	Module: BusinessClassLibraryCustomizationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+02.10.09 15:34:41.524	Module: XERPModule. Old version: 1.0.3562.27761. New version: 1.0.3562.28030
+02.10.09 15:34:41.529	Module: XERPWindowsFormsModule. Old version: 1.0.3562.27762. New version: 1.0.3562.28031
+02.10.09 15:34:41.529	Module: ValidationModule. Old version: 9.2.6.0. New version: 9.2.6.0
+02.10.09 15:34:41.530	Module: ValidationWindowsFormsModule. Old version: 9.2.6.0. New version: 9.2.6.0
+02.10.09 15:34:41.530	Module: SecurityModule. Old version: 9.2.6.0. New version: 9.2.6.0
+02.10.09 15:34:41.533	Check App Name Compatibility
+02.10.09 15:34:41.533	Check stored module versions against the versions of the loaded modules
+02.10.09 15:34:41.534	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:41.535	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:41.535	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:41.536	module 'XERPModule' (XERP.Module). Local version: 1.0.3562.28030, Version on DB: 1.0.3562.28030
+02.10.09 15:34:41.537	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3562.28031, Version on DB: 1.0.3562.28031
+02.10.09 15:34:41.537	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:41.538	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:41.539	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:41.556	--------------------------------------------------------------------------------
+02.10.09 15:34:41.557	Logon successful
+02.10.09 15:34:41.648	--------------------------------------------------------------------------------
+02.10.09 15:34:41.649	Logon completed
+02.10.09 15:34:41.667		startUpActions: 1
+02.10.09 15:34:41.710	--------------------------------------------------------------------------------
+02.10.09 15:34:41.710	Initialize 'ShowNavigationItem' action items
+02.10.09 15:34:41.962	--------------------------------------------------------------------------------
+02.10.09 15:34:41.963	Execute action
+02.10.09 15:34:41.964		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:34:41.965		ID: ChooseSkin
+02.10.09 15:34:41.965		Category: Tools
+02.10.09 15:34:41.967		SelectedItem: Windows Theme
+02.10.09 15:34:41.969	Action 'ChooseSkin' done
+02.10.09 15:34:44.028	--------------------------------------------------------------------------------
+02.10.09 15:34:44.029	Execute action
+02.10.09 15:34:44.030		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:34:44.030		ID: ShowNavigationItem
+02.10.09 15:34:44.031		Category: ViewsNavigation
+02.10.09 15:34:44.032		SelectedItem: GL Accounts
+02.10.09 15:34:44.996	Action 'ShowNavigationItem' done
+02.10.09 15:34:45.453	Application startup done
+02.10.09 15:34:45.454	=========================
+02.10.09 15:34:45.454	Application running
+02.10.09 15:34:45.455	====================
+02.10.09 15:34:48.560	--------------------------------------------------------------------------------
+02.10.09 15:34:48.561	Execute action
+02.10.09 15:34:48.562		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:34:48.563		ID: ShowNavigationItem
+02.10.09 15:34:48.563		Category: ViewsNavigation
+02.10.09 15:34:48.564		ContextName: account_account
+02.10.09 15:34:48.565		IsRoot: True
+02.10.09 15:34:48.566		Selection.Count: 0
+02.10.09 15:34:48.567		CurrentObject: <not specified>
+02.10.09 15:34:48.567		SelectedItem: GL Accounts
+02.10.09 15:34:48.901	Action 'ShowNavigationItem' done
+02.10.09 15:34:49.781	--------------------------------------------------------------------------------
+02.10.09 15:34:49.782	Execute action
+02.10.09 15:34:49.782		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:34:49.783		ID: New
+02.10.09 15:34:49.784		Category: ObjectsCreation
+02.10.09 15:34:49.784		ContextName: account_account
+02.10.09 15:34:49.785		IsRoot: True
+02.10.09 15:34:49.785		Selection.Count: 0
+02.10.09 15:34:49.786		CurrentObject: <not specified>
+02.10.09 15:34:49.786		SelectedItem: account_account
+02.10.09 15:34:50.104	Check App Name Compatibility
+02.10.09 15:34:50.105	Check stored module versions against the versions of the loaded modules
+02.10.09 15:34:50.105	module 'SystemModule' (DevExpress.ExpressApp.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:50.106	module 'SystemWindowsFormsModule' (DevExpress.ExpressApp.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:50.106	module 'BusinessClassLibraryCustomizationModule' (DevExpress.ExpressApp.Objects.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:50.107	module 'XERPModule' (XERP.Module). Local version: 1.0.3562.28030, Version on DB: 1.0.3562.28030
+02.10.09 15:34:50.107	module 'XERPWindowsFormsModule' (XERP.Module.Win). Local version: 1.0.3562.28031, Version on DB: 1.0.3562.28031
+02.10.09 15:34:50.108	module 'ValidationModule' (DevExpress.ExpressApp.Validation.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:50.109	module 'ValidationWindowsFormsModule' (DevExpress.ExpressApp.Validation.Win.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:50.109	module 'SecurityModule' (DevExpress.ExpressApp.Security.v9.2). Local version: 9.2.6.0, Version on DB: 9.2.6.0
+02.10.09 15:34:51.443	Action 'New' done
+02.10.09 15:35:00.802	'code' property editor: new value is '1200'
+02.10.09 15:35:09.049	--------------------------------------------------------------------------------
+02.10.09 15:35:09.050	Execute action
+02.10.09 15:35:09.051		Type: DevExpress.ExpressApp.Actions.SingleChoiceAction
+02.10.09 15:35:09.052		ID: New
+02.10.09 15:35:09.053		Category: ObjectsCreation
+02.10.09 15:35:09.053		ContextName: res_currency
+02.10.09 15:35:09.054		IsRoot: False
+02.10.09 15:35:09.054		Selection.Count: 0
+02.10.09 15:35:09.055		CurrentObject: <not specified>
+02.10.09 15:35:09.055		SelectedItem: res_currency
+02.10.09 15:35:12.373	Window closing: res_currency
+02.10.09 15:35:12.381	ConfirmationRequest: NeedSaveChanges
+02.10.09 15:35:12.382		DefaultConfirmationResult: No
+02.10.09 15:35:13.632		UserConfirmationResult: No
+02.10.09 15:35:13.663	Window closing: res_currency
+02.10.09 15:35:13.665	Window closed: res_currency
+02.10.09 15:35:13.789	Action 'New' done
+02.10.09 15:35:15.700	Window closing: 1200 - account_account
+02.10.09 15:35:15.701	ConfirmationRequest: NeedSaveChanges
+02.10.09 15:35:15.702		DefaultConfirmationResult: No
+02.10.09 15:35:17.891		UserConfirmationResult: No
+02.10.09 15:35:17.908	Window closing: 1200 - account_account
+02.10.09 15:35:17.909	Window closed: 1200 - account_account
+02.10.09 15:35:19.699	Window closing: account_account - XERP
+02.10.09 15:35:19.719	Window closing: account_account - XERP
+02.10.09 15:35:19.727	Window closed: account_account - XERP
+02.10.09 15:35:19.858	Save model changes
+02.10.09 15:35:19.859	===================
+02.10.09 15:35:20.803	Application stopping
+02.10.09 15:35:20.804	=====================

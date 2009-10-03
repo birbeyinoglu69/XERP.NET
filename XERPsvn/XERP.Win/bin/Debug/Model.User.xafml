@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application>
+	<Templates>
+		<Template ID="DevExpress.ExpressApp.Win.Templates.DetailViewForm" IsNewNode="True">
+			<FormState ID="account_account_DetailView" State="Normal" X="198" Y="198" Width="800" Height="593" IsNewNode="True" />
+			<XtraBarsCustomization ID="Default" IsNewNode="True" />
+			<NavBarCustomization IsNewNode="True" />
+			<FormState ID="product_uom_categ_DetailView" State="Normal" X="242" Y="242" Width="800" Height="593" IsNewNode="True" />
+			<FormState ID="res_currency_DetailView" State="Normal" X="220" Y="220" Width="800" Height="593" IsNewNode="True" />
+			<FormState ID="res_users_DetailView" State="Normal" X="44" Y="44" Width="800" Height="593" IsNewNode="True" />
+			<FormState ID="wkf_DetailView" State="Normal" X="198" Y="198" Width="800" Height="593" IsNewNode="True" />
+		</Template>
+		<Template ID="DevExpress.ExpressApp.Win.Templates.MainForm" NavigationWidth="200" NavigationDock="Left" NavigationVisibility="Visible" IsNewNode="True">
+			<XtraBarsCustomization ID="Default" IsNewNode="True" />
+			<FormState ID="Default" State="Normal" X="176" Y="176" Width="800" Height="593" IsNewNode="True" />
+			<NavBarCustomization Width="192" IsNewNode="True" />
+		</Template>
+	</Templates>
+	<Views>
+		<ListView ID="res_currency_LookupListView">
+			<SplitLayout IsNewNode="True" />
+		</ListView>
+	</Views>
+</Application>
