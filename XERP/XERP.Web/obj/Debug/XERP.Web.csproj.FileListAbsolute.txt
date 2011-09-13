@@ -1,0 +1,5 @@
+C:\Work\VisualStudioProjects\XERP\XERP.Web\bin\XERP.Web.dll
+C:\Work\VisualStudioProjects\XERP\XERP.Web\bin\XERP.Web.pdb
+C:\Work\VisualStudioProjects\XERP\XERP.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Work\VisualStudioProjects\XERP\XERP.Web\obj\Debug\XERP.Web.dll
+C:\Work\VisualStudioProjects\XERP\XERP.Web\obj\Debug\XERP.Web.pdb
