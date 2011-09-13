@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application>
-	<SchemaModules>
-		<SchemaModule Name="DevExpress.ExpressApp.SystemModule.ShowNavigationItemController" Version="9.2.6.0" />
-		<SchemaModule Name="SystemAspNetModule" Version="9.2.6.0" IsNewNode="True" />
-	</SchemaModules>
-</Application>
