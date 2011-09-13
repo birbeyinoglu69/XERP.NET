@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PlantEntity" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="PlantEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="PlantEntity.Address" />
+    <EntitySet Name="Companies" EntityType="PlantEntity.Company" />
+    <EntitySet Name="PlantCodes" EntityType="PlantEntity.PlantCode" />
+    <EntitySet Name="Plants" EntityType="PlantEntity.Plant" />
+    <EntitySet Name="PlantTypes" EntityType="PlantEntity.PlantType" />
+    <EntitySet Name="Warehouses" EntityType="PlantEntity.Warehouse" />
+    <AssociationSet Name="FK_Addresses_Companies" Association="PlantEntity.FK_Addresses_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plants_Addresses" Association="PlantEntity.FK_Plants_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Plants" EntitySet="Plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouses_Addresses1" Association="PlantEntity.FK_Warehouses_Addresses1">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Warehouses" EntitySet="Warehouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlantCodes_Companies" Association="PlantEntity.FK_PlantCodes_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="PlantCodes" EntitySet="PlantCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plants_Companies" Association="PlantEntity.FK_Plants_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Plants" EntitySet="Plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlantTypes_Companies" Association="PlantEntity.FK_PlantTypes_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="PlantTypes" EntitySet="PlantTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouses_Companies1" Association="PlantEntity.FK_Warehouses_Companies1">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Warehouses" EntitySet="Warehouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plants_PlantCodes" Association="PlantEntity.FK_Plants_PlantCodes">
+      <End Role="PlantCodes" EntitySet="PlantCodes" />
+      <End Role="Plants" EntitySet="Plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plants_PlantTypes" Association="PlantEntity.FK_Plants_PlantTypes">
+      <End Role="PlantTypes" EntitySet="PlantTypes" />
+      <End Role="Plants" EntitySet="Plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouses_Plants" Association="PlantEntity.FK_Warehouses_Plants">
+      <End Role="Plants" EntitySet="Plants" />
+      <End Role="Warehouses" EntitySet="Warehouses" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AddressID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Company" Relationship="PlantEntity.FK_Addresses_Companies" FromRole="Addresses" ToRole="Companies" />
+    <NavigationProperty Name="Plants" Relationship="PlantEntity.FK_Plants_Addresses" FromRole="Addresses" ToRole="Plants" />
+    <NavigationProperty Name="Warehouses" Relationship="PlantEntity.FK_Warehouses_Addresses1" FromRole="Addresses" ToRole="Warehouses" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CurrentFiscalYear" Type="Int32" />
+    <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Addresses" Relationship="PlantEntity.FK_Addresses_Companies" FromRole="Companies" ToRole="Addresses" />
+    <NavigationProperty Name="PlantCodes" Relationship="PlantEntity.FK_PlantCodes_Companies" FromRole="Companies" ToRole="PlantCodes" />
+    <NavigationProperty Name="Plants" Relationship="PlantEntity.FK_Plants_Companies" FromRole="Companies" ToRole="Plants" />
+    <NavigationProperty Name="PlantTypes" Relationship="PlantEntity.FK_PlantTypes_Companies" FromRole="Companies" ToRole="PlantTypes" />
+    <NavigationProperty Name="Warehouses" Relationship="PlantEntity.FK_Warehouses_Companies1" FromRole="Companies" ToRole="Warehouses" />
+  </EntityType>
+  <EntityType Name="PlantCode">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="PlantCodeID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PlantCodeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Company" Relationship="PlantEntity.FK_PlantCodes_Companies" FromRole="PlantCodes" ToRole="Companies" />
+    <NavigationProperty Name="Plants" Relationship="PlantEntity.FK_Plants_PlantCodes" FromRole="PlantCodes" ToRole="Plants" />
+  </EntityType>
+  <EntityType Name="Plant">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="PlantID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PlantID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DefaultPlant" Type="Boolean" />
+    <Property Name="PlantTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PlantCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Address" Relationship="PlantEntity.FK_Plants_Addresses" FromRole="Plants" ToRole="Addresses" />
+    <NavigationProperty Name="Company" Relationship="PlantEntity.FK_Plants_Companies" FromRole="Plants" ToRole="Companies" />
+    <NavigationProperty Name="PlantCode" Relationship="PlantEntity.FK_Plants_PlantCodes" FromRole="Plants" ToRole="PlantCodes" />
+    <NavigationProperty Name="PlantType" Relationship="PlantEntity.FK_Plants_PlantTypes" FromRole="Plants" ToRole="PlantTypes" />
+    <NavigationProperty Name="Warehouses" Relationship="PlantEntity.FK_Warehouses_Plants" FromRole="Plants" ToRole="Warehouses" />
+  </EntityType>
+  <EntityType Name="PlantType">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="PlantTypeID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PlantTypeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Company" Relationship="PlantEntity.FK_PlantTypes_Companies" FromRole="PlantTypes" ToRole="Companies" />
+    <NavigationProperty Name="Plants" Relationship="PlantEntity.FK_Plants_PlantTypes" FromRole="PlantTypes" ToRole="Plants" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="PlantID" />
+      <PropertyRef Name="WarehouseID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PlantID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="WarehouseID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="DefaultWarehouse" Type="Boolean" />
+    <Property Name="WarehouseTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="WarehouseCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ManagerName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Address" Relationship="PlantEntity.FK_Warehouses_Addresses1" FromRole="Warehouses" ToRole="Addresses" />
+    <NavigationProperty Name="Company" Relationship="PlantEntity.FK_Warehouses_Companies1" FromRole="Warehouses" ToRole="Companies" />
+    <NavigationProperty Name="Plant" Relationship="PlantEntity.FK_Warehouses_Plants" FromRole="Warehouses" ToRole="Plants" />
+  </EntityType>
+  <Association Name="FK_Addresses_Companies">
+    <End Role="Companies" Type="PlantEntity.Company" Multiplicity="1" />
+    <End Role="Addresses" Type="PlantEntity.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plants_Addresses">
+    <End Role="Addresses" Type="PlantEntity.Address" Multiplicity="0..1" />
+    <End Role="Plants" Type="PlantEntity.Plant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Plants">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouses_Addresses1">
+    <End Role="Addresses" Type="PlantEntity.Address" Multiplicity="0..1" />
+    <End Role="Warehouses" Type="PlantEntity.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Warehouses">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlantCodes_Companies">
+    <End Role="Companies" Type="PlantEntity.Company" Multiplicity="1" />
+    <End Role="PlantCodes" Type="PlantEntity.PlantCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="PlantCodes">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plants_Companies">
+    <End Role="Companies" Type="PlantEntity.Company" Multiplicity="1" />
+    <End Role="Plants" Type="PlantEntity.Plant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Plants">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlantTypes_Companies">
+    <End Role="Companies" Type="PlantEntity.Company" Multiplicity="1" />
+    <End Role="PlantTypes" Type="PlantEntity.PlantType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="PlantTypes">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouses_Companies1">
+    <End Role="Companies" Type="PlantEntity.Company" Multiplicity="1" />
+    <End Role="Warehouses" Type="PlantEntity.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Warehouses">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plants_PlantCodes">
+    <End Role="PlantCodes" Type="PlantEntity.PlantCode" Multiplicity="0..1" />
+    <End Role="Plants" Type="PlantEntity.Plant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlantCodes">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="PlantCodeID" />
+      </Principal>
+      <Dependent Role="Plants">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="PlantCodeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plants_PlantTypes">
+    <End Role="PlantTypes" Type="PlantEntity.PlantType" Multiplicity="0..1" />
+    <End Role="Plants" Type="PlantEntity.Plant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlantTypes">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="PlantTypeID" />
+      </Principal>
+      <Dependent Role="Plants">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="PlantTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouses_Plants">
+    <End Role="Plants" Type="PlantEntity.Plant" Multiplicity="1" />
+    <End Role="Warehouses" Type="PlantEntity.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plants">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="PlantID" />
+      </Principal>
+      <Dependent Role="Warehouses">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="PlantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
