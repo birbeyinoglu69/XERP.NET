@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PlantModelStoreContainer" CdmEntityContainer="PlantEntities">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="PlantModel.Address">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+          <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="PlantModel.Company">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+          <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+          <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+          <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+          <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+          <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+          <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlantCodes">
+      <EntityTypeMapping TypeName="PlantModel.PlantCode">
+        <MappingFragment StoreEntitySet="PlantCodes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantCodeID" ColumnName="PlantCodeID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plants">
+      <EntityTypeMapping TypeName="PlantModel.Plant">
+        <MappingFragment StoreEntitySet="Plants">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DefaultPlant" ColumnName="DefaultPlant" />
+          <ScalarProperty Name="PlantTypeID" ColumnName="PlantTypeID" />
+          <ScalarProperty Name="PlantCodeID" ColumnName="PlantCodeID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlantTypes">
+      <EntityTypeMapping TypeName="PlantModel.PlantType">
+        <MappingFragment StoreEntitySet="PlantTypes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantTypeID" ColumnName="PlantTypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warehouses">
+      <EntityTypeMapping TypeName="PlantModel.Warehouse">
+        <MappingFragment StoreEntitySet="Warehouses">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DefaultWarehouse" ColumnName="DefaultWarehouse" />
+          <ScalarProperty Name="WarehouseTypeID" ColumnName="WarehouseTypeID" />
+          <ScalarProperty Name="WarehouseCodeID" ColumnName="WarehouseCodeID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
