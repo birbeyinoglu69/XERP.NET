@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SystemUsers" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="SystemUserEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="SystemUsers.Address" />
+    <EntitySet Name="Companies" EntityType="SystemUsers.Company" />
+    <EntitySet Name="Employees" EntityType="SystemUsers.Employee" />
+    <EntitySet Name="SecurityGroups" EntityType="SystemUsers.SecurityGroup" />
+    <EntitySet Name="SystemUserCodes" EntityType="SystemUsers.SystemUserCode" />
+    <EntitySet Name="SystemUsers" EntityType="SystemUsers.SystemUser" />
+    <EntitySet Name="SystemUserSecurities" EntityType="SystemUsers.SystemUserSecurity" />
+    <EntitySet Name="SystemUserTypes" EntityType="SystemUsers.SystemUserType" />
+    <AssociationSet Name="FK_Addresses_Companies" Association="SystemUsers.FK_Addresses_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Address" Association="SystemUsers.FK_Employee_Address">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUsers_Addresses" Association="SystemUsers.FK_SystemUsers_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="SystemUsers" EntitySet="SystemUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Company" Association="SystemUsers.FK_Employee_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecurityGroup_Company" Association="SystemUsers.FK_SecurityGroup_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_Company" Association="SystemUsers.FK_UserSecurity_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_SystemUser" Association="SystemUsers.FK_Employee_SystemUser">
+      <End Role="SystemUsers" EntitySet="SystemUsers" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="SystemUsers.FK_UserSecurity_SecurityGroup">
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUser_SystemUserCode" Association="SystemUsers.FK_SystemUser_SystemUserCode">
+      <End Role="SystemUserCodes" EntitySet="SystemUserCodes" />
+      <End Role="SystemUsers" EntitySet="SystemUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUser_SystemUserType" Association="SystemUsers.FK_SystemUser_SystemUserType">
+      <End Role="SystemUserTypes" EntitySet="SystemUserTypes" />
+      <End Role="SystemUsers" EntitySet="SystemUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_SystemUser" Association="SystemUsers.FK_UserSecurity_SystemUser">
+      <End Role="SystemUsers" EntitySet="SystemUsers" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AddressID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Company" Relationship="SystemUsers.FK_Addresses_Companies" FromRole="Addresses" ToRole="Companies" />
+    <NavigationProperty Name="Employees" Relationship="SystemUsers.FK_Employee_Address" FromRole="Addresses" ToRole="Employees" />
+    <NavigationProperty Name="SystemUsers" Relationship="SystemUsers.FK_SystemUsers_Addresses" FromRole="Addresses" ToRole="SystemUsers" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="CurrentFiscalYear" Type="Int32" />
+    <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Addresses" Relationship="SystemUsers.FK_Addresses_Companies" FromRole="Companies" ToRole="Addresses" />
+    <NavigationProperty Name="Employees" Relationship="SystemUsers.FK_Employee_Company" FromRole="Companies" ToRole="Employees" />
+    <NavigationProperty Name="SecurityGroups" Relationship="SystemUsers.FK_SecurityGroup_Company" FromRole="Companies" ToRole="SecurityGroups" />
+    <NavigationProperty Name="SystemUserSecurities" Relationship="SystemUsers.FK_UserSecurity_Company" FromRole="Companies" ToRole="SystemUserSecurities" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="SystemUserID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="EmergencyPhone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="EmergengcyContactName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Shift" Type="Int32" />
+    <Property Name="LaborRate" Type="Decimal" Precision="14" Scale="4" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="EmployeeTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="EmployeeCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="DepartmentID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ImageID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Address" Relationship="SystemUsers.FK_Employee_Address" FromRole="Employees" ToRole="Addresses" />
+    <NavigationProperty Name="Company" Relationship="SystemUsers.FK_Employee_Company" FromRole="Employees" ToRole="Companies" />
+    <NavigationProperty Name="SystemUser" Relationship="SystemUsers.FK_Employee_SystemUser" FromRole="Employees" ToRole="SystemUsers" />
+  </EntityType>
+  <EntityType Name="SecurityGroup">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="SecurityGroupID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="SecurityGroupTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="SecurityGroupCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Company" Relationship="SystemUsers.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
+    <NavigationProperty Name="SystemUserSecurities" Relationship="SystemUsers.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="SystemUserSecurities" />
+  </EntityType>
+  <EntityType Name="SystemUserCode">
+    <Key>
+      <PropertyRef Name="SystemUserCodeID" />
+    </Key>
+    <Property Name="SystemUserCodeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="SystemUsers" Relationship="SystemUsers.FK_SystemUser_SystemUserCode" FromRole="SystemUserCodes" ToRole="SystemUsers" />
+  </EntityType>
+  <EntityType Name="SystemUser">
+    <Key>
+      <PropertyRef Name="SystemUserID" />
+    </Key>
+    <Property Name="SystemUserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SystemUserTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="SystemUserCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="EmailAddress" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordExpired" Type="Boolean" />
+    <Property Name="PasswordExpiresOn" Type="DateTime" />
+    <Property Name="SystemManager" Type="Boolean" />
+    <Property Name="DefaultCompanyID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="DefaultPlantID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ImageID" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Address" Relationship="SystemUsers.FK_SystemUsers_Addresses" FromRole="SystemUsers" ToRole="Addresses" />
+    <NavigationProperty Name="Employees" Relationship="SystemUsers.FK_Employee_SystemUser" FromRole="SystemUsers" ToRole="Employees" />
+    <NavigationProperty Name="SystemUserCode" Relationship="SystemUsers.FK_SystemUser_SystemUserCode" FromRole="SystemUsers" ToRole="SystemUserCodes" />
+    <NavigationProperty Name="SystemUserType" Relationship="SystemUsers.FK_SystemUser_SystemUserType" FromRole="SystemUsers" ToRole="SystemUserTypes" />
+    <NavigationProperty Name="SystemUserSecurities" Relationship="SystemUsers.FK_UserSecurity_SystemUser" FromRole="SystemUsers" ToRole="SystemUserSecurities" />
+  </EntityType>
+  <EntityType Name="SystemUserSecurity">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="SystemUserID" />
+      <PropertyRef Name="SecurityGroupID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="SystemUserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Company" Relationship="SystemUsers.FK_UserSecurity_Company" FromRole="SystemUserSecurities" ToRole="Companies" />
+    <NavigationProperty Name="SecurityGroup" Relationship="SystemUsers.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurities" ToRole="SecurityGroups" />
+    <NavigationProperty Name="SystemUser" Relationship="SystemUsers.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurities" ToRole="SystemUsers" />
+  </EntityType>
+  <EntityType Name="SystemUserType">
+    <Key>
+      <PropertyRef Name="SystemUserTypeID" />
+    </Key>
+    <Property Name="SystemUserTypeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="SystemUsers" Relationship="SystemUsers.FK_SystemUser_SystemUserType" FromRole="SystemUserTypes" ToRole="SystemUsers" />
+  </EntityType>
+  <Association Name="FK_Addresses_Companies">
+    <End Role="Companies" Type="SystemUsers.Company" Multiplicity="1" />
+    <End Role="Addresses" Type="SystemUsers.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Address">
+    <End Role="Addresses" Type="SystemUsers.Address" Multiplicity="0..1" />
+    <End Role="Employees" Type="SystemUsers.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUsers_Addresses">
+    <End Role="Addresses" Type="SystemUsers.Address" Multiplicity="0..1" />
+    <End Role="SystemUsers" Type="SystemUsers.SystemUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="SystemUsers">
+        <PropertyRef Name="DefaultCompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Company">
+    <End Role="Companies" Type="SystemUsers.Company" Multiplicity="1" />
+    <End Role="Employees" Type="SystemUsers.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecurityGroup_Company">
+    <End Role="Companies" Type="SystemUsers.Company" Multiplicity="1" />
+    <End Role="SecurityGroups" Type="SystemUsers.SecurityGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="SecurityGroups">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_Company">
+    <End Role="Companies" Type="SystemUsers.Company" Multiplicity="1" />
+    <End Role="SystemUserSecurities" Type="SystemUsers.SystemUserSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_SystemUser">
+    <End Role="SystemUsers" Type="SystemUsers.SystemUser" Multiplicity="0..1" />
+    <End Role="Employees" Type="SystemUsers.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUsers">
+        <PropertyRef Name="SystemUserID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="SystemUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_SecurityGroup">
+    <End Role="SecurityGroups" Type="SystemUsers.SecurityGroup" Multiplicity="1" />
+    <End Role="SystemUserSecurities" Type="SystemUsers.SystemUserSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityGroups">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUser_SystemUserCode">
+    <End Role="SystemUserCodes" Type="SystemUsers.SystemUserCode" Multiplicity="0..1" />
+    <End Role="SystemUsers" Type="SystemUsers.SystemUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUserCodes">
+        <PropertyRef Name="SystemUserCodeID" />
+      </Principal>
+      <Dependent Role="SystemUsers">
+        <PropertyRef Name="SystemUserCodeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUser_SystemUserType">
+    <End Role="SystemUserTypes" Type="SystemUsers.SystemUserType" Multiplicity="0..1" />
+    <End Role="SystemUsers" Type="SystemUsers.SystemUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUserTypes">
+        <PropertyRef Name="SystemUserTypeID" />
+      </Principal>
+      <Dependent Role="SystemUsers">
+        <PropertyRef Name="SystemUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_SystemUser">
+    <End Role="SystemUsers" Type="SystemUsers.SystemUser" Multiplicity="1" />
+    <End Role="SystemUserSecurities" Type="SystemUsers.SystemUserSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUsers">
+        <PropertyRef Name="SystemUserID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="SystemUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

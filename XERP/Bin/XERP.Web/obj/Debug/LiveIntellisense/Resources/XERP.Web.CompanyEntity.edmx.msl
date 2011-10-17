@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CompanyEntityStoreContainer" CdmEntityContainer="CompanyEntities">
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="CompanyEntity.Company">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+          <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+          <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+          <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+          <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+          <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+          <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyCodes">
+      <EntityTypeMapping TypeName="CompanyEntity.CompanyCode">
+        <MappingFragment StoreEntitySet="CompanyCodes">
+          <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyTypes">
+      <EntityTypeMapping TypeName="CompanyEntity.CompanyType">
+        <MappingFragment StoreEntitySet="CompanyTypes">
+          <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
