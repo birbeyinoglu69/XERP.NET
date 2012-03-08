@@ -1,0 +1,11 @@
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\bin\XERP.Server.Service.CompanyService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\bin\XERP.Server.Service.CompanyService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\bin\XERP.Server.DAL.CompanyDAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\bin\XERP.Server.DAL.CompanyDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\obj\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\obj\Debug\XERP.Server.Service.CompanyService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\obj\Debug\XERP.Server.Service.CompanyService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.CompanyService.dll
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.CompanyService.pdb
