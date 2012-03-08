@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using XERP.Client.WPF.MainMenu.ViewModels;
+
+namespace XERP.Client.WPF.MainMenu.Views
+{
+    /// <summary>
+    /// Interaction logic for MainMenuView.xaml
+    /// </summary>
+    public partial class MainMenuView : UserControl
+    {
+        MainMenuViewModel model;
+        public MainMenuView()
+        {
+            try
+            {
+                InitializeComponent();
+                model = (MainMenuViewModel)DataContext;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void tv_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            model.TreeNestedMenuItemChanged(e.NewValue);
+        }
+    }
+}
