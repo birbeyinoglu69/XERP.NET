@@ -1,7 +1,0 @@
-C:\XERP\XERP.Client\XerpServerBuild\bin\XERP.Client.dll
-C:\XERP\XERP.Client\XerpServerBuild\bin\XERP.Client.pdb
-C:\XERP\XERP.Client\obj\x86\Release\ResolveAssemblyReference.cache
-C:\XERP\XERP.Client\obj\x86\Release\XERP.Client.dll
-C:\XERP\XERP.Client\obj\x86\Release\XERP.Client.pdb
-C:\XERP\XERP.Client\XerpClientBuild\bin\XERP.Client.dll
-C:\XERP\XERP.Client\XerpClientBuild\bin\XERP.Client.pdb
