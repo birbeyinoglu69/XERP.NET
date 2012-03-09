@@ -1,0 +1,8 @@
+C:\XERP\XERP.Server\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\obj\x86\Debug\XERP.Server.Properties.Resources.resources
+C:\XERP\XERP.Server\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\XERP\XERP.Server\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\XERP\XERP.Server\XerpServerBuild\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XerpServerBuild\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\obj\x86\Debug\XERP.Server.dll
+C:\XERP\XERP.Server\obj\x86\Debug\XERP.Server.pdb
