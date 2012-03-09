@@ -1,0 +1,619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MenuSecurityDAL.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MenuSecurityDALStoreContainer">
+          <EntitySet Name="Companies" EntityType="MenuSecurityDAL.Store.Companies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MenuItems" EntityType="MenuSecurityDAL.Store.MenuItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MenuSecurities" EntityType="MenuSecurityDAL.Store.MenuSecurities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecurityGroups" EntityType="MenuSecurityDAL.Store.SecurityGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SystemUserSecurities" EntityType="MenuSecurityDAL.Store.SystemUserSecurities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Temp" EntityType="MenuSecurityDAL.Store.Temp" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_MenuItem_Company" Association="MenuSecurityDAL.Store.FK_MenuItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="MenuItems" EntitySet="MenuItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuSecurity_Company" Association="MenuSecurityDAL.Store.FK_MenuSecurity_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuSecurity_MenuItem" Association="MenuSecurityDAL.Store.FK_MenuSecurity_MenuItem">
+            <End Role="MenuItems" EntitySet="MenuItems" />
+            <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuSecurity_SecurityGroup" Association="MenuSecurityDAL.Store.FK_MenuSecurity_SecurityGroup">
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+            <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityGroup_Company" Association="MenuSecurityDAL.Store.FK_SecurityGroup_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSecurity_Company" Association="MenuSecurityDAL.Store.FK_UserSecurity_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="MenuSecurityDAL.Store.FK_UserSecurity_SecurityGroup">
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+            <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CompanyTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="CompanyCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="StateTaxCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="TaxRegionCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="CurrentFiscalYear" Type="int" />
+          <Property Name="DefaultExecutablePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum2" Type="nvarchar" MaxLength="20" />
+          <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="MenuItems">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="MenuItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MenuItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="MenuItemTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="MenuItemCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="ImageID" Type="nvarchar" MaxLength="20" />
+          <Property Name="ParentMenuID" Type="nvarchar" MaxLength="20" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="Executable" Type="bit" />
+          <Property Name="ExecutablePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="ExecuatableProgram" Type="nvarchar" MaxLength="100" />
+          <Property Name="HideMenu" Type="bit" />
+          <Property Name="AllowAll" Type="bit" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="MenuSecurities">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="MenuItemID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MenuItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="SecurityGroups">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="SystemUserSecurities">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SystemUserID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Bool_1" Type="bit" />
+          <Property Name="ShortChar_1" Type="nvarchar" MaxLength="20" />
+          <Property Name="Int_1" Type="int" />
+          <Property Name="Decimal_1" Type="decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <Association Name="FK_MenuItem_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+          <End Role="MenuItems" Type="MenuSecurityDAL.Store.MenuItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="MenuItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuSecurity_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+          <End Role="MenuSecurities" Type="MenuSecurityDAL.Store.MenuSecurities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="MenuSecurities">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuSecurity_MenuItem">
+          <End Role="MenuItems" Type="MenuSecurityDAL.Store.MenuItems" Multiplicity="1" />
+          <End Role="MenuSecurities" Type="MenuSecurityDAL.Store.MenuSecurities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="MenuItemID" />
+            </Principal>
+            <Dependent Role="MenuSecurities">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="MenuItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuSecurity_SecurityGroup">
+          <End Role="SecurityGroups" Type="MenuSecurityDAL.Store.SecurityGroups" Multiplicity="1" />
+          <End Role="MenuSecurities" Type="MenuSecurityDAL.Store.MenuSecurities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityGroups">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Principal>
+            <Dependent Role="MenuSecurities">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityGroup_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+          <End Role="SecurityGroups" Type="MenuSecurityDAL.Store.SecurityGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SecurityGroups">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSecurity_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+          <End Role="SystemUserSecurities" Type="MenuSecurityDAL.Store.SystemUserSecurities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SystemUserSecurities">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSecurity_SecurityGroup">
+          <End Role="SecurityGroups" Type="MenuSecurityDAL.Store.SecurityGroups" Multiplicity="1" />
+          <End Role="SystemUserSecurities" Type="MenuSecurityDAL.Store.SystemUserSecurities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityGroups">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Principal>
+            <Dependent Role="SystemUserSecurities">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MenuSecurityDAL" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MenuSecurityEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="MenuSecurityDAL.Company" />
+          <EntitySet Name="MenuItems" EntityType="MenuSecurityDAL.MenuItem" />
+          <EntitySet Name="MenuSecurities" EntityType="MenuSecurityDAL.MenuSecurity" />
+          <EntitySet Name="SecurityGroups" EntityType="MenuSecurityDAL.SecurityGroup" />
+          <EntitySet Name="SystemUserSecurities" EntityType="MenuSecurityDAL.SystemUserSecurity" />
+          <EntitySet Name="Temps" EntityType="MenuSecurityDAL.Temp" />
+          <AssociationSet Name="FK_MenuItem_Company" Association="MenuSecurityDAL.FK_MenuItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="MenuItems" EntitySet="MenuItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuSecurity_Company" Association="MenuSecurityDAL.FK_MenuSecurity_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityGroup_Company" Association="MenuSecurityDAL.FK_SecurityGroup_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSecurity_Company" Association="MenuSecurityDAL.FK_UserSecurity_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuSecurity_MenuItem" Association="MenuSecurityDAL.FK_MenuSecurity_MenuItem">
+            <End Role="MenuItems" EntitySet="MenuItems" />
+            <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuSecurity_SecurityGroup" Association="MenuSecurityDAL.FK_MenuSecurity_SecurityGroup">
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+            <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="MenuSecurityDAL.FK_UserSecurity_SecurityGroup">
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+            <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CurrentFiscalYear" Type="Int32" />
+          <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="MenuItems" Relationship="MenuSecurityDAL.FK_MenuItem_Company" FromRole="Companies" ToRole="MenuItems" />
+          <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityDAL.FK_MenuSecurity_Company" FromRole="Companies" ToRole="MenuSecurities" />
+          <NavigationProperty Name="SecurityGroups" Relationship="MenuSecurityDAL.FK_SecurityGroup_Company" FromRole="Companies" ToRole="SecurityGroups" />
+          <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityDAL.FK_UserSecurity_Company" FromRole="Companies" ToRole="SystemUserSecurities" />
+        </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="MenuItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MenuItemID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="MenuItemTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MenuItemCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ImageID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ParentMenuID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="Executable" Type="Boolean" />
+          <Property Name="ExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ExecuatableProgram" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="HideMenu" Type="Boolean" />
+          <Property Name="AllowAll" Type="Boolean" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company" Relationship="MenuSecurityDAL.FK_MenuItem_Company" FromRole="MenuItems" ToRole="Companies" />
+          <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityDAL.FK_MenuSecurity_MenuItem" FromRole="MenuItems" ToRole="MenuSecurities" />
+        </EntityType>
+        <EntityType Name="MenuSecurity">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="MenuItemID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MenuItemID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company" Relationship="MenuSecurityDAL.FK_MenuSecurity_Company" FromRole="MenuSecurities" ToRole="Companies" />
+          <NavigationProperty Name="MenuItem" Relationship="MenuSecurityDAL.FK_MenuSecurity_MenuItem" FromRole="MenuSecurities" ToRole="MenuItems" />
+          <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityDAL.FK_MenuSecurity_SecurityGroup" FromRole="MenuSecurities" ToRole="SecurityGroups" />
+        </EntityType>
+        <EntityType Name="SecurityGroup">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="SecurityGroupTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SecurityGroupCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company" Relationship="MenuSecurityDAL.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
+          <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityDAL.FK_MenuSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="MenuSecurities" />
+          <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityDAL.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="SystemUserSecurities" />
+        </EntityType>
+        <EntityType Name="SystemUserSecurity">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SystemUserID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SystemUserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company" Relationship="MenuSecurityDAL.FK_UserSecurity_Company" FromRole="SystemUserSecurities" ToRole="Companies" />
+          <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityDAL.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurities" ToRole="SecurityGroups" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Bool_1" Type="Boolean" />
+          <Property Name="ShortChar_1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Int_1" Type="Int32" />
+          <Property Name="Decimal_1" Type="Decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <Association Name="FK_MenuItem_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Company" Multiplicity="1" />
+          <End Role="MenuItems" Type="MenuSecurityDAL.MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="MenuItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuSecurity_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Company" Multiplicity="1" />
+          <End Role="MenuSecurities" Type="MenuSecurityDAL.MenuSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="MenuSecurities">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityGroup_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Company" Multiplicity="1" />
+          <End Role="SecurityGroups" Type="MenuSecurityDAL.SecurityGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SecurityGroups">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSecurity_Company">
+          <End Role="Companies" Type="MenuSecurityDAL.Company" Multiplicity="1" />
+          <End Role="SystemUserSecurities" Type="MenuSecurityDAL.SystemUserSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SystemUserSecurities">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuSecurity_MenuItem">
+          <End Role="MenuItems" Type="MenuSecurityDAL.MenuItem" Multiplicity="1" />
+          <End Role="MenuSecurities" Type="MenuSecurityDAL.MenuSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="MenuItemID" />
+            </Principal>
+            <Dependent Role="MenuSecurities">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="MenuItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuSecurity_SecurityGroup">
+          <End Role="SecurityGroups" Type="MenuSecurityDAL.SecurityGroup" Multiplicity="1" />
+          <End Role="MenuSecurities" Type="MenuSecurityDAL.MenuSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityGroups">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Principal>
+            <Dependent Role="MenuSecurities">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSecurity_SecurityGroup">
+          <End Role="SecurityGroups" Type="MenuSecurityDAL.SecurityGroup" Multiplicity="1" />
+          <End Role="SystemUserSecurities" Type="MenuSecurityDAL.SystemUserSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityGroups">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Principal>
+            <Dependent Role="SystemUserSecurities">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MenuSecurityDALStoreContainer" CdmEntityContainer="MenuSecurityEntities">
+          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="MenuSecurityDAL.Company"><MappingFragment StoreEntitySet="Companies">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+            <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+            <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+            <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+            <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+            <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="Address3" ColumnName="Address3" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Email2" ColumnName="Email2" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MenuItems"><EntityTypeMapping TypeName="MenuSecurityDAL.MenuItem"><MappingFragment StoreEntitySet="MenuItems">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="MenuItemTypeID" ColumnName="MenuItemTypeID" />
+            <ScalarProperty Name="MenuItemCodeID" ColumnName="MenuItemCodeID" />
+            <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+            <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+            <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+            <ScalarProperty Name="Executable" ColumnName="Executable" />
+            <ScalarProperty Name="ExecutablePath" ColumnName="ExecutablePath" />
+            <ScalarProperty Name="ExecuatableProgram" ColumnName="ExecuatableProgram" />
+            <ScalarProperty Name="HideMenu" ColumnName="HideMenu" />
+            <ScalarProperty Name="AllowAll" ColumnName="AllowAll" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MenuSecurities"><EntityTypeMapping TypeName="MenuSecurityDAL.MenuSecurity"><MappingFragment StoreEntitySet="MenuSecurities">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+            <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SecurityGroups"><EntityTypeMapping TypeName="MenuSecurityDAL.SecurityGroup"><MappingFragment StoreEntitySet="SecurityGroups">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="SecurityGroupTypeID" ColumnName="SecurityGroupTypeID" />
+            <ScalarProperty Name="SecurityGroupCodeID" ColumnName="SecurityGroupCodeID" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SystemUserSecurities"><EntityTypeMapping TypeName="MenuSecurityDAL.SystemUserSecurity"><MappingFragment StoreEntitySet="SystemUserSecurities">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+            <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Temps"><EntityTypeMapping TypeName="MenuSecurityDAL.Temp"><MappingFragment StoreEntitySet="Temp">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Bool_1" ColumnName="Bool_1" />
+            <ScalarProperty Name="ShortChar_1" ColumnName="ShortChar_1" />
+            <ScalarProperty Name="Int_1" ColumnName="Int_1" />
+            <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MenuSecurity">
+        <EntityTypeShape EntityType="MenuSecurityDAL.Company" Width="1.5" PointX="0.75" PointY="2.25" Height="5.5366422526041656" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenuSecurityDAL.MenuItem" Width="1.5" PointX="3" PointY="1.25" Height="3.8931689453124996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenuSecurityDAL.MenuSecurity" Width="1.5" PointX="5.25" PointY="3.875" Height="2.0853483072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenuSecurityDAL.SecurityGroup" Width="1.5" PointX="3" PointY="5.875" Height="2.9070849609374987" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenuSecurityDAL.SystemUserSecurity" Width="1.5" PointX="5.25" PointY="7.5" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenuSecurityDAL.Temp" Width="1.5" PointX="5.75" PointY="0.75" Height="1.9210009765624996" IsExpanded="true" />
+        <AssociationConnector Association="MenuSecurityDAL.FK_MenuItem_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.69658447265625" />
+          <ConnectorPoint PointX="3" PointY="3.69658447265625" />
+        </AssociationConnector>
+        <AssociationConnector Association="MenuSecurityDAL.FK_MenuSecurity_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.50908447265625" />
+          <ConnectorPoint PointX="5.25" PointY="5.50908447265625" />
+        </AssociationConnector>
+        <AssociationConnector Association="MenuSecurityDAL.FK_SecurityGroup_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.8308211263020828" />
+          <ConnectorPoint PointX="3" PointY="6.8308211263020828" />
+        </AssociationConnector>
+        <AssociationConnector Association="MenuSecurityDAL.FK_UserSecurity_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="7.7866422526041656" />
+          <ConnectorPoint PointX="1.5" PointY="9.13279296875" />
+          <ConnectorPoint PointX="5.25" PointY="9.13279296875" />
+        </AssociationConnector>
+        <AssociationConnector Association="MenuSecurityDAL.FK_MenuSecurity_MenuItem" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.50908447265625" />
+          <ConnectorPoint PointX="5.25" PointY="4.50908447265625" />
+        </AssociationConnector>
+        <AssociationConnector Association="MenuSecurityDAL.FK_MenuSecurity_SecurityGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.875" />
+          <ConnectorPoint PointX="4.875" PointY="5.5" />
+          <ConnectorPoint PointX="4.875" PointY="6.3353483072916656" />
+          <ConnectorPoint PointX="5.25" PointY="5.9603483072916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="MenuSecurityDAL.FK_UserSecurity_SecurityGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.14104248046875" />
+          <ConnectorPoint PointX="5.25" PointY="8.14104248046875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
