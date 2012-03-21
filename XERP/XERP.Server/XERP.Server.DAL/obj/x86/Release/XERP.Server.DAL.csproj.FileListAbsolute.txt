@@ -1,5 +1,0 @@
-C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.dll
-C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.pdb
-C:\XERP\XERP.Server\XERP.Server.DAL\obj\x86\Release\ResolveAssemblyReference.cache
-C:\XERP\XERP.Server\XERP.Server.DAL\obj\x86\Release\XERP.Server.DAL.dll
-C:\XERP\XERP.Server\XERP.Server.DAL\obj\x86\Release\XERP.Server.DAL.pdb

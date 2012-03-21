@@ -1,5 +1,0 @@
-C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.dll
-C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.pdb
-C:\XERP\XERP.Server\XERP.Server.Service\obj\Debug\ResolveAssemblyReference.cache
-C:\XERP\XERP.Server\XERP.Server.Service\obj\Debug\XERP.Server.Service.dll
-C:\XERP\XERP.Server\XERP.Server.Service\obj\Debug\XERP.Server.Service.pdb
