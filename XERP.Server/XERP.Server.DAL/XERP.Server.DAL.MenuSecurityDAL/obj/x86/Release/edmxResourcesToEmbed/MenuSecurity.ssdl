@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MenuSecurityDAL.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MenuSecurityDALStoreContainer">
+    <EntitySet Name="Companies" EntityType="MenuSecurityDAL.Store.Companies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Images" EntityType="MenuSecurityDAL.Store.Images" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MenuItems" EntityType="MenuSecurityDAL.Store.MenuItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MenuSecurities" EntityType="MenuSecurityDAL.Store.MenuSecurities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SecurityGroups" EntityType="MenuSecurityDAL.Store.SecurityGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SystemUserSecurities" EntityType="MenuSecurityDAL.Store.SystemUserSecurities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Temp" EntityType="MenuSecurityDAL.Store.Temp" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Image_Company" Association="MenuSecurityDAL.Store.FK_Image_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuItem_Company" Association="MenuSecurityDAL.Store.FK_MenuItem_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="MenuItems" EntitySet="MenuItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuItem_Image" Association="MenuSecurityDAL.Store.FK_MenuItem_Image">
+      <End Role="Images" EntitySet="Images" />
+      <End Role="MenuItems" EntitySet="MenuItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuSecurity_Company" Association="MenuSecurityDAL.Store.FK_MenuSecurity_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuSecurity_MenuItem" Association="MenuSecurityDAL.Store.FK_MenuSecurity_MenuItem">
+      <End Role="MenuItems" EntitySet="MenuItems" />
+      <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuSecurity_SecurityGroup" Association="MenuSecurityDAL.Store.FK_MenuSecurity_SecurityGroup">
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+      <End Role="MenuSecurities" EntitySet="MenuSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecurityGroup_Company" Association="MenuSecurityDAL.Store.FK_SecurityGroup_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_Company" Association="MenuSecurityDAL.Store.FK_UserSecurity_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="MenuSecurityDAL.Store.FK_UserSecurity_SecurityGroup">
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="CompanyTypeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="CompanyCodeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="StateTaxCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="TaxRegionCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="CurrentFiscalYear" Type="int" />
+    <Property Name="DefaultExecutablePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="Country" Type="nvarchar" MaxLength="20" />
+    <Property Name="PhoneNum" Type="nvarchar" MaxLength="20" />
+    <Property Name="PhoneNum2" Type="nvarchar" MaxLength="20" />
+    <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="ImageID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Image1" Type="varbinary(max)" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="MenuItems">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="MenuItemID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="MenuItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="MenuItemTypeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="MenuItemCodeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="ImageID" Type="nvarchar" MaxLength="20" />
+    <Property Name="ParentMenuID" Type="nvarchar" MaxLength="20" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="Executable" Type="bit" />
+    <Property Name="ExecutablePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="ExecuatableProgram" Type="nvarchar" MaxLength="100" />
+    <Property Name="HideMenu" Type="bit" />
+    <Property Name="AllowAll" Type="bit" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="MenuSecurities">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="MenuItemID" />
+      <PropertyRef Name="SecurityGroupID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="MenuItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="SecurityGroups">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="SecurityGroupID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="SystemUserSecurities">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="SystemUserID" />
+      <PropertyRef Name="SecurityGroupID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Temp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="10" />
+    <Property Name="Bool_1" Type="bit" />
+    <Property Name="ShortChar_1" Type="nvarchar" MaxLength="20" />
+    <Property Name="Int_1" Type="int" />
+    <Property Name="Decimal_1" Type="decimal" Precision="12" Scale="5" />
+  </EntityType>
+  <Association Name="FK_Image_Company">
+    <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+    <End Role="Images" Type="MenuSecurityDAL.Store.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuItem_Company">
+    <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+    <End Role="MenuItems" Type="MenuSecurityDAL.Store.MenuItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="MenuItems">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuItem_Image">
+    <End Role="Images" Type="MenuSecurityDAL.Store.Images" Multiplicity="0..1" />
+    <End Role="MenuItems" Type="MenuSecurityDAL.Store.MenuItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Images">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="ImageID" />
+      </Principal>
+      <Dependent Role="MenuItems">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="ImageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuSecurity_Company">
+    <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+    <End Role="MenuSecurities" Type="MenuSecurityDAL.Store.MenuSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="MenuSecurities">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuSecurity_MenuItem">
+    <End Role="MenuItems" Type="MenuSecurityDAL.Store.MenuItems" Multiplicity="1" />
+    <End Role="MenuSecurities" Type="MenuSecurityDAL.Store.MenuSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItems">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="MenuItemID" />
+      </Principal>
+      <Dependent Role="MenuSecurities">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="MenuItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuSecurity_SecurityGroup">
+    <End Role="SecurityGroups" Type="MenuSecurityDAL.Store.SecurityGroups" Multiplicity="1" />
+    <End Role="MenuSecurities" Type="MenuSecurityDAL.Store.MenuSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityGroups">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Principal>
+      <Dependent Role="MenuSecurities">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecurityGroup_Company">
+    <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+    <End Role="SecurityGroups" Type="MenuSecurityDAL.Store.SecurityGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="SecurityGroups">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_Company">
+    <End Role="Companies" Type="MenuSecurityDAL.Store.Companies" Multiplicity="1" />
+    <End Role="SystemUserSecurities" Type="MenuSecurityDAL.Store.SystemUserSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_SecurityGroup">
+    <End Role="SecurityGroups" Type="MenuSecurityDAL.Store.SecurityGroups" Multiplicity="1" />
+    <End Role="SystemUserSecurities" Type="MenuSecurityDAL.Store.SystemUserSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityGroups">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
