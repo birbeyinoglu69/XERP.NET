@@ -1,0 +1,209 @@
+﻿<UserControl x:Class="XERP.Client.WPF.CompanyMaintenance.Views.CompanyMaintenanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             >
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    <Grid >
+    <Grid.Resources>
+
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="25"></RowDefinition>
+      <RowDefinition Height="422*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="156*"></ColumnDefinition>
+      <ColumnDefinition Width="422*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="Company Maintenance Form"
+               FontSize="13"
+               Margin="130,3,129,5"></TextBlock>
+    <Menu IsMainMenu="True" Grid.ColumnSpan="2" Margin="2,2,370,2" Width="180">
+      <MenuItem Header="_File" >
+        <MenuItem Header="_New">
+          <MenuItem Header="_New Company">
+            <i:Interaction.Triggers>
+              <i:EventTrigger EventName="Click">
+                <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="NewCompanyCommand"/>
+              </i:EventTrigger>
+            </i:Interaction.Triggers>
+          </MenuItem>
+        </MenuItem>
+        <MenuItem Header="_Save" Click="SaveMenuItem_Click">
+          <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Click">
+              <ei:CallMethodAction
+                      TargetObject="{Binding}"
+                      MethodName="SaveCommand"/>
+            </i:EventTrigger>
+          </i:Interaction.Triggers>  
+        </MenuItem>
+        <MenuItem Header="_Delete">
+          <MenuItem Header="_Delete Company">
+            <i:Interaction.Triggers>
+              <i:EventTrigger EventName="Click">
+                <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="DeleteCommand"/>
+              </i:EventTrigger>
+            </i:Interaction.Triggers>
+          </MenuItem>
+        </MenuItem>
+        <MenuItem Header="_Clear">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <ei:CallMethodAction
+                TargetObject="{Binding}"
+                MethodName="ClearCommand"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </MenuItem>
+        <MenuItem Header="_Exit" Command="Close">
+        </MenuItem>
+      </MenuItem>
+      <MenuItem Header="_Edit">
+        <MenuItem Header="_Cut" Command="Cut">
+        </MenuItem>
+        <MenuItem Header="_Copy" Command="Copy">
+        </MenuItem>
+        <MenuItem Header="_Paste" Command="Paste">
+        </MenuItem>
+      </MenuItem>
+      <MenuItem Header="_Tools" />
+      <MenuItem Header="_Actions" />
+      <MenuItem Header="_Help" />
+    </Menu>
+
+    <GridSplitter Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Width="4" Background="Yellow"/>
+
+    <ListBox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"
+             ItemsSource="{Binding CompanyList}"
+              SelectedItem="{Binding SelectedCompany}"
+              SelectionMode="Single">
+      <ListBox.ItemTemplate>
+        <DataTemplate  >
+          <TextBlock Text="{Binding Path=CompanyID, Mode=TwoWay}" Margin="5"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <TabControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+      <TabItem Header="Detail">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="46"></RowDefinition>
+            <RowDefinition Height="657*"></RowDefinition>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="165*"></ColumnDefinition>
+            <ColumnDefinition Width="246*"></ColumnDefinition>
+          </Grid.ColumnDefinitions>
+          <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+            <Button Content="Company..." Width="100" Height="20" Margin="10">
+              <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                  <ei:CallMethodAction
+                          TargetObject="{Binding}"
+                          MethodName="SearchCommand"/>
+                </i:EventTrigger>
+              </i:Interaction.Triggers>
+            </Button>
+            <TextBox Width="100" Height="20" Margin=" 10"
+                     Text="{Binding Path=SelectedCompany.CompanyID, Mode=TwoWay}"/>
+          </StackPanel>
+          <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Name:</TextBlock>
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Description:</TextBlock>
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Type:</TextBlock>
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Code:</TextBlock>
+                        <TextBox Width="0" Height="0"  Name="ghost"  />
+                    </StackPanel>
+          <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                     Text="{Binding Path=SelectedCompany.Name, Mode=TwoWay, TargetNullValue=''}"
+                                 />
+            <TextBox
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                     Text="{Binding Path=SelectedCompany.Description, Mode=TwoWay}"
+                                />
+            <ComboBox HorizontalAlignment="Left" Width="200" Margin="5"
+                    ItemsSource="{Binding Path=CompanyTypeList, Mode=TwoWay}"
+                    DisplayMemberPath="Type"
+                    SelectedValue="{Binding Path=SelectedCompany.CompanyTypeID, Mode=TwoWay}"
+                    SelectedValuePath="CompanyTypeID"  />
+            <ComboBox HorizontalAlignment="Left" Width="200" Margin="5"
+                    ItemsSource="{Binding Path=CompanyCodeList, Mode=TwoWay}"
+                    DisplayMemberPath="Code"
+                    SelectedValue="{Binding Path=SelectedCompany.CompanyCodeID, Mode=TwoWay}"
+                    SelectedValuePath="CompanyCodeID"/>
+            </StackPanel>
+        </Grid>
+      </TabItem>
+      <TabItem Header="List" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="36*" />
+            <ColumnDefinition Width="37*" />
+                        <ColumnDefinition Width="354*" />
+                    </Grid.ColumnDefinitions>
+          <DataGrid AutoGenerateColumns="False"
+              ItemsSource="{Binding CompanyList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+              SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+              SelectionMode="Single" Grid.ColumnSpan="3" Margin="2,0,2,1">
+            <DataGrid.Columns>
+              <DataGridTextColumn Binding="{Binding CompanyID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                  Header="ID" Width="*"/>
+              <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                  Header="Name" Width="*"/>
+              <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                  Header="Description" Width="*"/>
+                <DataGridComboBoxColumn Header="Type" Width="*"
+                    SelectedValueBinding ="{Binding CompanyTypeID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                    DisplayMemberPath="Type"  
+                    SelectedValuePath="CompanyTypeID">
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CompanyTypeList, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                            <EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged" />
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CompanyTypeList, Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            <EventSetter Event="SelectionChanged" Handler="ComboBox_SelectionChanged" />
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+                <DataGridComboBoxColumn Header="Code" Width="*"
+                    SelectedValueBinding ="{Binding CompanyCodeID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                    DisplayMemberPath="Code"  
+                    SelectedValuePath="CompanyCodeID">
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CompanyCodeList, Mode=TwoWay}"/>
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CompanyCodeList, Mode=TwoWay}"/>
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+            </DataGrid.Columns>
+          </DataGrid>       
+          <TextBox Height="0" Name="ghost2" Width="0" Grid.Column="2" />
+        </Grid>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</UserControl>
