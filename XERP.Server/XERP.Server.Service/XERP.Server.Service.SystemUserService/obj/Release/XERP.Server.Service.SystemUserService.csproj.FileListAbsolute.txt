@@ -1,0 +1,5 @@
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.SystemUserService.dll
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.SystemUserService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SystemUserService\obj\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SystemUserService\obj\Release\XERP.Server.Service.SystemUserService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SystemUserService\obj\Release\XERP.Server.Service.SystemUserService.pdb
