@@ -1,9 +1,0 @@
-﻿<Window x:Class="XERP.Client.WPF.CompanyMaintenance.SearchWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:my="clr-namespace:XERP.Client.WPF.CompanyMaintenance"
-        Title="Company Search" Height="500" Width="500">
-    <Grid>
-        <my:CompanySearchView xmlns:my="clr-namespace:XERP.Client.WPF.CompanyMaintenance.Views" Margin="0,0,0,12" />
-    </Grid>
-</Window>
