@@ -1,0 +1,9 @@
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\obj\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\bin\XERP.Server.Service.MenuSecurityService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\bin\XERP.Server.Service.MenuSecurityService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\bin\XERP.Server.DAL.MenuSecurityDAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\bin\XERP.Server.DAL.MenuSecurityDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\obj\Debug\XERP.Server.Service.MenuSecurityService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\obj\Debug\XERP.Server.Service.MenuSecurityService.pdb
