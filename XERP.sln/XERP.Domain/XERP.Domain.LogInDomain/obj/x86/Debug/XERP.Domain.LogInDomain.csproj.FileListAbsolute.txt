@@ -1,0 +1,5 @@
+C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.LogInDomain.dll
+C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.LogInDomain.pdb
+C:\XERP\XERP.Domain\XERP.Domain.LogInDomain\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Domain\XERP.Domain.LogInDomain\obj\x86\Debug\XERP.Domain.LogInDomain.dll
+C:\XERP\XERP.Domain\XERP.Domain.LogInDomain\obj\x86\Debug\XERP.Domain.LogInDomain.pdb
