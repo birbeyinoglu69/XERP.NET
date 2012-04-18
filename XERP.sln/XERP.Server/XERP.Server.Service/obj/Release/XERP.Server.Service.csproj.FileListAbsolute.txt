@@ -1,0 +1,5 @@
+C:\XERP\XERP.Server\XERP.Server.Service\bin\XERP.Server.Service.dll
+C:\XERP\XERP.Server\XERP.Server.Service\bin\XERP.Server.Service.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\obj\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\obj\Release\XERP.Server.Service.dll
+C:\XERP\XERP.Server\XERP.Server.Service\obj\Release\XERP.Server.Service.pdb
