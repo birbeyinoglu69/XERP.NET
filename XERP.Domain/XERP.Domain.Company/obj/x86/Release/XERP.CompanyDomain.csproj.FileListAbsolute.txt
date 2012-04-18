@@ -1,5 +1,0 @@
-C:\XERP\XERP.Domain\XERP.Domain.Company\obj\x86\Release\ResolveAssemblyReference.cache
-C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.CompanyDomain.dll
-C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.CompanyDomain.pdb
-C:\XERP\XERP.Domain\XERP.Domain.Company\obj\x86\Release\XERP.CompanyDomain.dll
-C:\XERP\XERP.Domain\XERP.Domain.Company\obj\x86\Release\XERP.CompanyDomain.pdb
