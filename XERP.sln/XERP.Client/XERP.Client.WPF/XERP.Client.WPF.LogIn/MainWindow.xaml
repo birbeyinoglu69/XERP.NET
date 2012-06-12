@@ -1,8 +1,0 @@
-﻿<Window x:Class="XERP.Client.WPF.LogIn.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="XERP Log In" Height="300" Width="300">
-    <StackPanel>
-        <my:LogInView xmlns:my="clr-namespace:XERP.Client.WPF.LogIn.Views"/>
-    </StackPanel>
-</Window>
