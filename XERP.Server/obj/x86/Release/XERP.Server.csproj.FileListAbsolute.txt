@@ -1,8 +1,0 @@
-C:\XERP\XERP.Server\XerpServerBuild\bin\XERP.Server.dll
-C:\XERP\XERP.Server\XerpServerBuild\bin\XERP.Server.pdb
-C:\XERP\XERP.Server\obj\x86\Release\ResolveAssemblyReference.cache
-C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.Properties.Resources.resources
-C:\XERP\XERP.Server\obj\x86\Release\GenerateResource.read.1.tlog
-C:\XERP\XERP.Server\obj\x86\Release\GenerateResource.write.1.tlog
-C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.dll
-C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.pdb
