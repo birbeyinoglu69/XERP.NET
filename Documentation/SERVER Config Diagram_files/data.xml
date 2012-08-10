@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title></Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="Page-1" NameU="Page-1">
+			<Layer IX="0">
+				<Name>Flowchart</Name>
+				<NameUniv>Flowchart</NameUniv>
+				<Visible>1</Visible>
+			</Layer>
+			<Layer IX="1">
+				<Name>Container</Name>
+				<NameUniv>Container</NameUniv>
+				<Visible>1</Visible>
+			</Layer>
+			<Layer IX="2">
+				<Name>Connector</Name>
+				<NameUniv>Connector</NameUniv>
+				<Visible>1</Visible>
+			</Layer>
+			<Shapes>
+				<Shape ID="34" UniqueID="{ED870299-F127-46B1-9642-EB02A62831A7}" Name="Container 12" NameU="Container 12" Master="12">
+					<Text>XERP.SERVER Project</Text>
+					<XForm>
+						<PinX Unit="IN">1.594242125984251</PinX>
+						<PinY Unit="IN">5.208749999999998</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>1</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="39" UniqueID="{D38955DF-561A-4C50-B071-9B11AE0B4057}" Name="Container 12.39" NameU="Container 12.39" Master="12">
+					<Text>XERP.Server.DAL Project</Text>
+					<XForm>
+						<PinX Unit="IN">3.558868110236222</PinX>
+						<PinY Unit="IN">6.023474409448816</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>1</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="44" UniqueID="{3DB00C5A-EC0F-4C24-99E3-65593A255B66}" Name="Container 12.44" NameU="Container 12.44" Master="12">
+					<Text>XERP.SERVER.DAL.Company Project</Text>
+					<XForm>
+						<PinX Unit="IN">5.394242125984254</PinX>
+						<PinY Unit="IN">5.321249999999997</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>1</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="49" UniqueID="{DAF5EDFB-11FB-4838-B7D1-9E83DFFC9FC3}" Name="Container 12.49" NameU="Container 12.49" Master="12">
+					<Text>XERP.Server.Service.CompanyService Project</Text>
+					<XForm>
+						<PinX Unit="IN">7.455226377952759</PinX>
+						<PinY Unit="IN">4.621249999999998</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>1</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="75" UniqueID="{19630B25-0DBE-435A-979E-F8B0629E9292}" Name="Container 12.75" NameU="Container 12.75" Master="12">
+					<Text>XERP.Domain.CompanyDomain</Text>
+					<XForm>
+						<PinX Unit="IN">9.441363188976375</PinX>
+						<PinY Unit="IN">4.121249999999998</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>1</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="84" UniqueID="{8BF34E62-41AF-4105-AA05-4B2093975F37}" Name="Container 11" NameU="Container 11" Master="15">
+					<Text>C:/…/XERPServerConfig.XML</Text>
+					<XForm>
+						<PinX Unit="IN">1.927500000000001</PinX>
+						<PinY Unit="IN">1.331249999999999</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>1</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="89" UniqueID="{6E16441E-88CD-4186-BB59-9B11BF06BCD7}" Name="Container 11.89" NameU="Container 11.89" Master="15">
+					<Text>C:/…/XERPClientConfig.XML</Text>
+					<XForm>
+						<PinX Unit="IN">9.510000000000000</PinX>
+						<PinY Unit="IN">1.458749999999997</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>1</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="6" UniqueID="{90C0EC03-3878-4FF8-B25C-509D4157265F}" Name="Process.6" NameU="Process.6" Master="5">
+					<Text>XERP.Server.DAL.Company
+Project</Text>
+					<XForm>
+						<PinX Unit="IN">5.344242125984256</PinX>
+						<PinY Unit="IN">7.021249999999997</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="ProcessNumber" NameU="ProcessNumber">
+						<Value></Value>
+						<Label>Process Number</Label>
+					</Prop>
+					<Prop ID="3" Name="Owner" NameU="Owner">
+						<Value></Value>
+						<Label>Owner</Label>
+					</Prop>
+					<Prop ID="4" Name="Function" NameU="Function">
+						<Value></Value>
+						<Label>Function</Label>
+					</Prop>
+					<Prop ID="5" Name="StartDate" NameU="StartDate">
+						<Value></Value>
+						<Label>Start Date</Label>
+					</Prop>
+					<Prop ID="6" Name="EndDate" NameU="EndDate">
+						<Value></Value>
+						<Label>End Date</Label>
+					</Prop>
+					<Prop ID="7" Name="Status" NameU="Status">
+						<Value></Value>
+						<Label>Status</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="7" UniqueID="{C64BD6A4-5C9A-4E72-91AB-FFF67FCAC703}" Name="Process.7" NameU="Process.7" Master="5">
+					<Text>XERP.Server.Service.CompanyService Project</Text>
+					<XForm>
+						<PinX Unit="IN">7.266210629921265</PinX>
+						<PinY Unit="IN">7.058749999999996</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="ProcessNumber" NameU="ProcessNumber">
+						<Value></Value>
+						<Label>Process Number</Label>
+					</Prop>
+					<Prop ID="3" Name="Owner" NameU="Owner">
+						<Value></Value>
+						<Label>Owner</Label>
+					</Prop>
+					<Prop ID="4" Name="Function" NameU="Function">
+						<Value></Value>
+						<Label>Function</Label>
+					</Prop>
+					<Prop ID="5" Name="StartDate" NameU="StartDate">
+						<Value></Value>
+						<Label>Start Date</Label>
+					</Prop>
+					<Prop ID="6" Name="EndDate" NameU="EndDate">
+						<Value></Value>
+						<Label>End Date</Label>
+					</Prop>
+					<Prop ID="7" Name="Status" NameU="Status">
+						<Value></Value>
+						<Label>Status</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="9" UniqueID="{0A7732E5-DCFD-4BCF-97A5-8EDB5A6080A4}" Name="Document" NameU="Document" Master="7">
+					<Text>WEB Config
+
+XERP ConfigPath</Text>
+					<XForm>
+						<PinX Unit="IN">7.316210629921264</PinX>
+						<PinY Unit="IN">2.556249999999997</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="ProcessNumber" NameU="ProcessNumber">
+						<Value></Value>
+						<Label>Process Number</Label>
+					</Prop>
+					<Prop ID="3" Name="Owner" NameU="Owner">
+						<Value></Value>
+						<Label>Owner</Label>
+					</Prop>
+					<Prop ID="4" Name="Function" NameU="Function">
+						<Value></Value>
+						<Label>Function</Label>
+					</Prop>
+					<Prop ID="5" Name="StartDate" NameU="StartDate">
+						<Value></Value>
+						<Label>Start Date</Label>
+					</Prop>
+					<Prop ID="6" Name="EndDate" NameU="EndDate">
+						<Value></Value>
+						<Label>End Date</Label>
+					</Prop>
+					<Prop ID="7" Name="Status" NameU="Status">
+						<Value></Value>
+						<Label>Status</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="10" UniqueID="{B3CB8019-5341-46AA-9C24-EA6251A732BF}" Name="Decision" NameU="Decision" Master="8">
+					<Text>ConfigPath exist in WebConfig</Text>
+					<XForm>
+						<PinX Unit="IN">3.894242125984255</PinX>
+						<PinY Unit="IN">3.496249999999998</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="ProcessNumber" NameU="ProcessNumber">
+						<Value></Value>
+						<Label>Process Number</Label>
+					</Prop>
+					<Prop ID="3" Name="Owner" NameU="Owner">
+						<Value></Value>
+						<Label>Owner</Label>
+					</Prop>
+					<Prop ID="4" Name="Function" NameU="Function">
+						<Value></Value>
+						<Label>Function</Label>
+					</Prop>
+					<Prop ID="5" Name="StartDate" NameU="StartDate">
+						<Value></Value>
+						<Label>Start Date</Label>
+					</Prop>
+					<Prop ID="6" Name="EndDate" NameU="EndDate">
+						<Value></Value>
+						<Label>End Date</Label>
+					</Prop>
+					<Prop ID="7" Name="Status" NameU="Status">
+						<Value></Value>
+						<Label>Status</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="12" UniqueID="{47FD172B-22DE-48CE-921E-BD6D18A14E7E}" Name="Divided process" NameU="Divided process" Master="9">
+					<Text>XERPServerConfig.cs</Text>
+					<XForm>
+						<PinX Unit="IN">1.448868110236230</PinX>
+						<PinY Unit="IN">7.096249999999998</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="1" UniqueID="{581E547D-0373-48BF-8216-0CFE0633DE9F}" Name="Database.10" NameU="Database.10" Master="10">
+					<Text>XERP Data Base</Text>
+					<XForm>
+						<PinX Unit="IN">9.007874015748032</PinX>
+						<PinY Unit="IN">6.679025590551181</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="8" UniqueID="{FBE6770B-A010-489C-8D16-BF66701CB6A0}" Name="Divided process.8" NameU="Divided process.8" Master="9">
+					<Text>DALConfig.CS
+</Text>
+					<XForm>
+						<PinX Unit="IN">3.535305118110240</PinX>
+						<PinY Unit="IN">6.973612204724409</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="18" UniqueID="{B9DA6B3C-A9D7-4D17-B6F0-FB249449FCAD}" Name="Divided event" NameU="Divided event" Master="11">
+					<Text>BaseSQLConString Property</Text>
+					<XForm>
+						<PinX Unit="IN">3.586368110236224</PinX>
+						<PinY Unit="IN">5.300974409448816</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="21" UniqueID="{782A906F-64CB-46E9-B1E9-906DF3FD9BC9}" Name="Document.21" NameU="Document.21" Master="7">
+					<Text>XERPServerConfig.XML
+BaseSQLConString
+</Text>
+					<XForm>
+						<PinX Unit="IN">1.800000000000001</PinX>
+						<PinY Unit="IN">1.283750000000000</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="ProcessNumber" NameU="ProcessNumber">
+						<Value></Value>
+						<Label>Process Number</Label>
+					</Prop>
+					<Prop ID="3" Name="Owner" NameU="Owner">
+						<Value></Value>
+						<Label>Owner</Label>
+					</Prop>
+					<Prop ID="4" Name="Function" NameU="Function">
+						<Value></Value>
+						<Label>Function</Label>
+					</Prop>
+					<Prop ID="5" Name="StartDate" NameU="StartDate">
+						<Value></Value>
+						<Label>Start Date</Label>
+					</Prop>
+					<Prop ID="6" Name="EndDate" NameU="EndDate">
+						<Value></Value>
+						<Label>End Date</Label>
+					</Prop>
+					<Prop ID="7" Name="Status" NameU="Status">
+						<Value></Value>
+						<Label>Status</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="22" UniqueID="{6F4C74F3-4583-4B56-9F68-3A7EE18031D5}" Name="Divided process.22" NameU="Divided process.22" Master="9">
+					<Text>DALUtility.CS</Text>
+					<XForm>
+						<PinX Unit="IN">5.340305118110238</PinX>
+						<PinY Unit="IN">6.118887795275589</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="25" UniqueID="{DCA842BE-80C7-4A4A-ABB5-1990FF37CAC3}" Name="Divided event.25" NameU="Divided event.25" Master="11">
+					<Text>Constant Company Entity Metadata string
+</Text>
+					<XForm>
+						<PinX Unit="IN">5.394242125984254</PinX>
+						<PinY Unit="IN">5.138474409448817</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="28" UniqueID="{432CACE2-4270-4342-9884-B3553F7F0536}" Name="Divided event.28" NameU="Divided event.28" Master="11">
+					<Text>EntityConnection string
+(MetaData string +
+BaseSQL ConString)
+</Text>
+					<XForm>
+						<PinX Unit="IN">5.394242125984255</PinX>
+						<PinY Unit="IN">4.021249999999997</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="3" UniqueID="{E3ED81C9-463C-428B-B0DE-24F5BAE22674}" Name="Divided process.3" NameU="Divided process.3" Master="9">
+					<Text>CompanyDataService.svc</Text>
+					<XForm>
+						<PinX Unit="IN">7.316210629921262</PinX>
+						<PinY Unit="IN">6.193887795275584</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="33" UniqueID="{21443434-96EB-4B73-8400-B996E1A93C31}" Name="Subprocess" NameU="Subprocess" Master="6">
+					<Text>WCF Data Service Instantiation</Text>
+					<XForm>
+						<PinX Unit="IN">7.316210629921264</PinX>
+						<PinY Unit="IN">5.071249999999996</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="ProcessNumber" NameU="ProcessNumber">
+						<Value></Value>
+						<Label>Process Number</Label>
+					</Prop>
+					<Prop ID="3" Name="Owner" NameU="Owner">
+						<Value></Value>
+						<Label>Owner</Label>
+					</Prop>
+					<Prop ID="4" Name="Function" NameU="Function">
+						<Value></Value>
+						<Label>Function</Label>
+					</Prop>
+					<Prop ID="5" Name="StartDate" NameU="StartDate">
+						<Value></Value>
+						<Label>Start Date</Label>
+					</Prop>
+					<Prop ID="6" Name="EndDate" NameU="EndDate">
+						<Value></Value>
+						<Label>End Date</Label>
+					</Prop>
+					<Prop ID="7" Name="Status" NameU="Status">
+						<Value></Value>
+						<Label>Status</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="54" UniqueID="{1E8FDD49-5E60-4F45-8D6A-7CFB8CCA8769}" Name="Divided event.54" NameU="Divided event.54" Master="11">
+					<Text>Get BaseSQLConString From XERPServerConfig.XML</Text>
+					<XForm>
+						<PinX Unit="IN">1.494242125984254</PinX>
+						<PinY Unit="IN">6.025974409448816</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="57" UniqueID="{FEBECE9C-143A-41AD-BBC2-5BBBCD75AFD5}" Name="Divided event.57" NameU="Divided event.57" Master="11">
+					<Text>Get XERPConfigPath String </Text>
+					<XForm>
+						<PinX Unit="IN">1.502116141732286</PinX>
+						<PinY Unit="IN">5.116525590551179</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="60" UniqueID="{712F551C-E344-4E2B-858C-845A3ECAA47E}" Name="Divided event.60" NameU="Divided event.60" Master="11">
+					<Text>Resource String Property
+DefaultConfigPath</Text>
+					<XForm>
+						<PinX Unit="IN">1.448868110236230</PinX>
+						<PinY Unit="IN">3.500974409448817</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="4" UniqueID="{84855978-10BC-46FF-914B-433C520C107B}" Name="Dynamic connector" NameU="Dynamic connector" Master="14">
+					<XForm>
+						<PinX Unit="IN">2.698179133858270</PinX>
+						<PinY Unit="IN">4.346249999999998</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="5" UniqueID="{6BF87D6B-065C-46F4-B223-6442958F22A5}" Name="Dynamic connector.5" NameU="Dynamic connector.5" Master="14">
+					<Text>Try First To Use Server Web Config XERPConfigPath</Text>
+					<XForm>
+						<PinX Unit="IN">5.605226377952760</PinX>
+						<PinY Unit="IN">2.718749999999997</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="15" UniqueID="{DFB8C8A7-FD4D-4758-A50C-9782405D8677}" Name="Dynamic connector.15" NameU="Dynamic connector.15" Master="14">
+					<Text>No WebConfig
+Use this as Default</Text>
+					<XForm>
+						<PinX Unit="IN">2.667618110236227</PinX>
+						<PinY Unit="IN">3.498612204724408</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="16" UniqueID="{68CAFC5B-39BD-4645-A265-BC11FF091205}" Name="Dynamic connector.16" NameU="Dynamic connector.16" Master="14">
+					<XForm>
+						<PinX Unit="IN">1.498179133858270</PinX>
+						<PinY Unit="IN">5.571249999999997</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="63" UniqueID="{E39F9C53-08AC-452F-8903-0D5C6E9D42FB}" Name="Dynamic connector.63" NameU="Dynamic connector.63" Master="14">
+					<XForm>
+						<PinX Unit="IN">1.047121062992127</PinX>
+						<PinY Unit="IN">3.654862204724408</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="64" UniqueID="{FF1A353E-89EA-468C-92FF-94E0DC173107}" Name="Dynamic connector.64" NameU="Dynamic connector.64" Master="14">
+					<XForm>
+						<PinX Unit="MM">2.594242125984255</PinX>
+						<PinY Unit="MM">5.663474409448816</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="65" UniqueID="{2A54373B-30EA-4A30-96DC-CD73EE3F256C}" Name="Dynamic connector.65" NameU="Dynamic connector.65" Master="14">
+					<XForm>
+						<PinX Unit="IN">5.394242125984254</PinX>
+						<PinY Unit="IN">4.575974409448817</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="66" UniqueID="{C2F898B1-1EC6-4571-A354-8B1AC0B74922}" Name="Dynamic connector.66" NameU="Dynamic connector.66" Master="14">
+					<XForm>
+						<PinX Unit="MM">4.436368110236224</PinX>
+						<PinY Unit="MM">4.661112204724407</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="67" UniqueID="{E6EA4194-9E2E-404C-A1C5-D416011ADC0F}" Name="Divided event.67" NameU="Divided event.67" Master="11">
+					<Text>Entity Connection String </Text>
+					<XForm>
+						<PinX Unit="IN">7.316210629921262</PinX>
+						<PinY Unit="IN">4.000974409448814</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="70" UniqueID="{6B678187-3590-4588-AD0C-9A940D4005FB}" Name="Dynamic connector.70" NameU="Dynamic connector.70" Master="14">
+					<XForm>
+						<PinX Unit="IN">6.577116141732287</PinX>
+						<PinY Unit="IN">4.013474409448817</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="71" UniqueID="{190E81C7-96D7-484E-A05C-6407A6C36D95}" Name="Dynamic connector.71" NameU="Dynamic connector.71" Master="14">
+					<XForm>
+						<PinX Unit="IN">7.320147637795277</PinX>
+						<PinY Unit="IN">4.496249999999995</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="72" UniqueID="{6665F363-7654-4D1D-8A96-7A25266F807E}" Name="Dynamic connector.72" NameU="Dynamic connector.72" Master="14">
+					<XForm>
+						<PinX Unit="IN">7.316210629921263</PinX>
+						<PinY Unit="IN">4.496249999999995</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="73" UniqueID="{42142154-2636-4BD1-B2BD-3B54E18A3FE4}" Name="Dynamic connector.73" NameU="Dynamic connector.73" Master="14">
+					<XForm>
+						<PinX Unit="IN">7.316210629921263</PinX>
+						<PinY Unit="IN">5.671249999999995</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="74" UniqueID="{49634BC6-0DAB-45BD-B1A4-AF1D3B3AEDAD}" Name="Dynamic connector.74" NameU="Dynamic connector.74" Master="14">
+					<XForm>
+						<PinX Unit="MM">7.915979330708662</PinX>
+						<PinY Unit="MM">6.585275590551177</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="80" UniqueID="{D6DEF470-52A7-4866-B8E4-F580828E7AA9}" Name="Divided process.80" NameU="Divided process.80" Master="9">
+					<Text>CompanyDataService</Text>
+					<XForm>
+						<PinX Unit="IN">9.441363188976382</PinX>
+						<PinY Unit="IN">4.618887795275589</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="Duration" NameU="Duration">
+						<Value></Value>
+						<Label>Duration</Label>
+					</Prop>
+					<Prop ID="3" Name="Resources" NameU="Resources">
+						<Value></Value>
+						<Label>Resources</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="83" UniqueID="{2A47B63E-5F37-44AA-8F66-308EF2E4F032}" Name="Dynamic connector.83" NameU="Dynamic connector.83" Master="14">
+					<XForm>
+						<PinX Unit="IN">8.640302657480317</PinX>
+						<PinY Unit="IN">5.555206692913382</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="94" UniqueID="{B35E703C-DC77-48FD-8EA6-361B6C7EDEDD}" Name="Document.94" NameU="Document.94" Master="7">
+					<Text>XERPClientConfig.XML
+BaseURL
+</Text>
+					<XForm>
+						<PinX Unit="IN">9.550000000000001</PinX>
+						<PinY Unit="IN">1.362916666666664</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+					<Prop ID="1" Name="Cost" NameU="Cost">
+						<Value></Value>
+						<Label>Cost</Label>
+					</Prop>
+					<Prop ID="2" Name="ProcessNumber" NameU="ProcessNumber">
+						<Value></Value>
+						<Label>Process Number</Label>
+					</Prop>
+					<Prop ID="3" Name="Owner" NameU="Owner">
+						<Value></Value>
+						<Label>Owner</Label>
+					</Prop>
+					<Prop ID="4" Name="Function" NameU="Function">
+						<Value></Value>
+						<Label>Function</Label>
+					</Prop>
+					<Prop ID="5" Name="StartDate" NameU="StartDate">
+						<Value></Value>
+						<Label>Start Date</Label>
+					</Prop>
+					<Prop ID="6" Name="EndDate" NameU="EndDate">
+						<Value></Value>
+						<Label>End Date</Label>
+					</Prop>
+					<Prop ID="7" Name="Status" NameU="Status">
+						<Value></Value>
+						<Label>Status</Label>
+					</Prop>
+				</Shape>
+				<Shape ID="95" UniqueID="{486CC72F-D800-48CA-A8C1-092706690322}" Name="Dynamic connector.95" NameU="Dynamic connector.95" Master="14">
+					<Text>More Detail Required
+To Explain How the BASEURL is fed
+To Each Data Service </Text>
+					<XForm>
+						<PinX Unit="IN">9.220681594488191</PinX>
+						<PinY Unit="IN">2.842083333333331</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>2</LayerMember>
+					</LayerMem>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>
