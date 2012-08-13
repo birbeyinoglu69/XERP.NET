@@ -1,0 +1,1 @@
+C:\Program Files\SimpleMvvmToolkit\Source\SimpleMvvm-Source\Silverlight\SimpleMvvmToolkit\obj\Release\ResolveAssemblyReference.cache
