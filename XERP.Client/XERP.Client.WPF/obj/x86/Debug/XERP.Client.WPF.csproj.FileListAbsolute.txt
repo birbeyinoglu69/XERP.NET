@@ -1,0 +1,11 @@
+C:\XERP\XERP.Client\XERP.Client.WPF\bin\Debug\XERP.Client.WPF.dll
+C:\XERP\XERP.Client\XERP.Client.WPF\bin\Debug\XERP.Client.WPF.pdb
+C:\XERP\XERP.Client\XERPClientBuild\bin\XERP.Client.WPF.dll
+C:\XERP\XERP.Client\XERPClientBuild\bin\XERP.Client.WPF.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Debug\Resources\BaseControls.baml
+C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Debug\Resources\MenuImages.baml
+C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Debug\XERP.Client.WPF_MarkupCompile.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Debug\XERP.Client.WPF.g.resources
+C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Debug\XERP.Client.WPF.dll
+C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Debug\XERP.Client.WPF.pdb
