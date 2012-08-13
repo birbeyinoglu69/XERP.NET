@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+<URIS>
+<URI ID="BaseURI" Value="http://localhost">
+</URI>
+</URIS>
+<Tokens>
+<Token ID="BaseToken" Value="XERP1234" Required="false">
+</Token>
+</Tokens>
+</Config>
