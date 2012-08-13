@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MenuSecurityModelStoreContainer" CdmEntityContainer="MenuSecurityEntities">
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="MenuSecurityModel.Company">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+          <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+          <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+          <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+          <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+          <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+          <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DalItems">
+      <EntityTypeMapping TypeName="MenuSecurityModel.DalItem">
+        <MappingFragment StoreEntitySet="DalItems">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DalItemID" ColumnName="DalItemID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DalSecurities">
+      <EntityTypeMapping TypeName="MenuSecurityModel.DalSecurity">
+        <MappingFragment StoreEntitySet="DalSecurities">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DalItemID" ColumnName="DalItemID" />
+          <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+          <ScalarProperty Name="CRUDType" ColumnName="CRUDType" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DBStoredImages">
+      <EntityTypeMapping TypeName="MenuSecurityModel.DBStoredImage">
+        <MappingFragment StoreEntitySet="DBStoredImages">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+          <ScalarProperty Name="StoredImage" ColumnName="StoredImage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuItemCodes">
+      <EntityTypeMapping TypeName="MenuSecurityModel.MenuItemCode">
+        <MappingFragment StoreEntitySet="MenuItemCodes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="MenuItemCodeID" ColumnName="MenuItemCodeID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuItemTypes">
+      <EntityTypeMapping TypeName="MenuSecurityModel.MenuItemType">
+        <MappingFragment StoreEntitySet="MenuItemTypes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="MenuItemTypeID" ColumnName="MenuItemTypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuSecurities">
+      <EntityTypeMapping TypeName="MenuSecurityModel.MenuSecurity">
+        <MappingFragment StoreEntitySet="MenuSecurities">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+          <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecurityGroups">
+      <EntityTypeMapping TypeName="MenuSecurityModel.SecurityGroup">
+        <MappingFragment StoreEntitySet="SecurityGroups">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="SecurityGroupTypeID" ColumnName="SecurityGroupTypeID" />
+          <ScalarProperty Name="SecurityGroupCodeID" ColumnName="SecurityGroupCodeID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUsers">
+      <EntityTypeMapping TypeName="MenuSecurityModel.SystemUser">
+        <MappingFragment StoreEntitySet="SystemUsers">
+          <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SystemUserTypeID" ColumnName="SystemUserTypeID" />
+          <ScalarProperty Name="SystemUserCodeID" ColumnName="SystemUserCodeID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="PasswordExpired" ColumnName="PasswordExpired" />
+          <ScalarProperty Name="PasswordExpiresOn" ColumnName="PasswordExpiresOn" />
+          <ScalarProperty Name="SystemManager" ColumnName="SystemManager" />
+          <ScalarProperty Name="DefaultCompanyID" ColumnName="DefaultCompanyID" />
+          <ScalarProperty Name="DefaultPlantID" ColumnName="DefaultPlantID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temps">
+      <EntityTypeMapping TypeName="MenuSecurityModel.Temp">
+        <MappingFragment StoreEntitySet="Temp">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Bool_1" ColumnName="Bool_1" />
+          <ScalarProperty Name="ShortChar_1" ColumnName="ShortChar_1" />
+          <ScalarProperty Name="Int_1" ColumnName="Int_1" />
+          <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UdListItems">
+      <EntityTypeMapping TypeName="MenuSecurityModel.UdListItem">
+        <MappingFragment StoreEntitySet="UdListItems">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+          <ScalarProperty Name="UDListItemID" ColumnName="UDListItemID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExecutableProgramCodes">
+      <EntityTypeMapping TypeName="MenuSecurityModel.ExecutableProgramCode">
+        <MappingFragment StoreEntitySet="ExecutableProgramCodes">
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ExecutableProgramCodeID" ColumnName="ExecutableProgramCodeID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExecutablePrograms">
+      <EntityTypeMapping TypeName="MenuSecurityModel.ExecutableProgram">
+        <MappingFragment StoreEntitySet="ExecutablePrograms">
+          <ScalarProperty Name="ExecutableProgramCodeID" ColumnName="ExecutableProgramCodeID" />
+          <ScalarProperty Name="ExecutableProgramTypeID" ColumnName="ExecutableProgramTypeID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="URLPath" ColumnName="URLPath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="InternalProgram" ColumnName="InternalProgram" />
+          <ScalarProperty Name="ExecutableProgramID" ColumnName="ExecutableProgramID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExecutableProgramTypes">
+      <EntityTypeMapping TypeName="MenuSecurityModel.ExecutableProgramType">
+        <MappingFragment StoreEntitySet="ExecutableProgramTypes">
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ExecutableProgramTypeID" ColumnName="ExecutableProgramTypeID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuItems">
+      <EntityTypeMapping TypeName="MenuSecurityModel.MenuItem">
+        <MappingFragment StoreEntitySet="MenuItems">
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="AllowAll" ColumnName="AllowAll" />
+          <ScalarProperty Name="HideMenu" ColumnName="HideMenu" />
+          <ScalarProperty Name="ExecutableProgramID" ColumnName="ExecutableProgramID" />
+          <ScalarProperty Name="Executable" ColumnName="Executable" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+          <ScalarProperty Name="MenuItemCodeID" ColumnName="MenuItemCodeID" />
+          <ScalarProperty Name="MenuItemTypeID" ColumnName="MenuItemTypeID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserSecurities">
+      <EntityTypeMapping TypeName="MenuSecurityModel.SystemUserSecurity">
+        <MappingFragment StoreEntitySet="SystemUserSecurities">
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+          <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
