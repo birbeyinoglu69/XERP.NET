@@ -1,0 +1,5 @@
+C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.MenuSecurityDomain.dll
+C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.MenuSecurityDomain.pdb
+C:\XERP\XERP.Domain\XERP.Domain.MenuSecurityDomain\obj\x86\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Domain\XERP.Domain.MenuSecurityDomain\obj\x86\Release\XERP.Domain.MenuSecurityDomain.dll
+C:\XERP\XERP.Domain\XERP.Domain.MenuSecurityDomain\obj\x86\Release\XERP.Domain.MenuSecurityDomain.pdb
