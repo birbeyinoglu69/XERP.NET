@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Windows;
-using System.Threading;
 using System.Collections.ObjectModel;
 using System.Linq;
 // Toolkit namespace
 using SimpleMvvmToolkit;
-using System.Drawing;
 
 // Toolkit extension methods
-using SimpleMvvmToolkit.ModelExtensions;
 
 //XERP Namespaces
 
-using XERP.Client;
 
 using System.Collections.Generic;
 using XERP.Domain.MenuSecurityDomain.Services;

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
+﻿
 // Toolkit namespace
-using SimpleMvvmToolkit;
 
 //XERP namespaces
 using XERP.Client.WPF.MainMenu.ViewModels;

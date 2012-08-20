@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Data.Services.Client;
 using XERP.Domain.CompanyDomain.CompanyDataService;
 using XERP.Domain.CompanyDomain.Services;

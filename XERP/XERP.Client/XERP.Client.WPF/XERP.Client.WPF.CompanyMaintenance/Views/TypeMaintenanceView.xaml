@@ -236,14 +236,17 @@
                         Grid.Row="1" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
-                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
-                            Text="{Binding Path=SelectedCompanyType.Type, Mode=TwoWay, TargetNullValue=''}"
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompanyType.Type, Mode=TwoWay}"
                             IsEnabled="{Binding AllowEdit}"
-                            MaxLength= "{Binding CompanyTypeMaxFieldValueDictionary[Name]}" 
+                            MaxLength= "{Binding CompanyTypeMaxFieldValueDictionary[Type]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
                             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
                             Text="{Binding Path=SelectedCompanyType.Description, Mode=TwoWay}"
+                            IsEnabled="{Binding AllowEdit}"
+                            MaxLength= "{Binding CompanyTypeMaxFieldValueDictionary[Description]}"
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
                     </StackPanel>
                 </Grid>

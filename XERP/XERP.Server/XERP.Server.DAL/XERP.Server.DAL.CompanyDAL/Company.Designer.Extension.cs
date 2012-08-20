@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Data.Objects.DataClasses;
 using XERP.Server.DAL.CompanyDAL;
 using System.Data.Metadata.Edm;
-using ExtensionMethods;
-using System.Data.Services.Common;
 namespace XERP.Server.DAL.CompanyDAL
 {
     //public partial class Company :EntityObject

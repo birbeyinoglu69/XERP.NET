@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Windows;
-using System.Threading;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Data.Services.Client;
 using System.ComponentModel;
 
 // Toolkit namespace
 using SimpleMvvmToolkit;
 
 // Toolkit extension methods
-using SimpleMvvmToolkit.ModelExtensions;
 //XERP namespace
 using XERP.Domain.CompanyDomain.CompanyDataService;
 using XERP.Domain.CompanyDomain.Services;

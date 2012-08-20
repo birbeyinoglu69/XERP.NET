@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Data.Services.Client;
-using System.Reflection;
-//using System.Linq.Dynamic;
-using System.Collections.ObjectModel;
+
 using XERP.Domain.CompanyDomain.CompanyDataService;
-using XERP.Domain.CompanyDomain;
-using XERP.Domain.CompanyDomain.Services;
-using XERP.Domain.ClientModels;
 namespace XERP.Domain.CompanyDomain.Services
 {
     public class CompanyServiceAgent : XERP.Domain.CompanyDomain.Services.ICompanyServiceAgent
@@ -29,26 +23,26 @@ namespace XERP.Domain.CompanyDomain.Services
         private Uri _rootUri;
         private CompanyEntities _context;
 
-        //we use a temp table in instances where data base schema is not required...
-        //we use the the temp table db schema as the conduit from client to server...
-        //we then traspose the temp table in to a more meaningful client model...
-        public List<EntityMetaData> CompanyMetaDataList
-        {
-            get 
-            {
-                List<EntityMetaData> entityMetaDataList = new List<EntityMetaData>();
+        ////we use a temp table in instances where data base schema is not required...
+        ////we use the the temp table db schema as the conduit from client to server...
+        ////we then traspose the temp table in to a more meaningful client model...
+        //public List<EntityMetaData> CompanyMetaDataList
+        //{
+        //    get 
+        //    {
+        //        List<EntityMetaData> entityMetaDataList = new List<EntityMetaData>();
 
-                foreach(Temp temp in GetMetaData("Companies"))
-                {
-                    EntityMetaData entityMetaData = new EntityMetaData();
-                    entityMetaData.ID = temp.ID;
-                    entityMetaData.FieldName = temp.Name;
-                    entityMetaData.FieldType = temp.ShortChar_1;
-                    entityMetaData.MaxLength = temp.Int_1;
-                }
-                return entityMetaDataList; 
-            } 
-        }
+        //        foreach(Temp temp in GetMetaData("Companies"))
+        //        {
+        //            EntityMetaData entityMetaData = new EntityMetaData();
+        //            entityMetaData.ID = temp.ID;
+        //            entityMetaData.FieldName = temp.Name;
+        //            entityMetaData.FieldType = temp.ShortChar_1;
+        //            entityMetaData.MaxLength = temp.Int_1;
+        //        }
+        //        return entityMetaDataList; 
+        //    } 
+        //}
         
         #endregion Properties
 

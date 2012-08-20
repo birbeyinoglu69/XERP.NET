@@ -3,9 +3,7 @@ using System.Data.Services;
 using System.Data.Services.Common;
 using System.Linq;
 using XERP.Server.DAL.CompanyDAL;
-using System.Data.Metadata.Edm;
 using System.ServiceModel.Web;
-using System.Diagnostics;
 using System.Collections.Generic;
 using ExtensionMethods;
 

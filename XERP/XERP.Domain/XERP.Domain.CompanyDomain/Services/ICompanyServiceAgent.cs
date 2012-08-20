@@ -8,7 +8,7 @@ namespace XERP.Domain.CompanyDomain.Services
         void CommitCompanyRepository();
         void CommitCompanyTypeRepository();
         bool CompanyExists(string companyID);
-        System.Collections.Generic.List<XERP.Domain.ClientModels.EntityMetaData> CompanyMetaDataList { get; }
+        //System.Collections.Generic.List<XERP.Domain.ClientModels.EntityMetaData> CompanyMetaDataList { get; }
         bool CompanyTypeExists(string companyTypeID);
         bool CompanyTypeIsUsed(string companyTypeID);
         void DeleteFromCompanyRepository(XERP.Domain.CompanyDomain.CompanyDataService.Company company);

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Windows;
-using System.Threading;
-using System.Collections.ObjectModel;
 
 // Toolkit namespace
 using SimpleMvvmToolkit;
 
 // Toolkit extension methods
-using SimpleMvvmToolkit.ModelExtensions;
 
 namespace XERP.Client.WPF.MainMenu
 {

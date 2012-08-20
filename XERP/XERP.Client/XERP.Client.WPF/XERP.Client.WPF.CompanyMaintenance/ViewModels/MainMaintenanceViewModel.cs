@@ -5,19 +5,13 @@ using System.Linq;
 using System.Data.Services.Client;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Data;
 // Toolkit namespace
 using SimpleMvvmToolkit;
 //XERP Namespaces
 using XERP.Domain.CompanyDomain.Services;
 using XERP.Domain.CompanyDomain.CompanyDataService;
-using XERP.Domain.ClientModels;
-using XERP.Client;
 //required for extension methods...
 using ExtensionMethods;
-using System.Text;
 using XERP.Client.Models;
 
 namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
@@ -342,6 +336,10 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         {
             get
             {
+                if (_companyMaxFieldValueDictionary != null)
+                {
+                    return _companyMaxFieldValueDictionary;
+                }
                 _companyMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("Companies");
 
@@ -985,7 +983,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-    using System.Runtime.Serialization.Formatters.Binary; using System.IO;
 
     public static partial class XERPExtensions
     {
