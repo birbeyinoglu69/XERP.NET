@@ -1,0 +1,5 @@
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.MenuSecurityService.dll
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.MenuSecurityService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\obj\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\obj\Release\XERP.Server.Service.MenuSecurityService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\obj\Release\XERP.Server.Service.MenuSecurityService.pdb

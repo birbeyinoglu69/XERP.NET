@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMvvmToolkit-WPF", "SimpleMvvmToolkit-WPF\SimpleMvvmToolkit-WPF.csproj", "{6A6DD3AB-484B-48FD-8BE7-107728A26341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMvvmToolkitTest-WPF", "SimpleMvvmToolkitTest-WPF\SimpleMvvmToolkitTest-WPF.csproj", "{B6E2E153-6008-440E-B869-2874E63390A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D5A1D022-E1D8-4D9C-B047-F7FF8419013C}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		SimpleMvvmToolkit-WPF.vsmdi = SimpleMvvmToolkit-WPF.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = SimpleMvvmToolkit-WPF.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A6DD3AB-484B-48FD-8BE7-107728A26341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6DD3AB-484B-48FD-8BE7-107728A26341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6DD3AB-484B-48FD-8BE7-107728A26341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6DD3AB-484B-48FD-8BE7-107728A26341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E2E153-6008-440E-B869-2874E63390A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E2E153-6008-440E-B869-2874E63390A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E2E153-6008-440E-B869-2874E63390A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E2E153-6008-440E-B869-2874E63390A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMvvmToolkit", "SimpleMvvmToolkit\SimpleMvvmToolkit.csproj", "{67686DA3-B5E1-4F70-B040-5A923FB3192B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMvvmToolkitTest-SL", "SimpleMvvmToolkitTest-SL\SimpleMvvmToolkitTest-SL.csproj", "{06A13EE4-925C-489C-A819-B1DB5076C93B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67686DA3-B5E1-4F70-B040-5A923FB3192B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67686DA3-B5E1-4F70-B040-5A923FB3192B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67686DA3-B5E1-4F70-B040-5A923FB3192B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67686DA3-B5E1-4F70-B040-5A923FB3192B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A13EE4-925C-489C-A819-B1DB5076C93B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A13EE4-925C-489C-A819-B1DB5076C93B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A13EE4-925C-489C-A819-B1DB5076C93B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A13EE4-925C-489C-A819-B1DB5076C93B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

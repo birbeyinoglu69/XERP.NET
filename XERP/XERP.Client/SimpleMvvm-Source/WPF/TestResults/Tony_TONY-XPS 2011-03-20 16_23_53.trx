@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="9c0d18dd-886c-44af-af4b-47417ead4100" name="Tony@TONY-XPS 2011-03-20 16:23:53" runUser="TONY-XPS\Tony" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="e129f8f6-f1d7-4c1a-a38e-6e2e988977cb">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Tony_TONY-XPS 2011-03-20 16_23_53">
+      <DeploymentItem filename="C:\Projects\SimpleMvvmToolkit\Download\SimpleMvvmToolkit\Toolkit\Helpers\Project\WPF\SimpleMvvmToolkit-WPF\bin\Release\SimpleMvvmToolkit-WPF.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-03-20T16:23:53.2963422-05:00" queuing="2011-03-20T16:23:53.3543455-05:00" start="2011-03-20T16:23:53.3923477-05:00" finish="2011-03-20T16:23:53.8353730-05:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="3" executed="3" passed="3" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestTwoWayMessage" storage="c:\projects\simplemvvmtoolkit\download\simplemvvmtoolkit\toolkit\helpers\project\wpf\simplemvvmtoolkittest-wpf\bin\release\simplemvvmtoolkittest.dll" id="5362e4b9-e088-7416-4e9f-da39f3300b82">
+      <Execution id="88692d50-c7d5-4b98-af01-ca715fc13956" />
+      <TestMethod codeBase="C:/Projects/SimpleMvvmToolkit/Download/SimpleMvvmToolkit/Toolkit/Helpers/Project/WPF/SimpleMvvmToolkitTest-WPF/bin/Release/SimpleMvvmToolkitTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SimpleMvvmToolkitTest.MessagingTests, SimpleMvvmToolkitTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestTwoWayMessage" />
+    </UnitTest>
+    <UnitTest name="TestOneWayMessage" storage="c:\projects\simplemvvmtoolkit\download\simplemvvmtoolkit\toolkit\helpers\project\wpf\simplemvvmtoolkittest-wpf\bin\release\simplemvvmtoolkittest.dll" id="f05d7b71-9cb7-a3d9-750a-e0403c6d208b">
+      <Execution id="db8a368c-ae97-4a49-9971-7874b6b088b1" />
+      <TestMethod codeBase="C:/Projects/SimpleMvvmToolkit/Download/SimpleMvvmToolkit/Toolkit/Helpers/Project/WPF/SimpleMvvmToolkitTest-WPF/bin/Release/SimpleMvvmToolkitTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SimpleMvvmToolkitTest.MessagingTests, SimpleMvvmToolkitTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestOneWayMessage" />
+    </UnitTest>
+    <UnitTest name="TestSimpleMessage" storage="c:\projects\simplemvvmtoolkit\download\simplemvvmtoolkit\toolkit\helpers\project\wpf\simplemvvmtoolkittest-wpf\bin\release\simplemvvmtoolkittest.dll" id="1c488b03-c9f6-ea7b-5177-3462cab4f7dc">
+      <Execution id="ac91d4e4-27f8-4c20-9992-ddf8d6deae8c" />
+      <TestMethod codeBase="C:/Projects/SimpleMvvmToolkit/Download/SimpleMvvmToolkit/Toolkit/Helpers/Project/WPF/SimpleMvvmToolkitTest-WPF/bin/Release/SimpleMvvmToolkitTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SimpleMvvmToolkitTest.MessagingTests, SimpleMvvmToolkitTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestSimpleMessage" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="1c488b03-c9f6-ea7b-5177-3462cab4f7dc" executionId="ac91d4e4-27f8-4c20-9992-ddf8d6deae8c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5362e4b9-e088-7416-4e9f-da39f3300b82" executionId="88692d50-c7d5-4b98-af01-ca715fc13956" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f05d7b71-9cb7-a3d9-750a-e0403c6d208b" executionId="db8a368c-ae97-4a49-9971-7874b6b088b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ac91d4e4-27f8-4c20-9992-ddf8d6deae8c" testId="1c488b03-c9f6-ea7b-5177-3462cab4f7dc" testName="TestSimpleMessage" computerName="TONY-XPS" duration="00:00:00.0301697" startTime="2011-03-20T16:23:53.4073485-05:00" endTime="2011-03-20T16:23:53.7043655-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ac91d4e4-27f8-4c20-9992-ddf8d6deae8c">
+    </UnitTestResult>
+    <UnitTestResult executionId="88692d50-c7d5-4b98-af01-ca715fc13956" testId="5362e4b9-e088-7416-4e9f-da39f3300b82" testName="TestTwoWayMessage" computerName="TONY-XPS" duration="00:00:00.0762555" startTime="2011-03-20T16:23:53.7213665-05:00" endTime="2011-03-20T16:23:53.8013711-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="88692d50-c7d5-4b98-af01-ca715fc13956">
+    </UnitTestResult>
+    <UnitTestResult executionId="db8a368c-ae97-4a49-9971-7874b6b088b1" testId="f05d7b71-9cb7-a3d9-750a-e0403c6d208b" testName="TestOneWayMessage" computerName="TONY-XPS" duration="00:00:00.0018084" startTime="2011-03-20T16:23:53.8053713-05:00" endTime="2011-03-20T16:23:53.8093715-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="db8a368c-ae97-4a49-9971-7874b6b088b1">
+    </UnitTestResult>
+  </Results>
+</TestRun>

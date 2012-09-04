@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BBEDB4FC-1D22-470B-8F11-1D740E94A59F}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimpleMvvmToolkit</RootNamespace>
+    <AssemblyName>SimpleMvvmToolkit-WP7</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Debug\SimpleMvvmToolkit-WP7.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Release\SimpleMvvmToolkit-WP7.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Silverlight.Testing">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Toolkit\Apr10\Testing\Microsoft.Silverlight.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Toolkit\Apr10\Testing\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=3.7.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\BindingHelper.cs">
+      <Link>BindingHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\DelegateCommand.cs">
+      <Link>DelegateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\GenericDelegateCommand.cs">
+      <Link>GenericDelegateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\INotifyable.cs">
+      <Link>INotifyable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\MessageBus.cs">
+      <Link>MessageBus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\MessageBusProxy.cs">
+      <Link>MessageBusProxy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\ModelExtensions.cs">
+      <Link>ModelExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\NotificationEventArgs.cs">
+      <Link>NotificationEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\SilverlightTestExtensions.cs">
+      <Link>SilverlightTestExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\UIDispatcher.cs">
+      <Link>UIDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\ViewModelBase-NonGeneric.cs">
+      <Link>ViewModelBase-NonGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\ViewModelBase.cs">
+      <Link>ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Silverlight\SimpleMvvmToolkit\ViewModelDetailBase.cs">
+      <Link>ViewModelDetailBase.cs</Link>
+    </Compile>
+    <Compile Include="BindingListener.cs" />
+    <Compile Include="EventToCommand-SL.cs" />
+    <Compile Include="EventToCommand.cs" />
+    <Compile Include="INavigator.cs" />
+    <Compile Include="ModelBase.cs" />
+    <Compile Include="Navigator.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
