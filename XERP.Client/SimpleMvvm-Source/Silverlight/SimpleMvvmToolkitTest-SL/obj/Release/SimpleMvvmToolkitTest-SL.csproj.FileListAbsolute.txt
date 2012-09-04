@@ -1,0 +1,3 @@
+C:\Program Files\SimpleMvvmToolkit\Source\SimpleMvvm-Source\Silverlight\SimpleMvvmToolkitTest-SL\obj\Release\ResolveAssemblyReference.cache
+C:\Program Files\SimpleMvvmToolkit\Source\SimpleMvvm-Source\Silverlight\SimpleMvvmToolkitTest-SL\obj\Release\App.g.i.cs
+C:\Program Files\SimpleMvvmToolkit\Source\SimpleMvvm-Source\Silverlight\SimpleMvvmToolkitTest-SL\obj\Release\SimpleMvvmToolkitTest.g.resources
