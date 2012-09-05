@@ -224,7 +224,7 @@
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
                         <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Type:
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Name:
                         </TextBlock>
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Description:
@@ -236,17 +236,14 @@
                         Grid.Row="1" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
-                        <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
-                            Text="{Binding Path=SelectedCompanyType.Type, Mode=TwoWay}"
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompanyType.Type, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
-                            MaxLength= "{Binding CompanyTypeMaxFieldValueDictionary[Type]}" 
+                            MaxLength= "{Binding CompanyTypeMaxFieldValueDictionary[Name]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
                             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
                             Text="{Binding Path=SelectedCompanyType.Description, Mode=TwoWay}"
-                            IsEnabled="{Binding AllowEdit}"
-                            MaxLength= "{Binding CompanyTypeMaxFieldValueDictionary[Description]}"
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
                     </StackPanel>
                 </Grid>

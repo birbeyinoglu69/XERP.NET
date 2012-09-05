@@ -30,7 +30,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                 _viewModel.MessageNotice += OnMessageNotice;
                 _viewModel.SearchNotice += OnSearchNotice;
                 _viewModel.TypeSearchNotice += OnTypeSearchNotice;
-                _viewModel.CodeSearchNotice += OnCodeSearchNotice;
                 _viewModel.SaveRequiredNotice += OnSaveRequiredNotice;
                 _viewModel.NewRecordNeededNotice += OnNewRecordNeededNotice;
                 _viewModel.AuthenticatedNotice += OnAuthenticatedNotice;
@@ -79,14 +78,8 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
 
         private void OpenTypeMaintenance_Click(object sender, RoutedEventArgs e)
         {
-            TypeMaintenanceWindow maintenanceWindow = new TypeMaintenanceWindow();
-            maintenanceWindow.Show();
-        }
-
-        private void OpenCodeMaintenance_Click(object sender, RoutedEventArgs e)
-        {
-            CodeMaintenanceWindow maintenanceWindow = new CodeMaintenanceWindow();
-            maintenanceWindow.Show();
+            TypeMaintenancneWindow typeMaintenanceWindow = new TypeMaintenancneWindow();
+            typeMaintenanceWindow.Show();
         }
 
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
@@ -112,12 +105,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         private void OnTypeSearchNotice(Object sender, NotificationEventArgs e)
         {
             TypeSearchWindow searchWindow = new TypeSearchWindow();
-            searchWindow.ShowDialog();
-        }
-
-        private void OnCodeSearchNotice(Object sender, NotificationEventArgs e)
-        {
-            CodeSearchWindow searchWindow = new CodeSearchWindow();
             searchWindow.ShowDialog();
         }
 

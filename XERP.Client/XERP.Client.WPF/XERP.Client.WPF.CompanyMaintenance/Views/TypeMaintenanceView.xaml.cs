@@ -73,8 +73,8 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
 
         private void OpenTypeMaintenance_Click(object sender, RoutedEventArgs e)
         {
-            TypeMaintenanceWindow maintenanceWindow = new TypeMaintenanceWindow();
-            maintenanceWindow.Show();
+            TypeMaintenancneWindow typeMaintenanceWindow = new TypeMaintenancneWindow();
+            typeMaintenanceWindow.Show();
         }
 
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)

@@ -1,9 +1,0 @@
-﻿<Window x:Class="XERP.Client.WPF.SystemUserMaintenance.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="XERP SystemUser Maintenance" Height="600" Width="600">
-    <Grid x:Name="LayoutRoot" Background="White" >
-        <my:MainMaintenanceView 
-            xmlns:my="clr-namespace:XERP.Client.WPF.SystemUserMaintenance.Views"/>
-    </Grid>
-</Window>

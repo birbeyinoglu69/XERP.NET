@@ -11,12 +11,12 @@ C:\XERP\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\SimpleMvvmToolki
 C:\XERP\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\SimpleMvvmToolkit-WPF.pdb
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\Bin\Release\SimpleMvvmToolkit-WPF.dll
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\bin\Release\SimpleMvvmToolkit-WPF.XML
+C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\SimpleMvvmToolkit-WPF.dll
+C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\SimpleMvvmToolkit-WPF.pdb
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\Bin\Release\SimpleMvvmToolkit-WPF.pdb
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\XerpClientBuild\bin\SimpleMvvmToolkit-WPF.dll
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\XerpClientBuild\bin\SimpleMvvmToolkit-WPF.pdb
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\XerpClientBuild\bin\SimpleMvvmToolkit-WPF.XML
 C:\XERP\XERP.Client\XERPClientBuild\bin\SimpleMvvmToolkit-WPF.dll
 C:\XERP\XERP.Client\XERPClientBuild\bin\SimpleMvvmToolkit-WPF.pdb
-C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\ResolveAssemblyReference.cache
-C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\SimpleMvvmToolkit-WPF.dll
-C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Release\SimpleMvvmToolkit-WPF.pdb

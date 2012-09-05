@@ -1,9 +1,0 @@
-C:\XERP\XERP.Client\XERPClientBuild\bin\XERP.Client.WPF.dll
-C:\XERP\XERP.Client\XERPClientBuild\bin\XERP.Client.WPF.pdb
-C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Release\ResolveAssemblyReference.cache
-C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Release\XERP.Client.WPF.dll
-C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Release\XERP.Client.WPF.pdb
-C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Release\Resources\BaseControls.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Release\Resources\MenuImages.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Release\XERP.Client.WPF_MarkupCompile.cache
-C:\XERP\XERP.Client\XERP.Client.WPF\obj\x86\Release\XERP.Client.WPF.g.resources

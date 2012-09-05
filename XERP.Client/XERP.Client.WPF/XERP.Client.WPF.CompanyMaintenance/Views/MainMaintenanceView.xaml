@@ -283,27 +283,7 @@
                             ItemsSource="{Binding Path=CompanyCodeList, Mode=TwoWay}"
                             DisplayMemberPath="Code"
                             SelectedValue="{Binding Path=SelectedCompany.CompanyCodeID, Mode=TwoWay}"
-                            SelectedValuePath="CompanyCodeID" KeyboardNavigation.TabIndex="50" BorderBrush="DimGray">
-                            <ComboBox.ContextMenu>
-                                <ContextMenu Style="{StaticResource BaseContextMenu}">
-                                    <ContextMenu.Items>
-                                        <MenuItem Style="{StaticResource BaseMenuItem}" 
-                                            Header="Open Code Maintenance" 
-                                            Click="OpenCodeMaintenance_Click" />
-                                        <MenuItem Style="{StaticResource BaseMenuItem}"
-                                            Header="Search Code">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <ei:CallMethodAction
-                                                        TargetObject="{Binding}"
-                                                        MethodName="CodeSearchCommand"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </MenuItem>
-                                    </ContextMenu.Items>
-                                </ContextMenu>
-                            </ComboBox.ContextMenu>
-                        </ComboBox>
+                            SelectedValuePath="CompanyCodeID" KeyboardNavigation.TabIndex="50" BorderBrush="DimGray"></ComboBox>
                     </StackPanel>
                 </Grid>
             </TabItem>

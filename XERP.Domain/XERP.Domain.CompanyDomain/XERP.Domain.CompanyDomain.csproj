@@ -46,7 +46,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
-    <Compile Include="Services\CompanyCodeSingletonRepository.cs" />
     <Compile Include="Services\CompanyServiceAgent.cs" />
     <Compile Include="Services\CompanyTypeSingletonRepostitory.cs" />
     <Compile Include="Services\ICompanyServiceAgent.cs" />

@@ -1,4 +1,9 @@
-﻿using System.Data.EntityClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data.EntityClient;
+using System.Data.SqlClient;
 
 namespace XERP.Server.DAL.LogInDAL
 {

@@ -98,7 +98,4 @@
     <Style TargetType="{x:Type TextBox}" x:Key="BaseTextBox">
         
     </Style>
-    <Style TargetType="{x:Type CheckBox}" x:Key="BaseCheckBox">
-
-    </Style>
 </ResourceDictionary>

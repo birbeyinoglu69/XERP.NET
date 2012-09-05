@@ -41,6 +41,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\D
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\TypeMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\TypeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\MainSearchWindow.g.cs
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\TypeMaintenancneWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\TypeSearchWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\MainMaintenanceView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\MainWindow.g.cs
@@ -53,6 +54,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\D
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance_MarkupCompile.lref
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\App.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\MainSearchWindow.baml
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\TypeMaintenancneWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\TypeSearchWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\MainWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.g.resources
@@ -61,13 +63,3 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\D
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.pdb
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\CodeMaintenanceSearchView.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\CodeMaintenanceSearchView.g.cs
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\CodeMaintenanceView.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\CodeMaintenanceView.g.cs
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\CodeSearchWindow.g.cs
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\CodeMaintenanceWindow.g.cs
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\CodeSearchWindow.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\CodeMaintenanceWindow.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\TypeMaintenanceWindow.g.cs
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\TypeMaintenanceWindow.baml

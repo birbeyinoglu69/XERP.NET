@@ -1,4 +1,8 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 namespace XERP.Client.WPF.CompanyMaintenance
 {//use this class to share properties amonst views, viewmodels etc...
     public class GlobalProperties

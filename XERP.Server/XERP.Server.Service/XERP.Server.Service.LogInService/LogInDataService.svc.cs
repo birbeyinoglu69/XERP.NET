@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Services;
 using System.Data.Services.Common;
 using System.Linq;
 using System.ServiceModel.Web;
+using System.Web;
 using XERP.Server.DAL.LogInDAL;
+using System.Data.EntityClient;
+using XERP.Server;
+using System.Configuration;
 using ExtensionMethods;
 
 namespace XERP.Server.Service.LogInService

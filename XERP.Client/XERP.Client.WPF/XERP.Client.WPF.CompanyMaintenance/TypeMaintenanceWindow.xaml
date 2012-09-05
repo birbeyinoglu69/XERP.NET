@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="TypeMaintenanceWindow" Height="300" Width="600">
     <Grid>
-        <my:TypeMaintenanceView 
-            xmlns:my="clr-namespace:XERP.Client.WPF.CompanyMaintenance.Views"/>
+        <my:CompanyTypeMaintenanceView xmlns:my="clr-namespace:XERP.Client.WPF.CompanyMaintenance.Views"/>
     </Grid>
 </Window>

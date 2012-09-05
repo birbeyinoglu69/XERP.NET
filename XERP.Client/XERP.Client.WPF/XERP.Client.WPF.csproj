@@ -69,12 +69,6 @@
   <ItemGroup>
     <Folder Include="Views\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\SimpleMvvmToolkit-WPF.csproj">
-      <Project>{6A6DD3AB-484B-48FD-8BE7-107728A26341}</Project>
-      <Name>SimpleMvvmToolkit-WPF</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

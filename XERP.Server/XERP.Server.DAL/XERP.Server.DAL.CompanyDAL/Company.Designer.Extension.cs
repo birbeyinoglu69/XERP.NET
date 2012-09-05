@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Data.Objects.DataClasses;
 using XERP.Server.DAL.CompanyDAL;
 using System.Data.Metadata.Edm;
-//namespace XERP.Server.DAL.CompanyDAL
-//{
-        //overide any entity partial classes here if required...
-//}
+using ExtensionMethods;
+using System.Data.Services.Common;
+namespace XERP.Server.DAL.CompanyDAL
+{
+    //public partial class Company :EntityObject
+    //{
+        
+    //}
+}
 
 //we use the extension Method it allows to extend methods to existing entity objects...
 //so that as long as use add the using ExtensionMethods you can utilize the methods below with a . reference...
