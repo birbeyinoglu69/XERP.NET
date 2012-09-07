@@ -1,0 +1,6 @@
+C:\XERP\XERP.Server\XERP.Server.DAL.UserDAL\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERPServerBuild\bin\XERP.Server.DAL.UserDAL.dll
+C:\XERP\XERPServerBuild\bin\XERP.Server.DAL.UserDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.DAL.UserDAL\obj\x86\Debug\XERP.Server.DAL.UserDAL.dll
+C:\XERP\XERP.Server\XERP.Server.DAL.UserDAL\obj\x86\Debug\XERP.Server.DAL.UserDAL.pdb
+C:\XERP\XERPServerBuild\bin\XERP.Server.DAL.UserDAL.dll.config

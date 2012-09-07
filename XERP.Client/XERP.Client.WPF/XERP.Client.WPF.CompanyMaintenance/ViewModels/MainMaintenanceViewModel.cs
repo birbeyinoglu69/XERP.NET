@@ -5,19 +5,13 @@ using System.Linq;
 using System.Data.Services.Client;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Data;
 // Toolkit namespace
 using SimpleMvvmToolkit;
 //XERP Namespaces
 using XERP.Domain.CompanyDomain.Services;
 using XERP.Domain.CompanyDomain.CompanyDataService;
-using XERP.Domain.ClientModels;
-using XERP.Client;
 //required for extension methods...
 using ExtensionMethods;
-using System.Text;
 using XERP.Client.Models;
 
 namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
@@ -65,7 +59,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
             AllowNew = true;
             AllowRowPaste = true;
-            //CompanyColumnMetaDataList = new List<ColumnMetaData>();
         }
         #endregion Initialization and Cleanup
 
@@ -110,6 +103,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         public event EventHandler<NotificationEventArgs> MessageNotice;
         public event EventHandler<NotificationEventArgs> SearchNotice;
         public event EventHandler<NotificationEventArgs> TypeSearchNotice;
+        public event EventHandler<NotificationEventArgs> CodeSearchNotice;
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> SaveRequiredNotice;
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> NewRecordNeededNotice;
         public event EventHandler<NotificationEventArgs> AuthenticatedNotice;
@@ -342,6 +336,10 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         {
             get
             {
+                if (_companyMaxFieldValueDictionary != null)
+                {
+                    return _companyMaxFieldValueDictionary;
+                }
                 _companyMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("Companies");
 
@@ -378,7 +376,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
                     {//once a key is added it can not be modified...
-                        if (Dirty)
+                        if (Dirty  && AllowCommit)
                         {//dirty record exists ask if save is required...
                             NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
                         }
@@ -820,7 +818,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
         public void ClearCommand()
         {
-            if (Dirty)
+            if (Dirty && AllowCommit)
             {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
             }
@@ -832,7 +830,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
         public void SearchCommand()
         {
-            if (Dirty)
+            if (Dirty && AllowCommit)
             {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
             }
@@ -874,6 +872,21 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             }
             UnregisterToReceiveMessages<BindingList<CompanyType>>(MessageTokens.CompanyTypeSearchToken.ToString(), OnTypeSearchResult);
         }
+
+        public void CodeSearchCommand()
+        {
+            RegisterToReceiveMessages<BindingList<CompanyCode>>(MessageTokens.CompanyCodeSearchToken.ToString(), OnCodeSearchResult);
+            NotifyCodeSearch("");
+        }
+
+        private void OnCodeSearchResult(object sender, NotificationEventArgs<BindingList<CompanyCode>> e)
+        {
+            if (e.Data != null && e.Data.Count > 0)
+            {
+                SelectedCompany.CompanyCodeID = e.Data.FirstOrDefault().CompanyCodeID;
+            }
+            UnregisterToReceiveMessages<BindingList<CompanyType>>(MessageTokens.CompanyTypeSearchToken.ToString(), OnTypeSearchResult);
+        }
         
         #endregion Commands
 
@@ -910,6 +923,11 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         private void NotifyTypeSearch(string message)
         {
             Notify(TypeSearchNotice, new NotificationEventArgs(message));
+        }
+
+        private void NotifyCodeSearch(string message)
+        {
+            Notify(CodeSearchNotice, new NotificationEventArgs(message));
         }
 
         //Notify view new record may be required...
@@ -985,7 +1003,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-    using System.Runtime.Serialization.Formatters.Binary; using System.IO;
 
     public static partial class XERPExtensions
     {

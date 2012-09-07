@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Data.Services.Client;
 using XERP.Domain.CompanyDomain.CompanyDataService;
 using XERP.Domain.CompanyDomain.Services;
@@ -63,12 +62,12 @@ namespace XERP.Domain.CompanyDomain
 
             if (!string.IsNullOrEmpty(companyQuerryObject.CompanyTypeID))
             {
-                queryResult = queryResult.Where(q => q.Description.StartsWith(companyQuerryObject.CompanyTypeID.ToString()));
+                queryResult = queryResult.Where(q => q.CompanyTypeID.StartsWith(companyQuerryObject.CompanyTypeID.ToString()));
             }
 
             if (!string.IsNullOrEmpty(companyQuerryObject.CompanyCodeID))
             {
-                queryResult = queryResult.Where(q => q.Description.StartsWith(companyQuerryObject.CompanyCodeID.ToString()));
+                queryResult = queryResult.Where(q => q.CompanyCodeID.StartsWith(companyQuerryObject.CompanyCodeID.ToString()));
             }
             return queryResult;
         }

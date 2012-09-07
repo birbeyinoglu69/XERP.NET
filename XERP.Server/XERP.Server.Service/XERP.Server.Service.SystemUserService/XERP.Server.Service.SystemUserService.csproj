@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7C262883-F62D-454B-AAB1-372B025D488D}</ProjectGuid>
+    <ProjectGuid>{8A79D15B-FFF7-402F-AB64-60BAC8065721}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -56,7 +56,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SystemUserService.svc" />
+    <Content Include="SystemUserDataService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -70,15 +70,11 @@
       <Link>SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemUserService.svc.cs">
-      <DependentUpon>SystemUserService.svc</DependentUpon>
+    <Compile Include="SystemUserDataService.svc.cs">
+      <DependentUpon>SystemUserDataService.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XERP.Server.csproj">
-      <Project>{57537EF0-8B19-4FCA-AD39-0A08A25B51B9}</Project>
-      <Name>XERP.Server</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\XERP.Server.DAL\XERP.Server.DAL.SystemUserDAL\XERP.Server.DAL.SystemUserDAL.csproj">
       <Project>{20F37A87-7914-4268-B14F-413BC265BDC1}</Project>
       <Name>XERP.Server.DAL.SystemUserDAL</Name>
@@ -91,8 +87,8 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2940</DevelopmentServerPort>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>1205</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

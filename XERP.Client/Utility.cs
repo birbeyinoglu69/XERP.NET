@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using System.Text;
-using System.IO;
-using System.Drawing;
+﻿
 
 namespace XERP.Client
 {
@@ -16,6 +10,9 @@ namespace XERP.Client
         CompanySearchToken,
         CompanyTypeSearchToken,
         CompanyCodeSearchToken,
+        SystemUserSearchToken,
+        SystemUserTypeSearchToken,
+        SystemUserCodeSearchToken,
     };
 
     public class Utility

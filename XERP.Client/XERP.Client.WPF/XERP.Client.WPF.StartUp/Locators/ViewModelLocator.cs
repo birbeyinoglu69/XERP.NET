@@ -9,13 +9,8 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 // Toolkit namespace
-using SimpleMvvmToolkit;
 using XERP.Client.WPF.StartUp.ViewModels;
 using XERP.Client.WPF.StartUp.Services;
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.EntityClient;
-using System.Data.SqlClient;
-using ExtensionMethods;
+﻿using System.Data.EntityClient;
 namespace XERP.Server.DAL.CompanyDAL
 {
     public class DALUtility

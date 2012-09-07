@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Data.Services.Client;
-using System.Reflection;
-//using System.Linq.Dynamic;
-using System.Collections.ObjectModel;
+
 using XERP.Domain.CompanyDomain.CompanyDataService;
-using XERP.Domain.CompanyDomain;
-using XERP.Domain.CompanyDomain.Services;
-using XERP.Domain.ClientModels;
 namespace XERP.Domain.CompanyDomain.Services
 {
-    public class CompanyServiceAgent : XERP.Domain.CompanyDomain.Services.ICompanyServiceAgent
+    public class CompanyServiceAgent : XERP.Domain.CompanyDomain.Services.ICompanyServiceAgent 
     {
         #region Initialize Service
         public CompanyServiceAgent()
@@ -27,29 +21,7 @@ namespace XERP.Domain.CompanyDomain.Services
 
         #region Properties
         private Uri _rootUri;
-        private CompanyEntities _context;
-
-        //we use a temp table in instances where data base schema is not required...
-        //we use the the temp table db schema as the conduit from client to server...
-        //we then traspose the temp table in to a more meaningful client model...
-        public List<EntityMetaData> CompanyMetaDataList
-        {
-            get 
-            {
-                List<EntityMetaData> entityMetaDataList = new List<EntityMetaData>();
-
-                foreach(Temp temp in GetMetaData("Companies"))
-                {
-                    EntityMetaData entityMetaData = new EntityMetaData();
-                    entityMetaData.ID = temp.ID;
-                    entityMetaData.FieldName = temp.Name;
-                    entityMetaData.FieldType = temp.ShortChar_1;
-                    entityMetaData.MaxLength = temp.Int_1;
-                }
-                return entityMetaDataList; 
-            } 
-        }
-        
+        private CompanyEntities _context;        
         #endregion Properties
 
         #region Read Only Methods  No Repository Required
@@ -85,11 +57,11 @@ namespace XERP.Domain.CompanyDomain.Services
             return false;
         }
 
-        public bool CompanyTypeIsUsed(string companyTypeID)
+        public bool CompanyTypeExists(string companyTypeID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
-            var queryResult = (from q in _context.Companies
+            var queryResult = (from q in _context.CompanyTypes
                                where q.CompanyTypeID == companyTypeID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
@@ -99,12 +71,12 @@ namespace XERP.Domain.CompanyDomain.Services
             return false;
         }
 
-        public bool CompanyTypeExists(string companyTypeID)
+        public bool CompanyCodeExists(string companyCodeID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
-            var queryResult = (from q in _context.CompanyTypes
-                               where q.CompanyTypeID == companyTypeID
+            var queryResult = (from q in _context.CompanyCodes
+                               where q.CompanyCodeID == companyCodeID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
             {
@@ -216,5 +188,52 @@ namespace XERP.Domain.CompanyDomain.Services
         }
 
         #endregion CompanyType Repository CRUD
+
+        #region CompanyCode Repository CRUD
+        public IEnumerable<CompanyCode> RefreshCompanyCode(string autoIDs)
+        {
+            return CompanyCodeSingletonRepository.Instance.Refresh(autoIDs);
+        }
+
+        public IEnumerable<CompanyCode> GetCompanyCodes()
+        {
+            return CompanyCodeSingletonRepository.Instance.GetCompanyCodes();
+        }
+
+        public IEnumerable<CompanyCode> GetCompanyCodes(CompanyCode companyCodeQuerryObject)
+        {
+            return CompanyCodeSingletonRepository.Instance.GetCompanyCodes(companyCodeQuerryObject);
+        }
+
+        public IEnumerable<CompanyCode> GetCompanyCodeByID(string companyCodeID)
+        {
+            return CompanyCodeSingletonRepository.Instance.GetCompanyCodeByID(companyCodeID);
+        }
+        public void CommitCompanyCodeRepository()
+        {
+            CompanyCodeSingletonRepository.Instance.CommitRepository();
+        }
+
+        public void UpdateCompanyCodeRepository(CompanyCode companyCode)
+        {
+            CompanyCodeSingletonRepository.Instance.UpdateRepository(companyCode);
+        }
+
+        public void AddToCompanyCodeRepository(CompanyCode companyCode)
+        {
+            CompanyCodeSingletonRepository.Instance.AddToRepository(companyCode);
+        }
+
+        public void DeleteFromCompanyCodeRepository(CompanyCode companyCode)
+        {
+            CompanyCodeSingletonRepository.Instance.DeleteFromRepository(companyCode);
+        }
+
+        public EntityStates GetCompanyCodeEntityState(CompanyCode companyCode)
+        {
+            return CompanyCodeSingletonRepository.Instance.GetCompanyCodeEntityState(companyCode);
+        }
+
+        #endregion CompanyCode Repository CRUD
     }
 }

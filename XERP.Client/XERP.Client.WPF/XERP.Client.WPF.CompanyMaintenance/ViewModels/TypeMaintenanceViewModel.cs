@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Windows;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Data.Services.Client;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Data;
 // Toolkit namespace
 using SimpleMvvmToolkit;
 //XERP Namespaces
 using XERP.Domain.CompanyDomain.Services;
 using XERP.Domain.CompanyDomain.CompanyDataService;
-using XERP.Domain.ClientModels;
-using XERP.Client;
 //required for extension methods...
 using ExtensionMethods;
-using System.Text;
 using XERP.Client.Models;
 
 namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
@@ -316,7 +309,11 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         public Dictionary<string, int> CompanyTypeMaxFieldValueDictionary //= new Dictionary<string, int>();
         {
             get
-            {
+            {//we only need to get this once...
+                if (_companyTypeMaxFieldValueDictionary != null)
+                {
+                    return _companyTypeMaxFieldValueDictionary;
+                }
                 _companyTypeMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("CompanyTypes");
 
@@ -353,7 +350,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
                     {//once a key is added it can not be modified...
-                        if (Dirty)
+                        if (Dirty && AllowCommit)
                         {//dirty record exists ask if save is required...
                             NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
                         }
@@ -786,7 +783,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
         public void ClearCommand()
         {
-            if (Dirty)
+            if (Dirty && AllowCommit)
             {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
             }
@@ -798,7 +795,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
         public void SearchCommand()
         {
-            if (Dirty)
+            if (Dirty && AllowCommit)
             {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
             }
@@ -931,8 +928,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-    using System.Runtime.Serialization.Formatters.Binary;
-    using System.IO;
 
     public static partial class XERPExtensions
     {

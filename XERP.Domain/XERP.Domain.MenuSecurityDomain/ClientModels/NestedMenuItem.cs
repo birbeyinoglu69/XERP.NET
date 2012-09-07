@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Windows.Media.Imaging;
 using XERP.Domain.MenuSecurityDomain.Services;
 using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;

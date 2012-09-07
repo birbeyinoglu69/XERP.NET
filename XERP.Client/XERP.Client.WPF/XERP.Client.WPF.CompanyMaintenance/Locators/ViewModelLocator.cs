@@ -1,10 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
+﻿
 // Toolkit namespace
-using SimpleMvvmToolkit;
 
 //XERP namespaces
 using XERP.Client.WPF.CompanyMaintenance.ViewModels;
@@ -14,11 +9,6 @@ namespace XERP.Client.WPF.CompanyMaintenance
 {
     public class ViewModelLocator
     {
-        //public MainPageViewModel MainPageViewModel
-        //{
-        //    get { return new MainPageViewModel(); }
-        //}
-
         public MainMaintenanceViewModel MainMaintenanceViewModel
         {
             get
@@ -52,6 +42,24 @@ namespace XERP.Client.WPF.CompanyMaintenance
             {
                 ICompanyServiceAgent serviceAgent = new CompanyServiceAgent();
                 return new TypeMaintenanceViewModel(serviceAgent);
+            }
+        }
+
+        public CodeSearchViewModel CodeSearchViewModel
+        {
+            get
+            {
+                ICompanyServiceAgent serviceAgent = new CompanyServiceAgent();
+                return new CodeSearchViewModel(serviceAgent);
+            }
+        }
+
+        public CodeMaintenanceViewModel CodeMaintenanceViewModel
+        {
+            get
+            {
+                ICompanyServiceAgent serviceAgent = new CompanyServiceAgent();
+                return new CodeMaintenanceViewModel(serviceAgent);
             }
         }
     }

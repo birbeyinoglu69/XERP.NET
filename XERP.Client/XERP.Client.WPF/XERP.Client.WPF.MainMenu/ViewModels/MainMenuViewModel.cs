@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Windows;
-using System.Threading;
 using System.Collections.ObjectModel;
 using System.Linq;
 // Toolkit namespace
 using SimpleMvvmToolkit;
-using System.Drawing;
 
 // Toolkit extension methods
-using SimpleMvvmToolkit.ModelExtensions;
 
 //XERP Namespaces
 
-using XERP.Client;
 
 using System.Collections.Generic;
 using XERP.Domain.MenuSecurityDomain.Services;
@@ -163,7 +158,10 @@ namespace XERP.Client.WPF.MainMenu.ViewModels
             }
             //Their may be mulitple root nodes...
             List<NestedMenuItem> roots = new List<NestedMenuItem>();
-            roots = _flatNestedMenuItemList.Where(x => x.ParentMenuID == "").ToList();
+            roots = _flatNestedMenuItemList.
+                Where(x => x.ParentMenuID == "")
+                .OrderBy(a => a.DisplayOrder)
+                .ToList();
             foreach (NestedMenuItem root in roots)
             {
                 getNestedChidlren(root);
@@ -174,7 +172,10 @@ namespace XERP.Client.WPF.MainMenu.ViewModels
 
         private void getNestedChidlren(NestedMenuItem pnmi)
         {
-            foreach (NestedMenuItem cnmi in _flatNestedMenuItemList.Where(nmi => nmi.ParentMenuID == pnmi.MenuItemID).ToList())
+            foreach (NestedMenuItem cnmi in _flatNestedMenuItemList
+                .Where(nmi => nmi.ParentMenuID == pnmi.MenuItemID)
+                .OrderBy(a => a.DisplayOrder)
+                .ToList())
             {
                 pnmi.Children.Add(cnmi);
                 getNestedChidlren(cnmi);

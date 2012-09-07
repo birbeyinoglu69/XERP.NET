@@ -5,8 +5,10 @@ namespace XERP.Client.WPF.MainMenu
 {
     class WindowLocator
     {
-        private enum _executableProgramEnum {CompanyMaintenance, CompanyTypeMaintenance, MenuItemMaintenance,
-        SystemUserMaintenance};
+        private enum _executableProgramEnum {CompanyMaintenance, CompanyTypeMaintenance, CompanyCodeMaintenance, 
+            MenuItemMaintenance,
+            SystemUserMaintenance, SystemUserTypeMaintenance, SystemUserCodeMaintenance
+        };
 
         private System.Windows.Window window;
         public WindowLocator()
@@ -25,15 +27,16 @@ namespace XERP.Client.WPF.MainMenu
             }
             else
             {
-                errorMessage = "Make sure the WindowLocator executableProgramEnum value matches to the ExecutableProgramID " + executableProgramID + " value";
+                errorMessage = "Make sure the WindowLocator.cs Class executableProgramEnum value matches to the ExecutableProgramID " + executableProgramID + " value";
                 return;
             } 
             
-            SelectWindowToShow(executableProgramEnum);  
+            SelectWindowToShow(executableProgramEnum, out errorMessage);  
         }
 
-        private void SelectWindowToShow(_executableProgramEnum executableProgramEnum)
+        private void SelectWindowToShow(_executableProgramEnum executableProgramEnum, out string errorMessage)
         {
+            errorMessage = "";
             switch (executableProgramEnum)
             {
                 case _executableProgramEnum.CompanyMaintenance:
@@ -41,8 +44,27 @@ namespace XERP.Client.WPF.MainMenu
                     window.Show();
                     break;
                 case _executableProgramEnum.CompanyTypeMaintenance:
-                    window = new CompanyMaintenance.TypeMaintenancneWindow();
+                    window = new CompanyMaintenance.TypeMaintenanceWindow();
                     window.Show();
+                    break;
+                case _executableProgramEnum.CompanyCodeMaintenance:
+                    window = new CompanyMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SystemUserMaintenance:
+                    window = new SystemUserMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SystemUserTypeMaintenance:
+                    window = new SystemUserMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SystemUserCodeMaintenance:
+                    window = new SystemUserMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                default:
+                    errorMessage = "No Executable Program Was Assigned To Be Shown In The WindowLocator.cs class";
                     break;
             }
         }

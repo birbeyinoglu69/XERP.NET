@@ -47,6 +47,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,21 +69,35 @@
     <Compile Include="..\..\..\SharedAssemblyInfo.cs">
       <Link>SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CodeSearchWindow.xaml.cs">
+      <DependentUpon>CodeSearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GlobalProperties.cs" />
     <Compile Include="MainSearchWindow.xaml.cs">
       <DependentUpon>MainSearchWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\SharedDictionaryManager.cs" />
-    <Compile Include="TypeMaintenancneWindow.xaml.cs">
-      <DependentUpon>TypeMaintenancneWindow.xaml</DependentUpon>
+    <Compile Include="TypeMaintenanceWindow.xaml.cs">
+      <DependentUpon>TypeMaintenanceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TypeSearchWindow.xaml.cs">
       <DependentUpon>TypeSearchWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CodeMaintenanceViewModel.cs" />
+    <Compile Include="ViewModels\CodeSearchViewModel.cs" />
     <Compile Include="ViewModels\MainMaintenanceViewModel.cs" />
     <Compile Include="ViewModels\MainSearchViewModel.cs" />
     <Compile Include="ViewModels\TypeMaintenanceViewModel.cs" />
     <Compile Include="ViewModels\TypeSearchViewModel.cs" />
+    <Compile Include="Views\CodeMaintenanceSearchView.xaml.cs">
+      <DependentUpon>CodeMaintenanceSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CodeMaintenanceView.xaml.cs">
+      <DependentUpon>CodeMaintenanceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CodeMaintenanceWindow.xaml.cs">
+      <DependentUpon>CodeMaintenanceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainMaintenanceView.xaml.cs">
       <DependentUpon>MainMaintenanceView.xaml</DependentUpon>
     </Compile>
@@ -96,15 +111,31 @@
     <Compile Include="Views\TypeMaintenanceSearchView.xaml.cs">
       <DependentUpon>TypeMaintenanceSearchView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CodeSearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainSearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TypeMaintenancneWindow.xaml">
+    <Page Include="TypeMaintenanceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TypeSearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TypeSearchWindow.xaml">
+    <Page Include="Views\CodeMaintenanceSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CodeMaintenanceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CodeMaintenanceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,7 +186,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\XERP.Client.WPF.CompanyMaintenance.CompanyDataService.CompanyEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

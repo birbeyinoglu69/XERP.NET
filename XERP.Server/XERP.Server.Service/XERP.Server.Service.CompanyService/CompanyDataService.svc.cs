@@ -3,9 +3,7 @@ using System.Data.Services;
 using System.Data.Services.Common;
 using System.Linq;
 using XERP.Server.DAL.CompanyDAL;
-using System.Data.Metadata.Edm;
 using System.ServiceModel.Web;
-using System.Diagnostics;
 using System.Collections.Generic;
 using ExtensionMethods;
 
@@ -50,7 +48,7 @@ namespace XERP.Server.Service.CompanyService
                     temp.Int_1 = 0;
                     temp.Bool_1 = true; //bool_1 will flag it as an error...
                     temp.Name = "Error";
-                    temp.ShortChar_1 = "Table " + tableName + " Is Not A Valid Table Within The Given Entity Collection, Or Meta Data Is Not Publc For The Given Table Name";
+                    temp.ShortChar_1 = "Table " + tableName + " Is Not A Valid Table Within The Given Entity Collection, Or Meta Data Was Not Defined For The Given Table Name";
                     tempList.Add(temp);
                     return tempList.AsQueryable();
             }
@@ -94,6 +92,7 @@ namespace XERP.Server.Service.CompanyService
                 var context = new CompanyEntities(dalUtility.EntityConectionString);
                
                 //test it...
+                //GetMetaData("Companies");
                 //IQueryable<Company> companyQuery = (from c in context.Companies
                 //                                    select c);
 
