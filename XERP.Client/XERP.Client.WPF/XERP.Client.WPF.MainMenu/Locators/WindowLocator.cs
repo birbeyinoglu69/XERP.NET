@@ -1,13 +1,12 @@
-﻿
-
-using System;
+﻿using System;
 namespace XERP.Client.WPF.MainMenu
 {
     class WindowLocator
     {
         private enum _executableProgramEnum {CompanyMaintenance, CompanyTypeMaintenance, CompanyCodeMaintenance, 
             MenuItemMaintenance,
-            SystemUserMaintenance, SystemUserTypeMaintenance, SystemUserCodeMaintenance
+            SystemUserMaintenance, SystemUserTypeMaintenance, SystemUserCodeMaintenance,
+            SecurityGroupMaintenance, SecurityGroupTypeMaintenance, SecurityGroupCodeMaintenance
         };
 
         private System.Windows.Window window;
@@ -61,6 +60,18 @@ namespace XERP.Client.WPF.MainMenu
                     break;
                 case _executableProgramEnum.SystemUserCodeMaintenance:
                     window = new SystemUserMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SecurityGroupMaintenance:
+                    window = new SecurityGroupMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SecurityGroupTypeMaintenance:
+                    window = new SecurityGroupMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SecurityGroupCodeMaintenance:
+                    window = new SecurityGroupMaintenance.CodeMaintenanceWindow();
                     window.Show();
                     break;
                 default:

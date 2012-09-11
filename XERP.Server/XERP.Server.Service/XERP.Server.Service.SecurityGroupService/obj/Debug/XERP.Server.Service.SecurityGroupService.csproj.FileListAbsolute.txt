@@ -1,0 +1,11 @@
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.Service.SecurityGroupService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.Service.SecurityGroupService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.DAL.SecurityGroupDAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.DAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.DAL.SecurityGroupDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.DAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\obj\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\obj\Debug\XERP.Server.Service.SecurityGroupService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\obj\Debug\XERP.Server.Service.SecurityGroupService.pdb

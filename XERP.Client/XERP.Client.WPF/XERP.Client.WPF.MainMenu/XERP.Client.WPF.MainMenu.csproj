@@ -132,6 +132,10 @@
       <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
       <Name>XERP.Client.WPF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.SecurityGroupMaintenance\XERP.Client.WPF.SecurityGroupMaintenance.csproj">
+      <Project>{B49BF76D-C8BD-4C20-B3C1-23648B73F603}</Project>
+      <Name>XERP.Client.WPF.SecurityGroupMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.SystemUserMaintenance\XERP.Client.WPF.SystemUserMaintenance.csproj">
       <Project>{2D46B753-4BE0-46EA-83D2-7C2EE0F4FE48}</Project>
       <Name>XERP.Client.WPF.SystemUserMaintenance</Name>

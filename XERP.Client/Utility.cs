@@ -13,6 +13,9 @@ namespace XERP.Client
         SystemUserSearchToken,
         SystemUserTypeSearchToken,
         SystemUserCodeSearchToken,
+        SecurityGroupSearchToken,
+        SecurityGroupTypeSearchToken,
+        SecurityGroupCodeSearchToken,
     };
 
     public class Utility

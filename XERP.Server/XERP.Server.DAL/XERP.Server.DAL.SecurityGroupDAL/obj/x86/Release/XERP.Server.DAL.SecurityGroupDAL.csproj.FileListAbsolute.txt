@@ -1,0 +1,1 @@
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.SecurityGroupDAL\obj\x86\Release\ResolveAssemblyReference.cache

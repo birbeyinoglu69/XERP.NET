@@ -1,0 +1,5 @@
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.SecurityGroupDAL.dll
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.SecurityGroupDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.SecurityGroupDAL\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.SecurityGroupDAL\obj\x86\Debug\XERP.Server.DAL.SecurityGroupDAL.dll
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.SecurityGroupDAL\obj\x86\Debug\XERP.Server.DAL.SecurityGroupDAL.pdb

@@ -205,7 +205,7 @@
                     <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="0" 
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
-                        <Button Style="{StaticResource BaseButton}" Content="Company Code..." Width="100" Height="20" Margin="10" 
+                        <Button Style="{StaticResource BaseButton}" Content="Company Code..." Width="100" Height="25" Margin="10" 
                             KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
@@ -215,7 +215,7 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </Button>
-                        <TextBox Style="{StaticResource BaseTextBox}"  Width="100" Height="20" Margin=" 10"
+                        <TextBox Style="{StaticResource BaseTextBox}"  Width="100" Height="20" 
                             Text="{Binding Path=SelectedCompanyCode.CompanyCodeID, Mode=TwoWay}"
                             MaxLength= "{Binding CompanyCodeMaxFieldValueDictionary[CompanyCodeID]}" 
                             KeyboardNavigation.TabIndex="10" Name="txtKey"></TextBox>
@@ -265,7 +265,7 @@
                         SelectedItem="{Binding SelectedCompanyCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                         SelectionMode="Extended" Initialized="DataGrid_Initialized" 
                         PreviewKeyUp="dgMain_PreviewKeyUp" SelectionChanged="dgMain_SelectionChanged" 
-                        PreviewKeyDown="dgMain_PreviewKeyDown">
+                        PreviewKeyDown="dgMain_PreviewKeyDown" AutoGenerateColumns="False">
                         <DataGrid.ContextMenu>
                             <ContextMenu >
                                 <MenuItem Header="Copy Row/s" IsEnabled="{Binding AllowRowCopy}"
