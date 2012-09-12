@@ -10,7 +10,7 @@ using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
 
 namespace XERP.Domain.MenuSecurityDomain.Services
 {
-    public class MenuSecurityServiceAgent : XERP.Domain.MenuSecurityDomain.Services.IMenuSecurityServiceAgent 
+    public class MenuSecurityServiceAgent : XERP.Domain.MenuSecurityDomain.Services.IMenuSecurityServiceAgent
     {
         private ServiceUtility _serviceUtility = new ServiceUtility();
         private Uri _rootUri;
@@ -24,13 +24,13 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             _context = new MenuSecurityEntities(_rootUri); 
         }
 
-        public IEnumerable<MenuItem> GetMenuItemsAvailableToUser(string systemUserID)
+        public IEnumerable<MenuItem> GetMenuItemsAvailableToUser(string systemUserID, string companyID)
         {
             //WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;
-            var query = _context.CreateQuery<MenuItem>("GetMenuItemsAllowedByUser").AddQueryOption("SystemUserID", "'" + systemUserID + "'");
+            var query = _context.CreateQuery<MenuItem>("GetMenuItemsAllowedByUser").AddQueryOption("SystemUserID", "'" + systemUserID + "'").AddQueryOption("CompanyID", "'" + companyID + "'");
             return query;
         }
 
@@ -72,6 +72,15 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             _context.MergeOption = MergeOption.NoTracking;
             var queryRelult = (from q in _context.ExecutablePrograms
                                where q.CompanyID == companyID
+                               select q);
+            return queryRelult;
+        }
+
+        public IEnumerable<Company> GetGlobalCompanies()
+        {
+            _context.IgnoreResourceNotFoundException = true;
+            _context.MergeOption = MergeOption.NoTracking;
+            var queryRelult = (from q in _context.Companies
                                select q);
             return queryRelult;
         }

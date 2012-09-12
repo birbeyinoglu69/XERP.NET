@@ -602,8 +602,12 @@
     </Schema>
     <Schema Namespace="XERP.Server.DAL.MenuSecurityDAL" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
       <EntityContainer Name="MenuSecurityEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <FunctionImport Name="GetMetaData" EntitySet="Temps" ReturnType="Collection(MenuSecurityModel.Temp)" m:HttpMethod="GET">
+          <Parameter Name="tableName" Type="Edm.String" Mode="In" />
+        </FunctionImport>
         <FunctionImport Name="GetMenuItemsAllowedByUser" EntitySet="MenuItems" ReturnType="Collection(MenuSecurityModel.MenuItem)" m:HttpMethod="GET">
           <Parameter Name="systemUserID" Type="Edm.String" Mode="In" />
+          <Parameter Name="companyID" Type="Edm.String" Mode="In" />
         </FunctionImport>
         <EntitySet Name="Companies" EntityType="MenuSecurityModel.Company" />
         <EntitySet Name="DalItems" EntityType="MenuSecurityModel.DalItem" />

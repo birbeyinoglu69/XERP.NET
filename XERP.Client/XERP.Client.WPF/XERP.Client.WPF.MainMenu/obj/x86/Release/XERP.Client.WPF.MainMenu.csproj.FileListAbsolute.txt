@@ -61,3 +61,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Cl
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Domain.SystemUserDomain.dll
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Client.WPF.SystemUserMaintenance.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Domain.SystemUserDomain.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Client.WPF.SecurityGroupMaintenance.exe
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Domain.SecurityGroupDomain.dll
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Client.WPF.SecurityGroupMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Release\XERP.Domain.SecurityGroupDomain.pdb

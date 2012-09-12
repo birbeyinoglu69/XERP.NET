@@ -39,6 +39,11 @@ namespace XERP.Client.WPF.MainMenu.ViewModels
         #endregion
 
         #region Properties
+        public string GlobalCompanyID
+        {
+            get { return ClientSessionSingleton.Instance.CompanyID; }
+        }
+
         private enum MenuItemSelectionType {LeftTreeMenuSelection, RightDisplayMenuItemSelction};
 
         private ObservableCollection<NestedMenuItem> _flatNestedMenuItemList;
@@ -115,9 +120,14 @@ namespace XERP.Client.WPF.MainMenu.ViewModels
             }
         }
 
-        private ObservableCollection<MenuItem> GetMenuItemsAvailableToUser(string systemUserID)
+        private ObservableCollection<MenuItem> GetMenuItemsAvailableToUser(string systemUserID, string companyID)
         {
-            return new ObservableCollection<MenuItem>(_serviceAgent.GetMenuItemsAvailableToUser(systemUserID));
+            return new ObservableCollection<MenuItem>(_serviceAgent.GetMenuItemsAvailableToUser(systemUserID, companyID));
+        }
+
+        private ObservableCollection<Company> GetGlobalCompanies()
+        {
+            return new ObservableCollection<Company>(_serviceAgent.GetGlobalCompanies());
         }
 
         private IEnumerable<NestedMenuItem> SetDisplayedMenuItems(string menuItemID)
@@ -150,7 +160,7 @@ namespace XERP.Client.WPF.MainMenu.ViewModels
             //for testing we set the value...
             //ClientSessionSingleton.Instance.SystemUserID = "Base";
 
-            _flatMenuItemList = GetMenuItemsAvailableToUser(ClientSessionSingleton.Instance.SystemUserID);
+            _flatMenuItemList = GetMenuItemsAvailableToUser(ClientSessionSingleton.Instance.SystemUserID, GlobalCompanyID);
             _flatNestedMenuItemList = new ObservableCollection<NestedMenuItem>();
             foreach (MenuItem menuItem in _flatMenuItemList)
             {

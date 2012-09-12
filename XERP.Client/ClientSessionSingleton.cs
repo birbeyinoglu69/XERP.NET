@@ -44,6 +44,7 @@ namespace XERP.Client
             get { return _companyID; }
             set { _companyID = value; }
         }
+        
         //cache securitygroups user belongs too...
         //too prevent exess trips to the db...
         private List<string> _securityGroupIDList = new List<string>();
@@ -79,5 +80,7 @@ namespace XERP.Client
             get { return _sessionNotAuthenticatedMessage; }
             //set { _sessionNotAuthenticatedMessage = value; }
         }
+
+
     }
 }

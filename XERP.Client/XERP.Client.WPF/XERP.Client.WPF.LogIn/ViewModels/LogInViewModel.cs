@@ -8,6 +8,8 @@ using SimpleMvvmToolkit;
 //XERP Namespaces
 using XERP.Domain.LogInDomain.Services;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using XERP.Domain.LogInDomain.LogInDataService;
 
 namespace XERP.Client.WPF.LogIn.ViewModels
 {
@@ -31,6 +33,26 @@ namespace XERP.Client.WPF.LogIn.ViewModels
         #endregion
 
         #region Properties
+        public string GlobalCompanyID
+        {
+            get { return ClientSessionSingleton.Instance.CompanyID; }
+            set
+            {
+                if (value != ClientSessionSingleton.Instance.CompanyID)
+                {
+                    ClientSessionSingleton.Instance.CompanyID = value;
+                    NotifyPropertyChanged(m => m.GlobalCompanyID);
+                }
+            }
+        }
+
+        public ObservableCollection<Company> GlobalCompanyList
+        {
+            get
+            {
+                return GetGlobalCompanies();
+            }
+        }
         private string _userNameInput;
         public string UserNameInput
         {
@@ -74,8 +96,19 @@ namespace XERP.Client.WPF.LogIn.ViewModels
         #endregion Properties
 
         #region Methods
+        private ObservableCollection<Company> GetGlobalCompanies()
+        {
+            return new ObservableCollection<Company>(_serviceAgent.GetGlobalCompanies());
+        }
+
         private bool Authenticated(string systemUserID, string password, out string authenticationMessage)
         {
+            //make sure a Company is selected...
+            if(string.IsNullOrEmpty(GlobalCompanyID))
+            {
+                authenticationMessage = "Company Must Be Selected";
+                return false;
+            }
             return _serviceAgent.Authenticated(systemUserID, password, out authenticationMessage);
         }
         #endregion Methods

@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Locators\WindowLocator.cs" />
+    <Compile Include="Resources\SharedDictionaryManager.cs" />
     <Compile Include="UINotImplemented.xaml.cs">
       <DependentUpon>UINotImplemented.xaml</DependentUpon>
     </Compile>

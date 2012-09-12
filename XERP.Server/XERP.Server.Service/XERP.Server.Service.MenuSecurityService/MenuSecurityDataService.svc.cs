@@ -65,7 +65,7 @@ namespace XERP.Server.Service.MenuSecurityService
         }
 
         [WebGet]
-        public IQueryable<MenuItem> GetMenuItemsAllowedByUser(string systemUserID)
+        public IQueryable<MenuItem> GetMenuItemsAllowedByUser(string systemUserID, string companyID)
         {
             XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
             var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
@@ -73,15 +73,19 @@ namespace XERP.Server.Service.MenuSecurityService
             var query = (from sus in context.SystemUserSecurities
                           from ms in context.MenuSecurities
                           from mi in context.MenuItems
-                          where sus.SystemUserID == systemUserID &&
+                          where sus.CompanyID == companyID && 
+                          ms.CompanyID == companyID && 
+                          mi.CompanyID == companyID &&
+                          sus.SystemUserID == systemUserID &&
                           sus.SecurityGroupID == ms.SecurityGroupID &&
                           ms.MenuItemID == mi.MenuItemID &&
-                          mi.AllowAll == false
+                          mi.AllowAll == false 
                           select mi);
 
 
             var query2 = (from mi in context.MenuItems
-                          where mi.AllowAll == true
+                          where mi.AllowAll == true && 
+                          mi.CompanyID == companyID
                           select mi);
             var mergedList = query.Union(query2);
             return mergedList;

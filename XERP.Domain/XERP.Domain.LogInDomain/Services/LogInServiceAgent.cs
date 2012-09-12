@@ -7,7 +7,7 @@ using XERP.Domain.LogInDomain.LogInDataService;
 
 namespace XERP.Domain.LogInDomain.Services
 {
-    public class LogInServiceAgent : XERP.Domain.LogInDomain.Services.ILogInServiceAgent
+    public class LogInServiceAgent : XERP.Domain.LogInDomain.Services.ILogInServiceAgent 
     {
         private ServiceUtility _serviceUtility = new ServiceUtility();
         
@@ -101,9 +101,18 @@ namespace XERP.Domain.LogInDomain.Services
             return rList;
         }
 
+        public IEnumerable<Company> GetGlobalCompanies()
+        {
+            _context.IgnoreResourceNotFoundException = true;
+            _context.MergeOption = MergeOption.NoTracking;
+            var queryRelult = (from q in _context.Companies
+                               select q);
+            return queryRelult;
+        }
+
         private void SetSessionSystemUser(SystemUser systemUser)
         {   //cache Current CompanyID
-            ClientSessionSingleton.Instance.CompanyID = systemUser.DefaultCompanyID;
+            //ClientSessionSingleton.Instance.CompanyID = systemUser.DefaultCompanyID;
             //cache User
             ClientSessionSingleton.Instance.SystemUserID = systemUser.SystemUserID;
             //cache groups user belongs to...

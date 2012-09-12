@@ -20,18 +20,29 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="775*"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="565*"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400*"></ColumnDefinition>
             <ColumnDefinition Width="400*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
-        <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="XERP Main Menu"
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <TextBlock Grid.Column="1" Text="XERP Main Menu:"
+               FontSize="16"
+               Margin="0,0,0,0" Height="19"></TextBlock>
+            
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <TextBlock Grid.Column="1" Text="Current Company: "
                FontSize="13"
-               Margin="5,5,5,5"></TextBlock>
-        <Menu IsMainMenu="True" Grid.ColumnSpan="2" Margin="2,2,370,2" Width="180">
+               Margin="0,0,0,0" Height="22"></TextBlock>
+            <TextBlock Grid.Column="1" Text="{Binding GlobalCompanyID}"
+               FontSize="13"
+               Margin="0,0,20,0" Height="22"></TextBlock>
+        </StackPanel>
+        <Menu IsMainMenu="True" Margin="10,2,2,2" Width="180" HorizontalAlignment="Left">
             <MenuItem Header="_Tools" />
             <MenuItem Header="_Actions" />
             <MenuItem Header="_Help" />
