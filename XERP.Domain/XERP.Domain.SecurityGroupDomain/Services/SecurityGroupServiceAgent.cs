@@ -25,30 +25,33 @@ namespace XERP.Domain.SecurityGroupDomain.Services
         #endregion Properties
 
         #region Read Only Methods  No Repository Required
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypesReadOnly()
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypesReadOnly(string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
-            var queryResult = (from types in _context.SecurityGroupTypes
-                                select types);
+            var queryResult = (from q in _context.SecurityGroupTypes
+                               where q.CompanyID == companyID
+                                select q);
             return queryResult;
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodesReadOnly()
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodesReadOnly(string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
-            var queryResult = (from codes in _context.SecurityGroupCodes
-                                select codes);
+            var queryResult = (from q in _context.SecurityGroupCodes
+                               where q.CompanyID == companyID
+                                select q);
             return queryResult;
         }
 
-        public bool SecurityGroupExists(string securityGroupID)
+        public bool SecurityGroupExists(string securityGroupID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SecurityGroups
-                           where q.SecurityGroupID == securityGroupID
+                           where q.SecurityGroupID == securityGroupID &&
+                           q.CompanyID == companyID
                            select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
             {
@@ -57,12 +60,13 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return false;
         }
 
-        public bool SecurityGroupTypeExists(string securityGroupTypeID)
+        public bool SecurityGroupTypeExists(string securityGroupTypeID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SecurityGroupTypes
                                where q.SecurityGroupTypeID == securityGroupTypeID
+                               where q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
             {
@@ -71,12 +75,13 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return false;
         }
 
-        public bool SecurityGroupCodeExists(string securityGroupCodeID)
+        public bool SecurityGroupCodeExists(string securityGroupCodeID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SecurityGroupCodes
-                               where q.SecurityGroupCodeID == securityGroupCodeID
+                               where q.SecurityGroupCodeID == securityGroupCodeID &&
+                               q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
             {
@@ -101,19 +106,19 @@ namespace XERP.Domain.SecurityGroupDomain.Services
         {
             return SecurityGroupSingletonRepository.Instance.Refresh(autoIDs);
         }
-        public IEnumerable<SecurityGroup> GetSecurityGroups()
+        public IEnumerable<SecurityGroup> GetSecurityGroups(string companyID)
         {
-            return SecurityGroupSingletonRepository.Instance.GetSecurityGroups();
+            return SecurityGroupSingletonRepository.Instance.GetSecurityGroups(companyID);
         }
 
-        public IEnumerable<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroupQuerryObject)
+        public IEnumerable<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroupQuerryObject, string companyID)
         {
-            return SecurityGroupSingletonRepository.Instance.GetSecurityGroups(securityGroupQuerryObject);
+            return SecurityGroupSingletonRepository.Instance.GetSecurityGroups(securityGroupQuerryObject, companyID);
         }
 
-        public IEnumerable<SecurityGroup> GetSecurityGroupByID(string securityGroupID)
+        public IEnumerable<SecurityGroup> GetSecurityGroupByID(string securityGroupID, string companyID)
         {
-            return SecurityGroupSingletonRepository.Instance.GetSecurityGroupByID(securityGroupID);
+            return SecurityGroupSingletonRepository.Instance.GetSecurityGroupByID(securityGroupID, companyID);
         }
 
         public void CommitSecurityGroupRepository()
@@ -148,19 +153,19 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return SecurityGroupTypeSingletonRepository.Instance.Refresh(autoIDs);
         }
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes()
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(string companyID)
         {
-            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypes();
+            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypes(companyID);
         }
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType securityGroupTypeQuerryObject)
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType securityGroupTypeQuerryObject, string companyID)
         {
-            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypes(securityGroupTypeQuerryObject);
+            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypes(securityGroupTypeQuerryObject, companyID);
         }
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypeByID(string securityGroupTypeID)
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypeByID(string securityGroupTypeID, string companyID)
         {
-            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypeByID(securityGroupTypeID);
+            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypeByID(securityGroupTypeID, companyID);
         }
         public void CommitSecurityGroupTypeRepository()
         {
@@ -195,19 +200,19 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return SecurityGroupCodeSingletonRepository.Instance.Refresh(autoIDs);
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes()
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(string companyID)
         {
-            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodes();
+            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodes(companyID);
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCodeQuerryObject)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCodeQuerryObject, string companyID)
         {
-            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodes(securityGroupCodeQuerryObject);
+            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodes(securityGroupCodeQuerryObject, companyID);
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID, string companyID)
         {
-            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodeByID(securityGroupCodeID);
+            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodeByID(securityGroupCodeID, companyID);
         }
         public void CommitSecurityGroupCodeRepository()
         {

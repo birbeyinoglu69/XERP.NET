@@ -34,7 +34,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             ResultList = new BindingList<SecurityGroup>();
             SelectedList = new BindingList<SecurityGroup>();
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
+            if (ClientSessionSingleton.Instance.SessionIsAuthentic)
             {
                 //make sure user has rights to UI...
                 DoFormsAuthentication();
@@ -165,29 +165,29 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #region Methods
         private ObservableCollection<SecurityGroupType> GetSecurityGroupTypes()
         {
-            return new ObservableCollection<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypesReadOnly().ToList());
+            return new ObservableCollection<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
         }
 
         private ObservableCollection<SecurityGroupCode> GetSecurityGroupCodes()
         {
-            return new ObservableCollection<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodesReadOnly().ToList());
+            return new ObservableCollection<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
         }
 
-        private BindingList<SecurityGroup> GetSecurityGroups()
+        private BindingList<SecurityGroup> GetSecurityGroups(string companyID)
         {//note this get is to the singleton repository...
-            return new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups().ToList());
+            return new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups(companyID).ToList());
         }
 
-        private BindingList<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroupQueryObject)
+        private BindingList<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroupQueryObject, string companyID)
         {//note this get is to the singleton repository...
-            return new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups(securityGroupQueryObject).ToList());
+            return new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups(securityGroupQueryObject, companyID).ToList());
         }
         #endregion Methods
 
         #region Commands
         public void SearchCommand()
         {
-            ResultList = GetSecurityGroups(SearchObject);
+            ResultList = GetSecurityGroups(SearchObject, ClientSessionSingleton.Instance.CompanyID);
         }
 
         public void CommitSearchCommand()

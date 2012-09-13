@@ -132,21 +132,21 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #endregion Properties
 
         #region Methods
-        private BindingList<SecurityGroupType> GetSecurityGroupTypes()
+        private BindingList<SecurityGroupType> GetSecurityGroupTypes(string companyID)
         {
-            return new BindingList<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypes().ToList());
+            return new BindingList<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypes(companyID).ToList());
         }
 
-        private BindingList<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType securityGroupQueryObject)
+        private BindingList<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType securityGroupQueryObject, string companyID)
         {
-            return new BindingList<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypes(securityGroupQueryObject).ToList());
+            return new BindingList<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypes(securityGroupQueryObject, companyID).ToList());
         }
         #endregion Methods
 
         #region Commands
         public void SearchCommand()
         {
-            ResultList = GetSecurityGroupTypes(SearchObject);
+            ResultList = GetSecurityGroupTypes(SearchObject, ClientSessionSingleton.Instance.CompanyID);
         }
 
         public void CommitSearchCommand()

@@ -156,7 +156,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.Views
             {
                 if (_viewModel.AllowNew)
                 {
-                    _viewModel.NewSecurityGroupTypeCommand();
+                    _viewModel.NewSecurityGroupTypeCommand("");
                 }
                 else
                 {
@@ -202,7 +202,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.Views
                         case Key.N:
                             if (_viewModel.AllowNew)
                             {
-                                _viewModel.NewSecurityGroupTypeCommand();
+                                _viewModel.NewSecurityGroupTypeCommand("");
                                 return;
                             }
                             //MessageBox.Show("New SecurityGroup Type Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

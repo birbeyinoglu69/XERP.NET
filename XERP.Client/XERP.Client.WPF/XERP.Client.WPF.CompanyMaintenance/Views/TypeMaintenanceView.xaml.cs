@@ -156,7 +156,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
             {
                 if (_viewModel.AllowNew)
                 {
-                    _viewModel.NewCompanyTypeCommand();
+                    _viewModel.NewCompanyTypeCommand("");
                 }
                 else
                 {
@@ -202,7 +202,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                         case Key.N:
                             if (_viewModel.AllowNew)
                             {
-                                _viewModel.NewCompanyTypeCommand();
+                                _viewModel.NewCompanyTypeCommand("");
                                 return;
                             }
                             //MessageBox.Show("New Company Type Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

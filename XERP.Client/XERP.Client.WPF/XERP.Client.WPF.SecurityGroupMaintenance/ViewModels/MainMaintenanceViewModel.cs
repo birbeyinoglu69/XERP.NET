@@ -454,7 +454,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                     return;
                 }
                 //it is not part of the existing list try to fetch it from the db...
-                SecurityGroupList = GetSecurityGroupByID(SelectedSecurityGroup.SecurityGroupID);
+                SecurityGroupList = GetSecurityGroupByID(SelectedSecurityGroup.SecurityGroupID, ClientSessionSingleton.Instance.CompanyID);
                 if (SecurityGroupList.Count == 0)
                 {//it was not found do new record required logic...
                     NotifyNewRecordNeeded("Record " + SelectedSecurityGroup.SecurityGroupID + " Does Not Exist.  Create A New Record?");
@@ -576,12 +576,12 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #region ServiceAgent Call Methods
         private ObservableCollection<SecurityGroupType> GetSecurityGroupTypes()
         {
-            return new ObservableCollection<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypesReadOnly().ToList());
+            return new ObservableCollection<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
         }
 
         private ObservableCollection<SecurityGroupCode> GetSecurityGroupCodes()
         {
-            return new ObservableCollection<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodesReadOnly().ToList());
+            return new ObservableCollection<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
         }
 
         private EntityStates GetSecurityGroupState(SecurityGroup securityGroup)
@@ -618,25 +618,25 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             }
         }
 
-        private BindingList<SecurityGroup> GetSecurityGroups()
+        private BindingList<SecurityGroup> GetSecurityGroups(string companyID)
         {
-            BindingList<SecurityGroup> securityGroupList = new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups().ToList());
+            BindingList<SecurityGroup> securityGroupList = new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups(companyID).ToList());
             Dirty = false;
             AllowCommit = false;
             return securityGroupList; 
         }
 
-        private BindingList<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroup)
+        private BindingList<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroup, string companyID)
         {
-            BindingList<SecurityGroup> securityGroupList = new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups(securityGroup).ToList());
+            BindingList<SecurityGroup> securityGroupList = new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroups(securityGroup, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
             return securityGroupList;
         }
 
-        private BindingList<SecurityGroup> GetSecurityGroupByID(string id)
+        private BindingList<SecurityGroup> GetSecurityGroupByID(string securityGroupID, string companyID)
         {
-            BindingList<SecurityGroup> securityGroupList = new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroupByID(id).ToList());
+            BindingList<SecurityGroup> securityGroupList = new BindingList<SecurityGroup>(_serviceAgent.GetSecurityGroupByID(securityGroupID, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
             return securityGroupList; 
@@ -644,7 +644,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
         private bool SecurityGroupExists(string securityGroupID)
         {
-            return _serviceAgent.SecurityGroupExists(securityGroupID);
+            return _serviceAgent.SecurityGroupExists(securityGroupID, ClientSessionSingleton.Instance.CompanyID);
         }
         //udpate merely updates the repository a commit is required 
         //to commit it to the db...
@@ -679,12 +679,17 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             return true;
         }
 
-        private bool NewSecurityGroup(SecurityGroup securityGroup)
+        private bool NewSecurityGroup(string securityGroupID)
         {
+            SecurityGroup securityGroup = new SecurityGroup();
+            securityGroup.SecurityGroupID = securityGroupID;
+            securityGroup.CompanyID = ClientSessionSingleton.Instance.CompanyID;
+            SecurityGroupList.Add(securityGroup);
             _serviceAgent.AddToSecurityGroupRepository(securityGroup);
             SelectedSecurityGroup = SecurityGroupList.LastOrDefault();
+
+            AllowEdit = true;
             Dirty = false;
-            AllowCommit = false;
             return true;
         }
 
@@ -727,7 +732,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewSecurityGroupCommand(); //this will generate a new securityGroup and set it as the selected securityGroup...
+                    NewSecurityGroupCommand(""); //this will generate a new securityGroup and set it as the selected securityGroup...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -795,25 +800,16 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             }  
         }
 
-        public void NewSecurityGroupCommand()
-        {
-            SecurityGroup securityGroup = new SecurityGroup();
-            SecurityGroupList.Add(securityGroup);
-            NewSecurityGroup(securityGroup);
-            AllowEdit = true;
-            //don't allow a save until a securityGroupID is provided...
-            AllowCommit = false;
-            NotifyNewRecordCreated();
-        }
-        //overloaded to allow a securityGroupID to be provided...
         public void NewSecurityGroupCommand(string securityGroupID)
         {
-            SecurityGroup securityGroup = new SecurityGroup();
-            securityGroup.SecurityGroupID = securityGroupID;
-            SecurityGroupList.Add(securityGroup);
-            NewSecurityGroup(securityGroup);
-            AllowEdit = true;
-            AllowCommit = CommitIsAllowed();
+            NewSecurityGroup(securityGroupID);
+            if (string.IsNullOrEmpty(securityGroupID))
+            {//don't allow a save until a securityGroupID is provided...
+                AllowCommit = false;
+            }
+            {
+                AllowCommit = CommitIsAllowed();
+            }
         }
 
         public void ClearCommand()

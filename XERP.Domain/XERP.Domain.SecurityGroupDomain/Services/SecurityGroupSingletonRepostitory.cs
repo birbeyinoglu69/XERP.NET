@@ -32,22 +32,24 @@ namespace XERP.Domain.SecurityGroupDomain
         private Uri _rootUri;
         private SecurityGroupEntities _repositoryContext;
 
-        public IEnumerable<SecurityGroup> GetSecurityGroups()
+        public IEnumerable<SecurityGroup> GetSecurityGroups(string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SecurityGroups
+                               where q.CompanyID == companyID
                              select q);
             return queryResult;
         }
 
-        public IEnumerable<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroupQuerryObject)
+        public IEnumerable<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroupQuerryObject, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.SecurityGroups
+                              where q.CompanyID == companyID
                              select q;
             
             if  (!string.IsNullOrEmpty(securityGroupQuerryObject.Name))
@@ -72,13 +74,14 @@ namespace XERP.Domain.SecurityGroupDomain
             return queryResult;
         }
 
-        public IEnumerable<SecurityGroup> GetSecurityGroupByID(string securityGroupID)
+        public IEnumerable<SecurityGroup> GetSecurityGroupByID(string securityGroupID, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SecurityGroups
-                          where q.SecurityGroupID == securityGroupID
+                          where q.SecurityGroupID == securityGroupID &&
+                          q.CompanyID == companyID
                           select q);
             
             return queryResult;

@@ -180,7 +180,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
             {
                 if (_viewModel.AllowNew)
                 {
-                    _viewModel.NewCompanyCommand();
+                    _viewModel.NewCompanyCommand("");
                 }
                 else
                 {
@@ -226,7 +226,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                         case Key.N:
                             if (_viewModel.AllowNew)
                             {
-                                _viewModel.NewCompanyCommand();
+                                _viewModel.NewCompanyCommand("");
                                 return;
                             }
                             //MessageBox.Show("New Company Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

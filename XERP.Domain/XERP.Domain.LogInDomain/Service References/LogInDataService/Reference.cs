@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 7/23/2012 10:33:50 AM
+// Generation date: 9/13/2012 8:38:24 AM
 namespace XERP.Domain.LogInDomain.LogInDataService
 {
     

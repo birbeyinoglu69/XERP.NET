@@ -157,7 +157,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
             {
                 if (_viewModel.AllowNew)
                 {
-                    _viewModel.NewCompanyCodeCommand();
+                    _viewModel.NewCompanyCodeCommand("");
                 }
                 else
                 {
@@ -203,7 +203,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                         case Key.N:
                             if (_viewModel.AllowNew)
                             {
-                                _viewModel.NewCompanyCodeCommand();
+                                _viewModel.NewCompanyCodeCommand("");
                                 return;
                             }
                             //MessageBox.Show("New Company Code Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

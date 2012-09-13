@@ -796,12 +796,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             return true;
         }
 
-        private bool NewSystemUser(SystemUser systemUser)
+        private bool NewSystemUser(string systemUserID)
         {
+            SystemUser systemUser = new SystemUser();
+            systemUser.SystemUserID = systemUserID;
+            SystemUserList.Add(systemUser);
             _serviceAgent.AddToSystemUserRepository(systemUser);
             SelectedSystemUser = SystemUserList.LastOrDefault();
+
+            AllowEdit = true;
             Dirty = false;
-            AllowCommit = false;
             return true;
         }
 
@@ -867,7 +871,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewSystemUserCommand(); //this will generate a new systemUser and set it as the selected systemUser...
+                    NewSystemUserCommand(""); //this will generate a new systemUser and set it as the selected systemUser...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -935,25 +939,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             }  
         }
 
-        public void NewSystemUserCommand()
-        {
-            SystemUser systemUser = new SystemUser();
-            SystemUserList.Add(systemUser);
-            NewSystemUser(systemUser);
-            AllowEdit = true;
-            //don't allow a save until a systemUserID is provided...
-            AllowCommit = false;
-            NotifyNewRecordCreated();
-        }
-        //overloaded to allow a systemUserID to be provided...
         public void NewSystemUserCommand(string systemUserID)
         {
-            SystemUser systemUser = new SystemUser();
-            systemUser.SystemUserID = systemUserID;
-            SystemUserList.Add(systemUser);
-            NewSystemUser(systemUser);
-            AllowEdit = true;
-            AllowCommit = CommitIsAllowed();
+            NewSystemUser(systemUserID);
+            if (string.IsNullOrEmpty(systemUserID))
+            {//don't allow a save until a securityGroupCodeID is provided...
+                AllowCommit = false;
+            }
+            {
+                AllowCommit = CommitIsAllowed();
+            }
         }
 
         public void ClearCommand()

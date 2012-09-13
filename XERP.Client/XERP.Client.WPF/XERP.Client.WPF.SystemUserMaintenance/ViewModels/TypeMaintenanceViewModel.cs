@@ -644,12 +644,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             return true;
         }
 
-        private bool NewSystemUserType(SystemUserType systemUserType)
+        private bool NewSystemUserType(string systemUserTypeID)
         {
+            SystemUserType systemUserType = new SystemUserType();
+            systemUserType.SystemUserTypeID = systemUserTypeID;
+            SystemUserTypeList.Add(systemUserType);
             _serviceAgent.AddToSystemUserTypeRepository(systemUserType);
             SelectedSystemUserType = SystemUserTypeList.LastOrDefault();
+
+            AllowEdit = true;
             Dirty = false;
-            AllowCommit = false;
             return true;
         }
 
@@ -692,7 +696,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewSystemUserTypeCommand(); //this will generate a new systemUserType and set it as the selected systemUserType...
+                    NewSystemUserTypeCommand(""); //this will generate a new systemUserType and set it as the selected systemUserType...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -760,25 +764,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             }
         }
 
-        public void NewSystemUserTypeCommand()
-        {
-            SystemUserType systemUserType = new SystemUserType();
-            SystemUserTypeList.Add(systemUserType);
-            NewSystemUserType(systemUserType);
-            AllowEdit = true;
-            //don't allow a save until a systemUserTypeID is provided...
-            AllowCommit = false;
-            NotifyNewRecordCreated();
-        }
-        //overloaded to allow a systemUserTypeID to be provided...
         public void NewSystemUserTypeCommand(string systemUserTypeID)
         {
-            SystemUserType systemUserType = new SystemUserType();
-            systemUserType.SystemUserTypeID = systemUserTypeID;
-            SystemUserTypeList.Add(systemUserType);
-            NewSystemUserType(systemUserType);
-            AllowEdit = true;
-            AllowCommit = CommitIsAllowed();
+            NewSystemUserType(systemUserTypeID);
+            if (string.IsNullOrEmpty(systemUserTypeID))
+            {//don't allow a save until a SystemUserId is provided...
+                AllowCommit = false;
+            }
+            {
+                AllowCommit = CommitIsAllowed();
+            }
         }
 
         public void ClearCommand()

@@ -157,7 +157,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
             {
                 if (_viewModel.AllowNew)
                 {
-                    _viewModel.NewSystemUserCodeCommand();
+                    _viewModel.NewSystemUserCodeCommand("");
                 }
                 else
                 {
@@ -203,7 +203,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
                         case Key.N:
                             if (_viewModel.AllowNew)
                             {
-                                _viewModel.NewSystemUserCodeCommand();
+                                _viewModel.NewSystemUserCodeCommand("");
                                 return;
                             }
                             //MessageBox.Show("New SystemUser Code Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

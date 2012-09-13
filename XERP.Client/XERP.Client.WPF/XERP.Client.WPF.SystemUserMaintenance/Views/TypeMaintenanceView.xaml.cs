@@ -156,7 +156,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
             {
                 if (_viewModel.AllowNew)
                 {
-                    _viewModel.NewSystemUserTypeCommand();
+                    _viewModel.NewSystemUserTypeCommand("");
                 }
                 else
                 {
@@ -202,7 +202,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
                         case Key.N:
                             if (_viewModel.AllowNew)
                             {
-                                _viewModel.NewSystemUserTypeCommand();
+                                _viewModel.NewSystemUserTypeCommand("");
                                 return;
                             }
                             //MessageBox.Show("New SystemUser Type Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

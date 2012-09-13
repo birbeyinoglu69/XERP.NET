@@ -679,12 +679,16 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             return true;
         }
 
-        private bool NewCompany(Company company)
+        private bool NewCompany(string companyID)
         {
+            Company company = new Company();
+            company.CompanyID = companyID;
+            CompanyList.Add(company);
             _serviceAgent.AddToCompanyRepository(company);
             SelectedCompany = CompanyList.LastOrDefault();
+
+            AllowEdit = true;
             Dirty = false;
-            AllowCommit = false;
             return true;
         }
 
@@ -727,7 +731,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewCompanyCommand(); //this will generate a new company and set it as the selected company...
+                    NewCompanyCommand(""); //this will generate a new company and set it as the selected company...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -795,25 +799,17 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             }  
         }
 
-        public void NewCompanyCommand()
-        {
-            Company company = new Company();
-            CompanyList.Add(company);
-            NewCompany(company);
-            AllowEdit = true;
-            //don't allow a save until a companyID is provided...
-            AllowCommit = false;
-            NotifyNewRecordCreated();
-        }
-        //overloaded to allow a companyID to be provided...
         public void NewCompanyCommand(string companyID)
         {
-            Company company = new Company();
-            company.CompanyID = companyID;
-            CompanyList.Add(company);
-            NewCompany(company);
+            NewCompany(companyID);
             AllowEdit = true;
-            AllowCommit = CommitIsAllowed();
+            if (string.IsNullOrEmpty(companyID))
+            {//don't allow a save until a securityGroupCodeID is provided...
+                AllowCommit = false;
+            }
+            {
+                AllowCommit = CommitIsAllowed();
+            }
         }
 
         public void ClearCommand()

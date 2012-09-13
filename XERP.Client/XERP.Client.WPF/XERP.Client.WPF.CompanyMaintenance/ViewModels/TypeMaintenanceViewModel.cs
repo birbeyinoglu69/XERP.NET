@@ -644,12 +644,16 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             return true;
         }
 
-        private bool NewCompanyType(CompanyType companyType)
+        private bool NewCompanyType(string companyTypeID)
         {
+            CompanyType companyType = new CompanyType();
+            companyType.CompanyTypeID = companyTypeID;
+            CompanyTypeList.Add(companyType);
             _serviceAgent.AddToCompanyTypeRepository(companyType);
             SelectedCompanyType = CompanyTypeList.LastOrDefault();
+
+            AllowEdit = true;
             Dirty = false;
-            AllowCommit = false;
             return true;
         }
 
@@ -692,7 +696,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewCompanyTypeCommand(); //this will generate a new companyType and set it as the selected companyType...
+                    NewCompanyTypeCommand(""); //this will generate a new companyType and set it as the selected companyType...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -760,25 +764,16 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             }
         }
 
-        public void NewCompanyTypeCommand()
-        {
-            CompanyType companyType = new CompanyType();
-            CompanyTypeList.Add(companyType);
-            NewCompanyType(companyType);
-            AllowEdit = true;
-            //don't allow a save until a companyTypeID is provided...
-            AllowCommit = false;
-            NotifyNewRecordCreated();
-        }
-        //overloaded to allow a companyTypeID to be provided...
         public void NewCompanyTypeCommand(string companyTypeID)
         {
-            CompanyType companyType = new CompanyType();
-            companyType.CompanyTypeID = companyTypeID;
-            CompanyTypeList.Add(companyType);
-            NewCompanyType(companyType);
-            AllowEdit = true;
-            AllowCommit = CommitIsAllowed();
+            NewCompanyType(companyTypeID);
+            if (string.IsNullOrEmpty(companyTypeID))
+            {//don't allow a save until a securityGroupCodeID is provided...
+                AllowCommit = false;
+            }
+            {
+                AllowCommit = CommitIsAllowed();
+            }
         }
 
         public void ClearCommand()

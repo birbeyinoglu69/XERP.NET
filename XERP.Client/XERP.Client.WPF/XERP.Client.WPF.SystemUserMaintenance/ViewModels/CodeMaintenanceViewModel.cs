@@ -644,12 +644,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             return true;
         }
 
-        private bool NewSystemUserCode(SystemUserCode systemUserCode)
+        private bool NewSystemUserCode(string systemUserCodeID)
         {
+            SystemUserCode systemUserCode = new SystemUserCode();
+            systemUserCode.SystemUserCodeID = systemUserCodeID;
+            SystemUserCodeList.Add(systemUserCode);
             _serviceAgent.AddToSystemUserCodeRepository(systemUserCode);
             SelectedSystemUserCode = SystemUserCodeList.LastOrDefault();
+
+            AllowEdit = true;
             Dirty = false;
-            AllowCommit = false;
             return true;
         }
 
@@ -692,7 +696,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewSystemUserCodeCommand(); //this will generate a new systemUserCode and set it as the selected systemUserCode...
+                    NewSystemUserCodeCommand(""); //this will generate a new systemUserCode and set it as the selected systemUserCode...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -760,25 +764,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             }
         }
 
-        public void NewSystemUserCodeCommand()
-        {
-            SystemUserCode systemUserCode = new SystemUserCode();
-            SystemUserCodeList.Add(systemUserCode);
-            NewSystemUserCode(systemUserCode);
-            AllowEdit = true;
-            //don't allow a save until a systemUserCodeID is provided...
-            AllowCommit = false;
-            NotifyNewRecordCreated();
-        }
-        //overloaded to allow a systemUserCodeID to be provided...
         public void NewSystemUserCodeCommand(string systemUserCodeID)
         {
-            SystemUserCode systemUserCode = new SystemUserCode();
-            systemUserCode.SystemUserCodeID = systemUserCodeID;
-            SystemUserCodeList.Add(systemUserCode);
-            NewSystemUserCode(systemUserCode);
-            AllowEdit = true;
-            AllowCommit = CommitIsAllowed();
+            NewSystemUserCode(systemUserCodeID);
+            if (string.IsNullOrEmpty(systemUserCodeID))
+            {//don't allow a save until a securityGroupCodeID is provided...
+                AllowCommit = false;
+            }
+            {
+                AllowCommit = CommitIsAllowed();
+            }
         }
 
         public void ClearCommand()

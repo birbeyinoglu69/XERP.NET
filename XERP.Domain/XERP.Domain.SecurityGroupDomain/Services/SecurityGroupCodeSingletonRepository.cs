@@ -32,22 +32,24 @@ namespace XERP.Domain.SecurityGroupDomain.Services
         private Uri _rootUri;
         private SecurityGroupEntities _repositoryContext;
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes()
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SecurityGroupCodes
+                               where q.CompanyID == companyID
                                select q);
             return queryResult;
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCodeQuerryObject)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCodeQuerryObject, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.SecurityGroupCodes
+                              where q.CompanyID == companyID
                               select q;
 
             if (!string.IsNullOrEmpty(securityGroupCodeQuerryObject.Code))
@@ -69,13 +71,14 @@ namespace XERP.Domain.SecurityGroupDomain.Services
         }
 
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SecurityGroupCodes
                                where q.SecurityGroupCodeID == securityGroupCodeID
+                               where q.CompanyID == companyID
                                select q);
 
             return queryResult;

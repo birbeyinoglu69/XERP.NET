@@ -32,22 +32,24 @@ namespace XERP.Domain.SecurityGroupDomain
         private Uri _rootUri;
         private SecurityGroupEntities _repositoryContext;
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes()
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SecurityGroupTypes
+                               where q.CompanyID == companyID
                                select q);
             return queryResult;
         }
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType securityGroupTypeQuerryObject)
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType securityGroupTypeQuerryObject, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.SecurityGroupTypes
+                              where q.CompanyID == companyID
                               select q;
 
             if (!string.IsNullOrEmpty(securityGroupTypeQuerryObject.Type))
@@ -69,13 +71,14 @@ namespace XERP.Domain.SecurityGroupDomain
         }
 
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypeByID(string securityGroupTypeID)
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypeByID(string securityGroupTypeID, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SecurityGroupTypes
                                where q.SecurityGroupTypeID == securityGroupTypeID
+                               where q.CompanyID == companyID
                                select q);
 
             return queryResult;

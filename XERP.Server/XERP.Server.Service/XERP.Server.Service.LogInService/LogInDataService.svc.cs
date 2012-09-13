@@ -55,7 +55,7 @@ namespace XERP.Server.Service.LogInService
         }
 
         [WebGet]
-        public IQueryable<ExecutableProgram> GetExecutableProgramsAllowedByUser(string systemUserID)
+        public IQueryable<ExecutableProgram> GetExecutableProgramsAllowedByUser(string systemUserID, string companyID)
         {//complex query required compound search criteria so this had to be done server side...  
             XERP.Server.DAL.LogInDAL.DALUtility dalUtility = new DALUtility();
             var context = new LogInEntities(dalUtility.EntityConectionString);
@@ -64,7 +64,11 @@ namespace XERP.Server.Service.LogInService
                           from ms in context.MenuSecurities
                           from mi in context.MenuItems
                           from ep in context.ExecutablePrograms
-                          where sus.SystemUserID == systemUserID &&
+                          where sus.CompanyID == companyID &&
+                          ms.CompanyID == companyID && 
+                          mi.CompanyID == companyID && 
+                          ep.CompanyID == companyID && 
+                          sus.SystemUserID == systemUserID &&
                           sus.SecurityGroupID == ms.SecurityGroupID &&
                           ms.MenuItemID == mi.MenuItemID &&
                           mi.Executable == true && mi.AllowAll == false &&
@@ -89,7 +93,7 @@ namespace XERP.Server.Service.LogInService
             var context = new LogInEntities(dalUtility.EntityConectionString);
 
             //test it...
-            //GetExecutableProgramsAllowedByUser("Base");
+            //GetExecutableProgramsAllowedByUser("Base", "Base");
 
             //ToDo: ADD DAL Securities Logic... Not sure we need and or want this...
             //DAL Security Should require USERID and DALName

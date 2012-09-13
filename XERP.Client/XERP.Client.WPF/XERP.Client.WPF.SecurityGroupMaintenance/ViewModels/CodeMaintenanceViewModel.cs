@@ -428,7 +428,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                     return;
                 }
                 //it is not part of the existing list try to fetch it from the db...
-                SecurityGroupCodeList = GetSecurityGroupCodeByID(SelectedSecurityGroupCode.SecurityGroupCodeID);
+                SecurityGroupCodeList = GetSecurityGroupCodeByID(SelectedSecurityGroupCode.SecurityGroupCodeID, ClientSessionSingleton.Instance.CompanyID);
                 if (SecurityGroupCodeList.Count == 0)
                 {//it was not found do new record required logic...
                     NotifyNewRecordNeeded("Record " + SelectedSecurityGroupCode.SecurityGroupCodeID + " Does Not Exist.  Create A New Record?");
@@ -516,7 +516,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             {
                 return false;
             }
-            if (SecurityGroupCodeExists(securityGroupCode.SecurityGroupCodeID.ToString()))
+            if (SecurityGroupCodeExists(securityGroupCode.SecurityGroupCodeID.ToString(), ClientSessionSingleton.Instance.CompanyID))
             {
                 errorMessage = "SecurityGroupCodeID " + securityGroupCode.SecurityGroupCodeID + " Allready Exists...";
                 return false;
@@ -583,33 +583,33 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             }
         }
 
-        private BindingList<SecurityGroupCode> GetSecurityGroupCodes()
+        private BindingList<SecurityGroupCode> GetSecurityGroupCodes(string companyID)
         {
-            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes().ToList());
+            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes(companyID).ToList());
             Dirty = false;
             AllowCommit = false;
             return securityGroupCodeList;
         }
 
-        private BindingList<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCode)
+        private BindingList<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCode, string companyID)
         {
-            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes(securityGroupCode).ToList());
+            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes(securityGroupCode, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
             return securityGroupCodeList;
         }
 
-        private BindingList<SecurityGroupCode> GetSecurityGroupCodeByID(string id)
+        private BindingList<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID, string companyID)
         {
-            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodeByID(id).ToList());
+            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodeByID(securityGroupCodeID, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
             return securityGroupCodeList;
         }
 
-        private bool SecurityGroupCodeExists(string securityGroupCodeID)
+        private bool SecurityGroupCodeExists(string securityGroupCodeID, string companyID)
         {
-            return _serviceAgent.SecurityGroupCodeExists(securityGroupCodeID);
+            return _serviceAgent.SecurityGroupCodeExists(securityGroupCodeID, companyID);
         }
         //udpate merely updates the repository a commit is required 
         //to commit it to the db...
@@ -638,18 +638,22 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         }
 
         private bool Delete(SecurityGroupCode securityGroupCode)
-        {//deletes are done indenpendently of the repository as a delete will not commit 
-            //dirty records it will simply just delete the record...
+        {
             _serviceAgent.DeleteFromSecurityGroupCodeRepository(securityGroupCode);
             return true;
         }
 
-        private bool NewSecurityGroupCode(SecurityGroupCode securityGroupCode)
+        private bool NewSecurityGroupCode(string securityGroupCodeID)
         {
+            SecurityGroupCode securityGroupCode = new SecurityGroupCode();
+            securityGroupCode.SecurityGroupCodeID = securityGroupCodeID;
+            securityGroupCode.CompanyID = ClientSessionSingleton.Instance.CompanyID;
+            SecurityGroupCodeList.Add(securityGroupCode);
             _serviceAgent.AddToSecurityGroupCodeRepository(securityGroupCode);
             SelectedSecurityGroupCode = SecurityGroupCodeList.LastOrDefault();
+            
+            AllowEdit = true;
             Dirty = false;
-            AllowCommit = false;
             return true;
         }
 
@@ -692,7 +696,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewSecurityGroupCodeCommand(); //this will generate a new securityGroupCode and set it as the selected securityGroupCode...
+                    NewSecurityGroupCodeCommand(""); //this will generate a new securityGroupCode and set it as the selected securityGroupCode...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -760,25 +764,16 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             }
         }
 
-        public void NewSecurityGroupCodeCommand()
-        {
-            SecurityGroupCode securityGroupCode = new SecurityGroupCode();
-            SecurityGroupCodeList.Add(securityGroupCode);
-            NewSecurityGroupCode(securityGroupCode);
-            AllowEdit = true;
-            //don't allow a save until a securityGroupCodeID is provided...
-            AllowCommit = false;
-            NotifyNewRecordCreated();
-        }
-        //overloaded to allow a securityGroupCodeID to be provided...
         public void NewSecurityGroupCodeCommand(string securityGroupCodeID)
         {
-            SecurityGroupCode securityGroupCode = new SecurityGroupCode();
-            securityGroupCode.SecurityGroupCodeID = securityGroupCodeID;
-            SecurityGroupCodeList.Add(securityGroupCode);
-            NewSecurityGroupCode(securityGroupCode);
-            AllowEdit = true;
-            AllowCommit = CommitIsAllowed();
+            NewSecurityGroupCode(securityGroupCodeID);
+            if (string.IsNullOrEmpty(securityGroupCodeID)) 
+            {//don't allow a save until a securityGroupCodeID is provided...
+                AllowCommit = false;
+            }
+            {
+                AllowCommit = CommitIsAllowed();
+            }
         }
 
         public void ClearCommand()

@@ -7,7 +7,7 @@ using XERP.Domain.LogInDomain.LogInDataService;
 
 namespace XERP.Domain.LogInDomain.Services
 {
-    public class LogInServiceAgent : XERP.Domain.LogInDomain.Services.ILogInServiceAgent 
+    public class LogInServiceAgent : XERP.Domain.LogInDomain.Services.ILogInServiceAgent
     {
         private ServiceUtility _serviceUtility = new ServiceUtility();
         
@@ -72,28 +72,28 @@ namespace XERP.Domain.LogInDomain.Services
                     return false;
                 }
             }
-            //user is authenticate return true...
+            //user is authenticated return true...
             authenticationMessage = "Login Successful";
             SetSessionSystemUser(authenticatedQueryResult.FirstOrDefault());
             return true;
         }
 
-        private IEnumerable<ExecutableProgram> GetExecutableProgramsAllowedByUser(string systemUserID)
+        private IEnumerable<ExecutableProgram> GetExecutableProgramsAllowedByUser(string systemUserID, string companyID)
         {
             //WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;
-            var query = _context.CreateQuery<ExecutableProgram>("GetExecutableProgramsAllowedByUser").AddQueryOption("SystemUserID", "'" + systemUserID + "'");
+            var query = _context.CreateQuery<ExecutableProgram>("GetExecutableProgramsAllowedByUser").AddQueryOption("SystemUserID", "'" + systemUserID + "'").AddQueryOption("CompanyID", "'" + companyID + "'");
             return query;
         }
 
         //return executableprogramIDs as string list...
         //this is fed to the session to cache executable programs allowed to the user...
-        private List<string> GetExecutableProgramIDsAllowedByUser(string systemUserID)
+        private List<string> GetExecutableProgramIDsAllowedByUser(string systemUserID, string companyID)
         {
             List<string> rList = new List<string>();
-            List<ExecutableProgram> executablePrograms = GetExecutableProgramsAllowedByUser(systemUserID).ToList();
+            List<ExecutableProgram> executablePrograms = GetExecutableProgramsAllowedByUser(systemUserID, companyID).ToList();
             foreach (ExecutableProgram executableProgram in executablePrograms)
             {
                 rList.Add(executableProgram.ExecutableProgramID);
@@ -111,8 +111,7 @@ namespace XERP.Domain.LogInDomain.Services
         }
 
         private void SetSessionSystemUser(SystemUser systemUser)
-        {   //cache Current CompanyID
-            //ClientSessionSingleton.Instance.CompanyID = systemUser.DefaultCompanyID;
+        {   
             //cache User
             ClientSessionSingleton.Instance.SystemUserID = systemUser.SystemUserID;
             //cache groups user belongs to...
@@ -122,7 +121,7 @@ namespace XERP.Domain.LogInDomain.Services
                 ClientSessionSingleton.Instance.SecurityGroupIDList.Add(systemUserSecurity.SecurityGroupID.ToString());
             }
             //cache Executable Programs available to the User...
-            ClientSessionSingleton.Instance.ExecutableProgramIDList = GetExecutableProgramIDsAllowedByUser(systemUser.SystemUserID);
+            ClientSessionSingleton.Instance.ExecutableProgramIDList = GetExecutableProgramIDsAllowedByUser(systemUser.SystemUserID, ClientSessionSingleton.Instance.CompanyID);
         }
 
         public IEnumerable<Temp> GetMetaData(string tableName)
