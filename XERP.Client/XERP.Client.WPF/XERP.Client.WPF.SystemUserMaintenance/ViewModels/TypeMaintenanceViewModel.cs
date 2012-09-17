@@ -764,6 +764,12 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             }
         }
 
+        public void NewSystemUserTypeCommand()
+        {
+            NewSystemUserType("");
+            AllowCommit = false;
+        }
+
         public void NewSystemUserTypeCommand(string systemUserTypeID)
         {
             NewSystemUserType(systemUserTypeID);

@@ -799,10 +799,15 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             }  
         }
 
+        public void NewCompanyCommand()
+        {
+            NewCompany("");
+            AllowCommit = false;
+        }
+
         public void NewCompanyCommand(string companyID)
         {
             NewCompany(companyID);
-            AllowEdit = true;
             if (string.IsNullOrEmpty(companyID))
             {//don't allow a save until a securityGroupCodeID is provided...
                 AllowCommit = false;

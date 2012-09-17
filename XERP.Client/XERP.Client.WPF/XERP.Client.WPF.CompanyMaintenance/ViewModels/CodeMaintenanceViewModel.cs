@@ -764,6 +764,12 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             }
         }
 
+        public void NewCompanyCodeCommand()
+        {
+            NewCompanyCode("");
+            AllowCommit = false;
+        }
+
         public void NewCompanyCodeCommand(string companyCodeID)
         {
 

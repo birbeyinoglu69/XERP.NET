@@ -763,6 +763,12 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 SetAsEmptySelection();
             }
         }
+        
+        public void NewCompanyTypeCommand()
+        {
+            NewCompanyType("");
+            AllowCommit = false;
+        }
 
         public void NewCompanyTypeCommand(string companyTypeID)
         {

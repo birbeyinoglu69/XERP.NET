@@ -764,6 +764,12 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             }
         }
 
+        public void NewSecurityGroupCodeCommand()
+        {
+            NewSecurityGroupCode("");
+            AllowCommit = false;
+        }
+
         public void NewSecurityGroupCodeCommand(string securityGroupCodeID)
         {
             NewSecurityGroupCode(securityGroupCodeID);

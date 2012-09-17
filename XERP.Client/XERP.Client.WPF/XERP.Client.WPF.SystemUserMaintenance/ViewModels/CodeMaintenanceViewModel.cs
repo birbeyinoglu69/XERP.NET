@@ -764,6 +764,12 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             }
         }
 
+        public void NewSystemUserCodeCommand()
+        {
+            NewSystemUserCode("");
+            AllowCommit = false;
+        }
+
         public void NewSystemUserCodeCommand(string systemUserCodeID)
         {
             NewSystemUserCode(systemUserCodeID);
