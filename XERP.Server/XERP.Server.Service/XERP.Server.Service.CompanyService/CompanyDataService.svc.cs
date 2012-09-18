@@ -9,6 +9,7 @@ using ExtensionMethods;
 
 namespace XERP.Server.Service.CompanyService
 {
+    [System.ServiceModel.ServiceBehavior(IncludeExceptionDetailInFaults = true)]   
     public class CompanyDataService : DataService< CompanyEntities >
     {
         //private CompanyEntities _context;
@@ -82,6 +83,34 @@ namespace XERP.Server.Service.CompanyService
                                select q);
 
             return queryResult;
+        }
+
+        [ChangeInterceptor("CompanyTypes")]
+        public void OnChangeCompanyTypes(CompanyType companyType, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Type was used by its parent record...
+                XERP.Server.DAL.CompanyDAL.DALUtility dalUtility = new DALUtility();
+                var context = new CompanyEntities(dalUtility.EntityConectionString);
+                context.Companies.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string typeID = companyType.CompanyTypeID;
+                string sqlstring = "UPDATE Companies SET CompanyTypeID = null WHERE CompanyTypeID = '" + typeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("CompanyCodes")]
+        public void OnChangeCompanyCodes(CompanyCode companyCode, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Code was used by its parent record...
+                XERP.Server.DAL.CompanyDAL.DALUtility dalUtility = new DALUtility();
+                var context = new CompanyEntities(dalUtility.EntityConectionString);
+                context.Companies.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string codeID = companyCode.CompanyCodeID;
+                string sqlstring = "UPDATE Companies SET CompanyCodeID = null Where CompanyCodeID = '" + codeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
         }
 
         protected override CompanyEntities CreateDataSource()

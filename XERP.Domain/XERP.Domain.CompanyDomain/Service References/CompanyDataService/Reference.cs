@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 7/23/2012 10:58:13 AM
+// Generation date: 9/17/2012 4:47:09 PM
 namespace XERP.Domain.CompanyDomain.CompanyDataService
 {
     

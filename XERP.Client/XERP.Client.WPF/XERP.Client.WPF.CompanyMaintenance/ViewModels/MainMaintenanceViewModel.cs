@@ -33,12 +33,17 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         public MainMaintenanceViewModel()
         { }
 
+        public void BuildDropDowns()
+        {
+            CompanyTypeList = BuildCompanyTypeDropDown();
+            CompanyCodeList = BuildCompanyCodeDropDown();
+        }
+
         public MainMaintenanceViewModel(ICompanyServiceAgent serviceAgent)
         {
             this._serviceAgent = serviceAgent;
-            
-            CompanyTypeList = GetCompanyTypes();
-            CompanyCodeList = GetCompanyCodes();
+            BuildDropDowns();
+           
             SetAsEmptySelection();
 
             CompanyList = new BindingList<Company>();
@@ -574,14 +579,24 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
-        private ObservableCollection<CompanyType> GetCompanyTypes()
+        private ObservableCollection<CompanyType> BuildCompanyTypeDropDown()
         {
-            return new ObservableCollection<CompanyType>(_serviceAgent.GetCompanyTypesReadOnly().ToList());
+            List<CompanyType> list = new List<CompanyType>();
+            list = _serviceAgent.GetCompanyTypes().ToList();
+            list.Add(new CompanyType());
+            list.Sort((x, y) => string.Compare(x.Type, y.Type));
+
+            return new ObservableCollection<CompanyType>(list);
         }
 
-        private ObservableCollection<CompanyCode> GetCompanyCodes()
+        private ObservableCollection<CompanyCode> BuildCompanyCodeDropDown()
         {
-            return new ObservableCollection<CompanyCode>(_serviceAgent.GetCompanyCodesReadOnly().ToList());
+            List<CompanyCode> list = new List<CompanyCode>();
+            list = _serviceAgent.GetCompanyCodes().ToList();
+            list.Add(new CompanyCode());
+            list.Sort((x, y) => string.Compare(x.Code, y.Code));
+
+            return new ObservableCollection<CompanyCode>(list);
         }
 
         private EntityStates GetCompanyState(Company company)

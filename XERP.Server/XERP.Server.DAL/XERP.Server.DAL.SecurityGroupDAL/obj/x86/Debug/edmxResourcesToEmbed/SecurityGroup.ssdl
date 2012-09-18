@@ -12,17 +12,17 @@
       <End Role="Companies" EntitySet="Companies" />
       <End Role="SecurityGroups" EntitySet="SecurityGroups" />
     </AssociationSet>
-    <AssociationSet Name="FK_SecurityGroup_SecurityGroupCode" Association="XERPModel.Store.FK_SecurityGroup_SecurityGroupCode">
-      <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
-      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SecurityGroup_SecurityGroupType" Association="XERPModel.Store.FK_SecurityGroup_SecurityGroupType">
-      <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
-      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-    </AssociationSet>
     <AssociationSet Name="FK_SecurityGroupCode_Company" Association="XERPModel.Store.FK_SecurityGroupCode_Company">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecurityGroups_SecurityGroupCodes" Association="XERPModel.Store.FK_SecurityGroups_SecurityGroupCodes">
+      <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecurityGroups_SecurityGroupTypes" Association="XERPModel.Store.FK_SecurityGroups_SecurityGroupTypes">
+      <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
     </AssociationSet>
     <AssociationSet Name="FK_SecurityGroupType_Company" Association="XERPModel.Store.FK_SecurityGroupType_Company">
       <End Role="Companies" EntitySet="Companies" />
@@ -153,7 +153,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SecurityGroup_SecurityGroupCode">
+  <Association Name="FK_SecurityGroupCode_Company">
+    <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SecurityGroupCodes" Type="XERPModel.Store.SecurityGroupCodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="SecurityGroupCodes">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecurityGroups_SecurityGroupCodes">
     <End Role="SecurityGroupCodes" Type="XERPModel.Store.SecurityGroupCodes" Multiplicity="0..1" />
     <End Role="SecurityGroups" Type="XERPModel.Store.SecurityGroups" Multiplicity="*" />
     <ReferentialConstraint>
@@ -167,7 +181,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SecurityGroup_SecurityGroupType">
+  <Association Name="FK_SecurityGroups_SecurityGroupTypes">
     <End Role="SecurityGroupTypes" Type="XERPModel.Store.SecurityGroupTypes" Multiplicity="0..1" />
     <End Role="SecurityGroups" Type="XERPModel.Store.SecurityGroups" Multiplicity="*" />
     <ReferentialConstraint>
@@ -178,18 +192,6 @@
       <Dependent Role="SecurityGroups">
         <PropertyRef Name="CompanyID" />
         <PropertyRef Name="SecurityGroupTypeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SecurityGroupCode_Company">
-    <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
-    <End Role="SecurityGroupCodes" Type="XERPModel.Store.SecurityGroupCodes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="CompanyID" />
-      </Principal>
-      <Dependent Role="SecurityGroupCodes">
-        <PropertyRef Name="CompanyID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -33,12 +33,17 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         public MainMaintenanceViewModel()
         { }
 
+        public void BuildDropDowns()
+        {
+            SecurityGroupTypeList = BuildSecurityGroupTypeDropDown();
+            SecurityGroupCodeList = BuildSecurityGroupCodeDropDown();
+        }
+
         public MainMaintenanceViewModel(ISecurityGroupServiceAgent serviceAgent)
         {
             this._serviceAgent = serviceAgent;
-            
-            SecurityGroupTypeList = GetSecurityGroupTypes();
-            SecurityGroupCodeList = GetSecurityGroupCodes();
+            BuildDropDowns();
+
             SetAsEmptySelection();
 
             SecurityGroupList = new BindingList<SecurityGroup>();
@@ -148,7 +153,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         }
 
         private bool _allowCommit;
-
         public bool AllowCommit
         {
             get { return _allowCommit; }
@@ -574,14 +578,24 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
-        private ObservableCollection<SecurityGroupType> GetSecurityGroupTypes()
+        private ObservableCollection<SecurityGroupType> BuildSecurityGroupTypeDropDown()
         {
-            return new ObservableCollection<SecurityGroupType>(_serviceAgent.GetSecurityGroupTypesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
+            List<SecurityGroupType> list = new List<SecurityGroupType>();
+            list = _serviceAgent.GetSecurityGroupTypes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list.Add(new SecurityGroupType());
+            list.Sort((x, y) => string.Compare(x.Type, y.Type));
+
+            return new ObservableCollection<SecurityGroupType>(list);
         }
 
-        private ObservableCollection<SecurityGroupCode> GetSecurityGroupCodes()
+        private ObservableCollection<SecurityGroupCode> BuildSecurityGroupCodeDropDown()
         {
-            return new ObservableCollection<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
+            List<SecurityGroupCode> list = new List<SecurityGroupCode>();
+            list = _serviceAgent.GetSecurityGroupCodes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list.Add(new SecurityGroupCode());
+            list.Sort((x, y) => string.Compare(x.Code, y.Code));
+
+            return new ObservableCollection<SecurityGroupCode>(list);
         }
 
         private EntityStates GetSecurityGroupState(SecurityGroup securityGroup)

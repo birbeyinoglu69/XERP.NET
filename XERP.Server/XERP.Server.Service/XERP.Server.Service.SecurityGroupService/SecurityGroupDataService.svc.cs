@@ -9,6 +9,7 @@ using ExtensionMethods;
 
 namespace XERP.Server.Service.SecurityGroupService
 {
+    [System.ServiceModel.ServiceBehavior(IncludeExceptionDetailInFaults = true)]   
     public class SecurityGroupDataService : DataService< SecurityGroupEntities >
     {
         // This method is called only once to initialize service-wide policies.
@@ -81,6 +82,36 @@ namespace XERP.Server.Service.SecurityGroupService
                                select q);
 
             return queryResult;
+        }
+
+        [ChangeInterceptor("SecurityGroupTypes")]
+        public void OnChangeSecurityGroupTypes(SecurityGroupType securityGroupType, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Type was used by its parent record...
+                XERP.Server.DAL.SecurityGroupDAL.DALUtility dalUtility = new DALUtility();
+                var context = new SecurityGroupEntities(dalUtility.EntityConectionString);
+                context.SecurityGroups.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = securityGroupType.CompanyID;
+                string typeID = securityGroupType.SecurityGroupTypeID;
+                string sqlstring = "UPDATE SecurityGroups SET SecurityGroupTypeID = null WHERE CompanyID = '" + companyID + "' and SecurityGroupTypeID = '" + typeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("SecurityGroupCodes")]
+        public void OnChangeSecurityGroupTypes(SecurityGroupCode securityGroupCode, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Code was used by its parent record...
+                XERP.Server.DAL.SecurityGroupDAL.DALUtility dalUtility = new DALUtility();
+                var context = new SecurityGroupEntities(dalUtility.EntityConectionString);
+                context.SecurityGroups.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = securityGroupCode.CompanyID;
+                string codeID = securityGroupCode.SecurityGroupCodeID;
+                string sqlstring = "UPDATE SecurityGroups SET SecurityGroupCodeID = null WHERE CompanyID = '" + companyID + "' and SecurityGroupCodeID = '" + codeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
         }
 
         protected override SecurityGroupEntities CreateDataSource()

@@ -93,8 +93,11 @@
         <FunctionImport Name="GetMetaData" EntitySet="Temps" ReturnType="Collection(XERP.Temp)" m:HttpMethod="GET">
           <Parameter Name="tableName" Type="Edm.String" Mode="In" />
         </FunctionImport>
-        <FunctionImport Name="Refresh" EntitySet="Companies" ReturnType="Collection(XERP.Company)" m:HttpMethod="GET">
-          <Parameter Name="autoIDList" Type="Edm.String" Mode="In" />
+        <FunctionImport Name="RefreshCompany" EntitySet="Companies" ReturnType="Collection(XERP.Company)" m:HttpMethod="GET">
+          <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
+        </FunctionImport>
+        <FunctionImport Name="RefreshCompanyType" EntitySet="CompanyTypes" ReturnType="Collection(XERP.CompanyType)" m:HttpMethod="GET">
+          <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
         </FunctionImport>
         <EntitySet Name="Companies" EntityType="XERP.Company" />
         <EntitySet Name="CompanyCodes" EntityType="XERP.CompanyCode" />

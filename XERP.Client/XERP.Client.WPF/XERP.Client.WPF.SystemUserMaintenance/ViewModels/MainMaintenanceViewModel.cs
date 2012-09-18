@@ -33,12 +33,18 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         public MainMaintenanceViewModel()
         { }
 
+        public void BuildDropDowns()
+        {
+            SystemUserTypeList = BuildSystemUserTypeDropDown();
+            SystemUserCodeList = BuildSystemUserCodeDropDown();
+        }
+
+
         public MainMaintenanceViewModel(ISystemUserServiceAgent serviceAgent)
         {
             this._serviceAgent = serviceAgent;
-            
-            SystemUserTypeList = GetSystemUserTypes();
-            SystemUserCodeList = GetSystemUserCodes();
+            BuildDropDowns();
+
             SetAsEmptySelection();
 
             SystemUserList = new BindingList<SystemUser>();
@@ -661,14 +667,24 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         {
             return _serviceAgent.GetSecurityGroupByIDReadOnly(companyID, securityGroupID).SingleOrDefault();
         }
-        private ObservableCollection<SystemUserType> GetSystemUserTypes()
+        private ObservableCollection<SystemUserType> BuildSystemUserTypeDropDown()
         {
-            return new ObservableCollection<SystemUserType>(_serviceAgent.GetSystemUserTypesReadOnly().ToList());
+            List<SystemUserType> list = new List<SystemUserType>();
+            list = _serviceAgent.GetSystemUserTypes().ToList();
+            list.Add(new SystemUserType());
+            list.Sort((x, y) => string.Compare(x.Type, y.Type));
+
+            return new ObservableCollection<SystemUserType>(list);
         }
 
-        private ObservableCollection<SystemUserCode> GetSystemUserCodes()
+        private ObservableCollection<SystemUserCode> BuildSystemUserCodeDropDown()
         {
-            return new ObservableCollection<SystemUserCode>(_serviceAgent.GetSystemUserCodesReadOnly().ToList());
+            List<SystemUserCode> list = new List<SystemUserCode>();
+            list = _serviceAgent.GetSystemUserCodes().ToList();
+            list.Add(new SystemUserCode());
+            list.Sort((x, y) => string.Compare(x.Code, y.Code));
+
+            return new ObservableCollection<SystemUserCode>(list);
         }
 
         private BindingList<SecurityGroup> GetAvailableSecurityGroups(string systemUserID)

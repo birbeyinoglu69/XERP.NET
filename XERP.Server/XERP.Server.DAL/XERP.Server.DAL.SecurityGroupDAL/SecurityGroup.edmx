@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="XERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="XERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="XERPModelStoreContainer">
           <EntitySet Name="Companies" EntityType="XERPModel.Store.Companies" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SecurityGroupCodes" EntityType="XERPModel.Store.SecurityGroupCodes" store:Type="Tables" Schema="dbo" />
@@ -17,17 +17,17 @@
             <End Role="Companies" EntitySet="Companies" />
             <End Role="SecurityGroups" EntitySet="SecurityGroups" />
           </AssociationSet>
-          <AssociationSet Name="FK_SecurityGroup_SecurityGroupCode" Association="XERPModel.Store.FK_SecurityGroup_SecurityGroupCode">
-            <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
-            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SecurityGroup_SecurityGroupType" Association="XERPModel.Store.FK_SecurityGroup_SecurityGroupType">
-            <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
-            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-          </AssociationSet>
           <AssociationSet Name="FK_SecurityGroupCode_Company" Association="XERPModel.Store.FK_SecurityGroupCode_Company">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityGroups_SecurityGroupCodes" Association="XERPModel.Store.FK_SecurityGroups_SecurityGroupCodes">
+            <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityGroups_SecurityGroupTypes" Association="XERPModel.Store.FK_SecurityGroups_SecurityGroupTypes">
+            <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
+            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
           </AssociationSet>
           <AssociationSet Name="FK_SecurityGroupType_Company" Association="XERPModel.Store.FK_SecurityGroupType_Company">
             <End Role="Companies" EntitySet="Companies" />
@@ -158,7 +158,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SecurityGroup_SecurityGroupCode">
+        <Association Name="FK_SecurityGroupCode_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SecurityGroupCodes" Type="XERPModel.Store.SecurityGroupCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SecurityGroupCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityGroups_SecurityGroupCodes">
           <End Role="SecurityGroupCodes" Type="XERPModel.Store.SecurityGroupCodes" Multiplicity="0..1" />
           <End Role="SecurityGroups" Type="XERPModel.Store.SecurityGroups" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SecurityGroup_SecurityGroupType">
+        <Association Name="FK_SecurityGroups_SecurityGroupTypes">
           <End Role="SecurityGroupTypes" Type="XERPModel.Store.SecurityGroupTypes" Multiplicity="0..1" />
           <End Role="SecurityGroups" Type="XERPModel.Store.SecurityGroups" Multiplicity="*" />
           <ReferentialConstraint>
@@ -183,18 +197,6 @@
             <Dependent Role="SecurityGroups">
               <PropertyRef Name="CompanyID" />
               <PropertyRef Name="SecurityGroupTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SecurityGroupCode_Company">
-          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
-          <End Role="SecurityGroupCodes" Type="XERPModel.Store.SecurityGroupCodes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Companies">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="SecurityGroupCodes">
-              <PropertyRef Name="CompanyID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -248,8 +250,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="XERPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -615,7 +616,7 @@
         <EntityTypeShape EntityType="XERPModel.Company" Width="1.5" PointX="0.75" PointY="4.25" Height="5.7009895833333335" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.SecurityGroupCode" Width="1.5" PointX="3" PointY="3.25" Height="2.0853483072916656" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.SecurityGroup" Width="1.5" PointX="3" PointY="6" Height="2.9070849609374996" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.SecurityGroupType" Width="1.5" PointX="5.625" PointY="7.625" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.SecurityGroupType" Width="2.25" PointX="5.625" PointY="7.625" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.Temp" Width="1.5" PointX="5" PointY="5.25" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="3" PointY="10.375" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="0.625" PointY="10.875" Height="2.0853483072916674" IsExpanded="true" />

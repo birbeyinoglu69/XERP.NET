@@ -330,6 +330,9 @@
         <FunctionImport Name="RefreshSystemUserType" EntitySet="SystemUserTypes" ReturnType="Collection(XERPModel.SystemUserType)" m:HttpMethod="GET">
           <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
         </FunctionImport>
+        <FunctionImport Name="GetAvailableSecurityGroups" EntitySet="SecurityGroups" ReturnType="Collection(XERPModel.SecurityGroup)" m:HttpMethod="GET">
+          <Parameter Name="securityGroupID" Type="Edm.String" Mode="In" />
+        </FunctionImport>
         <EntitySet Name="Addresses" EntityType="XERPModel.Address" />
         <EntitySet Name="Companies" EntityType="XERPModel.Company" />
         <EntitySet Name="SecurityGroups" EntityType="XERPModel.SecurityGroup" />

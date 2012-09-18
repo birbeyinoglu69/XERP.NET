@@ -129,6 +129,34 @@ namespace XERP.Server.Service.SystemUserService
             return queryResult;
         }
 
+        [ChangeInterceptor("SystemUserTypes")]
+        public void OnChangeSecurityGroupTypes(SystemUserType systemUserType, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Type was used by its parent record...
+                XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
+                var context = new SystemUserEntities(dalUtility.EntityConectionString);
+                context.SystemUsers.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string typeID = systemUserType.SystemUserTypeID;
+                string sqlstring = "UPDATE SystemUsers SET SeystemUserTypeID = null WHERE SystemUserTypeID = '" + typeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("SystemUserCodes")]
+        public void OnChangeSecurityGroupTypes(SystemUserCode systemUserCode, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Code was used by its parent record...
+                XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
+                var context = new SystemUserEntities(dalUtility.EntityConectionString);
+                context.SystemUsers.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string codeID = systemUserCode.SystemUserCodeID;
+                string sqlstring = "UPDATE SystemUsers SET SystemUserCodeID = null WHERE SystemUserCodeID = '" + codeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
         protected override SystemUserEntities CreateDataSource()
         {
             try
