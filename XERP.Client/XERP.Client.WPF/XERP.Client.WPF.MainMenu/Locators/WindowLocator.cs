@@ -6,7 +6,8 @@ namespace XERP.Client.WPF.MainMenu
         private enum _executableProgramEnum {CompanyMaintenance, CompanyTypeMaintenance, CompanyCodeMaintenance, 
             MenuItemMaintenance,
             SystemUserMaintenance, SystemUserTypeMaintenance, SystemUserCodeMaintenance,
-            SecurityGroupMaintenance, SecurityGroupTypeMaintenance, SecurityGroupCodeMaintenance
+            SecurityGroupMaintenance, SecurityGroupTypeMaintenance, SecurityGroupCodeMaintenance,
+            AddressMaintenance
         };
 
         private System.Windows.Window window;
@@ -72,6 +73,10 @@ namespace XERP.Client.WPF.MainMenu
                     break;
                 case _executableProgramEnum.SecurityGroupCodeMaintenance:
                     window = new SecurityGroupMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.AddressMaintenance:
+                    window = new AddressMaintenance.MainWindow();
                     window.Show();
                     break;
                 default:

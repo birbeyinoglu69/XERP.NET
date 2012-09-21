@@ -346,19 +346,9 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding SystemUserID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                     Header="ID" Width="*">
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="MaxLength" Value="{Binding SystemUserMaxFieldValueDictionary[SystemUserID], Mode=TwoWay}"/>
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                     Header="Name" Width="*">
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="MaxLength" Value="{Binding SystemUserMaxFieldValueDictionary[Name], Mode=TwoWay}"/>
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                 Header="Password" Width="*"/>

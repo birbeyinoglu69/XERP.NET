@@ -278,19 +278,9 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding SecurityGroupCodeID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                     Header="ID" Width="*">
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="MaxLength" Value="{Binding SecurityGroupCodeMaxFieldValueDictionary[ID], Mode=TwoWay}"/>
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Code, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                     Header="Name" Width="*">
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="MaxLength" Value="{Binding SecurityGroupCodeMaxFieldValueDictionary[Name], Mode=TwoWay}"/>
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                 Header="Description" Width="*"/>

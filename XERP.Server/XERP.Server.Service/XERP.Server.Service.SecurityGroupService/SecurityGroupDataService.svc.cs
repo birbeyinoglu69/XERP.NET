@@ -84,6 +84,21 @@ namespace XERP.Server.Service.SecurityGroupService
             return queryResult;
         }
 
+        [WebGet]
+        public IQueryable<SecurityGroupCode> RefreshSecurityGroupCode(string autoIDs)
+        {
+            var query = from val in autoIDs.Split(',')
+                        select long.Parse(val);
+            XERP.Server.DAL.SecurityGroupDAL.DALUtility dalUtility = new DALUtility();
+            var context = new SecurityGroupEntities(dalUtility.EntityConectionString);
+
+            var queryResult = (from q in context.SecurityGroupCodes
+                               where query.Contains(q.AutoID)
+                               select q);
+
+            return queryResult;
+        }
+
         [ChangeInterceptor("SecurityGroupTypes")]
         public void OnChangeSecurityGroupTypes(SecurityGroupType securityGroupType, UpdateOperations operations)
         {

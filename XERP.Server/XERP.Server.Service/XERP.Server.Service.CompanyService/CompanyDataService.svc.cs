@@ -85,6 +85,21 @@ namespace XERP.Server.Service.CompanyService
             return queryResult;
         }
 
+        [WebGet]
+        public IQueryable<CompanyCode> RefreshCompanyCode(string autoIDs)
+        {
+            var query = from val in autoIDs.Split(',')
+                        select long.Parse(val);
+            XERP.Server.DAL.CompanyDAL.DALUtility dalUtility = new DALUtility();
+            var context = new CompanyEntities(dalUtility.EntityConectionString);
+
+            var queryResult = (from q in context.CompanyCodes
+                               where query.Contains(q.AutoID)
+                               select q);
+
+            return queryResult;
+        }
+
         [ChangeInterceptor("CompanyTypes")]
         public void OnChangeCompanyTypes(CompanyType companyType, UpdateOperations operations)
         {

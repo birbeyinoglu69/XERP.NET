@@ -251,6 +251,7 @@
                         <TextBox Style="{StaticResource BaseTextBox}"
                             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
                             Text="{Binding Path=SelectedCompany.Description, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Description]}" 
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
                         <ComboBox  Style="{StaticResource BaseComboBox}"
                             HorizontalAlignment="Left" Width="200" Margin="5"
@@ -334,19 +335,9 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding CompanyID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                     Header="ID" Width="*">
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="MaxLength" Value="{Binding CompanyMaxFieldValueDictionary[ID], Mode=TwoWay}"/>
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                     Header="Name" Width="*">
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="MaxLength" Value="{Binding CompanyMaxFieldValueDictionary[Name], Mode=TwoWay}"/>
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                 Header="Description" Width="*"/>

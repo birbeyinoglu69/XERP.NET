@@ -1,0 +1,11 @@
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.Service.AddressService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.Service.AddressService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.DAL.AddressDAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.DAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.DAL.AddressDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.DAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\obj\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\obj\Debug\XERP.Server.Service.AddressService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\obj\Debug\XERP.Server.Service.AddressService.pdb

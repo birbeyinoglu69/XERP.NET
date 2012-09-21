@@ -816,9 +816,14 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         {
             SystemUser systemUser = new SystemUser();
             systemUser.SystemUserID = systemUserID;
+            //set any default values...
+            systemUser.PasswordExpired = false;
+            systemUser.Active = true;
+
             SystemUserList.Add(systemUser);
             _serviceAgent.AddToSystemUserRepository(systemUser);
             SelectedSystemUser = SystemUserList.LastOrDefault();
+            
 
             AllowEdit = true;
             Dirty = false;

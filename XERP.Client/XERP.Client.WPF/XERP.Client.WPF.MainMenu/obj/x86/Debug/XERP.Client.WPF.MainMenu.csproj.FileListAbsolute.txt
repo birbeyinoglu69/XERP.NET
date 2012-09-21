@@ -65,3 +65,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Clie
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Domain.SecurityGroupDomain.dll
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.SecurityGroupMaintenance.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Domain.SecurityGroupDomain.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.AddressMaintenance.exe
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Domain.AddressDomain.dll
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.AddressMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Domain.AddressDomain.pdb

@@ -1,0 +1,182 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+    <Schema Namespace="XERPModel" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="Address">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="AddressID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="AddressID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
+        <Property Name="Address1" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Address2" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Address3" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="State" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Zip" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="PhoneNum" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="PhoneNum2" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="FaxNum" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Email" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="Email2" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Addresses" ToRole="Companies" />
+      </EntityType>
+      <EntityType Name="Company">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="CompanyTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="CompanyCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="StateTaxCode" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="TaxRegionCode" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="CurrentFiscalYear" Type="Edm.Int32" Nullable="true" />
+        <Property Name="DefaultExecutablePath" Type="Edm.String" Nullable="true" MaxLength="500" Unicode="true" FixedLength="false" />
+        <Property Name="Address1" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Address2" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Address3" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="City" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="State" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Zip" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
+        <Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="PhoneNum" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="PhoneNum2" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="FaxNum" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Email" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="Email2" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <NavigationProperty Name="Addresses" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Companies" ToRole="Addresses" />
+        <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UDList_Company" FromRole="Companies" ToRole="UdLists" />
+        <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UDListItem_Company" FromRole="Companies" ToRole="UdListItems" />
+      </EntityType>
+      <EntityType Name="Temp">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
+        <Property Name="Bool_1" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="ShortChar_1" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Int_1" Type="Edm.Int32" Nullable="true" />
+        <Property Name="Decimal_1" Type="Edm.Decimal" Nullable="true" Precision="12" Scale="5" />
+      </EntityType>
+      <EntityType Name="UdListItem">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="UdListID" />
+          <PropertyRef Name="UDListItemID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="UdListID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="UDListItemID" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <NavigationProperty Name="Company" Relationship="XERPModel.FK_UDListItem_Company" FromRole="UdListItems" ToRole="Companies" />
+        <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItems" ToRole="UdLists" />
+      </EntityType>
+      <EntityType Name="UdList">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="UdListID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="UdListID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <NavigationProperty Name="Company" Relationship="XERPModel.FK_UDList_Company" FromRole="UdLists" ToRole="Companies" />
+        <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdLists" ToRole="UdListItems" />
+      </EntityType>
+      <Association Name="FK_Addresses_Companies">
+        <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+        <End Role="Addresses" Type="XERPModel.Address" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Companies">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="Addresses">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_UDList_Company">
+        <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+        <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Companies">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="UdLists">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_UDListItem_Company">
+        <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+        <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Companies">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="UdListItems">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_UdListItem_UdList">
+        <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="1" />
+        <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="UdLists">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Principal>
+          <Dependent Role="UdListItems">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+    </Schema>
+    <Schema Namespace="XERP.Server.DAL.AddressDAL" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="AddressEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <FunctionImport Name="GetMetaData" EntitySet="Temps" ReturnType="Collection(XERPModel.Temp)" m:HttpMethod="GET">
+          <Parameter Name="tableName" Type="Edm.String" Mode="In" />
+        </FunctionImport>
+        <FunctionImport Name="RefreshAddress" EntitySet="Addresses" ReturnType="Collection(XERPModel.Address)" m:HttpMethod="GET">
+          <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
+        </FunctionImport>
+        <EntitySet Name="Addresses" EntityType="XERPModel.Address" />
+        <EntitySet Name="Companies" EntityType="XERPModel.Company" />
+        <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
+        <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
+        <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+        <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
+          <End Role="Companies" EntitySet="Companies" />
+          <End Role="Addresses" EntitySet="Addresses" />
+        </AssociationSet>
+        <AssociationSet Name="FK_UDList_Company" Association="XERPModel.FK_UDList_Company">
+          <End Role="Companies" EntitySet="Companies" />
+          <End Role="UdLists" EntitySet="UdLists" />
+        </AssociationSet>
+        <AssociationSet Name="FK_UDListItem_Company" Association="XERPModel.FK_UDListItem_Company">
+          <End Role="Companies" EntitySet="Companies" />
+          <End Role="UdListItems" EntitySet="UdListItems" />
+        </AssociationSet>
+        <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
+          <End Role="UdLists" EntitySet="UdLists" />
+          <End Role="UdListItems" EntitySet="UdListItems" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

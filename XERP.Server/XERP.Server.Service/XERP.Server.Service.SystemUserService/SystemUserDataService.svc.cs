@@ -117,6 +117,21 @@ namespace XERP.Server.Service.SystemUserService
         }
 
         [WebGet]
+        public IQueryable<SystemUserCode> RefreshSystemUserCode(string autoIDs)
+        {
+            var query = from val in autoIDs.Split(',')
+                        select long.Parse(val);
+            XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
+            var context = new SystemUserEntities(dalUtility.EntityConectionString);
+
+            var queryResult = (from q in context.SystemUserCodes
+                               where query.Contains(q.AutoID)
+                               select q);
+
+            return queryResult;
+        }
+
+        [WebGet]
         public IQueryable<SecurityGroup> GetAvailableSecurityGroups(string securityGroupID)
         {
             XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
