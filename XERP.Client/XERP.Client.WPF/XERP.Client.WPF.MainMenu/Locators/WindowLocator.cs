@@ -4,10 +4,10 @@ namespace XERP.Client.WPF.MainMenu
     class WindowLocator
     {
         private enum _executableProgramEnum {CompanyMaintenance, CompanyTypeMaintenance, CompanyCodeMaintenance, 
-            MenuItemMaintenance,
             SystemUserMaintenance, SystemUserTypeMaintenance, SystemUserCodeMaintenance,
             SecurityGroupMaintenance, SecurityGroupTypeMaintenance, SecurityGroupCodeMaintenance,
-            AddressMaintenance
+            AddressMaintenance,
+            MenuItemMaintenance, MenuItemTypeMaintenance, MenuItemCodeMaintenance
         };
 
         private System.Windows.Window window;
@@ -77,6 +77,18 @@ namespace XERP.Client.WPF.MainMenu
                     break;
                 case _executableProgramEnum.AddressMaintenance:
                     window = new AddressMaintenance.MainWindow();
+                    window.Show();
+                    break;                  
+                case _executableProgramEnum.MenuItemMaintenance:
+                    window = new MenuItemMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.MenuItemTypeMaintenance:
+                    window = new MenuItemMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.MenuItemCodeMaintenance:
+                    window = new MenuItemMaintenance.CodeMaintenanceWindow();
                     window.Show();
                     break;
                 default:

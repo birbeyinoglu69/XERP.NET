@@ -25,9 +25,7 @@ namespace ExtensionMethods
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                   from query in (meta as EntityType).Properties
-                                          .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-                                                  
-                                                  && p.TypeUsage.EdmType.Name == "String")
+                                          .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                   select query;
 
                 if (queryResults.Count() > 0)
@@ -37,7 +35,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;
@@ -59,9 +61,7 @@ namespace ExtensionMethods
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                    from query in (meta as EntityType).Properties
-                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-
-                                                   && p.TypeUsage.EdmType.Name == "String")
+                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                    select query;
 
                 if (queryResults.Count() > 0)
@@ -71,7 +71,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;
@@ -93,9 +97,7 @@ namespace ExtensionMethods
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                    from query in (meta as EntityType).Properties
-                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-
-                                                   && p.TypeUsage.EdmType.Name == "String")
+                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                    select query;
 
                 if (queryResults.Count() > 0)
@@ -105,7 +107,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;
@@ -127,9 +133,7 @@ namespace ExtensionMethods
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                    from query in (meta as EntityType).Properties
-                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-
-                                                   && p.TypeUsage.EdmType.Name == "String")
+                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                    select query;
 
                 if (queryResults.Count() > 0)
@@ -139,7 +143,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;
@@ -156,14 +164,11 @@ namespace ExtensionMethods
             int id = 0;
             using (MenuSecurityEntities ctx = new MenuSecurityEntities(dalUtility.EntityConectionString))
             {
-
                 var c = ctx.ExecutableProgramTypes.FirstOrDefault();
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                    from query in (meta as EntityType).Properties
-                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-
-                                                   && p.TypeUsage.EdmType.Name == "String")
+                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                    select query;
 
                 if (queryResults.Count() > 0)
@@ -173,7 +178,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;
@@ -195,9 +204,7 @@ namespace ExtensionMethods
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                    from query in (meta as EntityType).Properties
-                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-
-                                                   && p.TypeUsage.EdmType.Name == "String")
+                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                    select query;
 
                 if (queryResults.Count() > 0)
@@ -207,7 +214,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;
@@ -229,9 +240,7 @@ namespace ExtensionMethods
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                    from query in (meta as EntityType).Properties
-                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-
-                                                   && p.TypeUsage.EdmType.Name == "String")
+                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                    select query;
 
                 if (queryResults.Count() > 0)
@@ -241,7 +250,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;
@@ -263,9 +276,7 @@ namespace ExtensionMethods
                 var queryResults = from meta in ctx.MetadataWorkspace.GetItems(DataSpace.CSpace)
                                                         .Where(m => m.BuiltInTypeKind == BuiltInTypeKind.EntityType)
                                    from query in (meta as EntityType).Properties
-                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name
-
-                                                   && p.TypeUsage.EdmType.Name == "String")
+                                           .Where(p => p.DeclaringType.Name == entityObject.GetType().Name)
                                    select query;
 
                 if (queryResults.Count() > 0)
@@ -275,7 +286,11 @@ namespace ExtensionMethods
                         Temp temp = new Temp();
                         temp.ID = id;
                         temp.Name = queryResult.Name.ToString();
-                        temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        temp.ShortChar_1 = queryResult.TypeUsage.EdmType.Name;
+                        if (queryResult.TypeUsage.EdmType.Name == "String")
+                        {
+                            temp.Int_1 = Convert.ToInt32(queryResult.TypeUsage.Facets["MaxLength"].Value);
+                        }
                         temp.Bool_1 = false; //we use this as a error trigger false = not an error...
                         tempList.Add(temp);
                         id++;

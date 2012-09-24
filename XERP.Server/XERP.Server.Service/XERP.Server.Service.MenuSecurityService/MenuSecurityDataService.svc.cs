@@ -65,6 +65,96 @@ namespace XERP.Server.Service.MenuSecurityService
         }
 
         [WebGet]
+        public IQueryable<MenuItem> RefreshMenuItem(string autoIDs)
+        {
+            var query = from val in autoIDs.Split(',')
+                        select long.Parse(val);
+            XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+            var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+
+            var queryResult = (from q in context.MenuItems
+                               where query.Contains(q.AutoID)
+                               select q);
+
+            return queryResult;
+        }
+
+        [WebGet]
+        public IQueryable<MenuItemType> RefreshMenuItemType(string autoIDs)
+        {
+            var query = from val in autoIDs.Split(',')
+                        select long.Parse(val);
+            XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+            var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+
+            var queryResult = (from q in context.MenuItemTypes
+                               where query.Contains(q.AutoID)
+                               select q);
+
+            return queryResult;
+        }
+
+        [WebGet]
+        public IQueryable<MenuItemCode> RefreshMenuItemCode(string autoIDs)
+        {
+            var query = from val in autoIDs.Split(',')
+                        select long.Parse(val);
+            XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+            var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+
+            var queryResult = (from q in context.MenuItemCodes
+                               where query.Contains(q.AutoID)
+                               select q);
+
+            return queryResult;
+        }
+
+        [ChangeInterceptor("MenuItemTypes")]
+        public void OnChangeMenuItemTypes(MenuItemType menuItemType, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Type was used by its parent record...
+                XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+                var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+                context.MenuItems.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = menuItemType.CompanyID;
+                string typeID = menuItemType.MenuItemTypeID;
+                string sqlstring = "UPDATE MenuItems SET MenuItemTypeID = null WHERE CompanyID = '" + companyID + "' and MenuItemTypeID = '" + typeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("MenuItemCodes")]
+        public void OnChangeMenuItemTypes(MenuItemCode menuItemCode, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Code was used by its parent record...
+                XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+                var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+                context.MenuItems.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = menuItemCode.CompanyID;
+                string codeID = menuItemCode.MenuItemCodeID;
+                string sqlstring = "UPDATE MenuItems SET MenuItemCodeID = null WHERE CompanyID = '" + companyID + "' and MenuItemCodeID = '" + codeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("MenuItems")]
+        public void OnChangeMenuItemTypes(MenuItem menuItem, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//Cascade delete any children belonging to parent Menu Item deleted...
+                XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+                var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+                context.MenuItems.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = menuItem.CompanyID;
+                string menuItemID = menuItem.MenuItemID;
+                string sqlstring = "Delete MenuItems WHERE CompanyID = '" + companyID + "' and ParentMenuID = '" + menuItemID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [WebGet]
         public IQueryable<MenuItem> GetMenuItemsAllowedByUser(string systemUserID, string companyID)
         {
             XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();

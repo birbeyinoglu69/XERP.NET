@@ -66,10 +66,6 @@ namespace ExtensionMethods
             return tempList;
         }
 
-        //All senior tables(Companies, Parts, Orders, ect...) tend to have a generic table called TableNameTypes 
-        //i.e. SecurityGroupTypes PartTypes, OrderTypes...
-        //So this will constitute the meta data for that Type table...
-        //Xerp attempts to use generic naming where possible to allow for cloning...
         public static List<Temp> GetMetaData(this SecurityGroupType entityObject)
         {
             XERP.Server.DAL.SecurityGroupDAL.DALUtility dalUtility = new DALUtility();
@@ -106,10 +102,6 @@ namespace ExtensionMethods
             return tempList;
         }
 
-        //All senior tables(Companies, Parts, Orders, ect...) tend to have a generic table called TableNameCodes 
-        //i.e. SecurityGroupCodes PartCodes, OrderCodes...
-        //So this will constitute the meta data for that Code table...
-        //Xerp attempts to use generic naming where possible to allow for cloning...
         public static List<Temp> GetMetaData(this SecurityGroupCode entityObject)
         {
             XERP.Server.DAL.SecurityGroupDAL.DALUtility dalUtility = new DALUtility();
