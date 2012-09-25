@@ -138,6 +138,10 @@
       <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
       <Name>XERP.Client.WPF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.ExecutableProgramMaintenance\XERP.Client.WPF.ExecutableProgramMaintenance.csproj">
+      <Project>{0E639783-C5B6-4428-8265-38D8763CE33B}</Project>
+      <Name>XERP.Client.WPF.ExecutableProgramMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.MenuItemMaintenance\XERP.Client.WPF.MenuItemMaintenance.csproj">
       <Project>{33B25FE5-045E-4747-B06D-608FE08B9ABA}</Project>
       <Name>XERP.Client.WPF.MenuItemMaintenance</Name>

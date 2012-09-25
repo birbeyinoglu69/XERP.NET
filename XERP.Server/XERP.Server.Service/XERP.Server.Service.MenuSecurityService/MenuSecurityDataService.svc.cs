@@ -39,12 +39,12 @@ namespace XERP.Server.Service.MenuSecurityService
                 case "ExecutablePrograms":
                     ExecutableProgram executablePrograms = new ExecutableProgram();
                     return executablePrograms.GetMetaData().AsQueryable();
-                case "ExecutableProgramsTypes":
-                    ExecutableProgramType executableProgramsType = new ExecutableProgramType();
-                    return executableProgramsType.GetMetaData().AsQueryable();
-                case "ExecutableProgramsCodes":
-                    ExecutableProgramCode executableProgramsCode = new ExecutableProgramCode();
-                    return executableProgramsCode.GetMetaData().AsQueryable();
+                case "ExecutableProgramTypes":
+                    ExecutableProgramType executableProgramType = new ExecutableProgramType();
+                    return executableProgramType.GetMetaData().AsQueryable();
+                case "ExecutableProgramCodes":
+                    ExecutableProgramCode executableProgramCode = new ExecutableProgramCode();
+                    return executableProgramCode.GetMetaData().AsQueryable();
                 case "MenuSecurities":
                     MenuSecurity menuSecurity = new MenuSecurity();
                     return menuSecurity.GetMetaData().AsQueryable();
@@ -135,6 +135,51 @@ namespace XERP.Server.Service.MenuSecurityService
                 string companyID = menuItemCode.CompanyID;
                 string codeID = menuItemCode.MenuItemCodeID;
                 string sqlstring = "UPDATE MenuItems SET MenuItemCodeID = null WHERE CompanyID = '" + companyID + "' and MenuItemCodeID = '" + codeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("ExecutableProgramTypes")]
+        public void OnChangeExecutableProgramTypes(ExecutableProgramType executableProgramType, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Type was used by its parent record...
+                XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+                var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+                context.ExecutablePrograms.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = executableProgramType.CompanyID;
+                string typeID = executableProgramType.ExecutableProgramTypeID;
+                string sqlstring = "UPDATE ExecutablePrograms SET ExecutableProgramTypeID = null WHERE CompanyID = '" + companyID + "' and ExecutableProgramTypeID = '" + typeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("ExecutableProgramCodes")]
+        public void OnChangeExecutableProgramTypes(ExecutableProgramCode executableProgramCode, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the Code was used by its parent record...
+                XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+                var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+                context.ExecutablePrograms.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = executableProgramCode.CompanyID;
+                string codeID = executableProgramCode.ExecutableProgramCodeID;
+                string sqlstring = "UPDATE ExecutablePrograms SET ExecutableProgramCodeID = null WHERE CompanyID = '" + companyID + "' and ExecutableProgramCodeID = '" + codeID + "'";
+                context.ExecuteStoreCommand(sqlstring);
+            }
+        }
+
+        [ChangeInterceptor("ExecutablePrograms")]
+        public void OnChangeExecutablePrograms(ExecutableProgram executableProgram, UpdateOperations operations)
+        {
+            if (operations == UpdateOperations.Delete)
+            {//update a null to any place the item was used by its parent record...
+                XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();
+                var context = new MenuSecurityEntities(dalUtility.EntityConectionString);
+                context.ExecutablePrograms.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                string companyID = executableProgram.CompanyID;
+                string executableProgramID = executableProgram.ExecutableProgramID;
+                string sqlstring = "UPDATE MenuItems SET ExecutableProgramID = null WHERE CompanyID = '" + companyID + "' and ExecutableProgramID = '" + executableProgramID + "'";
                 context.ExecuteStoreCommand(sqlstring);
             }
         }

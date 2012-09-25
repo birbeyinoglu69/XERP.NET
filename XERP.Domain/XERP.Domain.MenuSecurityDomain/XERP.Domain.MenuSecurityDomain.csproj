@@ -47,6 +47,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\IExecutableProgramServiceAgent.cs" />
     <Compile Include="Services\IMenuItemServiceAgent.cs" />
     <Compile Include="Services\IMenuSecurityServiceAgent.cs" />
     <Compile Include="Services\MenuSecurityServiceAgent.cs" />
@@ -54,6 +55,10 @@
     <Compile Include="Services\MenuItemCodeSingletonRepository.cs" />
     <Compile Include="Services\MenuItemTypeSingletonRepostitory.cs" />
     <Compile Include="Services\MenuItemServiceAgent.cs" />
+    <Compile Include="Services\ExecutableProgramCodeSingletonRepository.cs" />
+    <Compile Include="Services\ExecutableProgramServiceAgent.cs" />
+    <Compile Include="Services\ExecutableProgramSingletonRepostitory.cs" />
+    <Compile Include="Services\ExecutableProgramTypeSingletonRepostitory.cs" />
     <Compile Include="Services\ServiceUtility.cs" />
   </ItemGroup>
   <ItemGroup>

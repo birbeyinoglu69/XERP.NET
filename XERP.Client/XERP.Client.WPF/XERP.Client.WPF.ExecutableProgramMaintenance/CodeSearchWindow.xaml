@@ -1,0 +1,9 @@
+﻿<Window x:Class="XERP.Client.WPF.ExecutableProgramMaintenance.CodeSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ExecutableProgram Code Search" Height="600" Width="600">
+    <Grid>
+        <my:CodeMaintenanceSearchView 
+            xmlns:my="clr-namespace:XERP.Client.WPF.ExecutableProgramMaintenance.Views"  />
+    </Grid>
+</Window>

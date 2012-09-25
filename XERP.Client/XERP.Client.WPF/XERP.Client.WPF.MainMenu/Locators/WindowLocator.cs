@@ -7,7 +7,8 @@ namespace XERP.Client.WPF.MainMenu
             SystemUserMaintenance, SystemUserTypeMaintenance, SystemUserCodeMaintenance,
             SecurityGroupMaintenance, SecurityGroupTypeMaintenance, SecurityGroupCodeMaintenance,
             AddressMaintenance,
-            MenuItemMaintenance, MenuItemTypeMaintenance, MenuItemCodeMaintenance
+            MenuItemMaintenance, MenuItemTypeMaintenance, MenuItemCodeMaintenance,
+            ExecutableProgramMaintenance, ExecutableProgramTypeMaintenance, ExecutableProgramCodeMaintenance
         };
 
         private System.Windows.Window window;
@@ -89,6 +90,18 @@ namespace XERP.Client.WPF.MainMenu
                     break;
                 case _executableProgramEnum.MenuItemCodeMaintenance:
                     window = new MenuItemMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.ExecutableProgramMaintenance:
+                    window = new ExecutableProgramMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.ExecutableProgramTypeMaintenance:
+                    window = new ExecutableProgramMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.ExecutableProgramCodeMaintenance:
+                    window = new ExecutableProgramMaintenance.CodeMaintenanceWindow();
                     window.Show();
                     break;
                 default:
