@@ -2,8 +2,6 @@
 <Schema Namespace="MenuSecurityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="MenuSecurityEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Companies" EntityType="MenuSecurityModel.Company" />
-    <EntitySet Name="DalItems" EntityType="MenuSecurityModel.DalItem" />
-    <EntitySet Name="DalSecurities" EntityType="MenuSecurityModel.DalSecurity" />
     <EntitySet Name="DBStoredImages" EntityType="MenuSecurityModel.DBStoredImage" />
     <EntitySet Name="MenuItemCodes" EntityType="MenuSecurityModel.MenuItemCode" />
     <EntitySet Name="MenuItemTypes" EntityType="MenuSecurityModel.MenuItemType" />
@@ -11,15 +9,6 @@
     <EntitySet Name="SecurityGroups" EntityType="MenuSecurityModel.SecurityGroup" />
     <EntitySet Name="SystemUsers" EntityType="MenuSecurityModel.SystemUser" />
     <EntitySet Name="Temps" EntityType="MenuSecurityModel.Temp" />
-    <EntitySet Name="UdListItems" EntityType="MenuSecurityModel.UdListItem" />
-    <AssociationSet Name="FK_DalItem_Company" Association="MenuSecurityModel.FK_DalItem_Company">
-      <End Role="Companies" EntitySet="Companies" />
-      <End Role="DalItems" EntitySet="DalItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DalSecurity_Company" Association="MenuSecurityModel.FK_DalSecurity_Company">
-      <End Role="Companies" EntitySet="Companies" />
-      <End Role="DalSecurities" EntitySet="DalSecurities" />
-    </AssociationSet>
     <AssociationSet Name="FK_Image_Company" Association="MenuSecurityModel.FK_Image_Company">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="DBStoredImages" EntitySet="DBStoredImages" />
@@ -39,18 +28,6 @@
     <AssociationSet Name="FK_SecurityGroup_Company" Association="MenuSecurityModel.FK_SecurityGroup_Company">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UDListItem_Company" Association="MenuSecurityModel.FK_UDListItem_Company">
-      <End Role="Companies" EntitySet="Companies" />
-      <End Role="UdListItems" EntitySet="UdListItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DalSecurity_DalItem" Association="MenuSecurityModel.FK_DalSecurity_DalItem">
-      <End Role="DalItems" EntitySet="DalItems" />
-      <End Role="DalSecurities" EntitySet="DalSecurities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DalSecurity_SecurityGroup" Association="MenuSecurityModel.FK_DalSecurity_SecurityGroup">
-      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-      <End Role="DalSecurities" EntitySet="DalSecurities" />
     </AssociationSet>
     <AssociationSet Name="FK_MenuSecurity_SecurityGroup" Association="MenuSecurityModel.FK_MenuSecurity_SecurityGroup">
       <End Role="SecurityGroups" EntitySet="SecurityGroups" />
@@ -117,6 +94,20 @@
       <End Role="SystemUser" EntitySet="SystemUsers" />
       <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
     </AssociationSet>
+    <EntitySet Name="UdLists" EntityType="MenuSecurityModel.UdList" />
+    <AssociationSet Name="FK_UdList_Company" Association="MenuSecurityModel.FK_UdList_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="UdList" EntitySet="UdLists" />
+    </AssociationSet>
+    <EntitySet Name="UdListItems" EntityType="MenuSecurityModel.UdListItem" />
+    <AssociationSet Name="FK_UdListItem_Company" Association="MenuSecurityModel.FK_UdListItem_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="UdListItem" EntitySet="UdListItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdListItem_UdList" Association="MenuSecurityModel.FK_UdListItem_UdList">
+      <End Role="UdList" EntitySet="UdLists" />
+      <End Role="UdListItem" EntitySet="UdListItems" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Company">
     <Key>
@@ -146,48 +137,23 @@
     <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="DalItems" Relationship="MenuSecurityModel.FK_DalItem_Company" FromRole="Companies" ToRole="DalItems" />
-    <NavigationProperty Name="DalSecurities" Relationship="MenuSecurityModel.FK_DalSecurity_Company" FromRole="Companies" ToRole="DalSecurities" />
     <NavigationProperty Name="DBStoredImages" Relationship="MenuSecurityModel.FK_Image_Company" FromRole="Companies" ToRole="DBStoredImages" />
     <NavigationProperty Name="MenuItemCodes" Relationship="MenuSecurityModel.FK_MenuItemCode_Company" FromRole="Companies" ToRole="MenuItemCodes" />
     <NavigationProperty Name="MenuItemTypes" Relationship="MenuSecurityModel.FK_MenuItemType_Company" FromRole="Companies" ToRole="MenuItemTypes" />
     <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_Company" FromRole="Companies" ToRole="MenuSecurities" />
     <NavigationProperty Name="SecurityGroups" Relationship="MenuSecurityModel.FK_SecurityGroup_Company" FromRole="Companies" ToRole="SecurityGroups" />
-    <NavigationProperty Name="UdListItems" Relationship="MenuSecurityModel.FK_UDListItem_Company" FromRole="Companies" ToRole="UdListItems" />
     <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutableProgram_Company" FromRole="Company" ToRole="ExecutableProgram" />
     <NavigationProperty Name="ExecutableProgramCodes" Relationship="MenuSecurityModel.FK_ExecutableProgramCode_Company" FromRole="Company" ToRole="ExecutableProgramCode" />
     <NavigationProperty Name="ExecutableProgramTypes" Relationship="MenuSecurityModel.FK_ExecutableProgramType_Company" FromRole="Company" ToRole="ExecutableProgramType" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_Company" FromRole="Company" ToRole="MenuItem" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
-  </EntityType>
-  <EntityType Name="DalItem">
-    <Key>
-      <PropertyRef Name="CompanyID" />
-      <PropertyRef Name="DalItemID" />
-    </Key>
-    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="DalItemID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_DalItem_Company" FromRole="DalItems" ToRole="Companies" />
-    <NavigationProperty Name="DalSecurities" Relationship="MenuSecurityModel.FK_DalSecurity_DalItem" FromRole="DalItems" ToRole="DalSecurities" />
-  </EntityType>
-  <EntityType Name="DalSecurity">
-    <Key>
-      <PropertyRef Name="CompanyID" />
-      <PropertyRef Name="DalItemID" />
-      <PropertyRef Name="SecurityGroupID" />
-      <PropertyRef Name="CRUDType" />
-    </Key>
-    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="DalItemID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="CRUDType" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="false" />
-    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_DalSecurity_Company" FromRole="DalSecurities" ToRole="Companies" />
-    <NavigationProperty Name="DalItem" Relationship="MenuSecurityModel.FK_DalSecurity_DalItem" FromRole="DalSecurities" ToRole="DalItems" />
-    <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_DalSecurity_SecurityGroup" FromRole="DalSecurities" ToRole="SecurityGroups" />
+    <NavigationProperty Name="UdLists" Relationship="MenuSecurityModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
+    <NavigationProperty Name="UdListItems" Relationship="MenuSecurityModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="DBStoredImage">
     <Key>
@@ -202,6 +168,11 @@
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_Image_Company" FromRole="DBStoredImages" ToRole="Companies" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_Image" FromRole="DBStoredImage" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="MenuItemCode">
     <Key>
@@ -215,6 +186,11 @@
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemCode_Company" FromRole="MenuItemCodes" ToRole="Companies" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemCode" FromRole="MenuItemCode" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="MenuItemType">
     <Key>
@@ -228,6 +204,11 @@
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemType_Company" FromRole="MenuItemTypes" ToRole="Companies" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemType" FromRole="MenuItemType" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="MenuSecurity">
     <Key>
@@ -242,6 +223,11 @@
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuSecurity_Company" FromRole="MenuSecurities" ToRole="Companies" />
     <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="MenuSecurities" ToRole="SecurityGroups" />
     <NavigationProperty Name="MenuItem" Relationship="MenuSecurityModel.FK_MenuSecurity_MenuItem" FromRole="MenuSecurity" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="SecurityGroup">
     <Key>
@@ -258,9 +244,13 @@
     <Property Name="SecurityGroupCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
-    <NavigationProperty Name="DalSecurities" Relationship="MenuSecurityModel.FK_DalSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="DalSecurities" />
     <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="MenuSecurities" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="SystemUser">
     <Key>
@@ -282,6 +272,11 @@
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -294,43 +289,6 @@
     <Property Name="Int_1" Type="Int32" />
     <Property Name="Decimal_1" Type="Decimal" Precision="12" Scale="5" />
   </EntityType>
-  <EntityType Name="UdListItem">
-    <Key>
-      <PropertyRef Name="CompanyID" />
-      <PropertyRef Name="UdListID" />
-      <PropertyRef Name="UDListItemID" />
-    </Key>
-    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="UDListItemID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UDListItem_Company" FromRole="UdListItems" ToRole="Companies" />
-  </EntityType>
-  <Association Name="FK_DalItem_Company">
-    <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-    <End Role="DalItems" Type="MenuSecurityModel.DalItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="CompanyID" />
-      </Principal>
-      <Dependent Role="DalItems">
-        <PropertyRef Name="CompanyID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DalSecurity_Company">
-    <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-    <End Role="DalSecurities" Type="MenuSecurityModel.DalSecurity" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="CompanyID" />
-      </Principal>
-      <Dependent Role="DalSecurities">
-        <PropertyRef Name="CompanyID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Image_Company">
     <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
     <End Role="DBStoredImages" Type="MenuSecurityModel.DBStoredImage" Multiplicity="*" />
@@ -391,46 +349,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UDListItem_Company">
-    <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-    <End Role="UdListItems" Type="MenuSecurityModel.UdListItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="CompanyID" />
-      </Principal>
-      <Dependent Role="UdListItems">
-        <PropertyRef Name="CompanyID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DalSecurity_DalItem">
-    <End Role="DalItems" Type="MenuSecurityModel.DalItem" Multiplicity="1" />
-    <End Role="DalSecurities" Type="MenuSecurityModel.DalSecurity" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DalItems">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="DalItemID" />
-      </Principal>
-      <Dependent Role="DalSecurities">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="DalItemID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DalSecurity_SecurityGroup">
-    <End Role="SecurityGroups" Type="MenuSecurityModel.SecurityGroup" Multiplicity="1" />
-    <End Role="DalSecurities" Type="MenuSecurityModel.DalSecurity" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SecurityGroups">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="SecurityGroupID" />
-      </Principal>
-      <Dependent Role="DalSecurities">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="SecurityGroupID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_MenuSecurity_SecurityGroup">
     <End Role="SecurityGroups" Type="MenuSecurityModel.SecurityGroup" Multiplicity="1" />
     <End Role="MenuSecurities" Type="MenuSecurityModel.MenuSecurity" Multiplicity="*" />
@@ -457,6 +375,11 @@
     <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_ExecutableProgramCode_Company" FromRole="ExecutableProgramCode" ToRole="Company" />
     <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramCodes" FromRole="ExecutableProgramCode" ToRole="ExecutableProgram" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="ExecutableProgram">
     <Key>
@@ -477,6 +400,11 @@
     <NavigationProperty Name="ExecutableProgramCode" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramCodes" FromRole="ExecutableProgram" ToRole="ExecutableProgramCode" />
     <NavigationProperty Name="ExecutableProgramType" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramTypes" FromRole="ExecutableProgram" ToRole="ExecutableProgramType" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItems_ExecutablePrograms" FromRole="ExecutableProgram" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="ExecutableProgramType">
     <Key>
@@ -490,6 +418,11 @@
     <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_ExecutableProgramType_Company" FromRole="ExecutableProgramType" ToRole="Company" />
     <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramTypes" FromRole="ExecutableProgramType" ToRole="ExecutableProgram" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="MenuItem">
     <Key>
@@ -517,6 +450,11 @@
     <NavigationProperty Name="MenuItemCode" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemCode" FromRole="MenuItem" ToRole="MenuItemCode" />
     <NavigationProperty Name="MenuItemType" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemType" FromRole="MenuItem" ToRole="MenuItemType" />
     <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_MenuItem" FromRole="MenuItem" ToRole="MenuSecurity" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <Association Name="FK_ExecutableProgram_Company">
     <End Type="MenuSecurityModel.Company" Role="Company" Multiplicity="1" />
@@ -677,6 +615,11 @@
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UserSecurity_Company" FromRole="SystemUserSecurity" ToRole="Company" />
     <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurity" ToRole="SecurityGroup" />
     <NavigationProperty Name="SystemUser" Relationship="MenuSecurityModel.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurity" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <Association Name="FK_UserSecurity_Company">
     <End Type="MenuSecurityModel.Company" Role="Company" Multiplicity="1" />
@@ -713,6 +656,83 @@
       </Principal>
       <Dependent Role="SystemUserSecurity">
         <PropertyRef Name="SystemUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UdList">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="UdListID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UdListID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Boolean" Name="IsSelected" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
+    <NavigationProperty Name="UdListItems" Relationship="MenuSecurityModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+  </EntityType>
+  <Association Name="FK_UdList_Company">
+    <End Type="MenuSecurityModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="MenuSecurityModel.UdList" Role="UdList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UdList">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UdListItem">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="UdListID" />
+      <PropertyRef Name="UdListItemID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UdListID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UdListItemID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Boolean" Name="IsSelected" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
+    <NavigationProperty Name="UdList" Relationship="MenuSecurityModel.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+  </EntityType>
+  <Association Name="FK_UdListItem_Company">
+    <End Type="MenuSecurityModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="MenuSecurityModel.UdListItem" Role="UdListItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UdListItem">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UdListItem_UdList">
+    <End Type="MenuSecurityModel.UdList" Role="UdList" Multiplicity="1" />
+    <End Type="MenuSecurityModel.UdListItem" Role="UdListItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UdList">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
+      </Principal>
+      <Dependent Role="UdListItem">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

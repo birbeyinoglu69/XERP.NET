@@ -1,5 +1,3 @@
-C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.StartUp.exe
-C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.StartUp.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\Views\StartUpView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\MainWindow.g.cs
@@ -8,6 +6,8 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\App.g.
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp_MarkupCompile.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp_MarkupCompile.lref
+C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.StartUp.exe
+C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.StartUp.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\App.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\MainWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp.g.resources

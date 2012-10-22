@@ -32,22 +32,24 @@ namespace XERP.Domain.SystemUserDomain
         private Uri _rootUri;
         private SystemUserEntities _repositoryContext;
 
-        public IEnumerable<Address> GetAddresses()
+        public IEnumerable<Address> GetAddresses(string companyID)
         {
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.Addresses
+                               where q.CompanyID == companyID
                              select q);
             return queryResult;
         }
 
-        public IEnumerable<Address> GetAddresses(Address addressQuerryObject)
+        public IEnumerable<Address> GetAddresses(Address addressQuerryObject, string companyID)
         {
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.Addresses
+                              where q.CompanyID == companyID
                              select q;
             
             if  (!string.IsNullOrEmpty(addressQuerryObject.Name))
@@ -116,13 +118,14 @@ namespace XERP.Domain.SystemUserDomain
             return queryResult;
         }
 
-        public IEnumerable<Address> GetAddressByID(string addressID)
+        public IEnumerable<Address> GetAddressByID(string addressID, string companyID)
         {
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.Addresses
-                          where q.AddressID == addressID
+                          where q.AddressID == addressID &&
+                                q.CompanyID == companyID
                           select q);
             
             return queryResult;
@@ -161,7 +164,7 @@ namespace XERP.Domain.SystemUserDomain
             _repositoryContext.AddToAddresses(address);
         }
 
-        public void DeleteFromRepository(Address address)
+        public void DeleteFromRepository(Address address, string companyID)
         {
             if (_repositoryContext.GetEntityDescriptor(address) != null)
             {
@@ -170,7 +173,8 @@ namespace XERP.Domain.SystemUserDomain
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
                 Address deletedAddress = (from q in context.Addresses
-                                          where q.AddressID == address.AddressID
+                                          where q.AddressID == address.AddressID &&
+                                           q.CompanyID == companyID
                                           select q).SingleOrDefault();
                 if (deletedAddress != null)
                 {

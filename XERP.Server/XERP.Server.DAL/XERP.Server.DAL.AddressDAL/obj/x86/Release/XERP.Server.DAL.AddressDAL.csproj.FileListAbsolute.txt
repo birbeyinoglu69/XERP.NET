@@ -1,0 +1,6 @@
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.AddressDAL.dll.config
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.AddressDAL.dll
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.AddressDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.AddressDAL\obj\x86\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.AddressDAL\obj\x86\Release\XERP.Server.DAL.AddressDAL.dll
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.AddressDAL\obj\x86\Release\XERP.Server.DAL.AddressDAL.pdb

@@ -11,6 +11,8 @@
     <EntitySet Name="SystemUserSecurities" EntityType="XERP.LogIn.DAL.LogInDAL.Store.SystemUserSecurities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemUserTypes" EntityType="XERP.LogIn.DAL.LogInDAL.Store.SystemUserTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Temp" EntityType="XERP.LogIn.DAL.LogInDAL.Store.Temp" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UdListItems" EntityType="XERP.LogIn.DAL.LogInDAL.Store.UdListItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UdLists" EntityType="XERP.LogIn.DAL.LogInDAL.Store.UdLists" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ExecutableProgram_Company" Association="XERP.LogIn.DAL.LogInDAL.Store.FK_ExecutableProgram_Company">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="ExecutablePrograms" EntitySet="ExecutablePrograms" />
@@ -46,6 +48,18 @@
     <AssociationSet Name="FK_SystemUser_SystemUserType" Association="XERP.LogIn.DAL.LogInDAL.Store.FK_SystemUser_SystemUserType">
       <End Role="SystemUserTypes" EntitySet="SystemUserTypes" />
       <End Role="SystemUsers" EntitySet="SystemUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdList_Company" Association="XERP.LogIn.DAL.LogInDAL.Store.FK_UdList_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="UdLists" EntitySet="UdLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdListItem_Company" Association="XERP.LogIn.DAL.LogInDAL.Store.FK_UdListItem_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="UdListItems" EntitySet="UdListItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdListItem_UdList" Association="XERP.LogIn.DAL.LogInDAL.Store.FK_UdListItem_UdList">
+      <End Role="UdLists" EntitySet="UdLists" />
+      <End Role="UdListItems" EntitySet="UdListItems" />
     </AssociationSet>
     <AssociationSet Name="FK_UserSecurity_Company" Association="XERP.LogIn.DAL.LogInDAL.Store.FK_UserSecurity_Company">
       <End Role="Companies" EntitySet="Companies" />
@@ -88,6 +102,11 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="ExecutablePrograms">
     <Key>
@@ -104,6 +123,11 @@
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ExecutableProgramTypeID" Type="nvarchar" MaxLength="20" />
     <Property Name="ExecutableProgramCodeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="MenuItems">
     <Key>
@@ -125,6 +149,11 @@
     <Property Name="HideMenu" Type="bit" />
     <Property Name="AllowAll" Type="bit" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="MenuSecurities">
     <Key>
@@ -136,6 +165,11 @@
     <Property Name="MenuItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SecurityGroups">
     <Key>
@@ -151,6 +185,11 @@
     <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
     <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUserCodes">
     <Key>
@@ -160,6 +199,11 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUsers">
     <Key>
@@ -180,6 +224,11 @@
     <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
     <Property Name="Image" Type="image" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUserSecurities">
     <Key>
@@ -191,6 +240,11 @@
     <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUserTypes">
     <Key>
@@ -200,6 +254,11 @@
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -211,6 +270,41 @@
     <Property Name="ShortChar_1" Type="nvarchar" MaxLength="20" />
     <Property Name="Int_1" Type="int" />
     <Property Name="Decimal_1" Type="decimal" Precision="12" Scale="5" />
+  </EntityType>
+  <EntityType Name="UdListItems">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="UdListID" />
+      <PropertyRef Name="UdListItemID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="UdListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsSelected" Type="bit" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UdLists">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="UdListID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsSelected" Type="bit" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <Association Name="FK_ExecutableProgram_Company">
     <End Role="Companies" Type="XERP.LogIn.DAL.LogInDAL.Store.Companies" Multiplicity="1" />
@@ -326,6 +420,46 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UdList_Company">
+    <End Role="Companies" Type="XERP.LogIn.DAL.LogInDAL.Store.Companies" Multiplicity="1" />
+    <End Role="UdLists" Type="XERP.LogIn.DAL.LogInDAL.Store.UdLists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UdLists">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UdListItem_Company">
+    <End Role="Companies" Type="XERP.LogIn.DAL.LogInDAL.Store.Companies" Multiplicity="1" />
+    <End Role="UdListItems" Type="XERP.LogIn.DAL.LogInDAL.Store.UdListItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UdListItems">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UdListItem_UdList">
+    <End Role="UdLists" Type="XERP.LogIn.DAL.LogInDAL.Store.UdLists" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UdListItems" Type="XERP.LogIn.DAL.LogInDAL.Store.UdListItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UdLists">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
+      </Principal>
+      <Dependent Role="UdListItems">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserSecurity_Company">
     <End Role="Companies" Type="XERP.LogIn.DAL.LogInDAL.Store.Companies" Multiplicity="1" />
     <End Role="SystemUserSecurities" Type="XERP.LogIn.DAL.LogInDAL.Store.SystemUserSecurities" Multiplicity="*" />
@@ -339,7 +473,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserSecurity_SecurityGroup">
-    <End Role="SecurityGroups" Type="XERP.LogIn.DAL.LogInDAL.Store.SecurityGroups" Multiplicity="1" />
+    <End Role="SecurityGroups" Type="XERP.LogIn.DAL.LogInDAL.Store.SecurityGroups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SystemUserSecurities" Type="XERP.LogIn.DAL.LogInDAL.Store.SystemUserSecurities" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SecurityGroups">
@@ -353,7 +489,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserSecurity_SystemUser">
-    <End Role="SystemUsers" Type="XERP.LogIn.DAL.LogInDAL.Store.SystemUsers" Multiplicity="1" />
+    <End Role="SystemUsers" Type="XERP.LogIn.DAL.LogInDAL.Store.SystemUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SystemUserSecurities" Type="XERP.LogIn.DAL.LogInDAL.Store.SystemUserSecurities" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SystemUsers">

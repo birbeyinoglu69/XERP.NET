@@ -31,11 +31,11 @@
       <End Role="Addresses" EntitySet="Addresses" />
       <End Role="SystemUsers" EntitySet="SystemUsers" />
     </AssociationSet>
-    <AssociationSet Name="FK_UDList_Company" Association="XERPModel.Store.FK_UDList_Company">
+    <AssociationSet Name="FK_UdList_Company" Association="XERPModel.Store.FK_UdList_Company">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="UdLists" EntitySet="UdLists" />
     </AssociationSet>
-    <AssociationSet Name="FK_UDListItem_Company" Association="XERPModel.Store.FK_UDListItem_Company">
+    <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.Store.FK_UdListItem_Company">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="UdListItems" EntitySet="UdListItems" />
     </AssociationSet>
@@ -79,6 +79,11 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Companies">
     <Key>
@@ -108,6 +113,11 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SecurityGroups">
     <Key>
@@ -123,6 +133,11 @@
     <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
     <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUserCodes">
     <Key>
@@ -132,6 +147,11 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUsers">
     <Key>
@@ -152,6 +172,11 @@
     <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
     <Property Name="Image" Type="image" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUserSecurities">
     <Key>
@@ -163,6 +188,11 @@
     <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUserTypes">
     <Key>
@@ -172,6 +202,11 @@
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -188,13 +223,19 @@
     <Key>
       <PropertyRef Name="CompanyID" />
       <PropertyRef Name="UdListID" />
-      <PropertyRef Name="UDListItemID" />
+      <PropertyRef Name="UdListItemID" />
     </Key>
     <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="UDListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="UdListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsSelected" Type="bit" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="UdLists">
     <Key>
@@ -206,6 +247,12 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsSelected" Type="bit" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <Association Name="FK_Addresses_Companies">
     <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
@@ -269,7 +316,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UDList_Company">
+  <Association Name="FK_UdList_Company">
     <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
     <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="*" />
     <ReferentialConstraint>
@@ -281,7 +328,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UDListItem_Company">
+  <Association Name="FK_UdListItem_Company">
     <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
     <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
     <ReferentialConstraint>
@@ -294,7 +341,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UdListItem_UdList">
-    <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="1" />
+    <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UdLists">
@@ -320,7 +369,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserSecurity_SecurityGroup">
-    <End Role="SecurityGroups" Type="XERPModel.Store.SecurityGroups" Multiplicity="1" />
+    <End Role="SecurityGroups" Type="XERPModel.Store.SecurityGroups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SystemUserSecurities" Type="XERPModel.Store.SystemUserSecurities" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SecurityGroups">
@@ -334,7 +385,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserSecurity_SystemUser">
-    <End Role="SystemUsers" Type="XERPModel.Store.SystemUsers" Multiplicity="1" />
+    <End Role="SystemUsers" Type="XERPModel.Store.SystemUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SystemUserSecurities" Type="XERPModel.Store.SystemUserSecurities" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SystemUsers">

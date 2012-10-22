@@ -1,0 +1,413 @@
+﻿<UserControl x:Class="XERP.Client.WPF.UdListMaintenance.Views.MainMaintenanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helper="clr-namespace:XERP.Client.WPF.Helpers;assembly=XERP.Client.WPF"
+             xmlns:v="clr-namespace:XERP.Client.WPF.UdListMaintenance.Views;assembly=XERP.Client.WPF.UdListMaintenance"
+             mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             d:DesignHeight="600" d:DesignWidth="600"
+             IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
+             PreviewKeyUp="UserControl_PreviewKeyUp">
+    <Grid Style="{StaticResource BaseGrid}">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="50"></RowDefinition>
+          <RowDefinition Height="550*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="156"></ColumnDefinition>
+          <ColumnDefinition Width="422*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource BaseHeader}"
+            HorizontalAlignment="Left" Grid.Column="1" Text="UdList Maintenance Form"
+            FontSize="13" Margin="138,10,0,5" >
+        </TextBlock>
+        <StackPanel Style="{StaticResource BaseStackPanel}"
+            Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
+            HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Menu Style="{StaticResource BaseMenu}"
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
+                        <MenuItem Style="{StaticResource BaseMenuItem}" Name="mnuNewUdList" 
+                                  Header="_New UdList" IsEnabled="{Binding AllowNew}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="NewUdListCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </MenuItem>
+                        <MenuItem Style="{StaticResource BaseMenuItem}" Name="mnuNewUdItemList" 
+                                  Header="_New UdItemList" IsEnabled="{Binding AllowNewItem}"
+                                  Click="NewUdListItem_Click">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="NewUdListItemCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}"  Header="_Save" Name="mnuSave"
+                              Click="WiggleToGhostField" IsEnabled="{Binding AllowCommit}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="SaveCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete" >
+                        <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete UdList" 
+                                  IsEnabled="{Binding AllowDelete}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="DeleteCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </MenuItem>
+                        <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete UdListItem" 
+                                  IsEnabled="{Binding AllowDeleteItem}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="DeleteItemCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Exit" 
+                              Command="Close"/>
+                </MenuItem>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Edit">
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Clear">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="ClearCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Refresh">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="RefreshCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Cut" 
+                              Command="Cut"/>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Copy" 
+                              Command="Copy"/>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Paste" 
+                              Command="Paste"/>
+                </MenuItem>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Tools"/>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Actions"/>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Help"/>        
+            </Menu>
+            <Menu  Style="{StaticResource BaseMenu}"
+                IsMainMenu="True"  Width="270" Height="30" KeyboardNavigation.IsTabStop="False" 
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}">
+            <MenuItem Style="{StaticResource AddNewMenuItem}" Padding="0" >
+                <MenuItem Header="_New UdList" 
+                          IsEnabled="{Binding AllowNew}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="NewUdListCommand"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                    <MenuItem Header="_New UdListItem" 
+                          IsEnabled="{Binding AllowNewItem}"
+                              Click="NewUdListItem_Click">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="NewUdListItemCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}"
+                Click="WiggleToGhostField" IsEnabled="{Binding AllowCommit}">
+                <MenuItem.Header>
+                        <Button Style="{StaticResource SaveButton}" Click="WiggleToGhostField">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="SaveCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource DeleteMenuItem}" Padding="0">
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete UdList" 
+                          IsEnabled="{Binding AllowDelete}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction
+                            TargetObject="{Binding}"
+                            MethodName="DeleteCommand"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete UdListItem" 
+                        IsEnabled="{Binding AllowDeleteItem}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="DeleteItemCommand"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                </MenuItem>
+                <MenuItem Style="{StaticResource BaseMenuItem}">
+                    <MenuItem.Header>
+                        <Button Style="{StaticResource ClearButton}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="ClearCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}">
+                <MenuItem.Header>
+                    <Button Style="{StaticResource RefreshButton}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="RefreshCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}" >
+                <MenuItem.Header>
+                    <Button Style="{StaticResource CutButton}" Command="Cut"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}">
+                <MenuItem.Header>
+                    <Button Style="{StaticResource CopyButton}" Command="Copy"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem  Style="{StaticResource BaseMenuItem}">
+                <MenuItem.Header>
+                    <Button Style="{StaticResource PasteButton}" Command="Paste"/>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        </StackPanel>
+        <GridSplitter Style="{StaticResource BaseVerticalGridSplitter}" Grid.Row="1" Grid.Column="0"/>
+        <helper:ExtendedTreeView Name="tvMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"
+            ItemsSource="{Binding UdListList}" Grid.Row="1"
+            SelectedItem_="{Binding Path=SelectedTreeItem, Mode=TwoWay}" SelectedItemChanged="tvMain_SelectedItemChanged">
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsSelected"                     
+                            Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                </Style>
+            </TreeView.Resources>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=UdListItems}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                        <Image
+                           Height="16" Width="16">
+                            <Image.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
+                                            <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsValid}" Value="True">
+                                            <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsValid}" Value="False">
+                                            <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <TextBlock Text="{Binding Path=UdListID}" 
+                                   ></TextBlock>
+                        <TextBlock Width="0"
+                            Text="{Binding Path=IsValid}" Visibility="Hidden"></TextBlock>
+                    </StackPanel>
+                        <TextBlock Style="{StaticResource BaseErrorBlock}" Height="Auto"
+                                       Text="{Binding Path = NotValidMessage}"/>
+                    </StackPanel>
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image
+                                    Height="16" Width="16" >
+                                        <Image.Style>
+                                            <Style>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
+                                                        <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="True">
+                                                        <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="False">
+                                                        <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <TextBlock Text="{Binding Path=UdListItemID}"
+                                           ></TextBlock>
+                                    <TextBlock Width="0" 
+                                    Text="{Binding Path=IsValid}" Visibility="Hidden"></TextBlock>
+                                </StackPanel>
+                                <TextBlock Style="{StaticResource BaseErrorBlock}" Height="Auto"
+                                       Text="{Binding Path = NotValidMessage}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </helper:ExtendedTreeView>
+        <TabControl Style="{StaticResource BaseTabControl}" Name="tabctrlMain" Grid.Column="1" Grid.Row="1">
+            <TabItem  Style="{StaticResource BaseTabItem}" Name="tabDetail" Header="Detail">
+                <Grid Style="{StaticResource BaseGrid}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="46"></RowDefinition>
+                        <RowDefinition Height="657*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="171"></ColumnDefinition>
+                        <ColumnDefinition Width="246*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="0" 
+                        Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" Orientation="Horizontal" >
+                        <Button Style="{StaticResource BaseButton}" Content="UdList..." Width="108" Height="25" Margin="10" 
+                            KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
+                          <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                              <ei:CallMethodAction
+                                      TargetObject="{Binding}"
+                                      MethodName="SearchCommand"/>
+                            </i:EventTrigger>
+                          </i:Interaction.Triggers>
+                        </Button>
+                        <TextBox Style="{StaticResource BaseTextBox}"  Width="251" Height="20" 
+                            Text="{Binding Path=SelectedUdList.UdListID, Mode=TwoWay}"
+                            MaxLength= "{Binding UdListMaxFieldValueDictionary[UdListID]}" 
+                            KeyboardNavigation.TabIndex="10" Name="txtKey" 
+                                 ></TextBox>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource BaseStackPanel}"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Name:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Description:
+                        </TextBlock>
+                        <TextBox Style="{StaticResource BaseTextBox}" 
+                            Width="0" Height="0"  Name="ghost"  KeyboardNavigation.IsTabStop="False"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource BaseStackPanel}"
+                        Grid.Row="1" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
+                            <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                Text="{Binding Path=SelectedUdList.Name, Mode=TwoWay, TargetNullValue=''}"
+                                IsEnabled="{Binding AllowEdit}"
+                                MaxLength= "{Binding UdListMaxFieldValueDictionary[Name]}" 
+                                KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedUdList.Description, Mode=TwoWay}"
+                            MaxLength= "{Binding UdListMaxFieldValueDictionary[Description]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Style="{StaticResource BaseTabItem}" Name="tabList" Header="List" 
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                KeyboardNavigation.IsTabStop="False">
+                <Grid Style="{StaticResource BaseGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="28*" />
+                        <ColumnDefinition Width="405*" />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Style="{StaticResource BaseDataGrid}" Name="dgMain" Grid.ColumnSpan="2" Grid.Column="2"
+                        ItemsSource="{Binding UdListList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedUdList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectionMode="Extended" Initialized="dgMain_Initialized" 
+                        PreviewKeyUp="dgMain_PreviewKeyUp" SelectionChanged="dgMain_SelectionChanged" 
+                        PreviewKeyDown="dgMain_PreviewKeyDown" AutoGenerateColumns="False" Margin="2">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu >
+                                <MenuItem Header="Copy Row/s" IsEnabled="{Binding AllowRowCopy}"
+                                      Command="Copy">
+                                </MenuItem>
+                                <MenuItem Name="dgMainPasteRow" Header="Paste Row/s" IsEnabled="{Binding AllowRowPaste}" Click="dgMainPasteRow_Click">
+                                </MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding UdListID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="ID" Width="*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="Name" Width="*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Description" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox Style="{StaticResource BaseTextBox}" Name="ghost2" Grid.Column="3" 
+                        Height="0" Width="0" KeyboardNavigation.IsTabStop="False" />
+                </Grid>
+            </TabItem>
+            <!--because the tab items viewmodel is a singleton i am not able to 
+            expose the class in the XAML so in some instances it will not display 
+            this is a known issue that I may resolve some day-->
+            <TabItem Style="{StaticResource BaseTabItem}" Name="tabItems" Header="Items" 
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                KeyboardNavigation.IsTabStop="False">
+                <my:UdListItemView 
+                xmlns:my="clr-namespace:XERP.Client.WPF.UdListMaintenance.Views"/>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+    
+</UserControl>

@@ -2,8 +2,6 @@
 <Schema Namespace="MenuSecurityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="MenuSecurityModelStoreContainer">
     <EntitySet Name="Companies" EntityType="MenuSecurityModel.Store.Companies" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DalItems" EntityType="MenuSecurityModel.Store.DalItems" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DalSecurities" EntityType="MenuSecurityModel.Store.DalSecurities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DBStoredImages" EntityType="MenuSecurityModel.Store.DBStoredImages" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ExecutableProgramCodes" EntityType="MenuSecurityModel.Store.ExecutableProgramCodes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ExecutablePrograms" EntityType="MenuSecurityModel.Store.ExecutablePrograms" store:Type="Tables" Schema="dbo" />
@@ -17,22 +15,7 @@
     <EntitySet Name="SystemUserSecurities" EntityType="MenuSecurityModel.Store.SystemUserSecurities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Temp" EntityType="MenuSecurityModel.Store.Temp" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UdListItems" EntityType="MenuSecurityModel.Store.UdListItems" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_DalItem_Company" Association="MenuSecurityModel.Store.FK_DalItem_Company">
-      <End Role="Companies" EntitySet="Companies" />
-      <End Role="DalItems" EntitySet="DalItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DalSecurity_Company" Association="MenuSecurityModel.Store.FK_DalSecurity_Company">
-      <End Role="Companies" EntitySet="Companies" />
-      <End Role="DalSecurities" EntitySet="DalSecurities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DalSecurity_DalItem" Association="MenuSecurityModel.Store.FK_DalSecurity_DalItem">
-      <End Role="DalItems" EntitySet="DalItems" />
-      <End Role="DalSecurities" EntitySet="DalSecurities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DalSecurity_SecurityGroup" Association="MenuSecurityModel.Store.FK_DalSecurity_SecurityGroup">
-      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-      <End Role="DalSecurities" EntitySet="DalSecurities" />
-    </AssociationSet>
+    <EntitySet Name="UdLists" EntityType="MenuSecurityModel.Store.UdLists" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ExecutableProgram_Company" Association="MenuSecurityModel.Store.FK_ExecutableProgram_Company">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="ExecutablePrograms" EntitySet="ExecutablePrograms" />
@@ -101,8 +84,16 @@
       <End Role="Companies" EntitySet="Companies" />
       <End Role="SecurityGroups" EntitySet="SecurityGroups" />
     </AssociationSet>
-    <AssociationSet Name="FK_UDListItem_Company" Association="MenuSecurityModel.Store.FK_UDListItem_Company">
+    <AssociationSet Name="FK_UdList_Company" Association="MenuSecurityModel.Store.FK_UdList_Company">
       <End Role="Companies" EntitySet="Companies" />
+      <End Role="UdLists" EntitySet="UdLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdListItem_Company" Association="MenuSecurityModel.Store.FK_UdListItem_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="UdListItems" EntitySet="UdListItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdListItem_UdList" Association="MenuSecurityModel.Store.FK_UdListItem_UdList">
+      <End Role="UdLists" EntitySet="UdLists" />
       <End Role="UdListItems" EntitySet="UdListItems" />
     </AssociationSet>
     <AssociationSet Name="FK_UserSecurity_Company" Association="MenuSecurityModel.Store.FK_UserSecurity_Company">
@@ -146,30 +137,11 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-  </EntityType>
-  <EntityType Name="DalItems">
-    <Key>
-      <PropertyRef Name="CompanyID" />
-      <PropertyRef Name="DalItemID" />
-    </Key>
-    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="DalItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar" MaxLength="100" />
-    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-  </EntityType>
-  <EntityType Name="DalSecurities">
-    <Key>
-      <PropertyRef Name="CompanyID" />
-      <PropertyRef Name="DalItemID" />
-      <PropertyRef Name="SecurityGroupID" />
-      <PropertyRef Name="CRUDType" />
-    </Key>
-    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="DalItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="CRUDType" Type="nvarchar" Nullable="false" MaxLength="1" />
-    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="DBStoredImages">
     <Key>
@@ -182,6 +154,11 @@
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="Notes" Type="nvarchar" MaxLength="200" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="ExecutableProgramCodes">
     <Key>
@@ -193,6 +170,11 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="ExecutablePrograms">
     <Key>
@@ -209,6 +191,11 @@
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ExecutableProgramTypeID" Type="nvarchar" MaxLength="20" />
     <Property Name="ExecutableProgramCodeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="ExecutableProgramTypes">
     <Key>
@@ -220,6 +207,11 @@
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="MenuItemCodes">
     <Key>
@@ -231,6 +223,11 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="MenuItems">
     <Key>
@@ -252,6 +249,11 @@
     <Property Name="HideMenu" Type="bit" />
     <Property Name="AllowAll" Type="bit" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="MenuItemTypes">
     <Key>
@@ -263,6 +265,11 @@
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="MenuSecurities">
     <Key>
@@ -274,6 +281,11 @@
     <Property Name="MenuItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SecurityGroups">
     <Key>
@@ -289,6 +301,11 @@
     <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
     <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUsers">
     <Key>
@@ -309,6 +326,11 @@
     <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
     <Property Name="Image" Type="image" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="SystemUserSecurities">
     <Key>
@@ -320,6 +342,11 @@
     <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -336,66 +363,37 @@
     <Key>
       <PropertyRef Name="CompanyID" />
       <PropertyRef Name="UdListID" />
-      <PropertyRef Name="UDListItemID" />
+      <PropertyRef Name="UdListItemID" />
     </Key>
     <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="UDListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="UdListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsSelected" Type="bit" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
   </EntityType>
-  <Association Name="FK_DalItem_Company">
-    <End Role="Companies" Type="MenuSecurityModel.Store.Companies" Multiplicity="1" />
-    <End Role="DalItems" Type="MenuSecurityModel.Store.DalItems" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="CompanyID" />
-      </Principal>
-      <Dependent Role="DalItems">
-        <PropertyRef Name="CompanyID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DalSecurity_Company">
-    <End Role="Companies" Type="MenuSecurityModel.Store.Companies" Multiplicity="1" />
-    <End Role="DalSecurities" Type="MenuSecurityModel.Store.DalSecurities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="CompanyID" />
-      </Principal>
-      <Dependent Role="DalSecurities">
-        <PropertyRef Name="CompanyID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DalSecurity_DalItem">
-    <End Role="DalItems" Type="MenuSecurityModel.Store.DalItems" Multiplicity="1" />
-    <End Role="DalSecurities" Type="MenuSecurityModel.Store.DalSecurities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DalItems">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="DalItemID" />
-      </Principal>
-      <Dependent Role="DalSecurities">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="DalItemID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DalSecurity_SecurityGroup">
-    <End Role="SecurityGroups" Type="MenuSecurityModel.Store.SecurityGroups" Multiplicity="1" />
-    <End Role="DalSecurities" Type="MenuSecurityModel.Store.DalSecurities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SecurityGroups">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="SecurityGroupID" />
-      </Principal>
-      <Dependent Role="DalSecurities">
-        <PropertyRef Name="CompanyID" />
-        <PropertyRef Name="SecurityGroupID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="UdLists">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="UdListID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsSelected" Type="bit" />
+    <Property Name="IsExpanded" Type="bit" />
+    <Property Name="IsValid" Type="bit" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
+  </EntityType>
   <Association Name="FK_ExecutableProgram_Company">
     <End Role="Companies" Type="MenuSecurityModel.Store.Companies" Multiplicity="1" />
     <End Role="ExecutablePrograms" Type="MenuSecurityModel.Store.ExecutablePrograms" Multiplicity="*" />
@@ -616,7 +614,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UDListItem_Company">
+  <Association Name="FK_UdList_Company">
+    <End Role="Companies" Type="MenuSecurityModel.Store.Companies" Multiplicity="1" />
+    <End Role="UdLists" Type="MenuSecurityModel.Store.UdLists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UdLists">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UdListItem_Company">
     <End Role="Companies" Type="MenuSecurityModel.Store.Companies" Multiplicity="1" />
     <End Role="UdListItems" Type="MenuSecurityModel.Store.UdListItems" Multiplicity="*" />
     <ReferentialConstraint>
@@ -625,6 +635,22 @@
       </Principal>
       <Dependent Role="UdListItems">
         <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UdListItem_UdList">
+    <End Role="UdLists" Type="MenuSecurityModel.Store.UdLists" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UdListItems" Type="MenuSecurityModel.Store.UdListItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UdLists">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
+      </Principal>
+      <Dependent Role="UdListItems">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -641,7 +667,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserSecurity_SecurityGroup">
-    <End Role="SecurityGroups" Type="MenuSecurityModel.Store.SecurityGroups" Multiplicity="1" />
+    <End Role="SecurityGroups" Type="MenuSecurityModel.Store.SecurityGroups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SystemUserSecurities" Type="MenuSecurityModel.Store.SystemUserSecurities" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SecurityGroups">
@@ -655,7 +683,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserSecurity_SystemUser">
-    <End Role="SystemUsers" Type="MenuSecurityModel.Store.SystemUsers" Multiplicity="1" />
+    <End Role="SystemUsers" Type="MenuSecurityModel.Store.SystemUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SystemUserSecurities" Type="MenuSecurityModel.Store.SystemUserSecurities" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SystemUsers">

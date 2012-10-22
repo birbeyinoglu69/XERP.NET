@@ -59,6 +59,20 @@
       <End Role="MenuItem" EntitySet="MenuItems" />
       <End Role="MenuSecurity" EntitySet="MenuSecurities" />
     </AssociationSet>
+    <EntitySet Name="UdListItems" EntityType="XERP.LogIn.DAL.LogInDAL.UdListItem" />
+    <EntitySet Name="UdLists" EntityType="XERP.LogIn.DAL.LogInDAL.UdList" />
+    <AssociationSet Name="FK_UdList_Company" Association="XERP.LogIn.DAL.LogInDAL.FK_UdList_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="UdList" EntitySet="UdLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdListItem_Company" Association="XERP.LogIn.DAL.LogInDAL.FK_UdListItem_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="UdListItem" EntitySet="UdListItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UdListItem_UdList" Association="XERP.LogIn.DAL.LogInDAL.FK_UdListItem_UdList">
+      <End Role="UdList" EntitySet="UdLists" />
+      <End Role="UdListItem" EntitySet="UdListItems" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Company">
     <Key>
@@ -93,6 +107,13 @@
     <NavigationProperty Name="MenuSecurities" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuSecurity_Company" FromRole="Company" ToRole="MenuSecurity" />
     <NavigationProperty Name="ExecutablePrograms" Relationship="XERP.LogIn.DAL.LogInDAL.FK_ExecutableProgram_Company" FromRole="Company" ToRole="ExecutableProgram" />
     <NavigationProperty Name="MenuItems" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuItem_Company" FromRole="Company" ToRole="MenuItem" />
+    <NavigationProperty Name="UdLists" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
+    <NavigationProperty Name="UdListItems" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="SecurityGroup">
     <Key>
@@ -111,6 +132,11 @@
     <NavigationProperty Name="Company" Relationship="XERP.LogIn.DAL.LogInDAL.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="SystemUserSecurities" />
     <NavigationProperty Name="MenuSecurities" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="MenuSecurity" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="SystemUserCode">
     <Key>
@@ -121,6 +147,11 @@
     <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="SystemUsers" Relationship="XERP.LogIn.DAL.LogInDAL.FK_SystemUser_SystemUserCode" FromRole="SystemUserCode" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="SystemUserSecurity">
     <Key>
@@ -135,6 +166,11 @@
     <NavigationProperty Name="Company" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UserSecurity_Company" FromRole="SystemUserSecurities" ToRole="Companies" />
     <NavigationProperty Name="SecurityGroup" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurities" ToRole="SecurityGroups" />
     <NavigationProperty Name="SystemUser" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurity" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="SystemUserType">
     <Key>
@@ -145,6 +181,11 @@
     <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="SystemUsers" Relationship="XERP.LogIn.DAL.LogInDAL.FK_SystemUser_SystemUserType" FromRole="SystemUserType" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -217,6 +258,11 @@
     <NavigationProperty Name="SystemUserCode" Relationship="XERP.LogIn.DAL.LogInDAL.FK_SystemUser_SystemUserCode" FromRole="SystemUser" ToRole="SystemUserCode" />
     <NavigationProperty Name="SystemUserType" Relationship="XERP.LogIn.DAL.LogInDAL.FK_SystemUser_SystemUserType" FromRole="SystemUser" ToRole="SystemUserType" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <Association Name="FK_SystemUser_SystemUserCode">
     <End Type="XERP.LogIn.DAL.LogInDAL.SystemUserCode" Role="SystemUserCode" Multiplicity="0..1" />
@@ -267,6 +313,11 @@
     <NavigationProperty Name="Company" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuSecurity_Company" FromRole="MenuSecurity" ToRole="Company" />
     <NavigationProperty Name="SecurityGroup" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuSecurity_SecurityGroup" FromRole="MenuSecurity" ToRole="SecurityGroup" />
     <NavigationProperty Name="MenuItem" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuSecurity_MenuItem" FromRole="MenuSecurity" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <Association Name="FK_MenuSecurity_Company">
     <End Type="XERP.LogIn.DAL.LogInDAL.Company" Role="Company" Multiplicity="1" />
@@ -311,6 +362,11 @@
     <Property Type="String" Name="ExecutableProgramCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Company" Relationship="XERP.LogIn.DAL.LogInDAL.FK_ExecutableProgram_Company" FromRole="ExecutableProgram" ToRole="Company" />
     <NavigationProperty Name="MenuItems" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuItems_ExecutablePrograms" FromRole="ExecutableProgram" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <EntityType Name="MenuItem">
     <Key>
@@ -335,6 +391,11 @@
     <NavigationProperty Name="Company" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuItem_Company" FromRole="MenuItem" ToRole="Company" />
     <NavigationProperty Name="ExecutableProgram" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuItems_ExecutablePrograms" FromRole="MenuItem" ToRole="ExecutableProgram" />
     <NavigationProperty Name="MenuSecurities" Relationship="XERP.LogIn.DAL.LogInDAL.FK_MenuSecurity_MenuItem" FromRole="MenuItem" ToRole="MenuSecurity" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
   </EntityType>
   <Association Name="FK_ExecutableProgram_Company">
     <End Type="XERP.LogIn.DAL.LogInDAL.Company" Role="Company" Multiplicity="1" />
@@ -385,6 +446,83 @@
       <Dependent Role="MenuSecurity">
         <PropertyRef Name="CompanyID" />
         <PropertyRef Name="MenuItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UdListItem">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="UdListID" />
+      <PropertyRef Name="UdListItemID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UdListID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UdListItemID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Boolean" Name="IsSelected" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <NavigationProperty Name="Company" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
+    <NavigationProperty Name="UdList" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+  </EntityType>
+  <EntityType Name="UdList">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="UdListID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UdListID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Boolean" Name="IsSelected" />
+    <Property Type="Boolean" Name="IsExpanded" />
+    <NavigationProperty Name="Company" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
+    <NavigationProperty Name="UdListItems" Relationship="XERP.LogIn.DAL.LogInDAL.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
+    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+  </EntityType>
+  <Association Name="FK_UdList_Company">
+    <End Type="XERP.LogIn.DAL.LogInDAL.Company" Role="Company" Multiplicity="1" />
+    <End Type="XERP.LogIn.DAL.LogInDAL.UdList" Role="UdList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UdList">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UdListItem_Company">
+    <End Type="XERP.LogIn.DAL.LogInDAL.Company" Role="Company" Multiplicity="1" />
+    <End Type="XERP.LogIn.DAL.LogInDAL.UdListItem" Role="UdListItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="UdListItem">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UdListItem_UdList">
+    <End Type="XERP.LogIn.DAL.LogInDAL.UdList" Role="UdList" Multiplicity="1" />
+    <End Type="XERP.LogIn.DAL.LogInDAL.UdListItem" Role="UdListItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UdList">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
+      </Principal>
+      <Dependent Role="UdListItem">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="UdListID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

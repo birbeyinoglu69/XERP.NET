@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="XERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="XERPModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="XERPModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Temp" EntityType="XERPModel.Store.Temp" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UdListItems" EntityType="XERPModel.Store.UdListItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UdLists" EntityType="XERPModel.Store.UdLists" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.Store.FK_UdList_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdLists" EntitySet="UdLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.Store.FK_UdListItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.Store.FK_UdListItem_UdList">
+            <End Role="UdLists" EntitySet="UdLists" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CompanyTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="CompanyCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="StateTaxCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="TaxRegionCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="CurrentFiscalYear" Type="int" />
+          <Property Name="DefaultExecutablePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum2" Type="nvarchar" MaxLength="20" />
+          <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Bool_1" Type="bit" />
+          <Property Name="ShortChar_1" Type="nvarchar" MaxLength="20" />
+          <Property Name="Int_1" Type="int" />
+          <Property Name="Decimal_1" Type="decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <EntityType Name="UdListItems">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+            <PropertyRef Name="UdListItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UdLists">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_UdList_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_UdList">
+          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XERPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="UdListEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="XERPModel.Company" />
+          <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
+          <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
+          <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.FK_UdList_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdLists" EntitySet="UdLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.FK_UdListItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
+            <End Role="UdLists" EntitySet="UdLists" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CurrentFiscalYear" Type="Int32" />
+          <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Companies" ToRole="UdLists" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Companies" ToRole="UdListItems" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Bool_1" Type="Boolean" />
+          <Property Name="ShortChar_1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Int_1" Type="Int32" />
+          <Property Name="Decimal_1" Type="Decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <EntityType Name="UdListItem">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+            <PropertyRef Name="UdListItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListItemID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItems" ToRole="Companies" />
+          <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItems" ToRole="UdLists" />
+          <Property Type="Boolean" Name="IsSelected" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+        </EntityType>
+        <EntityType Name="UdList">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdLists" ToRole="Companies" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdLists" ToRole="UdListItems" />
+          <Property Type="Boolean" Name="IsSelected" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+        </EntityType>
+        <Association Name="FK_UdList_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_UdList">
+          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XERPModelStoreContainer" CdmEntityContainer="UdListEntities">
+          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="XERPModel.Company"><MappingFragment StoreEntitySet="Companies">
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+            <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+            <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+            <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+            <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+            <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="Address3" ColumnName="Address3" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Email2" ColumnName="Email2" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Temps"><EntityTypeMapping TypeName="XERPModel.Temp"><MappingFragment StoreEntitySet="Temp">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Bool_1" ColumnName="Bool_1" />
+            <ScalarProperty Name="ShortChar_1" ColumnName="ShortChar_1" />
+            <ScalarProperty Name="Int_1" ColumnName="Int_1" />
+            <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UdListItems"><EntityTypeMapping TypeName="XERPModel.UdListItem"><MappingFragment StoreEntitySet="UdListItems">
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+            <ScalarProperty Name="UdListItemID" ColumnName="UdListItemID" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UdLists"><EntityTypeMapping TypeName="XERPModel.UdList"><MappingFragment StoreEntitySet="UdLists">
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="UdList" ZoomLevel="71">
+        <EntityTypeShape EntityType="XERPModel.Company" Width="1.5" PointX="0.75" PointY="1.125" Height="5.2079475911458326" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Temp" Width="1.5" PointX="3.125" PointY="5.875" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="5.25" PointY="2.625" Height="2.0853483072916652" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="3" PointY="2.625" Height="2.0853483072916652" IsExpanded="true" />
+        <AssociationConnector Association="XERPModel.FK_UdList_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.6676741536458328" />
+          <ConnectorPoint PointX="3" PointY="3.6676741536458328" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.1989246536458324" />
+          <ConnectorPoint PointX="6" PointY="5.1989246536458324" />
+          <ConnectorPoint PointX="6" PointY="4.7103483072916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_UdList" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="3.6676741536458328" />
+          <ConnectorPoint PointX="5.25" PointY="3.6676741536458328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

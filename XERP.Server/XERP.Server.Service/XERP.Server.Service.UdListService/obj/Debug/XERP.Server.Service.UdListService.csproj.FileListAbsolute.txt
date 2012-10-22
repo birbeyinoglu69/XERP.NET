@@ -1,0 +1,11 @@
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.Service.UdListService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.Service.UdListService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.DAL.UdListDAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.DAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.DAL.UdListDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.DAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\obj\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\obj\Debug\XERP.Server.Service.UdListService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\obj\Debug\XERP.Server.Service.UdListService.pdb

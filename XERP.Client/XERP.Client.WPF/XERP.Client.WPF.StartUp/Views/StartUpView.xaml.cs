@@ -23,7 +23,7 @@ namespace XERP.Client.WPF.StartUp.Views
     {
         
         private ViewModelLocator _viewModelLocator = new ViewModelLocator();
-        private StartUpViewModel _model = new StartUpViewModel();
+        private StartUpViewModel _viewModel = new StartUpViewModel();
         private XERP.Client.WPF.LogIn.MainWindow _logInWindow;
         private XERP.Client.WPF.MainMenu.MainWindow _mainMenuWindow;
         private XERP.Client.WPF.StartUp.MainWindow _splashScreenWindow;
@@ -32,11 +32,11 @@ namespace XERP.Client.WPF.StartUp.Views
             try
             {
                 InitializeComponent();
-                _model = _viewModelLocator.StartUpViewModel;
-                DataContext = _model;
-                _model.ErrorNotice += OnErrorNotice;
-                _model.LogInNotice += OnLogInNotice;
-                _model.MainMenuNotice += OnMainMenuNotice;
+                _viewModel = _viewModelLocator.StartUpViewModel;
+                DataContext = _viewModel;
+                _viewModel.ErrorNotice += OnErrorNotice;
+                _viewModel.LogInNotice += OnLogInNotice;
+                _viewModel.MainMenuNotice += OnMainMenuNotice;
             }
             catch (Exception ex)
             {

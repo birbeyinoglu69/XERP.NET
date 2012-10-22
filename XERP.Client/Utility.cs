@@ -22,7 +22,8 @@ namespace XERP.Client
         MenuItemCodeSearchToken,
         ExecutableProgramSearchToken,
         ExecutableProgramTypeSearchToken,
-        ExecutableProgramCodeSearchToken
+        ExecutableProgramCodeSearchToken,
+        UdListSearchToken
     };
 
     public class Utility

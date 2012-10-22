@@ -33,11 +33,11 @@
             <End Role="Companies" EntitySet="Companies" />
             <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
           </AssociationSet>
-          <AssociationSet Name="FK_UDList_Company" Association="XERPModel.Store.FK_UDList_Company">
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.Store.FK_UdList_Company">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="UdLists" EntitySet="UdLists" />
           </AssociationSet>
-          <AssociationSet Name="FK_UDListItem_Company" Association="XERPModel.Store.FK_UDListItem_Company">
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.Store.FK_UdListItem_Company">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="UdListItems" EntitySet="UdListItems" />
           </AssociationSet>
@@ -74,6 +74,11 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Email2" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
         </EntityType>
         <EntityType Name="SecurityGroupCodes">
           <Key>
@@ -85,6 +90,11 @@
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
         </EntityType>
         <EntityType Name="SecurityGroups">
           <Key>
@@ -100,6 +110,11 @@
           <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
           <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
         </EntityType>
         <EntityType Name="SecurityGroupTypes">
           <Key>
@@ -111,6 +126,11 @@
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Temp">
           <Key>
@@ -127,13 +147,19 @@
           <Key>
             <PropertyRef Name="CompanyID" />
             <PropertyRef Name="UdListID" />
-            <PropertyRef Name="UDListItemID" />
+            <PropertyRef Name="UdListItemID" />
           </Key>
           <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
           <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="UDListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UdListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UdLists">
           <Key>
@@ -145,6 +171,12 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="bit" />
+          <Property Name="IsValid" Type="bit" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_SecurityGroup_Company">
           <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
@@ -212,7 +244,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UDList_Company">
+        <Association Name="FK_UdList_Company">
           <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
           <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,7 +256,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UDListItem_Company">
+        <Association Name="FK_UdListItem_Company">
           <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
           <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -237,7 +269,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UdListItem_UdList">
-          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="1" />
+          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UdLists">
@@ -260,8 +294,6 @@
           <EntitySet Name="SecurityGroups" EntityType="XERPModel.SecurityGroup" />
           <EntitySet Name="SecurityGroupTypes" EntityType="XERPModel.SecurityGroupType" />
           <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
-          <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
-          <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
           <AssociationSet Name="FK_SecurityGroup_Company" Association="XERPModel.FK_SecurityGroup_Company">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="SecurityGroups" EntitySet="SecurityGroups" />
@@ -274,14 +306,6 @@
             <End Role="Companies" EntitySet="Companies" />
             <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
           </AssociationSet>
-          <AssociationSet Name="FK_UDList_Company" Association="XERPModel.FK_UDList_Company">
-            <End Role="Companies" EntitySet="Companies" />
-            <End Role="UdLists" EntitySet="UdLists" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UDListItem_Company" Association="XERPModel.FK_UDListItem_Company">
-            <End Role="Companies" EntitySet="Companies" />
-            <End Role="UdListItems" EntitySet="UdListItems" />
-          </AssociationSet>
           <AssociationSet Name="FK_SecurityGroup_SecurityGroupCode" Association="XERPModel.FK_SecurityGroup_SecurityGroupCode">
             <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
             <End Role="SecurityGroups" EntitySet="SecurityGroups" />
@@ -290,9 +314,19 @@
             <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
             <End Role="SecurityGroups" EntitySet="SecurityGroups" />
           </AssociationSet>
+          <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
+          <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.FK_UdList_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="UdList" EntitySet="UdLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.FK_UdListItem_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="UdListItem" EntitySet="UdListItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
-            <End Role="UdLists" EntitySet="UdLists" />
-            <End Role="UdListItems" EntitySet="UdListItems" />
+            <End Role="UdList" EntitySet="UdLists" />
+            <End Role="UdListItem" EntitySet="UdListItems" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -326,8 +360,13 @@
           <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="Companies" ToRole="SecurityGroups" />
           <NavigationProperty Name="SecurityGroupCodes" Relationship="XERPModel.FK_SecurityGroupCode_Company" FromRole="Companies" ToRole="SecurityGroupCodes" />
           <NavigationProperty Name="SecurityGroupTypes" Relationship="XERPModel.FK_SecurityGroupType_Company" FromRole="Companies" ToRole="SecurityGroupTypes" />
-          <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UDList_Company" FromRole="Companies" ToRole="UdLists" />
-          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UDListItem_Company" FromRole="Companies" ToRole="UdListItems" />
+          <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
         </EntityType>
         <EntityType Name="SecurityGroupCode">
           <Key>
@@ -341,6 +380,11 @@
           <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroupCode_Company" FromRole="SecurityGroupCodes" ToRole="Companies" />
           <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupCode" FromRole="SecurityGroupCodes" ToRole="SecurityGroups" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
         </EntityType>
         <EntityType Name="SecurityGroup">
           <Key>
@@ -359,6 +403,11 @@
           <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
           <NavigationProperty Name="SecurityGroupCode" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupCode" FromRole="SecurityGroups" ToRole="SecurityGroupCodes" />
           <NavigationProperty Name="SecurityGroupType" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupType" FromRole="SecurityGroups" ToRole="SecurityGroupTypes" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
         </EntityType>
         <EntityType Name="SecurityGroupType">
           <Key>
@@ -372,6 +421,11 @@
           <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroupType_Company" FromRole="SecurityGroupTypes" ToRole="Companies" />
           <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupType" FromRole="SecurityGroupTypes" ToRole="SecurityGroups" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
         </EntityType>
         <EntityType Name="Temp">
           <Key>
@@ -383,33 +437,6 @@
           <Property Name="ShortChar_1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Int_1" Type="Int32" />
           <Property Name="Decimal_1" Type="Decimal" Precision="12" Scale="5" />
-        </EntityType>
-        <EntityType Name="UdListItem">
-          <Key>
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="UdListID" />
-            <PropertyRef Name="UDListItemID" />
-          </Key>
-          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="UDListItemID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UDListItem_Company" FromRole="UdListItems" ToRole="Companies" />
-          <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItems" ToRole="UdLists" />
-        </EntityType>
-        <EntityType Name="UdList">
-          <Key>
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="UdListID" />
-          </Key>
-          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UDList_Company" FromRole="UdLists" ToRole="Companies" />
-          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdLists" ToRole="UdListItems" />
         </EntityType>
         <Association Name="FK_SecurityGroup_Company">
           <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
@@ -447,30 +474,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UDList_Company">
-          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Companies">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="UdLists">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UDListItem_Company">
-          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Companies">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="UdListItems">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SecurityGroup_SecurityGroupCode">
           <End Role="SecurityGroupCodes" Type="XERPModel.SecurityGroupCode" Multiplicity="0..1" />
           <End Role="SecurityGroups" Type="XERPModel.SecurityGroup" Multiplicity="*" />
@@ -499,15 +502,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UdListItem_UdList">
-          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="1" />
-          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+        <EntityType Name="UdListItem">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+            <PropertyRef Name="UdListItemID" />
+          </Key>
+          <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UdListID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UdListItemID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsSelected" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
+          <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+        </EntityType>
+        <EntityType Name="UdList">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Key>
+          <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UdListID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsSelected" />
+          <Property Type="Boolean" Name="IsExpanded" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
+          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+        </EntityType>
+        <Association Name="FK_UdList_Company">
+          <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="XERPModel.UdList" Role="UdList" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UdLists">
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdList">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_Company">
+          <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="XERPModel.UdListItem" Role="UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdListItem">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_UdList">
+          <End Type="XERPModel.UdList" Role="UdList" Multiplicity="1" />
+          <End Type="XERPModel.UdListItem" Role="UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UdList">
               <PropertyRef Name="CompanyID" />
               <PropertyRef Name="UdListID" />
             </Principal>
-            <Dependent Role="UdListItems">
+            <Dependent Role="UdListItem">
               <PropertyRef Name="CompanyID" />
               <PropertyRef Name="UdListID" />
             </Dependent>
@@ -520,7 +586,12 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="XERPModelStoreContainer" CdmEntityContainer="SecurityGroupEntities">
           <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="XERPModel.Company"><MappingFragment StoreEntitySet="Companies">
-            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Description" ColumnName="Description" />
             <ScalarProperty Name="Notes" ColumnName="Notes" />
@@ -546,14 +617,24 @@
             <ScalarProperty Name="AutoID" ColumnName="AutoID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SecurityGroupCodes"><EntityTypeMapping TypeName="XERPModel.SecurityGroupCode"><MappingFragment StoreEntitySet="SecurityGroupCodes">
-            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
             <ScalarProperty Name="SecurityGroupCodeID" ColumnName="SecurityGroupCodeID" />
             <ScalarProperty Name="Code" ColumnName="Code" />
             <ScalarProperty Name="Description" ColumnName="Description" />
             <ScalarProperty Name="AutoID" ColumnName="AutoID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SecurityGroups"><EntityTypeMapping TypeName="XERPModel.SecurityGroup"><MappingFragment StoreEntitySet="SecurityGroups">
-            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
             <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Description" ColumnName="Description" />
@@ -564,7 +645,12 @@
             <ScalarProperty Name="AutoID" ColumnName="AutoID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SecurityGroupTypes"><EntityTypeMapping TypeName="XERPModel.SecurityGroupType"><MappingFragment StoreEntitySet="SecurityGroupTypes">
-            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
             <ScalarProperty Name="SecurityGroupTypeID" ColumnName="SecurityGroupTypeID" />
             <ScalarProperty Name="Type" ColumnName="Type" />
             <ScalarProperty Name="Description" ColumnName="Description" />
@@ -578,20 +664,40 @@
             <ScalarProperty Name="Int_1" ColumnName="Int_1" />
             <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UdListItems"><EntityTypeMapping TypeName="XERPModel.UdListItem"><MappingFragment StoreEntitySet="UdListItems">
-            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
-            <ScalarProperty Name="UDListItemID" ColumnName="UDListItemID" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UdLists"><EntityTypeMapping TypeName="XERPModel.UdList"><MappingFragment StoreEntitySet="UdLists">
-            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UdListItems">
+            <EntityTypeMapping TypeName="XERPModel.UdListItem">
+              <MappingFragment StoreEntitySet="UdListItems">
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UdListItemID" ColumnName="UdListItemID" />
+                <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UdLists">
+            <EntityTypeMapping TypeName="XERPModel.UdList">
+              <MappingFragment StoreEntitySet="UdLists">
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -612,14 +718,12 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="SecurityGroup">
+      <Diagram Name="SecurityGroup" ZoomLevel="94">
         <EntityTypeShape EntityType="XERPModel.Company" Width="1.5" PointX="0.75" PointY="4.25" Height="5.7009895833333335" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.SecurityGroupCode" Width="1.5" PointX="3" PointY="3.25" Height="2.0853483072916656" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.SecurityGroup" Width="1.5" PointX="3" PointY="6" Height="2.9070849609374996" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.SecurityGroupType" Width="2.25" PointX="5.625" PointY="7.625" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="XERPModel.Temp" Width="1.5" PointX="5" PointY="5.25" Height="1.9210009765624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="3" PointY="10.375" Height="2.0853483072916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="0.625" PointY="10.875" Height="2.0853483072916674" IsExpanded="true" />
         <AssociationConnector Association="XERPModel.FK_SecurityGroup_Company" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="7.45354248046875" />
           <ConnectorPoint PointX="3" PointY="7.45354248046875" />
@@ -632,15 +736,6 @@
           <ConnectorPoint PointX="2.25" PointY="9.3399666341145835" />
           <ConnectorPoint PointX="5.625" PointY="9.3399666341145835" />
         </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_UDList_Company" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.4375" PointY="9.9509895833333335" />
-          <ConnectorPoint PointX="1.4375" PointY="10.875" />
-        </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_UDListItem_Company" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.21875" PointY="9.9509895833333335" />
-          <ConnectorPoint PointX="2.21875" PointY="10.59375" />
-          <ConnectorPoint PointX="3" PointY="10.59375" />
-        </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_SecurityGroup_SecurityGroupCode" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="5.3353483072916656" />
           <ConnectorPoint PointX="3.75" PointY="6" />
@@ -649,9 +744,24 @@
           <ConnectorPoint PointX="5.625" PointY="8.26604248046875" />
           <ConnectorPoint PointX="4.5" PointY="8.26604248046875" />
         </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_UdListItem_UdList" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.125" PointY="11.667674153645834" />
-          <ConnectorPoint PointX="3" PointY="11.667674153645834" />
+        <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="7.25" PointY="4.125" Height="2.4140429687499996" />
+        <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="3" PointY="9.875" Height="2.4140429687499996" />
+        <AssociationConnector Association="XERPModel.FK_UdList_Company" >
+          <ConnectorPoint PointX="1.5" PointY="9.9509895833333335" />
+          <ConnectorPoint PointX="1.5" PointY="11.120016776041666" />
+          <ConnectorPoint PointX="3" PointY="11.120016776041666" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_Company" >
+          <ConnectorPoint PointX="2.25" PointY="9.7926741536458337" />
+          <ConnectorPoint PointX="8.0260391666666653" PointY="9.7926741536458337" />
+          <ConnectorPoint PointX="8.1927058333333331" PointY="9.7926741536458337" />
+          <ConnectorPoint PointX="8.34375" PointY="9.7926741536458337" />
+          <ConnectorPoint PointX="8.34375" PointY="6.53904296875" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_UdList" >
+          <ConnectorPoint PointX="4.5" PointY="11.082021484375" />
+          <ConnectorPoint PointX="8.1093725" PointY="11.082021484375" />
+          <ConnectorPoint PointX="8.1093725" PointY="6.53904296875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

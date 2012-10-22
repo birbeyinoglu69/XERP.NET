@@ -25,16 +25,16 @@ namespace XERP.Client.WPF.MainMenu.Views
     {
         private ViewModelLocator _viewModelLocator = new ViewModelLocator();
         private WindowLocator _windowLocator = new WindowLocator();
-        private MainMenuViewModel _model = new MainMenuViewModel();
+        private MainMenuViewModel _viewModel = new MainMenuViewModel();
         public MainMenuView()
         {
             try
             {
                 InitializeComponent();
-                _model = _viewModelLocator.MainMenuViewModel;
-                DataContext = _model;
-                _model.ErrorNotice += OnErrorNotice;
-                _model.MenuActionNotice += OnMenuActionNotice;
+                _viewModel = _viewModelLocator.MainMenuViewModel;
+                DataContext = _viewModel;
+                _viewModel.ErrorNotice += OnErrorNotice;
+                _viewModel.MenuActionNotice += OnMenuActionNotice;
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace XERP.Client.WPF.MainMenu.Views
 
         private void tv_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            _model.TreeNestedMenuItemChanged(e.NewValue);
+            _viewModel.TreeNestedMenuItemChanged(e.NewValue);
         }
     }
 }

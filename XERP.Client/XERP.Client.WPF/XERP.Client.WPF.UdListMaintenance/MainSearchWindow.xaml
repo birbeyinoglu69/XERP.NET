@@ -1,0 +1,10 @@
+﻿<Window x:Class="XERP.Client.WPF.UdListMaintenance.MainSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:XERP.Client.WPF.UdListMaintenance"
+        Title="XERP UdList Search" Height="500" Width="500">
+    <Grid>
+        <my:MainMaintenanceSearchView 
+            xmlns:my="clr-namespace:XERP.Client.WPF.UdListMaintenance.Views"  />
+    </Grid>
+</Window>

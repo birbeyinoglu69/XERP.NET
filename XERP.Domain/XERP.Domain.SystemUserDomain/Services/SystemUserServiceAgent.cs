@@ -295,19 +295,19 @@ namespace XERP.Domain.SystemUserDomain.Services
         {
             return AddressSingletonRepository.Instance.Refresh(autoIDs);
         }
-        public IEnumerable<Address> GetAddresss()
+        public IEnumerable<Address> GetAddresss(string companyID)
         {
-            return AddressSingletonRepository.Instance.GetAddresses();
+            return AddressSingletonRepository.Instance.GetAddresses(companyID);
         }
 
-        public IEnumerable<Address> GetAddresss(Address systemUserQuerryObject)
+        public IEnumerable<Address> GetAddresss(Address systemUserQuerryObject, string companyID)
         {
-            return AddressSingletonRepository.Instance.GetAddresses(systemUserQuerryObject);
+            return AddressSingletonRepository.Instance.GetAddresses(systemUserQuerryObject, companyID);
         }
 
-        public IEnumerable<Address> GetAddressByID(string systemUserID)
+        public IEnumerable<Address> GetAddressByID(string systemUserID, string companyID)
         {
-            return AddressSingletonRepository.Instance.GetAddressByID(systemUserID);
+            return AddressSingletonRepository.Instance.GetAddressByID(systemUserID, companyID);
         }
 
         public void CommitAddressRepository()
@@ -325,9 +325,9 @@ namespace XERP.Domain.SystemUserDomain.Services
             AddressSingletonRepository.Instance.AddToRepository(systemUser);
         }
 
-        public void DeleteFromAddressRepository(Address systemUser)
+        public void DeleteFromAddressRepository(Address systemUser, string companyID)
         {
-            AddressSingletonRepository.Instance.DeleteFromRepository(systemUser);
+            AddressSingletonRepository.Instance.DeleteFromRepository(systemUser, companyID);
         }
 
         public EntityStates GetAddressEntityState(Address systemUser)

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 9/17/2012 4:06:36 PM
+// Generation date: 10/22/2012 4:20:09 PM
 namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
 {
     
@@ -786,6 +786,116 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         partial void OnAutoIDChanging(long value);
         partial void OnAutoIDChanged();
         /// <summary>
+        /// There are no comments for Property IsExpanded in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsExpanded
+        {
+            get
+            {
+                return this._IsExpanded;
+            }
+            set
+            {
+                this.OnIsExpandedChanging(value);
+                this._IsExpanded = value;
+                this.OnIsExpandedChanged();
+                this.OnPropertyChanged("IsExpanded");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsExpanded;
+        partial void OnIsExpandedChanging(global::System.Nullable<bool> value);
+        partial void OnIsExpandedChanged();
+        /// <summary>
+        /// There are no comments for Property IsValid in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsValid
+        {
+            get
+            {
+                return this._IsValid;
+            }
+            set
+            {
+                this.OnIsValidChanging(value);
+                this._IsValid = value;
+                this.OnIsValidChanged();
+                this.OnPropertyChanged("IsValid");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsValid;
+        partial void OnIsValidChanging(global::System.Nullable<bool> value);
+        partial void OnIsValidChanged();
+        /// <summary>
+        /// There are no comments for Property NotValidMessage in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string NotValidMessage
+        {
+            get
+            {
+                return this._NotValidMessage;
+            }
+            set
+            {
+                this.OnNotValidMessageChanging(value);
+                this._NotValidMessage = value;
+                this.OnNotValidMessageChanged();
+                this.OnPropertyChanged("NotValidMessage");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _NotValidMessage;
+        partial void OnNotValidMessageChanging(string value);
+        partial void OnNotValidMessageChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedBy in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string LastModifiedBy
+        {
+            get
+            {
+                return this._LastModifiedBy;
+            }
+            set
+            {
+                this.OnLastModifiedByChanging(value);
+                this._LastModifiedBy = value;
+                this.OnLastModifiedByChanged();
+                this.OnPropertyChanged("LastModifiedBy");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _LastModifiedBy;
+        partial void OnLastModifiedByChanging(string value);
+        partial void OnLastModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedByDate in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return this._LastModifiedByDate;
+            }
+            set
+            {
+                this.OnLastModifiedByDateChanging(value);
+                this._LastModifiedByDate = value;
+                this.OnLastModifiedByDateChanged();
+                this.OnPropertyChanged("LastModifiedByDate");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
+        /// <summary>
         /// There are no comments for SecurityGroups in the schema.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1022,6 +1132,116 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         private long _AutoID;
         partial void OnAutoIDChanging(long value);
         partial void OnAutoIDChanged();
+        /// <summary>
+        /// There are no comments for Property IsExpanded in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsExpanded
+        {
+            get
+            {
+                return this._IsExpanded;
+            }
+            set
+            {
+                this.OnIsExpandedChanging(value);
+                this._IsExpanded = value;
+                this.OnIsExpandedChanged();
+                this.OnPropertyChanged("IsExpanded");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsExpanded;
+        partial void OnIsExpandedChanging(global::System.Nullable<bool> value);
+        partial void OnIsExpandedChanged();
+        /// <summary>
+        /// There are no comments for Property IsValid in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsValid
+        {
+            get
+            {
+                return this._IsValid;
+            }
+            set
+            {
+                this.OnIsValidChanging(value);
+                this._IsValid = value;
+                this.OnIsValidChanged();
+                this.OnPropertyChanged("IsValid");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsValid;
+        partial void OnIsValidChanging(global::System.Nullable<bool> value);
+        partial void OnIsValidChanged();
+        /// <summary>
+        /// There are no comments for Property NotValidMessage in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string NotValidMessage
+        {
+            get
+            {
+                return this._NotValidMessage;
+            }
+            set
+            {
+                this.OnNotValidMessageChanging(value);
+                this._NotValidMessage = value;
+                this.OnNotValidMessageChanged();
+                this.OnPropertyChanged("NotValidMessage");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _NotValidMessage;
+        partial void OnNotValidMessageChanging(string value);
+        partial void OnNotValidMessageChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedBy in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string LastModifiedBy
+        {
+            get
+            {
+                return this._LastModifiedBy;
+            }
+            set
+            {
+                this.OnLastModifiedByChanging(value);
+                this._LastModifiedBy = value;
+                this.OnLastModifiedByChanged();
+                this.OnPropertyChanged("LastModifiedBy");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _LastModifiedBy;
+        partial void OnLastModifiedByChanging(string value);
+        partial void OnLastModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedByDate in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return this._LastModifiedByDate;
+            }
+            set
+            {
+                this.OnLastModifiedByDateChanging(value);
+                this._LastModifiedByDate = value;
+                this.OnLastModifiedByDateChanged();
+                this.OnPropertyChanged("LastModifiedByDate");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
         /// <summary>
         /// There are no comments for Company in the schema.
         /// </summary>
@@ -1294,6 +1514,116 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         partial void OnAutoIDChanging(long value);
         partial void OnAutoIDChanged();
         /// <summary>
+        /// There are no comments for Property IsExpanded in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsExpanded
+        {
+            get
+            {
+                return this._IsExpanded;
+            }
+            set
+            {
+                this.OnIsExpandedChanging(value);
+                this._IsExpanded = value;
+                this.OnIsExpandedChanged();
+                this.OnPropertyChanged("IsExpanded");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsExpanded;
+        partial void OnIsExpandedChanging(global::System.Nullable<bool> value);
+        partial void OnIsExpandedChanged();
+        /// <summary>
+        /// There are no comments for Property IsValid in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsValid
+        {
+            get
+            {
+                return this._IsValid;
+            }
+            set
+            {
+                this.OnIsValidChanging(value);
+                this._IsValid = value;
+                this.OnIsValidChanged();
+                this.OnPropertyChanged("IsValid");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsValid;
+        partial void OnIsValidChanging(global::System.Nullable<bool> value);
+        partial void OnIsValidChanged();
+        /// <summary>
+        /// There are no comments for Property NotValidMessage in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string NotValidMessage
+        {
+            get
+            {
+                return this._NotValidMessage;
+            }
+            set
+            {
+                this.OnNotValidMessageChanging(value);
+                this._NotValidMessage = value;
+                this.OnNotValidMessageChanged();
+                this.OnPropertyChanged("NotValidMessage");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _NotValidMessage;
+        partial void OnNotValidMessageChanging(string value);
+        partial void OnNotValidMessageChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedBy in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string LastModifiedBy
+        {
+            get
+            {
+                return this._LastModifiedBy;
+            }
+            set
+            {
+                this.OnLastModifiedByChanging(value);
+                this._LastModifiedBy = value;
+                this.OnLastModifiedByChanged();
+                this.OnPropertyChanged("LastModifiedBy");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _LastModifiedBy;
+        partial void OnLastModifiedByChanging(string value);
+        partial void OnLastModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedByDate in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return this._LastModifiedByDate;
+            }
+            set
+            {
+                this.OnLastModifiedByDateChanging(value);
+                this._LastModifiedByDate = value;
+                this.OnLastModifiedByDateChanged();
+                this.OnPropertyChanged("LastModifiedByDate");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
+        /// <summary>
         /// There are no comments for Company in the schema.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1494,6 +1824,116 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         private long _AutoID;
         partial void OnAutoIDChanging(long value);
         partial void OnAutoIDChanged();
+        /// <summary>
+        /// There are no comments for Property IsExpanded in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsExpanded
+        {
+            get
+            {
+                return this._IsExpanded;
+            }
+            set
+            {
+                this.OnIsExpandedChanging(value);
+                this._IsExpanded = value;
+                this.OnIsExpandedChanged();
+                this.OnPropertyChanged("IsExpanded");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsExpanded;
+        partial void OnIsExpandedChanging(global::System.Nullable<bool> value);
+        partial void OnIsExpandedChanged();
+        /// <summary>
+        /// There are no comments for Property IsValid in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsValid
+        {
+            get
+            {
+                return this._IsValid;
+            }
+            set
+            {
+                this.OnIsValidChanging(value);
+                this._IsValid = value;
+                this.OnIsValidChanged();
+                this.OnPropertyChanged("IsValid");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsValid;
+        partial void OnIsValidChanging(global::System.Nullable<bool> value);
+        partial void OnIsValidChanged();
+        /// <summary>
+        /// There are no comments for Property NotValidMessage in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string NotValidMessage
+        {
+            get
+            {
+                return this._NotValidMessage;
+            }
+            set
+            {
+                this.OnNotValidMessageChanging(value);
+                this._NotValidMessage = value;
+                this.OnNotValidMessageChanged();
+                this.OnPropertyChanged("NotValidMessage");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _NotValidMessage;
+        partial void OnNotValidMessageChanging(string value);
+        partial void OnNotValidMessageChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedBy in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string LastModifiedBy
+        {
+            get
+            {
+                return this._LastModifiedBy;
+            }
+            set
+            {
+                this.OnLastModifiedByChanging(value);
+                this._LastModifiedBy = value;
+                this.OnLastModifiedByChanged();
+                this.OnPropertyChanged("LastModifiedBy");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _LastModifiedBy;
+        partial void OnLastModifiedByChanging(string value);
+        partial void OnLastModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedByDate in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return this._LastModifiedByDate;
+            }
+            set
+            {
+                this.OnLastModifiedByDateChanging(value);
+                this._LastModifiedByDate = value;
+                this.OnLastModifiedByDateChanged();
+                this.OnPropertyChanged("LastModifiedByDate");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
         /// <summary>
         /// There are no comments for Company in the schema.
         /// </summary>
@@ -1711,10 +2151,10 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
     /// <KeyProperties>
     /// CompanyID
     /// UdListID
-    /// UDListItemID
+    /// UdListItemID
     /// </KeyProperties>
     [global::System.Data.Services.Common.EntitySetAttribute("UdListItems")]
-    [global::System.Data.Services.Common.DataServiceKeyAttribute("CompanyID", "UdListID", "UDListItemID")]
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("CompanyID", "UdListID", "UdListItemID")]
     public partial class UdListItem : global::System.ComponentModel.INotifyPropertyChanged
     {
         /// <summary>
@@ -1722,15 +2162,15 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         /// </summary>
         /// <param name="companyID">Initial value of CompanyID.</param>
         /// <param name="udListID">Initial value of UdListID.</param>
-        /// <param name="uDListItemID">Initial value of UDListItemID.</param>
+        /// <param name="udListItemID">Initial value of UdListItemID.</param>
         /// <param name="autoID">Initial value of AutoID.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static UdListItem CreateUdListItem(string companyID, string udListID, string uDListItemID, long autoID)
+        public static UdListItem CreateUdListItem(string companyID, string udListID, string udListItemID, long autoID)
         {
             UdListItem udListItem = new UdListItem();
             udListItem.CompanyID = companyID;
             udListItem.UdListID = udListID;
-            udListItem.UDListItemID = uDListItemID;
+            udListItem.UdListItemID = udListItemID;
             udListItem.AutoID = autoID;
             return udListItem;
         }
@@ -1779,27 +2219,27 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         partial void OnUdListIDChanging(string value);
         partial void OnUdListIDChanged();
         /// <summary>
-        /// There are no comments for Property UDListItemID in the schema.
+        /// There are no comments for Property UdListItemID in the schema.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public string UDListItemID
+        public string UdListItemID
         {
             get
             {
-                return this._UDListItemID;
+                return this._UdListItemID;
             }
             set
             {
-                this.OnUDListItemIDChanging(value);
-                this._UDListItemID = value;
-                this.OnUDListItemIDChanged();
-                this.OnPropertyChanged("UDListItemID");
+                this.OnUdListItemIDChanging(value);
+                this._UdListItemID = value;
+                this.OnUdListItemIDChanged();
+                this.OnPropertyChanged("UdListItemID");
             }
         }
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private string _UDListItemID;
-        partial void OnUDListItemIDChanging(string value);
-        partial void OnUDListItemIDChanged();
+        private string _UdListItemID;
+        partial void OnUdListItemIDChanging(string value);
+        partial void OnUdListItemIDChanged();
         /// <summary>
         /// There are no comments for Property Description in the schema.
         /// </summary>
@@ -1844,6 +2284,138 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         private long _AutoID;
         partial void OnAutoIDChanging(long value);
         partial void OnAutoIDChanged();
+        /// <summary>
+        /// There are no comments for Property IsSelected in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsSelected
+        {
+            get
+            {
+                return this._IsSelected;
+            }
+            set
+            {
+                this.OnIsSelectedChanging(value);
+                this._IsSelected = value;
+                this.OnIsSelectedChanged();
+                this.OnPropertyChanged("IsSelected");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsSelected;
+        partial void OnIsSelectedChanging(global::System.Nullable<bool> value);
+        partial void OnIsSelectedChanged();
+        /// <summary>
+        /// There are no comments for Property IsExpanded in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsExpanded
+        {
+            get
+            {
+                return this._IsExpanded;
+            }
+            set
+            {
+                this.OnIsExpandedChanging(value);
+                this._IsExpanded = value;
+                this.OnIsExpandedChanged();
+                this.OnPropertyChanged("IsExpanded");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsExpanded;
+        partial void OnIsExpandedChanging(global::System.Nullable<bool> value);
+        partial void OnIsExpandedChanged();
+        /// <summary>
+        /// There are no comments for Property IsValid in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsValid
+        {
+            get
+            {
+                return this._IsValid;
+            }
+            set
+            {
+                this.OnIsValidChanging(value);
+                this._IsValid = value;
+                this.OnIsValidChanged();
+                this.OnPropertyChanged("IsValid");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsValid;
+        partial void OnIsValidChanging(global::System.Nullable<bool> value);
+        partial void OnIsValidChanged();
+        /// <summary>
+        /// There are no comments for Property NotValidMessage in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string NotValidMessage
+        {
+            get
+            {
+                return this._NotValidMessage;
+            }
+            set
+            {
+                this.OnNotValidMessageChanging(value);
+                this._NotValidMessage = value;
+                this.OnNotValidMessageChanged();
+                this.OnPropertyChanged("NotValidMessage");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _NotValidMessage;
+        partial void OnNotValidMessageChanging(string value);
+        partial void OnNotValidMessageChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedBy in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string LastModifiedBy
+        {
+            get
+            {
+                return this._LastModifiedBy;
+            }
+            set
+            {
+                this.OnLastModifiedByChanging(value);
+                this._LastModifiedBy = value;
+                this.OnLastModifiedByChanged();
+                this.OnPropertyChanged("LastModifiedBy");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _LastModifiedBy;
+        partial void OnLastModifiedByChanging(string value);
+        partial void OnLastModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedByDate in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return this._LastModifiedByDate;
+            }
+            set
+            {
+                this.OnLastModifiedByDateChanging(value);
+                this._LastModifiedByDate = value;
+                this.OnLastModifiedByDateChanged();
+                this.OnPropertyChanged("LastModifiedByDate");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
         /// <summary>
         /// There are no comments for Company in the schema.
         /// </summary>
@@ -2027,6 +2599,138 @@ namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
         private long _AutoID;
         partial void OnAutoIDChanging(long value);
         partial void OnAutoIDChanged();
+        /// <summary>
+        /// There are no comments for Property IsSelected in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsSelected
+        {
+            get
+            {
+                return this._IsSelected;
+            }
+            set
+            {
+                this.OnIsSelectedChanging(value);
+                this._IsSelected = value;
+                this.OnIsSelectedChanged();
+                this.OnPropertyChanged("IsSelected");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsSelected;
+        partial void OnIsSelectedChanging(global::System.Nullable<bool> value);
+        partial void OnIsSelectedChanged();
+        /// <summary>
+        /// There are no comments for Property IsExpanded in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsExpanded
+        {
+            get
+            {
+                return this._IsExpanded;
+            }
+            set
+            {
+                this.OnIsExpandedChanging(value);
+                this._IsExpanded = value;
+                this.OnIsExpandedChanged();
+                this.OnPropertyChanged("IsExpanded");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsExpanded;
+        partial void OnIsExpandedChanging(global::System.Nullable<bool> value);
+        partial void OnIsExpandedChanged();
+        /// <summary>
+        /// There are no comments for Property IsValid in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<bool> IsValid
+        {
+            get
+            {
+                return this._IsValid;
+            }
+            set
+            {
+                this.OnIsValidChanging(value);
+                this._IsValid = value;
+                this.OnIsValidChanged();
+                this.OnPropertyChanged("IsValid");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<bool> _IsValid;
+        partial void OnIsValidChanging(global::System.Nullable<bool> value);
+        partial void OnIsValidChanged();
+        /// <summary>
+        /// There are no comments for Property NotValidMessage in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string NotValidMessage
+        {
+            get
+            {
+                return this._NotValidMessage;
+            }
+            set
+            {
+                this.OnNotValidMessageChanging(value);
+                this._NotValidMessage = value;
+                this.OnNotValidMessageChanged();
+                this.OnPropertyChanged("NotValidMessage");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _NotValidMessage;
+        partial void OnNotValidMessageChanging(string value);
+        partial void OnNotValidMessageChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedBy in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string LastModifiedBy
+        {
+            get
+            {
+                return this._LastModifiedBy;
+            }
+            set
+            {
+                this.OnLastModifiedByChanging(value);
+                this._LastModifiedBy = value;
+                this.OnLastModifiedByChanged();
+                this.OnPropertyChanged("LastModifiedBy");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _LastModifiedBy;
+        partial void OnLastModifiedByChanging(string value);
+        partial void OnLastModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property LastModifiedByDate in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return this._LastModifiedByDate;
+            }
+            set
+            {
+                this.OnLastModifiedByDateChanging(value);
+                this._LastModifiedByDate = value;
+                this.OnLastModifiedByDateChanged();
+                this.OnPropertyChanged("LastModifiedByDate");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
         /// <summary>
         /// There are no comments for Company in the schema.
         /// </summary>

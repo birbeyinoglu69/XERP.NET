@@ -1061,10 +1061,10 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #region Helpers
         //notify the view that a new record was created...
         //allows us to set focus to key field...
-        private void NotifyNewRecordCreated()
-        {
-            Notify(NewRecordCreatedNotice, new NotificationEventArgs());
-        }
+        //private void NotifyNewRecordCreated()
+        //{
+        //    Notify(NewRecordCreatedNotice, new NotificationEventArgs());
+        //}
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
         {

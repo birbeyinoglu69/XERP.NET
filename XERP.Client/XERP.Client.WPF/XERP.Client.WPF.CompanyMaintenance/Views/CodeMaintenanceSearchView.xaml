@@ -21,7 +21,7 @@
             <ColumnDefinition Width="158*" />
         </Grid.ColumnDefinitions>
         <GridSplitter Style="{StaticResource BaseHorizontalGridSplitter}" Grid.Row="0" Grid.ColumnSpan="3"
-                      Grid.RowSpan="2" HorizontalAlignment="Stretch"/>
+                      Grid.RowSpan="2" HorizontalAlignment="Stretch" ResizeDirection="Rows"/>
         <TextBlock Style="{StaticResource BaseHeader}" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
                    Margin="5">Company Code Search</TextBlock>
         <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="1" 

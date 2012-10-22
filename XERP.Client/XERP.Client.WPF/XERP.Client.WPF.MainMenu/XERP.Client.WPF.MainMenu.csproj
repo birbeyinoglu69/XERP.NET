@@ -154,6 +154,10 @@
       <Project>{2D46B753-4BE0-46EA-83D2-7C2EE0F4FE48}</Project>
       <Name>XERP.Client.WPF.SystemUserMaintenance</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.UdListMaintenance\XERP.Client.WPF.UdListMaintenance.csproj">
+      <Project>{02B6109A-F0EE-4D36-A0AA-795D1E112DDE}</Project>
+      <Name>XERP.Client.WPF.UdListMaintenance</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

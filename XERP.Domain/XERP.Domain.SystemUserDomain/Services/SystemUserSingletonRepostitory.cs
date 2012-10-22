@@ -93,7 +93,7 @@ namespace XERP.Domain.SystemUserDomain
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
 
-            var queryResult = _repositoryContext.CreateQuery<SystemUser>("RefreshSystemUser").AddQueryOption("autoIDs", "'" + autoIDs + "'").Expand("SystemUserSecurities/SecurityGroup");
+            var queryResult = _repositoryContext.CreateQuery<SystemUser>("RefreshSystemUser").Expand("SystemUserSecurities/SecurityGroup").AddQueryOption("autoIDs", "'" + autoIDs + "'").Expand("SystemUserSecurities/SecurityGroup");
                 
             return queryResult;
         }

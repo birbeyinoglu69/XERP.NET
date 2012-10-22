@@ -259,11 +259,20 @@
                             Text="{Binding Path=SelectedSystemUser.Password, Mode=TwoWay}"
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
                         <CheckBox Style="{StaticResource BaseCheckBox}" Margin="5,8,8,8"
+                                  KeyboardNavigation.TabIndex="35"
                                   IsChecked="{Binding Path=SelectedSystemUser.Active, Mode=TwoWay}" 
                                   VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="5,8,8,8"
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Style="{StaticResource BaseCheckBox}" Margin="5,8,8,8"
                                   IsChecked="{Binding Path=SelectedSystemUser.PasswordExpired, Mode=TwoWay}" 
                                   VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                            <DatePicker Style="{StaticResource BaseDatePicker}" Width="100"
+                                        KeyboardNavigation.TabIndex="37"
+                                        SelectedDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}"
+                                        DisplayDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}">
+                                
+                            </DatePicker>
+                        </StackPanel>
                         <ComboBox  Style="{StaticResource BaseComboBox}"
                             HorizontalAlignment="Left" Width="200" Margin="5"
                             ItemsSource="{Binding Path=SystemUserTypeList, Mode=TwoWay}"
@@ -352,6 +361,32 @@
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                 Header="Password" Width="*"/>
+                            <DataGridCheckBoxColumn Binding="{Binding Active, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Active" Width="*">
+                            </DataGridCheckBoxColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding PasswordExpired, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Password&#10;Expired" Width="*">
+                            </DataGridCheckBoxColumn>
+                            <DataGridTemplateColumn Header="Expires&#10;On">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker Style="{StaticResource BaseDatePicker}" Width="100"
+                                        KeyboardNavigation.TabIndex="37"
+                                        SelectedDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}"
+                                        DisplayDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}">
+                                        </DatePicker>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <DatePicker Style="{StaticResource BaseDatePicker}" Width="100"
+                                        KeyboardNavigation.TabIndex="37"
+                                        SelectedDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}"
+                                        DisplayDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}">
+                                        </DatePicker>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridComboBoxColumn Header="Type" Width="*"
                                 SelectedValueBinding ="{Binding SystemUserTypeID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                 DisplayMemberPath="Type"  

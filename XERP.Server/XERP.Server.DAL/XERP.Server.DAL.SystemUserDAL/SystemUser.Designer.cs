@@ -21,14 +21,14 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_Addresses_Companies", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.Company), "Addresses", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.Address), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_SystemUsers_Addresses", "Addresses", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SystemUserDAL.Address), "SystemUsers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.SystemUser), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroup_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.Company), "SecurityGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.SecurityGroup), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_UDList_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.Company), "UdLists", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.UdList), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_UDListItem_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.Company), "UdListItems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.UdListItem), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_UserSecurity_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.Company), "SystemUserSecurities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.SystemUserSecurity), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_UserSecurity_SecurityGroup", "SecurityGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.SecurityGroup), "SystemUserSecurities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.SystemUserSecurity), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_SystemUser_SystemUserCode", "SystemUserCodes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SystemUserDAL.SystemUserCode), "SystemUsers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.SystemUser), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_SystemUser_SystemUserType", "SystemUserTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SystemUserDAL.SystemUserType), "SystemUsers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.SystemUser), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_UserSecurity_SystemUser", "SystemUsers", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.SystemUser), "SystemUserSecurities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.SystemUserSecurity), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_UdList", "UdLists", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.UdList), "UdListItems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.UdListItem), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdList_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.Company), "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.UdList), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.Company), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.UdListItem), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_UdList", "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SystemUserDAL.UdList), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SystemUserDAL.UdListItem), true)]
 
 #endregion
 
@@ -796,6 +796,126 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -1468,6 +1588,126 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -1523,50 +1763,6 @@ namespace XERP.Server.DAL.SystemUserDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UDList_Company", "UdLists")]
-        public EntityCollection<UdList> UdLists
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdList>("XERPModel.FK_UDList_Company", "UdLists");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdList>("XERPModel.FK_UDList_Company", "UdLists", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UDListItem_Company", "UdListItems")]
-        public EntityCollection<UdListItem> UdListItems
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UDListItem_Company", "UdListItems");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UDListItem_Company", "UdListItems", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UserSecurity_Company", "SystemUserSecurities")]
         public EntityCollection<SystemUserSecurity> SystemUserSecurities
         {
@@ -1579,6 +1775,50 @@ namespace XERP.Server.DAL.SystemUserDAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SystemUserSecurity>("XERPModel.FK_UserSecurity_Company", "SystemUserSecurities", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdList_Company", "UdList")]
+        public EntityCollection<UdList> UdLists
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdList>("XERPModel.FK_UdList_Company", "UdList");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdList>("XERPModel.FK_UdList_Company", "UdList", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_Company", "UdListItem")]
+        public EntityCollection<UdListItem> UdListItems
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_Company", "UdListItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_Company", "UdListItem", value);
                 }
             }
         }
@@ -1835,6 +2075,126 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -2291,6 +2651,126 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -2559,6 +3039,126 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -2723,6 +3323,126 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -2969,6 +3689,126 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -3327,6 +4167,150 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -3338,16 +4322,16 @@ namespace XERP.Server.DAL.SystemUserDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UDList_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdList_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UDList_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UDList_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -3359,13 +4343,13 @@ namespace XERP.Server.DAL.SystemUserDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UDList_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UDList_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company", value);
                 }
             }
         }
@@ -3376,18 +4360,18 @@ namespace XERP.Server.DAL.SystemUserDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdListItems")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdListItem")]
         public EntityCollection<UdListItem> UdListItems
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItems");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItems", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItem", value);
                 }
             }
         }
@@ -3410,14 +4394,14 @@ namespace XERP.Server.DAL.SystemUserDAL
         /// </summary>
         /// <param name="companyID">Initial value of the CompanyID property.</param>
         /// <param name="udListID">Initial value of the UdListID property.</param>
-        /// <param name="uDListItemID">Initial value of the UDListItemID property.</param>
+        /// <param name="udListItemID">Initial value of the UdListItemID property.</param>
         /// <param name="autoID">Initial value of the AutoID property.</param>
-        public static UdListItem CreateUdListItem(global::System.String companyID, global::System.String udListID, global::System.String uDListItemID, global::System.Int64 autoID)
+        public static UdListItem CreateUdListItem(global::System.String companyID, global::System.String udListID, global::System.String udListItemID, global::System.Int64 autoID)
         {
             UdListItem udListItem = new UdListItem();
             udListItem.CompanyID = companyID;
             udListItem.UdListID = udListID;
-            udListItem.UDListItemID = uDListItemID;
+            udListItem.UdListItemID = udListItemID;
             udListItem.AutoID = autoID;
             return udListItem;
         }
@@ -3484,27 +4468,27 @@ namespace XERP.Server.DAL.SystemUserDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String UDListItemID
+        public global::System.String UdListItemID
         {
             get
             {
-                return _UDListItemID;
+                return _UdListItemID;
             }
             set
             {
-                if (_UDListItemID != value)
+                if (_UdListItemID != value)
                 {
-                    OnUDListItemIDChanging(value);
-                    ReportPropertyChanging("UDListItemID");
-                    _UDListItemID = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("UDListItemID");
-                    OnUDListItemIDChanged();
+                    OnUdListItemIDChanging(value);
+                    ReportPropertyChanging("UdListItemID");
+                    _UdListItemID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("UdListItemID");
+                    OnUdListItemIDChanged();
                 }
             }
         }
-        private global::System.String _UDListItemID;
-        partial void OnUDListItemIDChanging(global::System.String value);
-        partial void OnUDListItemIDChanged();
+        private global::System.String _UdListItemID;
+        partial void OnUdListItemIDChanging(global::System.String value);
+        partial void OnUdListItemIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3553,6 +4537,150 @@ namespace XERP.Server.DAL.SystemUserDAL
         private global::System.Int64 _AutoID;
         partial void OnAutoIDChanging(global::System.Int64 value);
         partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
 
         #endregion
     
@@ -3564,16 +4692,16 @@ namespace XERP.Server.DAL.SystemUserDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UDListItem_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UDListItem_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UDListItem_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -3585,13 +4713,13 @@ namespace XERP.Server.DAL.SystemUserDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UDListItem_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UDListItem_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company", value);
                 }
             }
         }
@@ -3602,16 +4730,16 @@ namespace XERP.Server.DAL.SystemUserDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdLists")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdList")]
         public UdList UdList
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList").Value = value;
             }
         }
         /// <summary>
@@ -3623,13 +4751,13 @@ namespace XERP.Server.DAL.SystemUserDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList", value);
                 }
             }
         }

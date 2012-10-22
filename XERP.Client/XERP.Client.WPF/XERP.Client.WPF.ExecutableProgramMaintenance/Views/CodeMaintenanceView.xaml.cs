@@ -30,7 +30,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.Views
                 _viewModel.SaveRequiredNotice += OnSaveRequiredNotice;
                 _viewModel.NewRecordNeededNotice += OnNewRecordNeededNotice;
                 _viewModel.AuthenticatedNotice += OnAuthenticatedNotice;
-                _viewModel.NewRecordCreatedNotice += OnNewRecordCreatedNotice;
+                //_viewModel.NewRecordCreatedNotice += OnNewRecordCreatedNotice;
                 InitializeComponent();
 
                 if (!XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
@@ -54,23 +54,23 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.Views
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
 
-        private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        {
-            if (tabctrlMain.SelectedItem == tabDetail)
-            {
-                txtKey.Focus();
-            }
-            if (tabctrlMain.SelectedItem == tabList)
-            {
-                dgMain.Focus();
-                if (dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-                {//set the last records first column to have focus...
-                    dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1],
-                        dgMain.Columns[0]);
-                    dgMain.BeginEdit();
-                }
-            }
-        }
+        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
+        //{
+        //    if (tabctrlMain.SelectedItem == tabDetail)
+        //    {
+        //        txtKey.Focus();
+        //    }
+        //    if (tabctrlMain.SelectedItem == tabList)
+        //    {
+        //        dgMain.Focus();
+        //        if (dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
+        //        {//set the last records first column to have focus...
+        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1],
+        //                dgMain.Columns[0]);
+        //            dgMain.BeginEdit();
+        //        }
+        //    }
+        //}
 
         private void OpenCodeMaintenance_Click(object sender, RoutedEventArgs e)
         {

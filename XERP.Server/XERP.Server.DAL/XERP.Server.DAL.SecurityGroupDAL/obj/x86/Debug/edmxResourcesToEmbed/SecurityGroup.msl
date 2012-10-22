@@ -4,6 +4,11 @@
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="XERPModel.Company">
         <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -34,6 +39,11 @@
     <EntitySetMapping Name="SecurityGroupCodes">
       <EntityTypeMapping TypeName="XERPModel.SecurityGroupCode">
         <MappingFragment StoreEntitySet="SecurityGroupCodes">
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="SecurityGroupCodeID" ColumnName="SecurityGroupCodeID" />
           <ScalarProperty Name="Code" ColumnName="Code" />
@@ -45,6 +55,11 @@
     <EntitySetMapping Name="SecurityGroups">
       <EntityTypeMapping TypeName="XERPModel.SecurityGroup">
         <MappingFragment StoreEntitySet="SecurityGroups">
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -60,6 +75,11 @@
     <EntitySetMapping Name="SecurityGroupTypes">
       <EntityTypeMapping TypeName="XERPModel.SecurityGroupType">
         <MappingFragment StoreEntitySet="SecurityGroupTypes">
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="SecurityGroupTypeID" ColumnName="SecurityGroupTypeID" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -83,22 +103,34 @@
     <EntitySetMapping Name="UdListItems">
       <EntityTypeMapping TypeName="XERPModel.UdListItem">
         <MappingFragment StoreEntitySet="UdListItems">
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="UdListID" ColumnName="UdListID" />
-          <ScalarProperty Name="UDListItemID" ColumnName="UDListItemID" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UdListItemID" ColumnName="UdListItemID" />
+          <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UdLists">
       <EntityTypeMapping TypeName="XERPModel.UdList">
         <MappingFragment StoreEntitySet="UdLists">
-          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-          <ScalarProperty Name="UdListID" ColumnName="UdListID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
