@@ -4,11 +4,6 @@ using System.Linq;
 using XERP.Server.DAL.MenuSecurityDAL;
 using System.Data.Metadata.Edm;
 
-namespace XERP.Server.DAL.MenuSecurityDAL
-{
-
-}
-
 namespace ExtensionMethods
 {
     public static class MyExtensions

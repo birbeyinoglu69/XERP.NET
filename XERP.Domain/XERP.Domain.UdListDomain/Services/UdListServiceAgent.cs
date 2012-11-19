@@ -34,9 +34,8 @@ namespace XERP.Domain.UdListDomain.Services
                            q.CompanyID == companyID
                            select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
         
@@ -51,9 +50,8 @@ namespace XERP.Domain.UdListDomain.Services
                                q.AutoID != autoID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
@@ -67,7 +65,7 @@ namespace XERP.Domain.UdListDomain.Services
             return query;
         }
 
-        public bool RepositoryIsDirty()
+        public bool UdListRepositoryIsDirty()
         {
             return UdListSingletonRepository.Instance.RepositoryIsDirty();
         }   
@@ -94,8 +92,7 @@ namespace XERP.Domain.UdListDomain.Services
         }
 
         public void CommitUdListRepository()
-        {
-            //null any and all client variables...
+        {//null any and all client variables...
             UdListSingletonRepository.Instance.CommitRepository();
         }
 

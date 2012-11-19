@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Windows;
-using System.Linq;
-using System.Data.Services.Client;
-using System.ComponentModel;
 using System.Collections.Generic;
-// Toolkit namespace
-using SimpleMvvmToolkit;
-//XERP Namespaces
-using XERP.Domain.SecurityGroupDomain.Services;
-using XERP.Domain.SecurityGroupDomain.SecurityGroupDataService;
-//required for extension methods...
+using System.ComponentModel;
+using System.Data.Services.Client;
+using System.Linq;
+using System.Windows;
 using ExtensionMethods;
+using SimpleMvvmToolkit;
 using XERP.Client.Models;
+using XERP.Domain.SecurityGroupDomain.SecurityGroupDataService;
+using XERP.Domain.SecurityGroupDomain.Services;
 
 namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 {
@@ -20,6 +17,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #region Initialization and Cleanup
         //GlobalProperties Class allows us to share properties amonst multiple classes...
         private GlobalProperties _globalProperties = new GlobalProperties();
+        private int _newSecurityGroupCodeAutoId;
 
         private ISecurityGroupServiceAgent _serviceAgent;
         private enum _saveRequiredResultActions
@@ -29,8 +27,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             ClearLogic
         }
         //required else it generates debug view designer issues 
-        public CodeMaintenanceViewModel()
-        { }
+        public CodeMaintenanceViewModel(){}
 
         public CodeMaintenanceViewModel(ISecurityGroupServiceAgent serviceAgent)
         {
@@ -43,11 +40,8 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             SecurityGroupCodeList.AllowNew = false;
 
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
@@ -56,23 +50,16 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
             AllowNew = true;
             AllowRowPaste = true;
-            //SecurityGroupCodeColumnMetaDataList = new List<ColumnMetaData>();
         }
         #endregion Initialization and Cleanup
 
         #region Authentication Logic
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -84,9 +71,8 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
 
@@ -120,7 +106,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         }
 
         private bool _allowRowPaste;
-
         public bool AllowRowPaste
         {
             get { return _allowRowPaste; }
@@ -130,7 +115,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.AllowRowPaste);
             }
         }
-
 
         private bool _allowNew;
         public bool AllowNew
@@ -144,7 +128,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         }
 
         private bool _allowCommit;
-
         public bool AllowCommit
         {
             get { return _allowCommit; }
@@ -187,7 +170,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.AllowEdit);
             }
         }
-
 
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
@@ -320,9 +302,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 foreach (var data in metaData)
                 {
                     if (data.ShortChar_1 == "String")
-                    {
                         _securityGroupCodeMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                    }
                 }
                 return _securityGroupCodeMaxFieldValueDictionary;
             }
@@ -332,7 +312,18 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
         #region ViewModel Propertie's Events
         private void SelectedSecurityGroupCode_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {   //Key ID Logic...
+        {//these properties are not to be persisted we will igore them...
+            if (e.PropertyName == "IsSelected" ||
+                e.PropertyName == "IsExpanded" ||
+                e.PropertyName == "IsValid" ||
+                e.PropertyName == "NotValidMessage" ||
+                e.PropertyName == "LastModifiedBy" ||
+                e.PropertyName == "LastModifiedByDate")
+            {
+                return;
+            }
+
+            //Key ID Logic...
             if (e.PropertyName == "SecurityGroupCodeID")
             {//make sure it is has changed...
                 if (SelectedSecurityGroupCodeMirror.SecurityGroupCodeID != SelectedSecurityGroupCode.SecurityGroupCodeID)
@@ -350,14 +341,11 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
                     {//once a key is added it can not be modified...
-                        if (Dirty && AllowCommit)
-                        {//dirty record exists ask if save is required...
+                        if (Dirty && AllowCommit)//dirty record exists ask if save is required...
                             NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
-                        }
                         else
-                        {
                             ChangeKeyLogic();
-                        }
+
                         return;
                     }
                 }
@@ -372,293 +360,85 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             bool objectsAreEqual;
             if (propertyChangedValue == null)
             {
-                if (prevPropertyValue == null)
-                {//both values are null
+                if (prevPropertyValue == null)//both values are null
                     objectsAreEqual = true;
-                }
-                else
-                {//only one value is null
+                else//only one value is null
                     objectsAreEqual = false;
-                }
             }
             else
             {
-                if (prevPropertyValue == null)
-                {//only one value is null
+                if (prevPropertyValue == null)//only one value is null
                     objectsAreEqual = false;
-                }
                 else //both values are not null use .Equals...
-                {
                     objectsAreEqual = propertyChangedValue.Equals(prevPropertyValue);
-                }
             }
             if (!objectsAreEqual)
             {
                 //Here we do property change validation if false is returned we will reset the value
                 //Back to its mirrored value and return out of the property change w/o updating the repository...
-                if (PropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyCode))
+                if (SecurityGroupCodePropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyCode))
                 {
                     Update(SelectedSecurityGroupCode);
-                    //set the mirrored objects field...
                     SelectedSecurityGroupCodeMirror.SetPropertyValue(e.PropertyName, propertyChangedValue);
+                    SelectedSecurityGroupCodeMirror.IsValid = SelectedSecurityGroupCode.IsValid;
+                    SelectedSecurityGroupCodeMirror.IsExpanded = SelectedSecurityGroupCode.IsExpanded;
+                    SelectedSecurityGroupCodeMirror.NotValidMessage = SelectedSecurityGroupCode.NotValidMessage;
+
                 }
-                else
-                {//revert back to its previous value... 
+                else//revert back to its previous value... 
+                {
                     SelectedSecurityGroupCode.SetPropertyValue(e.PropertyName, prevPropertyValue);
-                    return;
+                    SelectedSecurityGroupCode.IsValid = SelectedSecurityGroupCodeMirror.IsValid;
+                    SelectedSecurityGroupCode.IsExpanded = SelectedSecurityGroupCodeMirror.IsExpanded;
+                    SelectedSecurityGroupCode.NotValidMessage = SelectedSecurityGroupCodeMirror.NotValidMessage;
                 }
+
             }
         }
         #endregion ViewModel Propertie's Events
 
         #region Methods
         #region ViewModel Logic Methods
-
         private void ChangeKeyLogic()
         {
-            string errorMessage = "";
-            if (KeyChangeIsValid(SelectedSecurityGroupCode.SecurityGroupCodeID, out errorMessage))
-            {
-                //check to see if key is part of the current securityGroupCodelist...
-                SecurityGroupCode query = SecurityGroupCodeList.Where(securityGroupCode => securityGroupCode.SecurityGroupCodeID == SelectedSecurityGroupCode.SecurityGroupCodeID &&
-                                                        securityGroupCode.AutoID != SelectedSecurityGroupCode.AutoID).FirstOrDefault();
+            if (!string.IsNullOrEmpty(SelectedSecurityGroupCode.SecurityGroupCodeID))
+            {//check to see if key is part of the current companylist...
+                SecurityGroupCode query = SecurityGroupCodeList.Where(company => company.SecurityGroupCodeID == SelectedSecurityGroupCode.SecurityGroupCodeID &&
+                                                        company.AutoID != SelectedSecurityGroupCode.AutoID).SingleOrDefault();
                 if (query != null)
-                {//change to the newly selected securityGroupCode...
+                {//revert it back...
+                    SelectedSecurityGroupCode.SecurityGroupCodeID = SelectedSecurityGroupCodeMirror.SecurityGroupCodeID;
+                    //change to the newly selected item...
                     SelectedSecurityGroupCode = query;
                     return;
                 }
                 //it is not part of the existing list try to fetch it from the db...
-                SecurityGroupCodeList = GetSecurityGroupCodeByID(SelectedSecurityGroupCode.SecurityGroupCodeID, ClientSessionSingleton.Instance.CompanyID);
-                if (SecurityGroupCodeList.Count == 0)
-                {//it was not found do new record required logic...
+                SecurityGroupCodeList = GetSecurityGroupCodeByID(SelectedSecurityGroupCode.SecurityGroupCodeID, XERP.Client.ClientSessionSingleton.Instance.CompanyID);
+                if (SecurityGroupCodeList.Count == 0)//it was not found do new record required logic...
                     NotifyNewRecordNeeded("Record " + SelectedSecurityGroupCode.SecurityGroupCodeID + " Does Not Exist.  Create A New Record?");
-                }
                 else
-                {
                     SelectedSecurityGroupCode = SecurityGroupCodeList.FirstOrDefault();
-                }
             }
             else
             {
+                string errorMessage = "ID Is Required.";
                 NotifyMessage(errorMessage);
                 //revert back to the value it was before it was changed...
                 if (SelectedSecurityGroupCode.SecurityGroupCodeID != SelectedSecurityGroupCodeMirror.SecurityGroupCodeID)
-                {
                     SelectedSecurityGroupCode.SecurityGroupCodeID = SelectedSecurityGroupCodeMirror.SecurityGroupCodeID;
-                }
             }
         }
         //XERP allows for bulk updates we only allow save
         //if all bulk update requirements are met...
         private bool CommitIsAllowed()
-        {
-            string errorMessage = "";
-            bool rBool = true;
-            Dirty = false;
-            foreach (SecurityGroupCode securityGroupCode in SecurityGroupCodeList)
-            {
-                EntityStates entityState = GetSecurityGroupCodeState(securityGroupCode);
-                if (entityState == EntityStates.Modified ||
-                    entityState == EntityStates.Detached)
-                {
-                    Dirty = true;
-                }
-                if (entityState == EntityStates.Added)
-                {
-                    Dirty = true;
-                    //only one record can be added at a time...
-                    if (NewKeyIsValid(securityGroupCode, out errorMessage) == false)
-                    {
-                        rBool = false;
-                    }
-                }
-                if (NameIsValid(securityGroupCode.Code, out errorMessage) == false)
-                {
-                    rBool = false;
-                }
-            }
-            //more bulk validation as required...
-            //note bulk validation should coincide with property validation...
-            //as we will not allow a commit until all data is valid...
-            return rBool;
-        }
-
-        private bool PropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string code)
-        {
-            string errorMessage;
-            bool rBool = true;
-            switch (propertyName)
-            {
-                case "SecurityGroupCodeID":
-                    rBool = NewKeyIsValid(SelectedSecurityGroupCode, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
-                    break;
-                case "Name":
-                    rBool = NameIsValid(changedValue, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
-                    break;
-            }
-            return true;
-        }
-
-        private bool NewKeyIsValid(SecurityGroupCode securityGroupCode, out string errorMessage)
-        {
-            errorMessage = "";
-            if (KeyChangeIsValid(securityGroupCode.SecurityGroupCodeID, out errorMessage) == false)
-            {
+        {//Check for any repository changes that are not yet committed to the db...
+            Dirty = RepositoryIsDirty();
+            //check for any invalid rows...
+            int count = (from q in SecurityGroupCodeList where q.IsValid == 1 select q).Count();
+            if (count > 0)
                 return false;
-            }
-            if (SecurityGroupCodeExists(securityGroupCode.SecurityGroupCodeID.ToString(), ClientSessionSingleton.Instance.CompanyID))
-            {
-                errorMessage = "SecurityGroupCodeID " + securityGroupCode.SecurityGroupCodeID + " Allready Exists...";
-                return false;
-            }
             return true;
         }
-
-        private bool KeyChangeIsValid(object securityGroupCodeID, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)securityGroupCodeID))
-            {
-                errorMessage = "SecurityGroupCodeID Is Required...";
-                return false;
-            }
-            return true;
-        }
-
-        private bool NameIsValid(object value, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)value))
-            {
-                errorMessage = "Name Is Required...";
-                return false;
-            }
-            return true;
-        }
-        #endregion ViewModel Logic Methods
-
-        #region ServiceAgent Call Methods
-
-        private EntityStates GetSecurityGroupCodeState(SecurityGroupCode securityGroupCode)
-        {
-            return _serviceAgent.GetSecurityGroupCodeEntityState(securityGroupCode);
-        }
-
-        #region SecurityGroupCode CRUD
-        private void Refresh()
-        {
-
-            //refetch current records...
-            long selectedAutoID = SelectedSecurityGroupCode.AutoID;
-            string autoIDs = "";
-            //bool isFirstItem = true;
-            foreach (SecurityGroupCode securityGroupCode in SecurityGroupCodeList)
-            {//auto seeded starts at 1 any records at 0 or less or not valid records...
-                if (securityGroupCode.AutoID > 0)
-                {
-                    autoIDs = autoIDs + securityGroupCode.AutoID.ToString() + ",";
-                }
-            }
-            if (autoIDs.Length > 0)
-            {
-                //ditch the extra comma...
-                autoIDs = autoIDs.Remove(autoIDs.Length - 1, 1);
-                SecurityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.RefreshSecurityGroupCode(autoIDs).ToList());
-                SelectedSecurityGroupCode = (from q in SecurityGroupCodeList
-                                   where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
-
-                Dirty = false;
-                AllowCommit = false;
-            }
-        }
-
-        private BindingList<SecurityGroupCode> GetSecurityGroupCodes(string companyID)
-        {
-            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes(companyID).ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return securityGroupCodeList;
-        }
-
-        private BindingList<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCode, string companyID)
-        {
-            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes(securityGroupCode, companyID).ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return securityGroupCodeList;
-        }
-
-        private BindingList<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID, string companyID)
-        {
-            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodeByID(securityGroupCodeID, companyID).ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return securityGroupCodeList;
-        }
-
-        private bool SecurityGroupCodeExists(string securityGroupCodeID, string companyID)
-        {
-            return _serviceAgent.SecurityGroupCodeExists(securityGroupCodeID, companyID);
-        }
-        //udpate merely updates the repository a commit is required 
-        //to commit it to the db...
-        private bool Update(SecurityGroupCode securityGroupCode)
-        {
-            _serviceAgent.UpdateSecurityGroupCodeRepository(securityGroupCode);
-            Dirty = true;
-            if (CommitIsAllowed())
-            {
-                AllowCommit = true;
-                return true;
-            }
-            else
-            {
-                AllowCommit = false;
-                return false;
-            }
-        }
-        //commits repository to the db...
-        private bool Commit()
-        {
-            _serviceAgent.CommitSecurityGroupCodeRepository();
-            Dirty = false;
-            AllowCommit = false;
-            return true;
-        }
-
-        private bool Delete(SecurityGroupCode securityGroupCode)
-        {
-            _serviceAgent.DeleteFromSecurityGroupCodeRepository(securityGroupCode);
-            return true;
-        }
-
-        private bool NewSecurityGroupCode(string securityGroupCodeID)
-        {
-            SecurityGroupCode securityGroupCode = new SecurityGroupCode();
-            securityGroupCode.SecurityGroupCodeID = securityGroupCodeID;
-            securityGroupCode.CompanyID = ClientSessionSingleton.Instance.CompanyID;
-            SecurityGroupCodeList.Add(securityGroupCode);
-            _serviceAgent.AddToSecurityGroupCodeRepository(securityGroupCode);
-            SelectedSecurityGroupCode = SecurityGroupCodeList.LastOrDefault();
-            
-            AllowEdit = true;
-            Dirty = false;
-            return true;
-        }
-
-        #endregion SecurityGroupCode CRUD
-        #endregion ServiceAgent Call Methods
 
         private void SetAsEmptySelection()
         {
@@ -676,6 +456,230 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             SetAsEmptySelection();
         }
 
+        private bool SecurityGroupCodePropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        {
+            string errorMessage = "";
+            bool rBool = true;
+            switch (propertyName)
+            {
+                case "SecurityGroupCodeID":
+                    rBool = SecurityGroupCodeIsValid(SelectedSecurityGroupCode, _companyValidationProperties.SecurityGroupCodeID, out errorMessage);
+                    break;
+                case "Name":
+                    rBool = SecurityGroupCodeIsValid(SelectedSecurityGroupCode, _companyValidationProperties.Name, out errorMessage);
+                    break;
+            }
+            if (rBool == false)
+            {//here we give a specific error to the specific change
+                NotifyMessage(errorMessage);
+                SelectedSecurityGroupCode.IsValid = 1;
+            }
+            else //check the enire rows validity...
+            {//here we check the entire row for validity the property change may be valid
+                //but we still do not know if the entire row is valid...
+                //if the row is valid we will set it to 2 (pending changes...)
+                //on the commit we will set it to 0 and it will be valid and saved to the db...
+                SelectedSecurityGroupCode.IsValid = SecurityGroupCodeIsValid(SelectedSecurityGroupCode, out errorMessage);
+                if (SelectedSecurityGroupCode.IsValid == 2)
+                    errorMessage = "Pending Changes...";
+            }
+            SelectedSecurityGroupCode.NotValidMessage = errorMessage;
+            return rBool;
+        }
+
+        #region Validation Methods
+        //XERP Validation is done by the entire object or by Object property...
+        //So we must be sure to add the validation in both places...
+        private enum _companyValidationProperties
+        {//we list all fields that require validation...
+            SecurityGroupCodeID,
+            Name
+        }
+
+        //Object.Property Scope Validation...
+        private bool SecurityGroupCodeIsValid(SecurityGroupCode company, _companyValidationProperties validationProperties, out string errorMessage)
+        {
+            errorMessage = "";
+            switch (validationProperties)
+            {
+                case _companyValidationProperties.SecurityGroupCodeID:
+                    //validate key
+                    if (string.IsNullOrEmpty(company.SecurityGroupCodeID))
+                    {
+                        errorMessage = "ID Is Required.";
+                        return false;
+                    }
+                    EntityStates entityState = GetSecurityGroupCodeState(company);
+                    if (entityState == EntityStates.Added && SecurityGroupCodeExists(company.SecurityGroupCodeID, ClientSessionSingleton.Instance.CompanyID))
+                    {
+                        errorMessage = "Item AllReady Exists...";
+                        return false;
+                    }
+                    break;
+                case _companyValidationProperties.Name:
+                    //validate Description
+                    if (string.IsNullOrEmpty(company.Description))
+                    {
+                        errorMessage = "Description Is Required.";
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+        //SecurityGroupCode Object Scope Validation check the entire object for validity...
+        private byte SecurityGroupCodeIsValid(SecurityGroupCode item, out string errorMessage)
+        {   //validate key
+            errorMessage = "";
+            if (string.IsNullOrEmpty(item.SecurityGroupCodeID))
+            {
+                errorMessage = "ID Is Required.";
+                return 1;
+            }
+            EntityStates entityState = GetSecurityGroupCodeState(item);
+            if (entityState == EntityStates.Added && SecurityGroupCodeExists(item.SecurityGroupCodeID, ClientSessionSingleton.Instance.CompanyID))
+            {
+                errorMessage = "Item AllReady Exists.";
+                return 1;
+            }
+
+            //validate Description
+            if (string.IsNullOrEmpty(item.Description))
+            {
+                errorMessage = "Description Is Required.";
+                return 1;
+            }
+            //a value of 2 is pending changes...
+            //On Commit we will give it a value of 0...
+            return 2;
+        }
+        #endregion Validation Methods
+        #endregion ViewModel Logic Methods
+
+        #region ServiceAgent Call Methods
+        private EntityStates GetSecurityGroupCodeState(SecurityGroupCode itemCode)
+        {
+            return _serviceAgent.GetSecurityGroupCodeEntityState(itemCode);
+        }
+
+        private bool RepositoryIsDirty()
+        {
+            return _serviceAgent.SecurityGroupCodeRepositoryIsDirty();
+        }
+
+        #region SecurityGroupCode CRUD
+        private void Refresh()
+        {//refetch current records...
+            long selectedAutoID = SelectedSecurityGroupCode.AutoID;
+            string autoIDs = "";
+            //bool isFirstItem = true;
+            foreach (SecurityGroupCode itemCode in SecurityGroupCodeList)
+            {//auto seeded starts at 1 any records at 0 or less or not valid records...
+                if (itemCode.AutoID > 0)
+                    autoIDs = autoIDs + itemCode.AutoID.ToString() + ",";
+            }
+            if (autoIDs.Length > 0)
+            {
+                //ditch the extra comma...
+                autoIDs = autoIDs.Remove(autoIDs.Length - 1, 1);
+                SecurityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.RefreshSecurityGroupCode(autoIDs).ToList());
+                SelectedSecurityGroupCode = (from q in SecurityGroupCodeList
+                                   where q.AutoID == selectedAutoID
+                                   select q).SingleOrDefault();
+                Dirty = false;
+                AllowCommit = false;
+            }
+        }
+
+        private BindingList<SecurityGroupCode> GetSecurityGroupCodes(string companyID)
+        {
+            BindingList<SecurityGroupCode> securityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes(companyID).ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return securityGroupCodeList;
+        }
+
+        private BindingList<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode itemCode, string companyID)
+        {
+            BindingList<SecurityGroupCode> itemCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodes(itemCode, companyID).ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return itemCodeList;
+        }
+
+        private BindingList<SecurityGroupCode> GetSecurityGroupCodeByID(string itemCodeID, string companyID)
+        {
+            BindingList<SecurityGroupCode> itemCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.GetSecurityGroupCodeByID(itemCodeID, companyID).ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return itemCodeList;
+        }
+
+        private bool SecurityGroupCodeExists(string itemCodeID, string companyID)
+        {
+            return _serviceAgent.SecurityGroupCodeExists(itemCodeID, companyID);
+        }
+        //udpate merely updates the repository a commit is required 
+        //to commit it to the db...
+        private bool Update(SecurityGroupCode item)
+        {
+            _serviceAgent.UpdateSecurityGroupCodeRepository(item);
+            Dirty = true;
+            if (CommitIsAllowed())
+                AllowCommit = true;
+            else
+                AllowCommit = false;
+            return AllowCommit;
+        }
+
+        //commits repository to the db...
+        private bool Commit()
+        {   //search non respository UI list for pending saved marked records and mark them as valid...
+            var items = (from q in SecurityGroupCodeList where q.IsValid == 2 select q).ToList();
+            foreach (SecurityGroupCode item in items)
+            {
+                item.IsValid = 0;
+                item.NotValidMessage = null;
+            }
+            _serviceAgent.CommitSecurityGroupCodeRepository();
+            Dirty = false;
+            AllowCommit = false;
+            return true;
+        }
+
+
+        private bool Delete(SecurityGroupCode itemCode)
+        {
+            _serviceAgent.DeleteFromSecurityGroupCodeRepository(itemCode);
+            return true;
+        }
+
+        private bool NewSecurityGroupCode(string id)
+        {
+            SecurityGroupCode item = new SecurityGroupCode();
+            //all new records will be give a negative int autoid...
+            //when they are updated then sql will generate one for them overiding this set value...
+            //it will allow us to give uniqueness to the tempory new records...
+            //Before they are updated to the entity and given an autoid...
+            //we use a negative number and keep subtracting by 1 for each new item added...
+            //This will allow it to alwasy be unique and never interfere with SQL's positive autoid...
+            _newSecurityGroupCodeAutoId = _newSecurityGroupCodeAutoId - 1;
+            item.AutoID = _newSecurityGroupCodeAutoId;
+            item.SecurityGroupCodeID = id;
+            item.CompanyID = ClientSessionSingleton.Instance.CompanyID;
+            item.IsValid = 1;
+            item.NotValidMessage = "New Record Key Field/s Are Required.";
+            SecurityGroupCodeList.Add(item);
+            _serviceAgent.AddToSecurityGroupCodeRepository(item);
+            SelectedSecurityGroupCode = SecurityGroupCodeList.LastOrDefault();
+
+            AllowEdit = true;
+            Dirty = false;
+            return true;
+        }
+
+        #endregion SecurityGroupCode CRUD
+        #endregion ServiceAgent Call Methods
         #endregion Methods
 
         #region Commands
@@ -696,7 +700,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewSecurityGroupCodeCommand(""); //this will generate a new securityGroupCode and set it as the selected securityGroupCode...
+                    NewSecurityGroupCodeCommand(""); //this will generate a new itemCode and set it as the selected itemCode...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -718,51 +722,63 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             if (GetSecurityGroupCodeState(SelectedSecurityGroupCode) != EntityStates.Detached)
             {
                 if (Update(SelectedSecurityGroupCode))
-                {
                     Commit();
-                }
                 else
-                {//this should not be hit but just in case we will catch it and then see 
-                    //if and where we have a hole in our allowcommit logic...
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
-                }
             }
         }
         public void RefreshCommand()
         {
             Refresh();
         }
-        public void DeleteCommand()
+        public void DeleteSecurityGroupCodeCommand()
         {
-            int i = 0;
-            bool isFirstDelete = true;
-            for (int j = SelectedSecurityGroupCodeList.Count - 1; j >= 0; j--)
-            {
-                SecurityGroupCode securityGroupCode = (SecurityGroupCode)SelectedSecurityGroupCodeList[j];
-                if (isFirstDelete)
-                {//the result of this will be the record directly before the selected records...
-                    i = SecurityGroupCodeList.IndexOf(securityGroupCode) - SelectedSecurityGroupCodeList.Count;
-                }
-
-                Delete(securityGroupCode);
-                SecurityGroupCodeList.Remove(securityGroupCode);
-            }
-
-            if (SecurityGroupCodeList != null && SecurityGroupCodeList.Count > 0)
-            {
-                //if they delete the first row...
-                if (i < 0)
+            try
+            {//company is fk to 100's of tables deleting it can be tricky...
+                int i = 0;
+                int ii = 0;
+                for (int j = SelectedSecurityGroupCodeList.Count - 1; j >= 0; j--)
                 {
-                    i = 0;
+                    SecurityGroupCode item = (SecurityGroupCode)SelectedSecurityGroupCodeList[j];
+                    //get Max Index...
+                    i = SecurityGroupCodeList.IndexOf(item);
+                    if (i > ii)
+                        ii = i;
+                    Delete(item);
+                    SecurityGroupCodeList.Remove(item);
                 }
-                SelectedSecurityGroupCode = SecurityGroupCodeList[i];
-                AllowCommit = CommitIsAllowed();
-            }
-            else
-            {//only one record, deleting will result in no records...
-                SetAsEmptySelection();
+
+                if (SecurityGroupCodeList != null && SecurityGroupCodeList.Count > 0)
+                {
+                    //back off one index from the max index...
+                    ii = ii - 1;
+
+                    //if they delete the first row...
+                    if (ii < 0)
+                        ii = 0;
+
+                    //make sure it does not exceed the list count...
+                    if (ii >= SecurityGroupCodeList.Count())
+                        ii = SecurityGroupCodeList.Count - 1;
+
+                    SelectedSecurityGroupCode = SecurityGroupCodeList[ii];
+                    //we will only enable committ for dirty validated records...
+                    if (Dirty == true)
+                        AllowCommit = CommitIsAllowed();
+                    else
+                        AllowCommit = false;
+                }
+                else//only one record, deleting will result in no records...
+                    SetAsEmptySelection();
+            }//we try catch company delete as it may be used in another table as a key...
+            //As well we will force a refresh to sqare up the UI after the botched delete...
+            catch
+            {
+                NotifyMessage("SecurityGroupCode/s Can Not Be Deleted.  Contact XERP Admin For More Details.");
+                Refresh();
             }
         }
+
 
         public void NewSecurityGroupCodeCommand()
         {
@@ -770,40 +786,29 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             AllowCommit = false;
         }
 
-        public void NewSecurityGroupCodeCommand(string securityGroupCodeID)
+        public void NewSecurityGroupCodeCommand(string itemCodeID)
         {
-            NewSecurityGroupCode(securityGroupCodeID);
-            if (string.IsNullOrEmpty(securityGroupCodeID)) 
-            {//don't allow a save until a securityGroupCodeID is provided...
+            NewSecurityGroupCode(itemCodeID);
+            if (string.IsNullOrEmpty(itemCodeID)) //don't allow a save until a itemCodeID is provided...
                 AllowCommit = false;
-            }
-            {
+            else
                 AllowCommit = CommitIsAllowed();
-            }
         }
 
         public void ClearCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
-            }
             else
-            {
                 ClearLogic();
-            }
         }
 
         public void SearchCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
-            }
             else
-            {
                 SearchLogic();
-            }
         }
 
         private void SearchLogic()
@@ -833,32 +838,24 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #endregion Completion Callbacks
 
         #region Helpers
-        //notify the view that a new record was created...
-        //allows us to set focus to key field...
-        //private void NotifyNewRecordCreated()
-        //{
-        //    Notify(NewRecordCreatedNotice, new NotificationEventArgs());
-        //}
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
         private void NotifyMessage(string message)
-        {
-            // Notify view of an error message w/o throwing an error...
+        {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
         }
-        //Notify view to launch search...
+        
         private void NotifySearch(string message)
-        {
+        {//Notify view to launch search...
             Notify(SearchNotice, new NotificationEventArgs(message));
         }
 
-        //Notify view new record may be required...
+        
         private void NotifyNewRecordNeeded(string message)
-        {
+        {//Notify view new record may be required...
             Notify(NewRecordNeededNotice, new NotificationEventArgs<bool, MessageBoxResult>
             (message, true, result => { OnNewRecordNeededResult(result); }));
         }
@@ -929,45 +926,31 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-
     public static partial class XERPExtensions
     {
         public static object GetPropertyValue(this SecurityGroupCode myObj, string propertyName)
         {
             var propInfo = typeof(SecurityGroupCode).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.GetValue(myObj, null);
-            }
             else
-            {
                 return string.Empty;
-            }
         }
 
         public static string GetPropertyCode(this SecurityGroupCode myObj, string propertyName)
         {
             var propInfo = typeof(SecurityGroupCode).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.PropertyType.Name.ToString();
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static void SetPropertyValue(this SecurityGroupCode myObj, object propertyName, object propertyValue)
         {
             var propInfo = typeof(SecurityGroupCode).GetProperty((string)propertyName);
-
             if (propInfo != null)
-            {
                 propInfo.SetValue(myObj, propertyValue, null);
-            }
         }
     }
 }

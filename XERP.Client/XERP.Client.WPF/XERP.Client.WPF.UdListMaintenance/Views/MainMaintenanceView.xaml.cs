@@ -1,14 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using XERP.Client.WPF.UdListMaintenance.ViewModels;
-//using XERP.Domain.UdListDomain.ClientModels;
 using SimpleMvvmToolkit;
-using System.Collections.Generic;
 using XERP.Client.Models;
-using XERP.Client.WPF;
+using XERP.Client.WPF.UdListMaintenance.ViewModels;
 
 namespace XERP.Client.WPF.UdListMaintenance.Views
 {
@@ -34,7 +32,6 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
                 _viewModel.SaveRequiredNotice += OnSaveRequiredNotice;
                 _viewModel.NewRecordNeededNotice += OnNewRecordNeededNotice;
                 _viewModel.AuthenticatedNotice += OnAuthenticatedNotice;
-                //_viewModel.NewRecordCreatedNotice += OnNewRecordCreatedNotice;
 
                 InitializeComponent();
 
@@ -58,29 +55,6 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
         {
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
-
-        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        //{
-        //    if (tabctrlMain.SelectedItem == tabDetail)
-        //    {
-        //        txtKey.Focus();
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabList)
-        //    {
-        //        dgMain.Focus();
-        //        if(dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-        //        {//set the last records first column to have focus...
-        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1], 
-        //                dgMain.Columns[0]);
-        //            dgMain.BeginEdit();
-        //        }
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabItems)
-        //    {
-        //        tabctrlMain.SelectedItem = tabDetail;
-        //        txtKey.Focus();
-        //    }
-        //}
 
         private void WiggleToGhostField(object sender, RoutedEventArgs e)
         {//textboxex by default set bindings on lost focus
@@ -159,6 +133,10 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
                 if (_viewModel.AllowNew)
                 {
                     _viewModel.NewUdListCommand("");
+                    //set the first visible column to allow for edit w/o requireing a click to select it...
+                    dgMain.CurrentCell = new DataGridCellInfo(
+                    dgMain.Items[dgMain.Items.Count - 1], dgMain.Columns[0]);
+                    dgMain.BeginEdit();
                 }
                 else
                 {
@@ -243,7 +221,7 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
                 columnMetaData.Order = column.DisplayIndex;
                 _viewModel.UdListColumnMetaDataList.Add(columnMetaData);
             }        
-            _viewModel.PasteRowCommand();
+            _viewModel.PasteUdListRowCommand();
         }
 
         private void dgMain_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -252,7 +230,7 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
             {
                 if (_viewModel.AllowDelete)
                 {
-                    _viewModel.DeleteCommand();
+                    _viewModel.DeleteUdListCommand();
                     return;
                 }
                 //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -25,6 +25,20 @@ namespace XERP.Domain.SecurityGroupDomain.Services
         #endregion Properties
 
         #region Read Only Methods  No Repository Required
+        public bool SecurityGroupRepositoryIsDirty()
+        {
+            return SecurityGroupSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool SecurityGroupTypeRepositoryIsDirty()
+        {
+            return SecurityGroupTypeSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool SecurityGroupCodeRepositoryIsDirty()
+        {
+            return SecurityGroupCodeSingletonRepository.Instance.RepositoryIsDirty();
+        } 
         public IEnumerable<SecurityGroupType> GetSecurityGroupTypesReadOnly(string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
@@ -45,48 +59,45 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return queryResult;
         }
 
-        public bool SecurityGroupExists(string securityGroupID, string companyID)
+        public bool SecurityGroupExists(string  itemID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SecurityGroups
-                           where q.SecurityGroupID == securityGroupID &&
+                           where q.SecurityGroupID ==  itemID &&
                            q.CompanyID == companyID
                            select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
-        public bool SecurityGroupTypeExists(string securityGroupTypeID, string companyID)
+        public bool SecurityGroupTypeExists(string  itemTypeID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SecurityGroupTypes
-                               where q.SecurityGroupTypeID == securityGroupTypeID
+                               where q.SecurityGroupTypeID ==  itemTypeID
                                where q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
-        public bool SecurityGroupCodeExists(string securityGroupCodeID, string companyID)
+        public bool SecurityGroupCodeExists(string  itemCodeID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SecurityGroupCodes
-                               where q.SecurityGroupCodeID == securityGroupCodeID &&
+                               where q.SecurityGroupCodeID ==  itemCodeID &&
                                q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
@@ -111,14 +122,14 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return SecurityGroupSingletonRepository.Instance.GetSecurityGroups(companyID);
         }
 
-        public IEnumerable<SecurityGroup> GetSecurityGroups(SecurityGroup securityGroupQuerryObject, string companyID)
+        public IEnumerable<SecurityGroup> GetSecurityGroups(SecurityGroup  itemQuerryObject, string companyID)
         {
-            return SecurityGroupSingletonRepository.Instance.GetSecurityGroups(securityGroupQuerryObject, companyID);
+            return SecurityGroupSingletonRepository.Instance.GetSecurityGroups( itemQuerryObject, companyID);
         }
 
-        public IEnumerable<SecurityGroup> GetSecurityGroupByID(string securityGroupID, string companyID)
+        public IEnumerable<SecurityGroup> GetSecurityGroupByID(string  itemID, string companyID)
         {
-            return SecurityGroupSingletonRepository.Instance.GetSecurityGroupByID(securityGroupID, companyID);
+            return SecurityGroupSingletonRepository.Instance.GetSecurityGroupByID( itemID, companyID);
         }
 
         public void CommitSecurityGroupRepository()
@@ -126,24 +137,24 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             SecurityGroupSingletonRepository.Instance.CommitRepository();
         }
 
-        public void UpdateSecurityGroupRepository(SecurityGroup securityGroup)
+        public void UpdateSecurityGroupRepository(SecurityGroup  item)
         {
-            SecurityGroupSingletonRepository.Instance.UpdateRepository(securityGroup);
+            SecurityGroupSingletonRepository.Instance.UpdateRepository( item);
         }
 
-        public void AddToSecurityGroupRepository(SecurityGroup securityGroup)
+        public void AddToSecurityGroupRepository(SecurityGroup  item)
         {
-            SecurityGroupSingletonRepository.Instance.AddToRepository(securityGroup);
+            SecurityGroupSingletonRepository.Instance.AddToRepository( item);
         }
 
-        public void DeleteFromSecurityGroupRepository(SecurityGroup securityGroup)
+        public void DeleteFromSecurityGroupRepository(SecurityGroup  item)
         {
-            SecurityGroupSingletonRepository.Instance.DeleteFromRepository(securityGroup);
+            SecurityGroupSingletonRepository.Instance.DeleteFromRepository( item);
         }
 
-        public EntityStates GetSecurityGroupEntityState(SecurityGroup securityGroup)
+        public EntityStates GetSecurityGroupEntityState(SecurityGroup  item)
         {
-            return SecurityGroupSingletonRepository.Instance.GetSecurityGroupEntityState(securityGroup);
+            return SecurityGroupSingletonRepository.Instance.GetSecurityGroupEntityState( item);
         }
         #endregion SecurityGroup Repository CRUD
 
@@ -158,38 +169,38 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypes(companyID);
         }
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType securityGroupTypeQuerryObject, string companyID)
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypes(SecurityGroupType  itemTypeQuerryObject, string companyID)
         {
-            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypes(securityGroupTypeQuerryObject, companyID);
+            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypes( itemTypeQuerryObject, companyID);
         }
 
-        public IEnumerable<SecurityGroupType> GetSecurityGroupTypeByID(string securityGroupTypeID, string companyID)
+        public IEnumerable<SecurityGroupType> GetSecurityGroupTypeByID(string  itemTypeID, string companyID)
         {
-            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypeByID(securityGroupTypeID, companyID);
+            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypeByID( itemTypeID, companyID);
         }
         public void CommitSecurityGroupTypeRepository()
         {
             SecurityGroupTypeSingletonRepository.Instance.CommitRepository();
         }
 
-        public void UpdateSecurityGroupTypeRepository(SecurityGroupType securityGroupType)
+        public void UpdateSecurityGroupTypeRepository(SecurityGroupType  itemType)
         {
-            SecurityGroupTypeSingletonRepository.Instance.UpdateRepository(securityGroupType);
+            SecurityGroupTypeSingletonRepository.Instance.UpdateRepository( itemType);
         }
 
-        public void AddToSecurityGroupTypeRepository(SecurityGroupType securityGroupType)
+        public void AddToSecurityGroupTypeRepository(SecurityGroupType  itemType)
         {
-            SecurityGroupTypeSingletonRepository.Instance.AddToRepository(securityGroupType);
+            SecurityGroupTypeSingletonRepository.Instance.AddToRepository( itemType);
         }
 
-        public void DeleteFromSecurityGroupTypeRepository(SecurityGroupType securityGroupType)
+        public void DeleteFromSecurityGroupTypeRepository(SecurityGroupType  itemType)
         {
-            SecurityGroupTypeSingletonRepository.Instance.DeleteFromRepository(securityGroupType);
+            SecurityGroupTypeSingletonRepository.Instance.DeleteFromRepository( itemType);
         }
 
-        public EntityStates GetSecurityGroupTypeEntityState(SecurityGroupType securityGroupType)
+        public EntityStates GetSecurityGroupTypeEntityState(SecurityGroupType  itemType)
         {
-            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypeEntityState(securityGroupType);
+            return SecurityGroupTypeSingletonRepository.Instance.GetSecurityGroupTypeEntityState( itemType);
         }
 
         #endregion SecurityGroupType Repository CRUD
@@ -205,38 +216,38 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodes(companyID);
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCodeQuerryObject, string companyID)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode  itemCodeQuerryObject, string companyID)
         {
-            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodes(securityGroupCodeQuerryObject, companyID);
+            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodes( itemCodeQuerryObject, companyID);
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID, string companyID)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string  itemCodeID, string companyID)
         {
-            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodeByID(securityGroupCodeID, companyID);
+            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodeByID( itemCodeID, companyID);
         }
         public void CommitSecurityGroupCodeRepository()
         {
             SecurityGroupCodeSingletonRepository.Instance.CommitRepository();
         }
 
-        public void UpdateSecurityGroupCodeRepository(SecurityGroupCode securityGroupCode)
+        public void UpdateSecurityGroupCodeRepository(SecurityGroupCode  itemCode)
         {
-            SecurityGroupCodeSingletonRepository.Instance.UpdateRepository(securityGroupCode);
+            SecurityGroupCodeSingletonRepository.Instance.UpdateRepository( itemCode);
         }
 
-        public void AddToSecurityGroupCodeRepository(SecurityGroupCode securityGroupCode)
+        public void AddToSecurityGroupCodeRepository(SecurityGroupCode  itemCode)
         {
-            SecurityGroupCodeSingletonRepository.Instance.AddToRepository(securityGroupCode);
+            SecurityGroupCodeSingletonRepository.Instance.AddToRepository( itemCode);
         }
 
-        public void DeleteFromSecurityGroupCodeRepository(SecurityGroupCode securityGroupCode)
+        public void DeleteFromSecurityGroupCodeRepository(SecurityGroupCode  itemCode)
         {
-            SecurityGroupCodeSingletonRepository.Instance.DeleteFromRepository(securityGroupCode);
+            SecurityGroupCodeSingletonRepository.Instance.DeleteFromRepository( itemCode);
         }
 
-        public EntityStates GetSecurityGroupCodeEntityState(SecurityGroupCode securityGroupCode)
+        public EntityStates GetSecurityGroupCodeEntityState(SecurityGroupCode  itemCode)
         {
-            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodeEntityState(securityGroupCode);
+            return SecurityGroupCodeSingletonRepository.Instance.GetSecurityGroupCodeEntityState( itemCode);
         }
 
         #endregion SecurityGroupCode Repository CRUD

@@ -87,8 +87,7 @@
                             </DataGrid.ContextMenu>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding UdListItemID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                            Header="ID" Width="*">
-                                
+                            Header="ID" Width="*">  
                             </DataGridTextColumn>
                                 <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                         Header="Description" Width="*"/>

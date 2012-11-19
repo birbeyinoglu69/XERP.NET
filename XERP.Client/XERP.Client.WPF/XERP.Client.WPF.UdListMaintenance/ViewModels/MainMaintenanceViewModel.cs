@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Windows;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Data.Services.Client;
-using System.ComponentModel;
 using System.Collections.Generic;
-// Toolkit namespace
+using System.ComponentModel;
+using System.Data.Services.Client;
+using System.Linq;
+using System.Windows;
+using ExtensionMethods;
 using SimpleMvvmToolkit;
-//XERP Namespaces
+using XERP.Client.Models;
 using XERP.Domain.UdListDomain.Services;
 using XERP.Domain.UdListDomain.UdListDataService;
-//using XERP.Domain.UdListDomain.ClientModels;
-using XERP.Domain.ClientModels;
-using XERP.Client.Models;
-//required for extension methods...
-using ExtensionMethods;
 
 namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 {
@@ -34,8 +28,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         }
 
         //required else it generates debug view designer issues 
-        public MainMaintenanceViewModel()
-        { }
+        public MainMaintenanceViewModel(){ }
 
         public MainMaintenanceViewModel(IUdListServiceAgent serviceAgent)
         {
@@ -47,11 +40,8 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             UdListList.AllowNew = false;
             
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
@@ -65,17 +55,11 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 
         #region Authentication Logic
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {   //we need to make the system user is allowed access to this UI..
             if(ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -87,9 +71,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
         
@@ -106,14 +88,12 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> SaveRequiredNotice;
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> NewRecordNeededNotice;
         public event EventHandler<NotificationEventArgs> AuthenticatedNotice;
-        //public event EventHandler<NotificationEventArgs> NewRecordCreatedNotice;
-        //public event EventHandler<NotificationEventArgs> NewItemRecordCreatedNotice;
         public event EventHandler<NotificationEventArgs> WiggleToGhostFieldNotice;
         #endregion Notifications    
 
         #region Properties
         #region GeneralProperties
-        //used to enable/disable rowcopy feature for main datagrid...
+
         private bool _allowRowCopy;
         public bool AllowRowCopy
         {
@@ -281,24 +261,20 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                     //default UdListItem properties...
                     //if the selecteditem has an autoID > 0 we will allow children...
                     if (value.AutoID > 0)
-                    {
-                        AllowNewItem = true;
-                    }
+                        AllowNewUdListItem = true;
                     else
-                    {
-                        AllowNewItem = false;
-                    }
-                    AllowEditItem = false;
-                    AllowDeleteItem = false;
+                        AllowNewUdListItem = false;
+
+                    AllowEditUdListItem = false;
+                    AllowDeleteUdListItem = false;
                     Dirty = false;
-                    AllowRowCopyItem = false;
+                    AllowRowCopyUdListItem = false;
                     //we do a try catch supress as in some instance the UdListList is not instantiated...
                     try
                     {
                         if (UdListList != null && UdListList.Count > 0)
                         {
                             var udList = UdListList.SingleOrDefault(q => q.AutoID == value.AutoID);
-                            
                             //if the selection came from the child datagrid or the child was selected from the tree
                             //then we will not set the parent to be active nor will we auto select the first child...
                             if (UdListItemIsSelected == false)
@@ -308,24 +284,17 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                                 //don't set the child if the child is active...
                                 //as the child will get set through the binding...
                                 if (value.UdListItems.Count > 0)
-                                {
                                     if(SelectedUdList.AutoID != udList.UdListItems.FirstOrDefault().AutoID)
-                                    {
                                         SelectedUdListItem = udList.UdListItems.FirstOrDefault();
-                                    }
-                                }
-                                else
-                                {//if their are no items we have an emtpy items situation...
+                                else//if their are no items we have an emtpy items situation...
                                     SetAsEmptyItemSelection();
-                                }
                             }
                             if (udList.UdListItems.Count > 0)
                             {
-                                AllowEditItem = true;
-                                AllowDeleteItem = true;
-                                AllowRowCopyItem = true;
+                                AllowEditUdListItem = true;
+                                AllowDeleteUdListItem = true;
+                                AllowRowCopyUdListItem = true;
                             }
- 
                         }
                     }
                     catch { }
@@ -373,36 +342,21 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 ConvertNestedObject(value, out udList, out udListItem);
                 //if the selecteditem is null then set it...
                 if (SelectedUdList == null)
-                {
                     SelectedUdList = udList;
-                }
                 else
-                {//if it is not null measure for change and set when change is detected...
                     if (SelectedUdList.AutoID != udList.AutoID)
-                    {
                         SelectedUdList = udList;
-                    }
-                }
                 //if list items exist...
                 if (udList.UdListItems.Count > 0)
                 {//if it is null we will set it...
                     if (SelectedUdListItem == null)
-                    {
                         SelectedUdListItem = udListItem;
-                    }
                     else
-                    {//if it is not null and has really changed we will set it...
                         if (SelectedUdListItem.AutoID != udListItem.AutoID)
-                        {
                             SelectedUdListItem = udListItem;
-                        }
-                    }
                 }
-                else
-                {//no Items exists for selected UdList set it items selection and list to empty...
+                else//no Items exists for selected UdList set it items selection and list to empty...
                     SetAsEmptyItemSelection();  
-                }
-                
                 NotifyPropertyChanged(m => m.SelectedTreeItem);
             }
         }
@@ -441,18 +395,15 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             get
             {
                 if (_udListMaxFieldValueDictionary != null)
-                {
                     return _udListMaxFieldValueDictionary;
-                }
+
                 _udListMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("UdLists");
 
                 foreach (var data in metaData)
                 {
                     if (data.ShortChar_1 == "String")
-                    {
                         _udListMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                    }
                 }
                 return _udListMaxFieldValueDictionary;
             }
@@ -463,16 +414,17 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         #region ViewModel Propertie's Events
         private void SelectedUdList_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {   
-            //IsSelected and IsExpanded are not to be persisted we will igore them...
+            //these properties are not to be persisted we will igore them...
             if (e.PropertyName == "IsSelected" || 
                 e.PropertyName == "IsExpanded" ||
-                e.PropertyName == "IsValid" || 
-                e.PropertyName == "NotValidMessage")
-            {
+                e.PropertyName == "IsValid" ||
+                e.PropertyName == "NotValidMessage" ||
+                e.PropertyName == "LastModifiedBy" ||
+                e.PropertyName == "LastModifiedByDate")
                 return;
-            }
+
             //Key ID Logic...
-                if (e.PropertyName == "UdListID")
+            if (e.PropertyName == "UdListID")
             {//make sure it is has changed...
                 if (SelectedUdListMirror.UdListID != SelectedUdList.UdListID)
                 {
@@ -488,15 +440,12 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
-                    {//once a key is added it can not be modified...
+                    {
                         if (Dirty  && AllowCommit)
-                        {//dirty record exists ask if save is required...
                             NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
-                        }
                         else
-                        {
                             ChangeKeyLogic();
-                        }
+
                         return;
                     }
                 }
@@ -512,41 +461,35 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             if (propertyChangedValue == null)
             {
                 if (prevPropertyValue == null)
-                {//both values are null
                     objectsAreEqual = true;
-                }
-                else
-                {//only one value is null
+                else//only one value is null
                     objectsAreEqual = false;
-                }
             }
             else 
             {
-                if (prevPropertyValue == null)
-                {//only one value is null
+                if (prevPropertyValue == null)//only one value is null
                     objectsAreEqual = false;
-                }
                 else //both values are not null use .Equals...
-                {
                     objectsAreEqual = propertyChangedValue.Equals(prevPropertyValue);
-                }
             }
             if (!objectsAreEqual)
             {
                 //Here we do property change validation if false is returned we will reset the value
                 //Back to its mirrored value and return out of the property change w/o updating the repository...
-                if (PropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
+                if (UdListPropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
                 {
                     Update(SelectedUdList);
                     //set the mirrored objects field...
                     SelectedUdListMirror.SetPropertyValue(e.PropertyName, propertyChangedValue);
                     SelectedUdListMirror.IsValid = SelectedUdList.IsValid;
+                    SelectedUdListMirror.IsExpanded = SelectedUdList.IsExpanded;
                     SelectedUdListMirror.NotValidMessage = SelectedUdList.NotValidMessage;
                 }
                 else
                 {//revert back to its previous value... 
                     SelectedUdList.SetPropertyValue(e.PropertyName, prevPropertyValue);
                     SelectedUdList.IsValid = SelectedUdListMirror.IsValid;
+                    SelectedUdList.IsExpanded = SelectedUdListMirror.IsExpanded;
                     SelectedUdList.NotValidMessage = SelectedUdListMirror.NotValidMessage;
                     return;
                 }
@@ -558,7 +501,6 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 
         private void ChangeKeyLogic()
         {
-            
             if (! string.IsNullOrEmpty(SelectedUdList.UdListID))
             {
                 //check to see if key is part of the current udListlist...
@@ -578,9 +520,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                     NotifyNewRecordNeeded("Record " + SelectedUdList.UdListID + " Does Not Exist.  Create A New Record?");
                 }
                 else
-                {
                     SelectedUdList = UdListList.FirstOrDefault();
-                }
             }
             else
             {
@@ -588,42 +528,27 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 NotifyMessage(errorMessage);
                 //revert back to the value it was before it was changed...
                 if (SelectedUdList.UdListID != SelectedUdListMirror.UdListID)
-                {
                     SelectedUdList.UdListID = SelectedUdListMirror.UdListID;
-                }
             }
         }
-        //XERP allows for bulk updates we only allow save
-        //if all bulk update requirements are met...
+
         private bool CommitIsAllowed()
         {
-            bool rBool = true;
-            string errorMessage = "";
+            ////Check for any repository changes that are not yet committed to the db...
             Dirty = RepositoryIsDirty();
-            //we will loop parent and child object until we hit an error...
-            //if we hit an error we will exit...
+            //check for any invalid rows...
             foreach (UdList udList in UdListList)
-            {
-                //check object for validity...
-                rBool = UdListIsValid(udList, out errorMessage);
-                udList.IsValid = rBool;
-                udList.NotValidMessage = errorMessage;
-                if (rBool == false)
-                    return rBool;
-                //check the children for validity...
-                foreach (UdListItem udListItem in udList.UdListItems)
-                {
-                    rBool = UdListItemIsValid(udListItem, out errorMessage);
-                    udListItem.IsValid = rBool;
-                    udListItem.NotValidMessage = errorMessage;
-                    if (rBool == false)
-                        return rBool;
-                }
+            {   //check if row isvalid...
+                if (udList.IsValid == 1)
+                    return false;
+                //make sure all children are valid...
+                int count = (from q in udList.UdListItems where q.IsValid == 1 select q).Count();
+                if (count > 0)
+                    return false;
             }
-            
-            return rBool;
+           
+            return true;
         }
-        
         private void SetAsEmptySelection()
         {
             SelectedUdList = new UdList();
@@ -632,7 +557,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             Dirty = false;
             AllowCommit = false;
             AllowRowCopy = false;
-            AllowNewItem = false;
+            AllowNewUdListItem = false;
         }
 
         public void ClearLogic()
@@ -641,8 +566,8 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             SetAsEmptySelection();
             SetAsEmptyItemSelection();
         }
-
-        private bool PropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        //property change event...
+        private bool UdListPropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
         {   
             string errorMessage = "";
             bool rBool = true;
@@ -658,13 +583,11 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             if (rBool == false)
             {//here we give a specific error to the specific change
                 NotifyMessage(errorMessage);
-                SelectedUdList.IsValid = false;
+                SelectedUdList.IsValid = 1;
             }
             else //check the enire rows validity...
-            {//here we check the entire row for validity the property change may be valid
-                //but we still do not know if the entire row is valid...
                 SelectedUdList.IsValid = UdListIsValid(SelectedUdList, out errorMessage);
-            }
+
             SelectedUdList.NotValidMessage = errorMessage;
             return rBool;
         }
@@ -678,10 +601,9 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             Name
         }
 
-        //UdList Object.Property Scope Validation...
+        //Object.Property Scope Validation...
         private bool UdListIsValid(UdList udList, _udListValidationProperties validationProperties, out string errorMessage)
         {
-            //bool rBool = true;
             errorMessage = "";
             switch (validationProperties)
             {
@@ -698,9 +620,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                         errorMessage = "Item AllReady Exists...";
                         return false;
                     }
-                    
                     break;
-                    
                 case _udListValidationProperties.Name:
                     //validate Description
                     if (string.IsNullOrEmpty(udList.Name))
@@ -709,37 +629,34 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                         return false;
                     }
                     break;
-
             }
-            
             return true;
         }
+
         //UdList Object Scope Validation check the entire object for validity...
-        private bool UdListIsValid(UdList udList, out string errorMessage)
+        private byte UdListIsValid(UdList udList, out string errorMessage)
         {
-            //bool rBool = true;
             //validate key
             errorMessage = "";
             if (string.IsNullOrEmpty(udList.UdListID))
             {
                 errorMessage = "ID Is Required.";
-                return false;
+                return 1;
             }
             EntityStates entityState = GetUdListState(udList);
             if (entityState == EntityStates.Added && UdListExists(udList.UdListID))
             {
                 errorMessage = "Item AllReady Exists.";
-                return false;
+                return 1;
             }
             
             //validate Description
             if (string.IsNullOrEmpty(udList.Name))
             {
                 errorMessage = "Name Is Required.";
-                return false;
+                return 1;
             }
-
-            return true;
+            return 2;
         }
         #endregion Validation Methods
 
@@ -751,13 +668,12 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         //check to see if the repository has pending changes...
         private bool RepositoryIsDirty()
         {
-            return _serviceAgent.RepositoryIsDirty();
+            return _serviceAgent.UdListRepositoryIsDirty();
         }
 
         #region UdList CRUD
         private void Refresh()
         {
-
             //refetch current records...
             long selectedAutoID = SelectedUdList.AutoID;
             string autoIDs = "";
@@ -818,26 +734,37 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             _serviceAgent.UpdateUdListRepository(udList);
             Dirty = true;
             if (CommitIsAllowed())
-            {
                 AllowCommit = true;
-                return true;
-            }
             else
-            {
                 AllowCommit = false;
-                return false;
-            }
+
+            return AllowCommit;
         }
         //commits repository to the db...
         private bool Commit()
-        {
+        {   //loop parent item to allow for searching of child items...
+            foreach (UdList parentItem in UdListList)
+            {
+                if (parentItem.IsValid != 0)
+                {
+                    parentItem.IsValid = 0;
+                    parentItem.NotValidMessage = null;
+                }
+                //search child  for pending saved marked records and mark them as valid...
+                var childItems = (from q in parentItem.UdListItems where q.IsValid == 2 select q).ToList();
+                foreach (UdListItem childItem in childItems)
+                {
+                    childItem.IsValid = 0;
+                    childItem.NotValidMessage = null;
+                }  
+            }
             _serviceAgent.CommitUdListRepository();
             Dirty = false;
             AllowCommit = false;
             //their are no new records
             //if the currently selected record was new we will make sure children
             //are now allowed to be added to it...
-            AllowNewItem = true;
+            AllowNewUdListItem = true;
             return true;
         }
 
@@ -854,14 +781,14 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             //all new records will be give a negative int autoid...
             //when they are updated then sql will generate one for them overiding this set value...
             //it will allow us to give uniqueness to the tempory new records...
-            //Before they updated to the entity and given an autoid...
+            //Before they are updated to the entity and given an autoid...
             //we use a negative number and keep subtracting by 1 for each new item added...
             //This will allow it to alwasy be unique and never interfere with SQL's positive autoid...
             _newUdListAutoId = _newUdListAutoId - 1;
             udList.AutoID = _newUdListAutoId;
             udList.UdListID = udListID;
             udList.CompanyID = ClientSessionSingleton.Instance.CompanyID;
-            udList.IsValid = false;
+            udList.IsValid = 1;
             udList.NotValidMessage = "New Record Key Field/s Are Required.";
             UdListList.Add(udList);
             _serviceAgent.AddToUdListRepository(udList);
@@ -871,14 +798,12 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             Dirty = false;
             return true;
         }
-
         #endregion UdList CRUD
         #endregion ServiceAgent Call Methods
-
         #endregion Methods
 
         #region Commands
-        public void PasteRowCommand()
+        public void PasteUdListRowCommand()
         {
             try
             {
@@ -917,14 +842,9 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             if (GetUdListState(SelectedUdList) != EntityStates.Detached)
             {
                 if (Update(SelectedUdList))
-                {
                     Commit();
-                }
-                else
-                {//this should not be hit but just in case we will catch it and then see 
-                    //if and where we have a hole in our allowcommit logic...
+                else//this should not be hit but just in case we will catch it and then see 
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
-                }
             }
         }
 
@@ -933,17 +853,17 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             Refresh();
         }
 
-        public void DeleteCommand()
+        public void DeleteUdListCommand()
         {
             int i = 0;
-            bool isFirstDelete = true;
+            int ii = 0;
             for (int j = SelectedUdListList.Count - 1; j >= 0; j--)
             {
                 UdList udList = (UdList)SelectedUdListList[j];
-                if (isFirstDelete)
-                {//the result of this will be the record directly before the selected records...
-                    i = UdListList.IndexOf(udList) - SelectedUdListList.Count;
-                }
+                //get Max Index...
+                i = UdListList.IndexOf(udList);
+                if (i > ii)
+                    ii = i;
                 
                 Delete(udList);
                 UdListList.Remove(udList);
@@ -951,26 +871,26 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 
             if (UdListList != null && UdListList.Count > 0)
             {
+                //back off one index from the max index...
+                ii = ii - 1;    
+
                 //if they delete the first row...
-                if (i < 0)
-                {
-                    i = 0;
-                }
-                SelectedUdList = UdListList[i];
+                if (ii < 0)
+                    ii = 0;
+
+                //make sure it does not exceed the list count...
+                if (ii >= UdListList.Count())
+                    ii = UdListList.Count - 1;
+
+                SelectedUdList = UdListList[ii];
                 //we will only enable committ for dirty validated records...
                 if (Dirty == true)
-                {
                     AllowCommit = CommitIsAllowed();
-                }
                 else
-                {
                     AllowCommit = false;
-                }
             }
-            else
-            {//only one record, deleting will result in no records...
-                SetAsEmptySelection();
-            }  
+            else//only one record, deleting will result in no records...
+                SetAsEmptySelection(); 
         }
 
         public void NewUdListCommand()
@@ -983,36 +903,25 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         {
             NewUdList(udListID);
             if (string.IsNullOrEmpty(udListID))
-            {//don't allow a save until a udListID is provided...
                 AllowCommit = false;
-            }
-            {
+            else
                 AllowCommit = CommitIsAllowed();
-            }
         }
 
         public void ClearCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
-            }
             else
-            {
-                ClearLogic();
-            }  
+                ClearLogic();  
         }
 
         public void SearchCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
-            }
             else
-            {
-                SearchLogic(); 
-            }   
+                SearchLogic();    
         }
 
         private void SearchLogic()
@@ -1033,24 +942,9 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             UnregisterToReceiveMessages<BindingList<UdList>>(MessageTokens.UdListSearchToken.ToString(), OnSearchResult);
         }
         #endregion Commands
-        
-        #region Completion Callbacks
-
-        // TODO: Optionally add callback methods for async calls to the service agent
-
-        #endregion Completion Callbacks
 
         #region Helpers
-        //notify the view that a new record was created...
-        //allows us to set focus to key field...
-        //private void NotifyNewRecordCreated()
-        //{
-        //    Notify(NewRecordCreatedNotice, new NotificationEventArgs());
-        //}
-        //private void NotifyNewItemRecordCreated()
-        //{
-        //    Notify(NewItemRecordCreatedNotice, new NotificationEventArgs());
-        //}
+
         //this will allow us to notify between mulitple user controls...
         //as when a save is made we will want to notify all the children user controls...
         //to wiggle between elements to post any current changes that were not committed...
@@ -1150,46 +1044,32 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-
     public static partial class XERPExtensions
     {
         #region UdList Extensions
         public static object GetPropertyValue(this UdList myObj, string propertyName)
         {
             var propInfo = typeof(UdList).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.GetValue(myObj, null);
-            }
             else
-            {
                 return string.Empty;
-            }
         }
 
         public static string GetPropertyType(this UdList myObj, string propertyName)
         {
             var propInfo = typeof(UdList).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.PropertyType.Name.ToString();
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static void SetPropertyValue(this UdList myObj, object propertyName, object propertyValue)
         {
             var propInfo = typeof(UdList).GetProperty((string)propertyName);
-
             if (propInfo != null)
-            {
                 propInfo.SetValue(myObj, propertyValue, null);
-            }
         }
         #endregion UdList Extensions
     }

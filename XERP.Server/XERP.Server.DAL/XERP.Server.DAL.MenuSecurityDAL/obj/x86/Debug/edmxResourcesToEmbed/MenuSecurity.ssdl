@@ -137,11 +137,12 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="DBStoredImages">
     <Key>
@@ -154,11 +155,12 @@
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="Notes" Type="nvarchar" MaxLength="200" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="ExecutableProgramCodes">
     <Key>
@@ -170,11 +172,12 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="ExecutablePrograms">
     <Key>
@@ -191,11 +194,12 @@
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ExecutableProgramTypeID" Type="nvarchar" MaxLength="20" />
     <Property Name="ExecutableProgramCodeID" Type="nvarchar" MaxLength="20" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="ExecutableProgramTypes">
     <Key>
@@ -207,11 +211,12 @@
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuItemCodes">
     <Key>
@@ -223,11 +228,12 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuItems">
     <Key>
@@ -249,11 +255,12 @@
     <Property Name="HideMenu" Type="bit" />
     <Property Name="AllowAll" Type="bit" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuItemTypes">
     <Key>
@@ -265,11 +272,12 @@
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuSecurities">
     <Key>
@@ -281,11 +289,12 @@
     <Property Name="MenuItemID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="SecurityGroups">
     <Key>
@@ -301,11 +310,12 @@
     <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
     <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="SystemUsers">
     <Key>
@@ -326,11 +336,12 @@
     <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
     <Property Name="Image" Type="image" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="SystemUserSecurities">
     <Key>
@@ -342,11 +353,12 @@
     <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -371,8 +383,8 @@
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="IsSelected" Type="bit" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
@@ -388,8 +400,8 @@
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="IsSelected" Type="bit" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />

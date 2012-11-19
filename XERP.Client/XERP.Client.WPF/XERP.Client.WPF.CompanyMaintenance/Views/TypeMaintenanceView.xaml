@@ -186,8 +186,37 @@
             SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Style="{StaticResource BaseTextBlock}"
-                        Text="{Binding Path=CompanyTypeID, Mode=TwoWay}" Margin="5"/>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="0">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="1">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="2">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/flag2.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Text="{Binding Path=CompanyTypeID}" >
+                            </TextBlock>
+                            <TextBlock Width="0"
+                                Text="{Binding Path=IsValid}" Visibility="Hidden">
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource BaseErrorBlock}" Height="Auto"
+                                       Text="{Binding Path = NotValidMessage}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -5,19 +5,14 @@ namespace XERP.Client
     public class ClientSessionSingleton
     {
         private static ClientSessionSingleton _instance;
-        private ClientSessionSingleton() 
-        {
-            
-        }
+        private ClientSessionSingleton(){}
 
         public static ClientSessionSingleton Instance
         {
             get
             {
                 if (_instance == null)
-                {
                     _instance = new ClientSessionSingleton();
-                }
                 return _instance;
             }
         }
@@ -78,7 +73,6 @@ namespace XERP.Client
         public string SessionNotAuthenticatedMessage
         {
             get { return _sessionNotAuthenticatedMessage; }
-            //set { _sessionNotAuthenticatedMessage = value; }
         }
 
 

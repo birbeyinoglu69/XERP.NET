@@ -22,15 +22,18 @@ namespace XERP.Domain.MenuSecurityDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new ExecutableProgramTypeSingletonRepository();
-                }
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private MenuSecurityEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<ExecutableProgramType> GetExecutableProgramTypes(string companyID)
         {
@@ -51,21 +54,14 @@ namespace XERP.Domain.MenuSecurityDomain
             var queryResult = from q in _repositoryContext.ExecutableProgramTypes
                               where q.CompanyID == companyID
                               select q;
-
             if (!string.IsNullOrEmpty(executableProgramTypeQuerryObject.Type))
-            {
                 queryResult = queryResult.Where(q => q.Type.StartsWith(executableProgramTypeQuerryObject.Type.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(executableProgramTypeQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(executableProgramTypeQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(executableProgramTypeQuerryObject.ExecutableProgramTypeID))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(executableProgramTypeQuerryObject.ExecutableProgramTypeID.ToString()));
-            }
 
             return queryResult;
         }
@@ -80,7 +76,6 @@ namespace XERP.Domain.MenuSecurityDomain
                                where q.ExecutableProgramTypeID == executableProgramTypeID
                                where q.CompanyID == companyID
                                select q);
-
             return queryResult;
         }
 
@@ -102,12 +97,14 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(ExecutableProgramType executableProgramType)
+        public void UpdateRepository(ExecutableProgramType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(executableProgramType) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
             {
+                itemType.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemType.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(executableProgramType);
+                _repositoryContext.UpdateObject(itemType);
             }
         }
 
@@ -120,8 +117,7 @@ namespace XERP.Domain.MenuSecurityDomain
         public void DeleteFromRepository(ExecutableProgramType executableProgramType)
         {
             if (_repositoryContext.GetEntityDescriptor(executableProgramType) != null)
-            {
-                //if it exists in the db delete it from the db
+            {//if it exists in the db delete it from the db
                 MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
@@ -138,22 +134,16 @@ namespace XERP.Domain.MenuSecurityDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if (GetExecutableProgramTypeEntityState(executableProgramType) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(executableProgramType);
-                }
             }
         }
 
         public EntityStates GetExecutableProgramTypeEntityState(ExecutableProgramType executableProgramType)
         {
             if (_repositoryContext.GetEntityDescriptor(executableProgramType) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(executableProgramType).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
     }
 }

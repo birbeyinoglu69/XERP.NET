@@ -22,15 +22,18 @@ namespace XERP.Domain.MenuSecurityDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new ExecutableProgramSingletonRepository();
-                }
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private MenuSecurityEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<ExecutableProgram> GetExecutablePrograms(string companyID)
         {
@@ -51,26 +54,17 @@ namespace XERP.Domain.MenuSecurityDomain
             var queryResult = from q in _repositoryContext.ExecutablePrograms
                               where q.CompanyID == companyID
                              select q;
-            
             if  (!string.IsNullOrEmpty(executableProgramQuerryObject.Name))
-            {
                 queryResult = queryResult.Where(q => q.Name.StartsWith(executableProgramQuerryObject.Name.ToString())); 
-            }
 
             if (!string.IsNullOrEmpty(executableProgramQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(executableProgramQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(executableProgramQuerryObject.ExecutableProgramTypeID))
-            {
                 queryResult = queryResult.Where(q => q.ExecutableProgramTypeID.StartsWith(executableProgramQuerryObject.ExecutableProgramTypeID.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(executableProgramQuerryObject.ExecutableProgramCodeID))
-            {
                 queryResult = queryResult.Where(q => q.ExecutableProgramCodeID.StartsWith(executableProgramQuerryObject.ExecutableProgramCodeID.ToString()));
-            }
             return queryResult;
         }
 
@@ -83,13 +77,11 @@ namespace XERP.Domain.MenuSecurityDomain
                           where q.ExecutableProgramID == executableProgramID &&
                           q.CompanyID == companyID
                           select q);
-            
             return queryResult;
         }
 
         public IEnumerable<ExecutableProgram> Refresh(string autoIDs)
         {
-
             _repositoryContext = new MenuSecurityEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -105,12 +97,14 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(ExecutableProgram executableProgram)
+        public void UpdateRepository(ExecutableProgram item)
         {
-            if (_repositoryContext.GetEntityDescriptor(executableProgram) != null)
+            if (_repositoryContext.GetEntityDescriptor(item) != null)
             {
+                item.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                item.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(executableProgram);
+                _repositoryContext.UpdateObject(item);
             }
         }
 
@@ -124,8 +118,7 @@ namespace XERP.Domain.MenuSecurityDomain
         public void DeleteFromRepository(ExecutableProgram executableProgram)
         {
             if (_repositoryContext.GetEntityDescriptor(executableProgram) != null)
-            {
-                //if it exists in the db delete it from the db
+            {//if it exists in the db delete it from the db
                 MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
@@ -142,22 +135,16 @@ namespace XERP.Domain.MenuSecurityDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if(GetExecutableProgramEntityState(executableProgram) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(executableProgram);
-                }
             }
         }
 
         public EntityStates GetExecutableProgramEntityState(ExecutableProgram executableProgram)
         {
             if (_repositoryContext.GetEntityDescriptor(executableProgram) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(executableProgram).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }   
     }
 }

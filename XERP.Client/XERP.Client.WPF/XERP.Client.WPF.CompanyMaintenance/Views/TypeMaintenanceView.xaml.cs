@@ -33,9 +33,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                 InitializeComponent();
                 
                 if (!XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-                {
                     DisplayLogIn();
-                }
             }
             catch (Exception ex)
             {
@@ -52,24 +50,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         {
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
-
-        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        //{
-        //    if (tabctrlMain.SelectedItem == tabDetail)
-        //    {
-        //        txtKey.Focus();
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabList)
-        //    {
-        //        dgMain.Focus();
-        //        if(dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-        //        {//set the last records first column to have focus...
-        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1], 
-        //                dgMain.Columns[0]);
-        //            dgMain.BeginEdit();
-        //        }
-        //    }
-        //}
 
         private void OpenTypeMaintenance_Click(object sender, RoutedEventArgs e)
         {
@@ -157,14 +137,15 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                 if (_viewModel.AllowNew)
                 {
                     _viewModel.NewCompanyTypeCommand("");
+                    //set the first visible column to allow for edit w/o requireing a click to select it...
+                    dgMain.CurrentCell = new DataGridCellInfo(
+                    dgMain.Items[dgMain.Items.Count - 1], dgMain.Columns[0]);
+                    dgMain.BeginEdit();
                 }
-                else
-                {
-                    MessageBox.Show("New Company Type Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
 
-            
+                else
+                    MessageBox.Show("New Company Type Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }   
         }
         //set data grid max length properties...
         private void DataGrid_Initialized(object sender, EventArgs e)
@@ -254,7 +235,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
             {
                 if (_viewModel.AllowDelete)
                 {
-                    _viewModel.DeleteCommand();
+                    _viewModel.DeleteCompanyTypeCommand();
                     return;
                 }
                 //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

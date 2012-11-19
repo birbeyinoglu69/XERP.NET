@@ -22,15 +22,19 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             get
             {
                 if (_instance == null)
-                {
                     _instance = new ExecutableProgramCodeSingletonRepository();
-                }
+
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private MenuSecurityEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<ExecutableProgramCode> GetExecutableProgramCodes(string companyID)
         {
@@ -51,21 +55,14 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             var queryResult = from q in _repositoryContext.ExecutableProgramCodes
                               where q.CompanyID == companyID
                               select q;
-
             if (!string.IsNullOrEmpty(executableProgramCodeQuerryObject.Code))
-            {
                 queryResult = queryResult.Where(q => q.Code.StartsWith(executableProgramCodeQuerryObject.Code.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(executableProgramCodeQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(executableProgramCodeQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(executableProgramCodeQuerryObject.ExecutableProgramCodeID))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(executableProgramCodeQuerryObject.ExecutableProgramCodeID.ToString()));
-            }
 
             return queryResult;
         }
@@ -80,13 +77,11 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                                where q.ExecutableProgramCodeID == executableProgramCodeID
                                where q.CompanyID == companyID
                                select q);
-
             return queryResult;
         }
 
         public IEnumerable<ExecutableProgramCode> Refresh(string autoIDs)
         {
-
             _repositoryContext = new MenuSecurityEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -102,12 +97,14 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(ExecutableProgramCode executableProgramCode)
+        public void UpdateRepository(ExecutableProgramCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(executableProgramCode) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemCode) != null)
             {
+                itemCode.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemCode.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(executableProgramCode);
+                _repositoryContext.UpdateObject(itemCode);
             }
         }
 
@@ -120,8 +117,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         public void DeleteFromRepository(ExecutableProgramCode executableProgramCode)
         {
             if (_repositoryContext.GetEntityDescriptor(executableProgramCode) != null)
-            {
-                //if it exists in the db delete it from the db
+            {//if it exists in the db delete it from the db
                 MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
@@ -138,22 +134,16 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if (GetExecutableProgramCodeEntityState(executableProgramCode) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(executableProgramCode);
-                }
             }
         }
 
         public EntityStates GetExecutableProgramCodeEntityState(ExecutableProgramCode executableProgramCode)
         {
             if (_repositoryContext.GetEntityDescriptor(executableProgramCode) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(executableProgramCode).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
     }
 }

@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using XERP.Server.DAL.SecurityGroupDAL;
 using System.Data.Metadata.Edm;
-//namespace XERP.Server.DAL.SecurityGroupUserDAL
-//{
-
-//}
-
 //we use the extension Method it allows to extend methods to existing entity objects...
 //so that as long as use add the using ExtensionMethods you can utilize the methods below with a . reference...
 //as if the the methods are part of the existing objects that they are referenced to by the this declaration
@@ -16,20 +11,6 @@ namespace ExtensionMethods
 {
     public static class MyExtensions
     {
-        public static string GetPropertyValue(this SecurityGroup myObj, string propertyName)
-        {
-            var propInfo = typeof(SecurityGroup).GetProperty(propertyName);
-
-            if (propInfo != null)
-            {
-                return propInfo.GetValue(myObj, null).ToString();
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
         public static List<Temp> GetMetaData(this SecurityGroup entityObject)
         {
             XERP.Server.DAL.SecurityGroupDAL.DALUtility dalUtility = new DALUtility();

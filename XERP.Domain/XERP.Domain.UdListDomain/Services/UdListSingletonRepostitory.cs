@@ -22,9 +22,8 @@ namespace XERP.Domain.UdListDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new UdListSingletonRepository();
-                }
+
                 return _instance;
             }
         }
@@ -55,17 +54,13 @@ namespace XERP.Domain.UdListDomain
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.UdLists.Expand("UdListItems")
                               where q.CompanyID == companyID
-                             select q;
-            
+                             select q; 
             if  (!string.IsNullOrEmpty(udListQuerryObject.Name))
-            {
                 queryResult = queryResult.Where(q => q.Name.StartsWith(udListQuerryObject.Name.ToString())); 
-            }
 
             if (!string.IsNullOrEmpty(udListQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(udListQuerryObject.Description.ToString()));
-            }
+
             return queryResult;
         }
 
@@ -78,7 +73,6 @@ namespace XERP.Domain.UdListDomain
                           where q.UdListID == udListID &&
                           q.CompanyID == companyID
                           select q);
-            
             return queryResult;
         }
 
@@ -99,21 +93,25 @@ namespace XERP.Domain.UdListDomain
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(UdList udList)
+        public void UpdateRepository(UdList item)
         {
-            if (_repositoryContext.GetEntityDescriptor(udList) != null)
+            if (_repositoryContext.GetEntityDescriptor(item) != null)
             {
+                item.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                item.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(udList);
+                _repositoryContext.UpdateObject(item);
             }
         }
 
-        public void UpdateRepository(UdListItem udListItem)
+        public void UpdateRepository(UdListItem item)
         {
-            if (_repositoryContext.GetEntityDescriptor(udListItem) != null)
+            if (_repositoryContext.GetEntityDescriptor(item) != null)
             {
+                item.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                item.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(udListItem);
+                _repositoryContext.UpdateObject(item);
             }
         }
 
@@ -153,9 +151,7 @@ namespace XERP.Domain.UdListDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if(GetUdListEntityState(udList) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(udList);
-                }
             }
         }
 
@@ -181,34 +177,24 @@ namespace XERP.Domain.UdListDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if (GetUdListItemEntityState(udListItem) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(udListItem);
-                }
             }
         }
 
         public EntityStates GetUdListEntityState(UdList udList)
         {
             if (_repositoryContext.GetEntityDescriptor(udList) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(udList).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
 
         public EntityStates GetUdListItemEntityState(UdListItem udListItem)
         {
             if (_repositoryContext.GetEntityDescriptor(udListItem) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(udListItem).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
 
         //used to cache the context amongst multiple views...

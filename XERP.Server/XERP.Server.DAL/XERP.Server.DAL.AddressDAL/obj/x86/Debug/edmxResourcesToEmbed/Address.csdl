@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="XERPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="AddressEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
     <EntitySet Name="Addresses" EntityType="XERPModel.Address" />
     <EntitySet Name="Companies" EntityType="XERPModel.Company" />
-    <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
-    <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
-      <End Role="Companies" EntitySet="Companies" />
-      <End Role="Addresses" EntitySet="Addresses" />
-    </AssociationSet>
     <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
     <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+    <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
     <AssociationSet Name="FK_UdList_Company" Association="XERPModel.FK_UdList_Company">
       <End Role="Company" EntitySet="Companies" />
       <End Role="UdList" EntitySet="UdLists" />
@@ -23,73 +23,6 @@
       <End Role="UdListItem" EntitySet="UdListItems" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Address">
-    <Key>
-      <PropertyRef Name="CompanyID" />
-      <PropertyRef Name="AddressID" />
-    </Key>
-    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="AddressID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-    <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-    <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Addresses" ToRole="Companies" />
-    <Property Type="Boolean" Name="IsExpanded" />
-    <Property Type="Boolean" Name="IsValid" />
-    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="LastModifiedByDate" />
-  </EntityType>
-  <EntityType Name="Company">
-    <Key>
-      <PropertyRef Name="CompanyID" />
-    </Key>
-    <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-    <Property Name="Active" Type="Boolean" />
-    <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="CurrentFiscalYear" Type="Int32" />
-    <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-    <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-    <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Addresses" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Companies" ToRole="Addresses" />
-    <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
-    <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
-    <Property Type="Boolean" Name="IsExpanded" />
-    <Property Type="Boolean" Name="IsValid" />
-    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="LastModifiedByDate" />
-  </EntityType>
   <EntityType Name="Temp">
     <Key>
       <PropertyRef Name="ID" />
@@ -101,18 +34,75 @@
     <Property Name="Int_1" Type="Int32" />
     <Property Name="Decimal_1" Type="Decimal" Precision="12" Scale="5" />
   </EntityType>
-  <Association Name="FK_Addresses_Companies">
-    <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-    <End Role="Addresses" Type="XERPModel.Address" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Companies">
-        <PropertyRef Name="CompanyID" />
-      </Principal>
-      <Dependent Role="Addresses">
-        <PropertyRef Name="CompanyID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AddressID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Notes" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address3" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Zip" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Country" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PhoneNum" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PhoneNum2" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FaxNum" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email2" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Byte" Name="IsExpanded" />
+    <Property Type="Byte" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+    <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Address" ToRole="Company" />
+    <Property Type="Boolean" Name="IsSelected" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Notes" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Active" />
+    <Property Type="String" Name="CompanyTypeID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CompanyCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StateTaxCode" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TaxRegionCode" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="CurrentFiscalYear" />
+    <Property Type="String" Name="DefaultExecutablePath" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address3" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Zip" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Country" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PhoneNum" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PhoneNum2" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FaxNum" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email2" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Byte" Name="IsExpanded" />
+    <Property Type="Byte" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+    <NavigationProperty Name="Addresses" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Company" ToRole="Address" />
+    <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
+    <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+    <Property Type="Boolean" Name="IsSelected" />
+  </EntityType>
   <EntityType Name="UdListItem">
     <Key>
       <PropertyRef Name="CompanyID" />
@@ -125,13 +115,13 @@
     <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Boolean" Name="IsSelected" />
-    <Property Type="Boolean" Name="IsExpanded" />
-    <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
-    <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
-    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="Byte" Name="IsExpanded" />
+    <Property Type="Byte" Name="IsValid" />
     <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="LastModifiedByDate" />
+    <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
+    <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
   </EntityType>
   <EntityType Name="UdList">
     <Key>
@@ -144,14 +134,26 @@
     <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Boolean" Name="IsSelected" />
-    <Property Type="Boolean" Name="IsExpanded" />
-    <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
-    <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
-    <Property Type="Boolean" Name="IsValid" />
+    <Property Type="Byte" Name="IsExpanded" />
+    <Property Type="Byte" Name="IsValid" />
     <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="LastModifiedByDate" />
+    <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
+    <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
   </EntityType>
+  <Association Name="FK_Addresses_Companies">
+    <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="XERPModel.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UdList_Company">
     <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
     <End Type="XERPModel.UdList" Role="UdList" Multiplicity="*" />

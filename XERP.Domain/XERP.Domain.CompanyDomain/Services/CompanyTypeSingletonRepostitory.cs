@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Services.Client;
+using System.Linq;
 using XERP.Domain.CompanyDomain.CompanyDataService;
 using XERP.Domain.CompanyDomain.Services;
 
@@ -22,15 +22,19 @@ namespace XERP.Domain.CompanyDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new CompanyTypeSingletonRepository();
-                }
+
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private CompanyEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<CompanyType> GetCompanyTypes()
         {
@@ -42,48 +46,39 @@ namespace XERP.Domain.CompanyDomain
             return queryResult;
         }
 
-        public IEnumerable<CompanyType> GetCompanyTypes(CompanyType companyTypeQuerryObject)
+        public IEnumerable<CompanyType> GetCompanyTypes(CompanyType itemTypeQuerryObject)
         {
             _repositoryContext = new CompanyEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.CompanyTypes
                               select q;
+            if (!string.IsNullOrEmpty(itemTypeQuerryObject.Type))
+                queryResult = queryResult.Where(q => q.Type.StartsWith(itemTypeQuerryObject.Type.ToString()));
 
-            if (!string.IsNullOrEmpty(companyTypeQuerryObject.Type))
-            {
-                queryResult = queryResult.Where(q => q.Type.StartsWith(companyTypeQuerryObject.Type.ToString()));
-            }
+            if (!string.IsNullOrEmpty(itemTypeQuerryObject.Description))
+                queryResult = queryResult.Where(q => q.Description.StartsWith(itemTypeQuerryObject.Description.ToString()));
 
-            if (!string.IsNullOrEmpty(companyTypeQuerryObject.Description))
-            {
-                queryResult = queryResult.Where(q => q.Description.StartsWith(companyTypeQuerryObject.Description.ToString()));
-            }
-
-            if (!string.IsNullOrEmpty(companyTypeQuerryObject.CompanyTypeID))
-            {
-                queryResult = queryResult.Where(q => q.Description.StartsWith(companyTypeQuerryObject.CompanyTypeID.ToString()));
-            }
+            if (!string.IsNullOrEmpty(itemTypeQuerryObject.CompanyTypeID))
+                queryResult = queryResult.Where(q => q.Description.StartsWith(itemTypeQuerryObject.CompanyTypeID.ToString()));
 
             return queryResult;
         }
 
 
-        public IEnumerable<CompanyType> GetCompanyTypeByID(string companyTypeID)
+        public IEnumerable<CompanyType> GetCompanyTypeByID(string itemTypeID)
         {
             _repositoryContext = new CompanyEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.CompanyTypes
-                               where q.CompanyTypeID == companyTypeID
+                               where q.CompanyTypeID == itemTypeID
                                select q);
-
             return queryResult;
         }
 
         public IEnumerable<CompanyType> Refresh(string autoIDs)
         {
-
             _repositoryContext = new CompanyEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -99,31 +94,33 @@ namespace XERP.Domain.CompanyDomain
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(CompanyType companyType)
+        public void UpdateRepository(CompanyType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(companyType) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
             {
+                itemType.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemType.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(companyType);
+                _repositoryContext.UpdateObject(itemType);
             }
         }
 
-        public void AddToRepository(CompanyType companyType)
+        public void AddToRepository(CompanyType itemType)
         {
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
-            _repositoryContext.AddToCompanyTypes(companyType);
+            _repositoryContext.AddToCompanyTypes(itemType);
         }
 
-        public void DeleteFromRepository(CompanyType companyType)
+        public void DeleteFromRepository(CompanyType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(companyType) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
             {
                 //if it exists in the db delete it from the db
                 CompanyEntities context = new CompanyEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
                 CompanyType deletedCompanyType = (from q in context.CompanyTypes
-                                          where q.CompanyTypeID == companyType.CompanyTypeID
+                                          where q.CompanyTypeID == itemType.CompanyTypeID
                                           select q).SingleOrDefault();
                 if (deletedCompanyType != null)
                 {
@@ -134,23 +131,17 @@ namespace XERP.Domain.CompanyDomain
 
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
-                if (GetCompanyTypeEntityState(companyType) != EntityStates.Detached)
-                {
-                    _repositoryContext.Detach(companyType);
-                }
+                if (GetCompanyTypeEntityState(itemType) != EntityStates.Detached)
+                    _repositoryContext.Detach(itemType);
             }
         }
 
-        public EntityStates GetCompanyTypeEntityState(CompanyType companyType)
+        public EntityStates GetCompanyTypeEntityState(CompanyType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(companyType) != null)
-            {
-                return _repositoryContext.GetEntityDescriptor(companyType).State;
-            }
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
+                return _repositoryContext.GetEntityDescriptor(itemType).State;
             else
-            {
                 return EntityStates.Detached;
-            }
         }
     }
 }

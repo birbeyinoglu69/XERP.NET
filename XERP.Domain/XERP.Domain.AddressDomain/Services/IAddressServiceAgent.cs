@@ -4,6 +4,7 @@ namespace XERP.Domain.AddressDomain.Services
     public interface IAddressServiceAgent
     {
         bool AddressExists(string addressID, string companyID);
+        bool AddressRepositoryIsDirty();
         void AddToAddressRepository(XERP.Domain.AddressDomain.AddressDataService.Address address);
         void CommitAddressRepository();
         void DeleteFromAddressRepository(XERP.Domain.AddressDomain.AddressDataService.Address address);

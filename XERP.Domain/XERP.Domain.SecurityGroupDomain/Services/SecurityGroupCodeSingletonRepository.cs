@@ -22,15 +22,19 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             get
             {
                 if (_instance == null)
-                {
                     _instance = new SecurityGroupCodeSingletonRepository();
-                }
+
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private SecurityGroupEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(string companyID)
         {
@@ -43,7 +47,7 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             return queryResult;
         }
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode securityGroupCodeQuerryObject, string companyID)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodes(SecurityGroupCode itemCodeQuerryObject, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
@@ -52,41 +56,34 @@ namespace XERP.Domain.SecurityGroupDomain.Services
                               where q.CompanyID == companyID
                               select q;
 
-            if (!string.IsNullOrEmpty(securityGroupCodeQuerryObject.Code))
-            {
-                queryResult = queryResult.Where(q => q.Code.StartsWith(securityGroupCodeQuerryObject.Code.ToString()));
-            }
+            if (!string.IsNullOrEmpty( itemCodeQuerryObject.Code))
+                queryResult = queryResult.Where(q => q.Code.StartsWith( itemCodeQuerryObject.Code.ToString()));
 
-            if (!string.IsNullOrEmpty(securityGroupCodeQuerryObject.Description))
-            {
-                queryResult = queryResult.Where(q => q.Description.StartsWith(securityGroupCodeQuerryObject.Description.ToString()));
-            }
+            if (!string.IsNullOrEmpty( itemCodeQuerryObject.Description))
+                queryResult = queryResult.Where(q => q.Description.StartsWith( itemCodeQuerryObject.Description.ToString()));
 
-            if (!string.IsNullOrEmpty(securityGroupCodeQuerryObject.SecurityGroupCodeID))
-            {
-                queryResult = queryResult.Where(q => q.Description.StartsWith(securityGroupCodeQuerryObject.SecurityGroupCodeID.ToString()));
-            }
+            if (!string.IsNullOrEmpty( itemCodeQuerryObject.SecurityGroupCodeID))
+
+                queryResult = queryResult.Where(q => q.Description.StartsWith( itemCodeQuerryObject.SecurityGroupCodeID.ToString()));
 
             return queryResult;
         }
 
 
-        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string securityGroupCodeID, string companyID)
+        public IEnumerable<SecurityGroupCode> GetSecurityGroupCodeByID(string itemCodeID, string companyID)
         {
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SecurityGroupCodes
-                               where q.SecurityGroupCodeID == securityGroupCodeID
+                               where q.SecurityGroupCodeID == itemCodeID
                                where q.CompanyID == companyID
                                select q);
-
             return queryResult;
         }
 
         public IEnumerable<SecurityGroupCode> Refresh(string autoIDs)
         {
-
             _repositoryContext = new SecurityGroupEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -102,31 +99,32 @@ namespace XERP.Domain.SecurityGroupDomain.Services
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(SecurityGroupCode securityGroupCode)
+        public void UpdateRepository(SecurityGroupCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(securityGroupCode) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemCode) != null)
             {
+                itemCode.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemCode.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(securityGroupCode);
+                _repositoryContext.UpdateObject(itemCode);
             }
         }
 
-        public void AddToRepository(SecurityGroupCode securityGroupCode)
+        public void AddToRepository(SecurityGroupCode itemCode)
         {
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
-            _repositoryContext.AddToSecurityGroupCodes(securityGroupCode);
+            _repositoryContext.AddToSecurityGroupCodes( itemCode);
         }
 
-        public void DeleteFromRepository(SecurityGroupCode securityGroupCode)
+        public void DeleteFromRepository(SecurityGroupCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(securityGroupCode) != null)
-            {
-                //if it exists in the db delete it from the db
+            if (_repositoryContext.GetEntityDescriptor( itemCode) != null)
+            {//if it exists in the db delete it from the db
                 SecurityGroupEntities context = new SecurityGroupEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
                 SecurityGroupCode deletedSecurityGroupCode = (from q in context.SecurityGroupCodes
-                                          where q.SecurityGroupCodeID == securityGroupCode.SecurityGroupCodeID
+                                          where q.SecurityGroupCodeID == itemCode.SecurityGroupCodeID
                                           select q).SingleOrDefault();
                 if (deletedSecurityGroupCode != null)
                 {
@@ -137,23 +135,17 @@ namespace XERP.Domain.SecurityGroupDomain.Services
 
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
-                if (GetSecurityGroupCodeEntityState(securityGroupCode) != EntityStates.Detached)
-                {
-                    _repositoryContext.Detach(securityGroupCode);
-                }
+                if (GetSecurityGroupCodeEntityState( itemCode) != EntityStates.Detached)
+                    _repositoryContext.Detach( itemCode);
             }
         }
 
-        public EntityStates GetSecurityGroupCodeEntityState(SecurityGroupCode securityGroupCode)
+        public EntityStates GetSecurityGroupCodeEntityState(SecurityGroupCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(securityGroupCode) != null)
-            {
-                return _repositoryContext.GetEntityDescriptor(securityGroupCode).State;
-            }
+            if (_repositoryContext.GetEntityDescriptor( itemCode) != null)
+                return _repositoryContext.GetEntityDescriptor( itemCode).State;
             else
-            {
                 return EntityStates.Detached;
-            }
         }
     }
 }

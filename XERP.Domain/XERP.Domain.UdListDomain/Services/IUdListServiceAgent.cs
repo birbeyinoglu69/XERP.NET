@@ -15,7 +15,7 @@ namespace XERP.Domain.UdListDomain.Services
         System.Collections.Generic.IEnumerable<XERP.Domain.UdListDomain.UdListDataService.UdList> GetUdLists(string companyID);
         System.Collections.Generic.IEnumerable<XERP.Domain.UdListDomain.UdListDataService.UdList> GetUdLists(XERP.Domain.UdListDomain.UdListDataService.UdList udListQuerryObject, string companyID);
         System.Collections.Generic.IEnumerable<XERP.Domain.UdListDomain.UdListDataService.UdList> RefreshUdList(string autoIDs);
-        bool RepositoryIsDirty();
+        bool UdListRepositoryIsDirty();
         XERP.Domain.UdListDomain.UdListDataService.UdList UdListCache { get; set; }
         bool UdListExists(string udListID, string companyID);
         bool UdListItemExists(string udListID, string udListItemID, string companyID, int autoID);

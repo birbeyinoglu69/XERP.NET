@@ -18,13 +18,13 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroup_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "SecurityGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroupCode_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "SecurityGroupCodes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupCode), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroupType_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "SecurityGroupTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupType), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroup_SecurityGroupCode", "SecurityGroupCodes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupCode), "SecurityGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroup_SecurityGroupType", "SecurityGroupTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupType), "SecurityGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroup_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroupCode_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "SecurityGroupCode", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupCode), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroupType_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "SecurityGroupType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupType), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_UdList_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.UdList), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.UdListItem), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupCodes", "SecurityGroupCode", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupCode), "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupType), "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_UdList", "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.UdList), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.UdListItem), true)]
 
 #endregion
@@ -76,6 +76,22 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         #endregion
     
         #region ObjectSet Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Temp> Temps
+        {
+            get
+            {
+                if ((_Temps == null))
+                {
+                    _Temps = base.CreateObjectSet<Temp>("Temps");
+                }
+                return _Temps;
+            }
+        }
+        private ObjectSet<Temp> _Temps;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -144,22 +160,6 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Temp> Temps
-        {
-            get
-            {
-                if ((_Temps == null))
-                {
-                    _Temps = base.CreateObjectSet<Temp>("Temps");
-                }
-                return _Temps;
-            }
-        }
-        private ObjectSet<Temp> _Temps;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UdListItem> UdListItems
         {
             get
@@ -193,6 +193,14 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         #region AddTo Methods
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Temps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTemps(Temp temp)
+        {
+            base.AddObject("Temps", temp);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCompanies(Company company)
@@ -222,14 +230,6 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         public void AddToSecurityGroupTypes(SecurityGroupType securityGroupType)
         {
             base.AddObject("SecurityGroupTypes", securityGroupType);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Temps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTemps(Temp temp)
-        {
-            base.AddObject("Temps", temp);
         }
     
         /// <summary>
@@ -866,7 +866,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -881,8 +881,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -890,7 +890,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -905,8 +905,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -980,6 +980,30 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -991,18 +1015,18 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_Company", "SecurityGroups")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_Company", "SecurityGroup")]
         public EntityCollection<SecurityGroup> SecurityGroups
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_Company", "SecurityGroups");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_Company", "SecurityGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_Company", "SecurityGroups", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_Company", "SecurityGroup", value);
                 }
             }
         }
@@ -1013,18 +1037,18 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupCode_Company", "SecurityGroupCodes")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupCode_Company", "SecurityGroupCode")]
         public EntityCollection<SecurityGroupCode> SecurityGroupCodes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroupCode>("XERPModel.FK_SecurityGroupCode_Company", "SecurityGroupCodes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroupCode>("XERPModel.FK_SecurityGroupCode_Company", "SecurityGroupCode");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroupCode>("XERPModel.FK_SecurityGroupCode_Company", "SecurityGroupCodes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroupCode>("XERPModel.FK_SecurityGroupCode_Company", "SecurityGroupCode", value);
                 }
             }
         }
@@ -1035,18 +1059,18 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupType_Company", "SecurityGroupTypes")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupType_Company", "SecurityGroupType")]
         public EntityCollection<SecurityGroupType> SecurityGroupTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroupType>("XERPModel.FK_SecurityGroupType_Company", "SecurityGroupTypes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroupType>("XERPModel.FK_SecurityGroupType_Company", "SecurityGroupType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroupType>("XERPModel.FK_SecurityGroupType_Company", "SecurityGroupTypes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroupType>("XERPModel.FK_SecurityGroupType_Company", "SecurityGroupType", value);
                 }
             }
         }
@@ -1353,7 +1377,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1368,8 +1392,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1377,7 +1401,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1392,8 +1416,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1467,6 +1491,30 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -1478,16 +1526,16 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -1499,13 +1547,13 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_SecurityGroup_Company", "Company", value);
                 }
             }
         }
@@ -1516,16 +1564,16 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_SecurityGroupCode", "SecurityGroupCodes")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupCodes", "SecurityGroupCode")]
         public SecurityGroupCode SecurityGroupCode
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroup_SecurityGroupCode", "SecurityGroupCodes").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroups_SecurityGroupCodes", "SecurityGroupCode").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroup_SecurityGroupCode", "SecurityGroupCodes").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroups_SecurityGroupCodes", "SecurityGroupCode").Value = value;
             }
         }
         /// <summary>
@@ -1537,13 +1585,13 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroup_SecurityGroupCode", "SecurityGroupCodes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroups_SecurityGroupCodes", "SecurityGroupCode");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroup_SecurityGroupCode", "SecurityGroupCodes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroupCode>("XERPModel.FK_SecurityGroups_SecurityGroupCodes", "SecurityGroupCode", value);
                 }
             }
         }
@@ -1554,16 +1602,16 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_SecurityGroupType", "SecurityGroupTypes")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType")]
         public SecurityGroupType SecurityGroupType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroup_SecurityGroupType", "SecurityGroupTypes").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroup_SecurityGroupType", "SecurityGroupTypes").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType").Value = value;
             }
         }
         /// <summary>
@@ -1575,13 +1623,13 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroup_SecurityGroupType", "SecurityGroupTypes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroup_SecurityGroupType", "SecurityGroupTypes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType", value);
                 }
             }
         }
@@ -1748,7 +1796,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1763,8 +1811,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1772,7 +1820,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1787,8 +1835,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1862,6 +1910,30 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -1873,16 +1945,16 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupCode_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupCode_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -1894,13 +1966,13 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_SecurityGroupCode_Company", "Company", value);
                 }
             }
         }
@@ -1911,18 +1983,18 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_SecurityGroupCode", "SecurityGroups")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupCodes", "SecurityGroup")]
         public EntityCollection<SecurityGroup> SecurityGroups
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_SecurityGroupCode", "SecurityGroups");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroups_SecurityGroupCodes", "SecurityGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_SecurityGroupCode", "SecurityGroups", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroups_SecurityGroupCodes", "SecurityGroup", value);
                 }
             }
         }
@@ -2089,7 +2161,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -2104,8 +2176,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -2113,7 +2185,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -2128,8 +2200,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -2203,6 +2275,30 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -2214,16 +2310,16 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupType_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroupType_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -2235,13 +2331,13 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_SecurityGroupType_Company", "Company", value);
                 }
             }
         }
@@ -2252,18 +2348,18 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroup_SecurityGroupType", "SecurityGroups")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupTypes", "SecurityGroup")]
         public EntityCollection<SecurityGroup> SecurityGroups
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_SecurityGroupType", "SecurityGroups");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroup_SecurityGroupType", "SecurityGroups", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroup", value);
                 }
             }
         }
@@ -2629,7 +2725,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -2644,8 +2740,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -2653,7 +2749,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -2668,8 +2764,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -2999,7 +3095,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -3014,8 +3110,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -3023,7 +3119,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -3038,8 +3134,8 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>

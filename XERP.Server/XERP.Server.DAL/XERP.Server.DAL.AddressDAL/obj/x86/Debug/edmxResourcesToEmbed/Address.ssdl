@@ -46,11 +46,12 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="Companies">
     <Key>
@@ -80,11 +81,12 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>
@@ -109,8 +111,8 @@
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="IsSelected" Type="bit" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
@@ -126,8 +128,8 @@
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="IsSelected" Type="bit" />
-    <Property Name="IsExpanded" Type="bit" />
-    <Property Name="IsValid" Type="bit" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />

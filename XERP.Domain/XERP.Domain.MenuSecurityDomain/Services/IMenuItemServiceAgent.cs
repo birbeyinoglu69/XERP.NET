@@ -28,8 +28,11 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItemType> GetMenuItemTypesReadOnly(string companyID);
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.Temp> GetMetaData(string tableName);
         bool MenuItemCodeExists(string menuItemCodeID, string companyID);
+        bool MenuItemCodeRepositoryIsDirty();
         bool MenuItemExists(string menuItemID, string companyID);
+        bool MenuItemRepositoryIsDirty();
         bool MenuItemTypeExists(string menuItemTypeID, string companyID);
+        bool MenuItemTypeRepositoryIsDirty();
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItem> RefreshMenuItem(string autoIDs);
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItemCode> RefreshMenuItemCode(string autoIDs);
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItemType> RefreshMenuItemType(string autoIDs);

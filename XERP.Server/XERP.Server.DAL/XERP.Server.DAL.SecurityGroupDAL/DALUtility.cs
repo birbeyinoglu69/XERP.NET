@@ -27,10 +27,7 @@ namespace XERP.Server.DAL.SecurityGroupDAL
             get { return EntityBuilder.ConnectionString; }
         }
 
-        public DALUtility()
-        {
-
-        }
+        public DALUtility(){}
     }
 
 }

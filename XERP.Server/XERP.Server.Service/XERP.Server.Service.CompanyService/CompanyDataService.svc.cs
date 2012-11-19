@@ -34,14 +34,14 @@ namespace XERP.Server.Service.CompanyService
             switch (tableName)
             {
                 case "Companies":
-                    Company company = new Company();
-                    return company.GetMetaData().AsQueryable();
+                    Company item = new Company();
+                    return item.GetMetaData().AsQueryable();
                 case "CompanyTypes":
-                    CompanyType companyType = new CompanyType();
-                    return companyType.GetMetaData().AsQueryable();
+                    CompanyType itemType = new CompanyType();
+                    return itemType.GetMetaData().AsQueryable();
                 case "CompanyCodes":
-                    CompanyCode companyCode = new CompanyCode();
-                    return companyCode.GetMetaData().AsQueryable();
+                    CompanyCode itemCode = new CompanyCode();
+                    return itemCode.GetMetaData().AsQueryable();
                 default: //no table exists for the given tablename given...
                     List<Temp> tempList = new List<Temp>();
                     Temp temp = new Temp();
@@ -101,28 +101,28 @@ namespace XERP.Server.Service.CompanyService
         }
 
         [ChangeInterceptor("CompanyTypes")]
-        public void OnChangeCompanyTypes(CompanyType companyType, UpdateOperations operations)
+        public void OnChangeCompanyTypes(CompanyType itemType, UpdateOperations operations)
         {
             if (operations == UpdateOperations.Delete)
             {//update a null to any place the Type was used by its parent record...
                 XERP.Server.DAL.CompanyDAL.DALUtility dalUtility = new DALUtility();
                 var context = new CompanyEntities(dalUtility.EntityConectionString);
                 context.Companies.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                string typeID = companyType.CompanyTypeID;
+                string typeID = itemType.CompanyTypeID;
                 string sqlstring = "UPDATE Companies SET CompanyTypeID = null WHERE CompanyTypeID = '" + typeID + "'";
                 context.ExecuteStoreCommand(sqlstring);
             }
         }
 
         [ChangeInterceptor("CompanyCodes")]
-        public void OnChangeCompanyCodes(CompanyCode companyCode, UpdateOperations operations)
+        public void OnChangeCompanyCodes(CompanyCode itemCode, UpdateOperations operations)
         {
             if (operations == UpdateOperations.Delete)
             {//update a null to any place the Code was used by its parent record...
                 XERP.Server.DAL.CompanyDAL.DALUtility dalUtility = new DALUtility();
                 var context = new CompanyEntities(dalUtility.EntityConectionString);
                 context.Companies.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                string codeID = companyCode.CompanyCodeID;
+                string codeID = itemCode.CompanyCodeID;
                 string sqlstring = "UPDATE Companies SET CompanyCodeID = null Where CompanyCodeID = '" + codeID + "'";
                 context.ExecuteStoreCommand(sqlstring);
             }
@@ -137,15 +137,15 @@ namespace XERP.Server.Service.CompanyService
                
                 //test it...
                 //GetMetaData("Companies");
-                //IQueryable<Company> companyQuery = (from c in context.Companies
+                //IQueryable<Company> itemQuerry = (from c in context.Companies
                 //                                    select c);
 
                 //foreach (Company cc in CompanyQuery)
                 //{
                 //    string s = cc.Name.ToString();
                 //}
-                //Company company = new Company();
-                //IQueryable<Company> companyQuery = Refresh("5,6");
+                //Company item = new Company();
+                //IQueryable<Company> itemQuery = Refresh("5,6");
                 return context;
             }
             catch (Exception ex)

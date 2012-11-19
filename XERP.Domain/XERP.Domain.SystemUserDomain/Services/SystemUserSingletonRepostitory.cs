@@ -22,9 +22,8 @@ namespace XERP.Domain.SystemUserDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new SystemUserSingletonRepository();
-                }
+
                 return _instance;
             }
         }
@@ -32,12 +31,10 @@ namespace XERP.Domain.SystemUserDomain
         private Uri _rootUri;
         private SystemUserEntities _repositoryContext;
 
-        //SystemUserSecurities are fetched by the parent get GetSystemUsers...
-        //So this query just serves them up...
-        //public IEnumerable<SystemUserSecurity> GetSystemUserSecurities()
-        //{
-        //    return _repositoryContext.SystemUserSecurities;
-        //}
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<SystemUser> GetSystemUsers()
         {
@@ -56,21 +53,15 @@ namespace XERP.Domain.SystemUserDomain
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.SystemUsers.Expand("SystemUserSecurities/SecurityGroup")
                              select q;
-            
             if  (!string.IsNullOrEmpty(systemUserQuerryObject.Name))
-            {
                 queryResult = queryResult.Where(q => q.Name.StartsWith(systemUserQuerryObject.Name.ToString())); 
-            }
 
             if (!string.IsNullOrEmpty(systemUserQuerryObject.SystemUserTypeID))
-            {
                 queryResult = queryResult.Where(q => q.SystemUserTypeID.StartsWith(systemUserQuerryObject.SystemUserTypeID.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(systemUserQuerryObject.SystemUserCodeID))
-            {
                 queryResult = queryResult.Where(q => q.SystemUserCodeID.StartsWith(systemUserQuerryObject.SystemUserCodeID.ToString()));
-            }
+
             return queryResult;
         }
 
@@ -82,13 +73,11 @@ namespace XERP.Domain.SystemUserDomain
             var queryResult = (from q in _repositoryContext.SystemUsers.Expand("SystemUserSecurities/SecurityGroup")
                           where q.SystemUserID == systemUserID
                           select q);
-            
             return queryResult;
         }
 
         public IEnumerable<SystemUser> Refresh(string autoIDs)
         {
-
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -146,42 +135,30 @@ namespace XERP.Domain.SystemUserDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if(GetSystemUserEntityState(systemUser) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(systemUser);
-                }
             }
         }
 
         public void DeleteFromRepository(SystemUserSecurity systemUserSecurity)
         {
             if (_repositoryContext.GetEntityDescriptor(systemUserSecurity) != null)
-            {
                 _repositoryContext.DeleteObject(systemUserSecurity);
-            }
         }
 
         public EntityStates GetSystemUserEntityState(SystemUser systemUser)
         {
             if (_repositoryContext.GetEntityDescriptor(systemUser) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(systemUser).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
 
         public EntityStates GetSystemUserSecurityEntityState(SystemUserSecurity systemUserSecurity)
         {
             if (_repositoryContext.GetEntityDescriptor(systemUserSecurity) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(systemUserSecurity).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }  
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Metadata.Edm;
 using System.Linq;
 using XERP.Server.DAL.CompanyDAL;
-using System.Data.Metadata.Edm;
 //namespace XERP.Server.DAL.CompanyDAL
 //{
         //overide any entity partial classes here if required...
@@ -16,20 +16,6 @@ namespace ExtensionMethods
 {
     public static class MyExtensions
     {
-        public static string GetPropertyValue(this Company myObj, string propertyName)
-        {
-            var propInfo = typeof(Company).GetProperty(propertyName);
-
-            if (propInfo != null)
-            {
-                return propInfo.GetValue(myObj, null).ToString();
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
- 
         public static List<Temp> GetMetaData(this Company entityObject)
         {
             XERP.Server.DAL.CompanyDAL.DALUtility dalUtility = new DALUtility();

@@ -25,8 +25,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         }
 
         public IEnumerable<MenuItem> GetMenuItemsAvailableToUser(string systemUserID, string companyID)
-        {
-            //WCF Data Services does not allow for Complex query where you need to mine linked table data
+        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;
@@ -97,7 +96,6 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             
             MemoryStream stream = new MemoryStream();
             stream.Write(dbStoredImage.StoredImage, 0, dbStoredImage.StoredImage.Length);
-            //Image image = Image.FromStream(stream);
 
             System.Windows.Media.Imaging.BitmapImage wpfImg = new System.Windows.Media.Imaging.BitmapImage();
             wpfImg.BeginInit();             
@@ -108,8 +106,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         }
 
         public IEnumerable<Temp> GetMetaData(string tableName)
-        {
-            //WCF Data Services does not allow for Complex query where you need to mine linked table data
+        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;

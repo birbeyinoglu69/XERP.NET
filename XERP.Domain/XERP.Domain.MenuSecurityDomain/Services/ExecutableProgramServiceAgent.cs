@@ -25,6 +25,20 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         #endregion Properties
 
         #region Read Only Methods  No Repository Required
+        public bool ExecutableProgramRepositoryIsDirty()
+        {
+            return ExecutableProgramSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool ExecutableProgramTypeRepositoryIsDirty()
+        {
+            return ExecutableProgramTypeSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool MenuItemCodeRepositoryIsDirty()
+        {
+            return ExecutableProgramCodeSingletonRepository.Instance.RepositoryIsDirty();
+        } 
         public IEnumerable<ExecutableProgramType> GetExecutableProgramTypesReadOnly(string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
@@ -54,9 +68,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                            q.CompanyID == companyID
                            select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
             return false;
         }
 
@@ -69,9 +81,8 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                                where q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
@@ -84,9 +95,8 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                                q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 

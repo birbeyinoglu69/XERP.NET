@@ -22,9 +22,6 @@ namespace XERP.Server.DAL
                 config.BaseSQLConnectionString = value;
             }
         }
-        public DALConfig()
-        {
-
-        }
+        public DALConfig(){}
     }
 }

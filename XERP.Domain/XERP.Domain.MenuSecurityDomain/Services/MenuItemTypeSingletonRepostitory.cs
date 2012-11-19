@@ -22,15 +22,18 @@ namespace XERP.Domain.MenuSecurityDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new MenuItemTypeSingletonRepository();
-                }
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private MenuSecurityEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<MenuItemType> GetMenuItemTypes(string companyID)
         {
@@ -53,19 +56,13 @@ namespace XERP.Domain.MenuSecurityDomain
                               select q;
 
             if (!string.IsNullOrEmpty(securityGroupTypeQuerryObject.Type))
-            {
                 queryResult = queryResult.Where(q => q.Type.StartsWith(securityGroupTypeQuerryObject.Type.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(securityGroupTypeQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(securityGroupTypeQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(securityGroupTypeQuerryObject.MenuItemTypeID))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(securityGroupTypeQuerryObject.MenuItemTypeID.ToString()));
-            }
 
             return queryResult;
         }
@@ -102,12 +99,14 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(MenuItemType securityGroupType)
+        public void UpdateRepository(MenuItemType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(securityGroupType) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
             {
+                itemType.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemType.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(securityGroupType);
+                _repositoryContext.UpdateObject(itemType);
             }
         }
 
@@ -120,8 +119,7 @@ namespace XERP.Domain.MenuSecurityDomain
         public void DeleteFromRepository(MenuItemType securityGroupType)
         {
             if (_repositoryContext.GetEntityDescriptor(securityGroupType) != null)
-            {
-                //if it exists in the db delete it from the db
+            {//if it exists in the db delete it from the db
                 MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
@@ -138,22 +136,16 @@ namespace XERP.Domain.MenuSecurityDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if (GetMenuItemTypeEntityState(securityGroupType) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(securityGroupType);
-                }
             }
         }
 
         public EntityStates GetMenuItemTypeEntityState(MenuItemType securityGroupType)
         {
             if (_repositoryContext.GetEntityDescriptor(securityGroupType) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(securityGroupType).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
     }
 }

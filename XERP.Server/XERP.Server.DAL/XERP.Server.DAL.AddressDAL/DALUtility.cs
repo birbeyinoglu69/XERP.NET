@@ -28,10 +28,7 @@ namespace XERP.Server.DAL.AddressDAL
             get { return EntityBuilder.ConnectionString; }
         }
 
-        public DALUtility()
-        {
-
-        }
+        public DALUtility(){}
     }
 
 }

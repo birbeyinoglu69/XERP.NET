@@ -22,15 +22,19 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             get
             {
                 if (_instance == null)
-                {
                     _instance = new MenuItemCodeSingletonRepository();
-                }
+
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private MenuSecurityEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<MenuItemCode> GetMenuItemCodes(string companyID)
         {
@@ -53,19 +57,13 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                               select q;
 
             if (!string.IsNullOrEmpty(securityGroupCodeQuerryObject.Code))
-            {
                 queryResult = queryResult.Where(q => q.Code.StartsWith(securityGroupCodeQuerryObject.Code.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(securityGroupCodeQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(securityGroupCodeQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(securityGroupCodeQuerryObject.MenuItemCodeID))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(securityGroupCodeQuerryObject.MenuItemCodeID.ToString()));
-            }
 
             return queryResult;
         }
@@ -80,13 +78,11 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                                where q.MenuItemCodeID == securityGroupCodeID
                                where q.CompanyID == companyID
                                select q);
-
             return queryResult;
         }
 
         public IEnumerable<MenuItemCode> Refresh(string autoIDs)
         {
-
             _repositoryContext = new MenuSecurityEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -102,12 +98,14 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(MenuItemCode securityGroupCode)
+        public void UpdateRepository(MenuItemCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(securityGroupCode) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemCode) != null)
             {
+                itemCode.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemCode.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(securityGroupCode);
+                _repositoryContext.UpdateObject(itemCode);
             }
         }
 
@@ -138,22 +136,16 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if (GetMenuItemCodeEntityState(securityGroupCode) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(securityGroupCode);
-                }
             }
         }
 
         public EntityStates GetMenuItemCodeEntityState(MenuItemCode securityGroupCode)
         {
             if (_repositoryContext.GetEntityDescriptor(securityGroupCode) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(securityGroupCode).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
     }
 }

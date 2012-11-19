@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using XERP.Client.WPF.CompanyMaintenance.ViewModels;
 using SimpleMvvmToolkit;
-using System.Collections.Generic;
 using XERP.Client.Models;
-using XERP.Client.WPF;
+using XERP.Client.WPF.CompanyMaintenance.ViewModels;
 namespace XERP.Client.WPF.CompanyMaintenance.Views
 {
     /// <summary>
@@ -58,24 +57,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         {
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
-
-        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        //{
-        //    if (tabctrlMain.SelectedItem == tabDetail)
-        //    {
-        //        txtKey.Focus();
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabList)
-        //    {
-        //        dgMain.Focus();
-        //        if(dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-        //        {//set the last records first column to have focus...
-        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1], 
-        //                dgMain.Columns[0]);
-        //            dgMain.BeginEdit();
-        //        }
-        //    }
-        //}
 
         private void OpenTypeMaintenance_Click(object sender, RoutedEventArgs e)
         {
@@ -181,11 +162,13 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                 if (_viewModel.AllowNew)
                 {
                     _viewModel.NewCompanyCommand("");
+                    //set the first visible column to allow for edit w/o requireing a click to select it...
+                    dgMain.CurrentCell = new DataGridCellInfo(
+                    dgMain.Items[dgMain.Items.Count - 1], dgMain.Columns[0]);
+                    dgMain.BeginEdit();
                 }
                 else
-                {
                     MessageBox.Show("New Company Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
             }
 
             
@@ -248,12 +231,8 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         }
 
         private void dgMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {//sets multiple selections for multiple delete and copy paste ect...
             _viewModel.SelectedCompanyList = dgMain.SelectedItems;
-            foreach (var item in dgMain.SelectedItems)
-            {
-               
-            }
         }
 
         private void dgMainPasteRow_Click(object sender, RoutedEventArgs e)
@@ -278,10 +257,9 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
             {
                 if (_viewModel.AllowDelete)
                 {
-                    _viewModel.DeleteCommand();
+                    _viewModel.DeleteCompanyCommand();
                     return;
                 }
-                //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }  

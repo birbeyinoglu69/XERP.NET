@@ -25,6 +25,20 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         #endregion Properties
 
         #region Read Only Methods  No Repository Required
+        public bool MenuItemRepositoryIsDirty()
+        {
+            return MenuItemSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool MenuItemTypeRepositoryIsDirty()
+        {
+            return MenuItemTypeSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool MenuItemCodeRepositoryIsDirty()
+        {
+            return MenuItemCodeSingletonRepository.Instance.RepositoryIsDirty();
+        } 
         public IEnumerable<MenuItemType> GetMenuItemTypesReadOnly(string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
@@ -54,9 +68,8 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                            q.CompanyID == companyID
                            select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
@@ -69,9 +82,8 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                                where q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
@@ -84,15 +96,13 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                                q.CompanyID == companyID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
         public IEnumerable<Temp> GetMetaData(string tableName)
-        {
-            //WCF Data Services does not allow for Complex query where you need to mine linked table data
+        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;

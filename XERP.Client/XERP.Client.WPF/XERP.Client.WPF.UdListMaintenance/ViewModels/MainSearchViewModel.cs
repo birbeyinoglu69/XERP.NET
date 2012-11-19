@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.ComponentModel;
-
-// Toolkit namespace
+using System.Linq;
 using SimpleMvvmToolkit;
-
-// Toolkit extension methods
-//XERP namespace
-using XERP.Domain.UdListDomain.UdListDataService;
 using XERP.Domain.UdListDomain.Services;
-
+using XERP.Domain.UdListDomain.UdListDataService;
 
 namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 {
@@ -21,8 +14,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         private GlobalProperties _globalProperties = new GlobalProperties();
         private IUdListServiceAgent _serviceAgent;
 
-        public MainSearchViewModel()
-        { }
+        public MainSearchViewModel(){ }
 
         public MainSearchViewModel(IUdListServiceAgent serviceAgent)
         {
@@ -32,11 +24,8 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             ResultList = new BindingList<UdList>();
             SelectedList = new BindingList<UdList>();
             //make sure of session authentication...
-            if (ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
@@ -48,17 +37,12 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
 
         #region Authentication
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
+        {   //on log in session information is collected about the system user...
             //we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -70,9 +54,8 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
         #endregion Authentication
@@ -89,10 +72,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             Notify(AuthenticatedNotice, new NotificationEventArgs());
         }
 
-
         #region Properties
-        
-
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
         {
@@ -139,7 +119,6 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         #endregion Properties
 
         #region Methods
-
         private BindingList<UdList> GetUdLists(string companyID)
         {//note this get is to the singleton repository...
             return new BindingList<UdList>(_serviceAgent.GetUdLists(companyID).ToList());
@@ -175,8 +154,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         #region Helpers
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
 

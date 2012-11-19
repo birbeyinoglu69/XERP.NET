@@ -157,6 +157,11 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.Views
                 if (_viewModel.AllowNew)
                 {
                     _viewModel.NewSecurityGroupTypeCommand("");
+                    //set the first visible column to allow for edit w/o requireing a click to select it...
+                    dgMain.CurrentCell = new DataGridCellInfo(
+                    dgMain.Items[dgMain.Items.Count - 1], dgMain.Columns[0]);
+                    dgMain.BeginEdit();
+
                 }
                 else
                 {
@@ -254,7 +259,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.Views
             {
                 if (_viewModel.AllowDelete)
                 {
-                    _viewModel.DeleteCommand();
+                    _viewModel.DeleteSecurityGroupTypeCommand();
                     return;
                 }
                 //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

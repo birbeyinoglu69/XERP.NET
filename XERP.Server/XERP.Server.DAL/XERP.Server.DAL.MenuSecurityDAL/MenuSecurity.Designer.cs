@@ -18,16 +18,18 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_Image_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "DBStoredImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.DBStoredImage), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItemCode_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "MenuItemCodes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItemCode), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItemType_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "MenuItemTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItemType), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuSecurity_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "MenuSecurities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuSecurity), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_SecurityGroup_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "SecurityGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.SecurityGroup), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuSecurity_SecurityGroup", "SecurityGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.SecurityGroup), "MenuSecurities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuSecurity), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_ExecutableProgram_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "ExecutableProgram", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.ExecutableProgram), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_ExecutableProgramCode_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "ExecutableProgramCode", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.ExecutableProgramCode), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_ExecutableProgramType_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "ExecutableProgramType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.ExecutableProgramType), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_Image_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "DBStoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.DBStoredImage), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItem_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItem), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItemCode_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "MenuItemCode", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItemCode), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItemType_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "MenuItemType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItemType), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuSecurity_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "MenuSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuSecurity), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_SecurityGroup_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.SecurityGroup), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UdList_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.UdList), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UdListItem_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.UdListItem), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UserSecurity_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "SystemUserSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.SystemUserSecurity), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItem_Image", "DBStoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.MenuSecurityDAL.DBStoredImage), "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItem), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_ExecutablePrograms_ExecutableProgramCodes", "ExecutableProgramCode", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.MenuSecurityDAL.ExecutableProgramCode), "ExecutableProgram", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.ExecutableProgram), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_ExecutablePrograms_ExecutableProgramTypes", "ExecutableProgramType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.MenuSecurityDAL.ExecutableProgramType), "ExecutableProgram", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.ExecutableProgram), true)]
@@ -35,11 +37,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItem_MenuItemCode", "MenuItemCode", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItemCode), "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItem), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuItem_MenuItemType", "MenuItemType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItemType), "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItem), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuSecurity_MenuItem", "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuItem), "MenuSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuSecurity), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UserSecurity_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "SystemUserSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.SystemUserSecurity), true)]
+[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_MenuSecurity_SecurityGroup", "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.SecurityGroup), "MenuSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.MenuSecurity), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UserSecurity_SecurityGroup", "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.SecurityGroup), "SystemUserSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.SystemUserSecurity), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UserSecurity_SystemUser", "SystemUser", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.SystemUser), "SystemUserSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.SystemUserSecurity), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UdList_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.UdList), true)]
-[assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UdListItem_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.Company), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.UdListItem), true)]
 [assembly: EdmRelationshipAttribute("MenuSecurityModel", "FK_UdListItem_UdList", "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.MenuSecurityDAL.UdList), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.MenuSecurityDAL.UdListItem), true)]
 
 #endregion
@@ -95,6 +95,22 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Temp> Temps
+        {
+            get
+            {
+                if ((_Temps == null))
+                {
+                    _Temps = base.CreateObjectSet<Temp>("Temps");
+                }
+                return _Temps;
+            }
+        }
+        private ObjectSet<Temp> _Temps;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Company> Companies
         {
             get
@@ -127,6 +143,54 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<ExecutableProgramCode> ExecutableProgramCodes
+        {
+            get
+            {
+                if ((_ExecutableProgramCodes == null))
+                {
+                    _ExecutableProgramCodes = base.CreateObjectSet<ExecutableProgramCode>("ExecutableProgramCodes");
+                }
+                return _ExecutableProgramCodes;
+            }
+        }
+        private ObjectSet<ExecutableProgramCode> _ExecutableProgramCodes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ExecutableProgram> ExecutablePrograms
+        {
+            get
+            {
+                if ((_ExecutablePrograms == null))
+                {
+                    _ExecutablePrograms = base.CreateObjectSet<ExecutableProgram>("ExecutablePrograms");
+                }
+                return _ExecutablePrograms;
+            }
+        }
+        private ObjectSet<ExecutableProgram> _ExecutablePrograms;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ExecutableProgramType> ExecutableProgramTypes
+        {
+            get
+            {
+                if ((_ExecutableProgramTypes == null))
+                {
+                    _ExecutableProgramTypes = base.CreateObjectSet<ExecutableProgramType>("ExecutableProgramTypes");
+                }
+                return _ExecutableProgramTypes;
+            }
+        }
+        private ObjectSet<ExecutableProgramType> _ExecutableProgramTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<MenuItemCode> MenuItemCodes
         {
             get
@@ -139,6 +203,22 @@ namespace XERP.Server.DAL.MenuSecurityDAL
             }
         }
         private ObjectSet<MenuItemCode> _MenuItemCodes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MenuItem> MenuItems
+        {
+            get
+            {
+                if ((_MenuItems == null))
+                {
+                    _MenuItems = base.CreateObjectSet<MenuItem>("MenuItems");
+                }
+                return _MenuItems;
+            }
+        }
+        private ObjectSet<MenuItem> _MenuItems;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -207,86 +287,6 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Temp> Temps
-        {
-            get
-            {
-                if ((_Temps == null))
-                {
-                    _Temps = base.CreateObjectSet<Temp>("Temps");
-                }
-                return _Temps;
-            }
-        }
-        private ObjectSet<Temp> _Temps;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<ExecutableProgramCode> ExecutableProgramCodes
-        {
-            get
-            {
-                if ((_ExecutableProgramCodes == null))
-                {
-                    _ExecutableProgramCodes = base.CreateObjectSet<ExecutableProgramCode>("ExecutableProgramCodes");
-                }
-                return _ExecutableProgramCodes;
-            }
-        }
-        private ObjectSet<ExecutableProgramCode> _ExecutableProgramCodes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<ExecutableProgram> ExecutablePrograms
-        {
-            get
-            {
-                if ((_ExecutablePrograms == null))
-                {
-                    _ExecutablePrograms = base.CreateObjectSet<ExecutableProgram>("ExecutablePrograms");
-                }
-                return _ExecutablePrograms;
-            }
-        }
-        private ObjectSet<ExecutableProgram> _ExecutablePrograms;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<ExecutableProgramType> ExecutableProgramTypes
-        {
-            get
-            {
-                if ((_ExecutableProgramTypes == null))
-                {
-                    _ExecutableProgramTypes = base.CreateObjectSet<ExecutableProgramType>("ExecutableProgramTypes");
-                }
-                return _ExecutableProgramTypes;
-            }
-        }
-        private ObjectSet<ExecutableProgramType> _ExecutableProgramTypes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<MenuItem> MenuItems
-        {
-            get
-            {
-                if ((_MenuItems == null))
-                {
-                    _MenuItems = base.CreateObjectSet<MenuItem>("MenuItems");
-                }
-                return _MenuItems;
-            }
-        }
-        private ObjectSet<MenuItem> _MenuItems;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<SystemUserSecurity> SystemUserSecurities
         {
             get
@@ -303,22 +303,6 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<UdList> UdLists
-        {
-            get
-            {
-                if ((_UdLists == null))
-                {
-                    _UdLists = base.CreateObjectSet<UdList>("UdLists");
-                }
-                return _UdLists;
-            }
-        }
-        private ObjectSet<UdList> _UdLists;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UdListItem> UdListItems
         {
             get
@@ -331,9 +315,33 @@ namespace XERP.Server.DAL.MenuSecurityDAL
             }
         }
         private ObjectSet<UdListItem> _UdListItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UdList> UdLists
+        {
+            get
+            {
+                if ((_UdLists == null))
+                {
+                    _UdLists = base.CreateObjectSet<UdList>("UdLists");
+                }
+                return _UdLists;
+            }
+        }
+        private ObjectSet<UdList> _UdLists;
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Temps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTemps(Temp temp)
+        {
+            base.AddObject("Temps", temp);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -352,11 +360,43 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the ExecutableProgramCodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToExecutableProgramCodes(ExecutableProgramCode executableProgramCode)
+        {
+            base.AddObject("ExecutableProgramCodes", executableProgramCode);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ExecutablePrograms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToExecutablePrograms(ExecutableProgram executableProgram)
+        {
+            base.AddObject("ExecutablePrograms", executableProgram);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ExecutableProgramTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToExecutableProgramTypes(ExecutableProgramType executableProgramType)
+        {
+            base.AddObject("ExecutableProgramTypes", executableProgramType);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the MenuItemCodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToMenuItemCodes(MenuItemCode menuItemCode)
         {
             base.AddObject("MenuItemCodes", menuItemCode);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MenuItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMenuItems(MenuItem menuItem)
+        {
+            base.AddObject("MenuItems", menuItem);
         }
     
         /// <summary>
@@ -392,46 +432,6 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Temps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTemps(Temp temp)
-        {
-            base.AddObject("Temps", temp);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the ExecutableProgramCodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToExecutableProgramCodes(ExecutableProgramCode executableProgramCode)
-        {
-            base.AddObject("ExecutableProgramCodes", executableProgramCode);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the ExecutablePrograms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToExecutablePrograms(ExecutableProgram executableProgram)
-        {
-            base.AddObject("ExecutablePrograms", executableProgram);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the ExecutableProgramTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToExecutableProgramTypes(ExecutableProgramType executableProgramType)
-        {
-            base.AddObject("ExecutableProgramTypes", executableProgramType);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the MenuItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMenuItems(MenuItem menuItem)
-        {
-            base.AddObject("MenuItems", menuItem);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the SystemUserSecurities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSystemUserSecurities(SystemUserSecurity systemUserSecurity)
@@ -440,19 +440,19 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the UdLists EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUdLists(UdList udList)
-        {
-            base.AddObject("UdLists", udList);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the UdListItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUdListItems(UdListItem udListItem)
         {
             base.AddObject("UdListItems", udListItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UdLists EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUdLists(UdList udList)
+        {
+            base.AddObject("UdLists", udList);
         }
 
         #endregion
@@ -1073,7 +1073,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1088,8 +1088,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1097,7 +1097,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1112,8 +1112,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1187,120 +1187,34 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_Image_Company", "DBStoredImages")]
-        public EntityCollection<DBStoredImage> DBStoredImages
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DBStoredImage>("MenuSecurityModel.FK_Image_Company", "DBStoredImages");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DBStoredImage>("MenuSecurityModel.FK_Image_Company", "DBStoredImages", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemCode_Company", "MenuItemCodes")]
-        public EntityCollection<MenuItemCode> MenuItemCodes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuItemCode>("MenuSecurityModel.FK_MenuItemCode_Company", "MenuItemCodes");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuItemCode>("MenuSecurityModel.FK_MenuItemCode_Company", "MenuItemCodes", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemType_Company", "MenuItemTypes")]
-        public EntityCollection<MenuItemType> MenuItemTypes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuItemType>("MenuSecurityModel.FK_MenuItemType_Company", "MenuItemTypes");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuItemType>("MenuSecurityModel.FK_MenuItemType_Company", "MenuItemTypes", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_Company", "MenuSecurities")]
-        public EntityCollection<MenuSecurity> MenuSecurities
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_Company", "MenuSecurities");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_Company", "MenuSecurities", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_SecurityGroup_Company", "SecurityGroups")]
-        public EntityCollection<SecurityGroup> SecurityGroups
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("MenuSecurityModel.FK_SecurityGroup_Company", "SecurityGroups");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("MenuSecurityModel.FK_SecurityGroup_Company", "SecurityGroups", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1374,6 +1288,28 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_Image_Company", "DBStoredImage")]
+        public EntityCollection<DBStoredImage> DBStoredImages
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DBStoredImage>("MenuSecurityModel.FK_Image_Company", "DBStoredImage");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DBStoredImage>("MenuSecurityModel.FK_Image_Company", "DBStoredImage", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItem_Company", "MenuItem")]
         public EntityCollection<MenuItem> MenuItems
         {
@@ -1396,18 +1332,84 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_UserSecurity_Company", "SystemUserSecurity")]
-        public EntityCollection<SystemUserSecurity> SystemUserSecurities
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemCode_Company", "MenuItemCode")]
+        public EntityCollection<MenuItemCode> MenuItemCodes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SystemUserSecurity>("MenuSecurityModel.FK_UserSecurity_Company", "SystemUserSecurity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuItemCode>("MenuSecurityModel.FK_MenuItemCode_Company", "MenuItemCode");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SystemUserSecurity>("MenuSecurityModel.FK_UserSecurity_Company", "SystemUserSecurity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuItemCode>("MenuSecurityModel.FK_MenuItemCode_Company", "MenuItemCode", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemType_Company", "MenuItemType")]
+        public EntityCollection<MenuItemType> MenuItemTypes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuItemType>("MenuSecurityModel.FK_MenuItemType_Company", "MenuItemType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuItemType>("MenuSecurityModel.FK_MenuItemType_Company", "MenuItemType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_Company", "MenuSecurity")]
+        public EntityCollection<MenuSecurity> MenuSecurities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_Company", "MenuSecurity");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_Company", "MenuSecurity", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_SecurityGroup_Company", "SecurityGroup")]
+        public EntityCollection<SecurityGroup> SecurityGroups
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SecurityGroup>("MenuSecurityModel.FK_SecurityGroup_Company", "SecurityGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("MenuSecurityModel.FK_SecurityGroup_Company", "SecurityGroup", value);
                 }
             }
         }
@@ -1452,6 +1454,28 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("MenuSecurityModel.FK_UdListItem_Company", "UdListItem", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_UserSecurity_Company", "SystemUserSecurity")]
+        public EntityCollection<SystemUserSecurity> SystemUserSecurities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SystemUserSecurity>("MenuSecurityModel.FK_UserSecurity_Company", "SystemUserSecurity");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SystemUserSecurity>("MenuSecurityModel.FK_UserSecurity_Company", "SystemUserSecurity", value);
                 }
             }
         }
@@ -1642,7 +1666,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1657,8 +1681,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1666,7 +1690,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1681,8 +1705,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1756,6 +1780,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -1767,16 +1815,16 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_Image_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_Image_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -1788,13 +1836,13 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_Image_Company", "Company", value);
                 }
             }
         }
@@ -2103,7 +2151,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -2118,8 +2166,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -2127,7 +2175,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -2142,8 +2190,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -2217,6 +2265,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -2520,7 +2592,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -2535,8 +2607,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -2544,7 +2616,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -2559,8 +2631,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -2634,6 +2706,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -2861,7 +2957,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -2876,8 +2972,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -2885,7 +2981,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -2900,8 +2996,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -2975,6 +3071,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -3442,7 +3562,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -3457,8 +3577,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -3466,7 +3586,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -3481,8 +3601,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -3556,6 +3676,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -3935,7 +4079,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -3950,8 +4094,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -3959,7 +4103,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -3974,8 +4118,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -4049,6 +4193,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -4060,16 +4228,16 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemCode_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemCode_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -4081,13 +4249,13 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_MenuItemCode_Company", "Company", value);
                 }
             }
         }
@@ -4276,7 +4444,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -4291,8 +4459,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -4300,7 +4468,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -4315,8 +4483,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -4390,6 +4558,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -4401,16 +4593,16 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemType_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuItemType_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -4422,13 +4614,13 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_MenuItemType_Company", "Company", value);
                 }
             }
         }
@@ -4598,7 +4790,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -4613,8 +4805,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -4622,7 +4814,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -4637,8 +4829,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -4712,6 +4904,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -4723,16 +4939,16 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -4744,51 +4960,13 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Companies", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_SecurityGroup", "SecurityGroups")]
-        public SecurityGroup SecurityGroup
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroups").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroups").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<SecurityGroup> SecurityGroupReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroups");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroups", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_MenuSecurity_Company", "Company", value);
                 }
             }
         }
@@ -4827,6 +5005,44 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MenuItem>("MenuSecurityModel.FK_MenuSecurity_MenuItem", "MenuItem", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_SecurityGroup", "SecurityGroup")]
+        public SecurityGroup SecurityGroup
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroup").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroup").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SecurityGroup> SecurityGroupReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroup>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "SecurityGroup", value);
                 }
             }
         }
@@ -5089,7 +5305,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -5104,8 +5320,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -5113,7 +5329,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -5128,8 +5344,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -5203,6 +5419,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -5214,16 +5454,16 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_SecurityGroup_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_SecurityGroup_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -5235,13 +5475,13 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("MenuSecurityModel.FK_SecurityGroup_Company", "Company", value);
                 }
             }
         }
@@ -5252,18 +5492,18 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_SecurityGroup", "MenuSecurities")]
+        [EdmRelationshipNavigationPropertyAttribute("MenuSecurityModel", "FK_MenuSecurity_SecurityGroup", "MenuSecurity")]
         public EntityCollection<MenuSecurity> MenuSecurities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "MenuSecurities");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "MenuSecurity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "MenuSecurities", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuSecurity>("MenuSecurityModel.FK_MenuSecurity_SecurityGroup", "MenuSecurity", value);
                 }
             }
         }
@@ -5687,7 +5927,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -5702,8 +5942,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -5711,7 +5951,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -5726,8 +5966,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -5801,6 +6041,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -5971,7 +6235,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -5986,8 +6250,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -5995,7 +6259,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -6010,8 +6274,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -6085,6 +6349,30 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -6565,7 +6853,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -6580,8 +6868,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -6589,7 +6877,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -6604,8 +6892,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -6935,7 +7223,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -6950,8 +7238,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -6959,7 +7247,7 @@ namespace XERP.Server.DAL.MenuSecurityDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -6974,8 +7262,8 @@ namespace XERP.Server.DAL.MenuSecurityDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>

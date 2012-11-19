@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Windows;
-using System.Linq;
-using System.Data.Services.Client;
-using System.ComponentModel;
 using System.Collections.Generic;
-// Toolkit namespace
-using SimpleMvvmToolkit;
-//XERP Namespaces
-using XERP.Domain.CompanyDomain.Services;
-using XERP.Domain.CompanyDomain.CompanyDataService;
-//required for extension methods...
+using System.ComponentModel;
+using System.Data.Services.Client;
+using System.Linq;
+using System.Windows;
 using ExtensionMethods;
+using SimpleMvvmToolkit;
 using XERP.Client.Models;
+using XERP.Domain.CompanyDomain.CompanyDataService;
+using XERP.Domain.CompanyDomain.Services;
 
 namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 {
@@ -20,6 +17,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         #region Initialization and Cleanup
         //GlobalProperties Class allows us to share properties amonst multiple classes...
         private GlobalProperties _globalProperties = new GlobalProperties();
+        private int _newCompanyCodeAutoId;
 
         private ICompanyServiceAgent _serviceAgent;
         private enum _saveRequiredResultActions
@@ -29,8 +27,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             ClearLogic
         }
         //required else it generates debug view designer issues 
-        public CodeMaintenanceViewModel()
-        { }
+        public CodeMaintenanceViewModel(){}
 
         public CodeMaintenanceViewModel(ICompanyServiceAgent serviceAgent)
         {
@@ -43,11 +40,8 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             CompanyCodeList.AllowNew = false;
 
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI... 
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
@@ -56,23 +50,16 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
             AllowNew = true;
             AllowRowPaste = true;
-            //CompanyCodeColumnMetaDataList = new List<ColumnMetaData>();
         }
         #endregion Initialization and Cleanup
 
         #region Authentication Logic
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -84,9 +71,8 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
 
@@ -103,7 +89,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> SaveRequiredNotice;
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> NewRecordNeededNotice;
         public event EventHandler<NotificationEventArgs> AuthenticatedNotice;
-        public event EventHandler<NotificationEventArgs> NewRecordCreatedNotice;
         #endregion Notifications
 
         #region Properties
@@ -120,7 +105,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         }
 
         private bool _allowRowPaste;
-
         public bool AllowRowPaste
         {
             get { return _allowRowPaste; }
@@ -144,7 +128,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         }
 
         private bool _allowCommit;
-
         public bool AllowCommit
         {
             get { return _allowCommit; }
@@ -311,18 +294,15 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             get
             {//we only need to get this once...
                 if (_companyCodeMaxFieldValueDictionary != null)
-                {
                     return _companyCodeMaxFieldValueDictionary;
-                }
+
                 _companyCodeMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("CompanyCodes");
 
                 foreach (var data in metaData)
                 {
                     if (data.ShortChar_1 == "String")
-                    {
                         _companyCodeMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                    }
                 }
                 return _companyCodeMaxFieldValueDictionary;
             }
@@ -332,12 +312,21 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
         #region ViewModel Propertie's Events
         private void SelectedCompanyCode_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {   //Key ID Logic...
+        {//these properties are not to be persisted we will igore them...
+            if (e.PropertyName == "IsSelected" ||
+                e.PropertyName == "IsExpanded" ||
+                e.PropertyName == "IsValid" ||
+                e.PropertyName == "NotValidMessage" ||
+                e.PropertyName == "LastModifiedBy" ||
+                e.PropertyName == "LastModifiedByDate")
+            {
+                return;
+            }
+            //Key ID Logic...
             if (e.PropertyName == "CompanyCodeID")
             {//make sure it is has changed...
                 if (SelectedCompanyCodeMirror.CompanyCodeID != SelectedCompanyCode.CompanyCodeID)
-                {
-                    //if their are no records it is a key change
+                {//if their are no records it is a key change
                     if (CompanyCodeList != null && CompanyCodeList.Count == 0
                         && SelectedCompanyCode != null && !string.IsNullOrEmpty(SelectedCompanyCode.CompanyCodeID))
                     {
@@ -350,14 +339,10 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
                     {//once a key is added it can not be modified...
-                        if (Dirty && AllowCommit)
-                        {//dirty record exists ask if save is required...
+                        if (Dirty && AllowCommit)//dirty record exists ask if save is required...
                             NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
-                        }
                         else
-                        {
                             ChangeKeyLogic();
-                        }
                         return;
                     }
                 }
@@ -365,300 +350,89 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
             object propertyChangedValue = SelectedCompanyCode.GetPropertyValue(e.PropertyName);
             object prevPropertyValue = SelectedCompanyCodeMirror.GetPropertyValue(e.PropertyName);
-            string propertyCode = SelectedCompanyCode.GetPropertyCode(e.PropertyName);
+            string propertyType = SelectedCompanyCode.GetPropertyType(e.PropertyName);
             //in some instances the value is not really changing but yet it still is tripping property change..
             //This will ensure that the field has physically been modified...
             //As well when we revert back it constitutes a property change but they will be = and it will bypass the logic...
             bool objectsAreEqual;
             if (propertyChangedValue == null)
             {
-                if (prevPropertyValue == null)
-                {//both values are null
+                if (prevPropertyValue == null)//both values are null
                     objectsAreEqual = true;
-                }
-                else
-                {//only one value is null
+                else//only one value is null
                     objectsAreEqual = false;
-                }
             }
             else
             {
-                if (prevPropertyValue == null)
-                {//only one value is null
+                if (prevPropertyValue == null)//only one value is null
                     objectsAreEqual = false;
-                }
                 else //both values are not null use .Equals...
-                {
                     objectsAreEqual = propertyChangedValue.Equals(prevPropertyValue);
-                }
             }
             if (!objectsAreEqual)
-            {
-                //Here we do property change validation if false is returned we will reset the value
+            {//Here we do property change validation if false is returned we will reset the value
                 //Back to its mirrored value and return out of the property change w/o updating the repository...
-                if (PropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyCode))
+                if (CompanyCodePropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
                 {
                     Update(SelectedCompanyCode);
                     //set the mirrored objects field...
                     SelectedCompanyCodeMirror.SetPropertyValue(e.PropertyName, propertyChangedValue);
+                    SelectedCompanyCodeMirror.IsValid = SelectedCompanyCode.IsValid;
+                    SelectedCompanyCodeMirror.IsExpanded = SelectedCompanyCode.IsExpanded;
+                    SelectedCompanyCodeMirror.NotValidMessage = SelectedCompanyCode.NotValidMessage;
                 }
-                else
-                {//revert back to its previous value... 
+                else//revert back to its previous value... 
+                {
                     SelectedCompanyCode.SetPropertyValue(e.PropertyName, prevPropertyValue);
-                    return;
+                    SelectedCompanyCode.IsValid = SelectedCompanyCodeMirror.IsValid;
+                    SelectedCompanyCode.IsExpanded = SelectedCompanyCodeMirror.IsExpanded;
+                    SelectedCompanyCode.NotValidMessage = SelectedCompanyCodeMirror.NotValidMessage;
                 }
             }
         }
         #endregion ViewModel Propertie's Events
 
-        #region Methods
         #region ViewModel Logic Methods
-
         private void ChangeKeyLogic()
         {
-            string errorMessage = "";
-            if (KeyChangeIsValid(SelectedCompanyCode.CompanyCodeID, out errorMessage))
-            {
-                //check to see if key is part of the current companyCodelist...
-                CompanyCode query = CompanyCodeList.Where(companyCode => companyCode.CompanyCodeID == SelectedCompanyCode.CompanyCodeID &&
-                                                        companyCode.AutoID != SelectedCompanyCode.AutoID).FirstOrDefault();
+            if (!string.IsNullOrEmpty(SelectedCompanyCode.CompanyCodeID))
+            {//check to see if key is part of the current list...
+                CompanyCode query = CompanyCodeList.Where(item => item.CompanyCodeID == SelectedCompanyCode.CompanyCodeID &&
+                                                        item.AutoID != SelectedCompanyCode.AutoID).SingleOrDefault();
                 if (query != null)
-                {//change to the newly selected companyCode...
+                {//revert it back
+                    SelectedCompanyCode.CompanyCodeID = SelectedCompanyCodeMirror.CompanyCodeID;
+                    //change to the newly selected item...
                     SelectedCompanyCode = query;
                     return;
                 }
                 //it is not part of the existing list try to fetch it from the db...
                 CompanyCodeList = GetCompanyCodeByID(SelectedCompanyCode.CompanyCodeID);
-                if (CompanyCodeList.Count == 0)
-                {//it was not found do new record required logic...
+                if (CompanyCodeList.Count == 0)//it was not found do new record required logic...
                     NotifyNewRecordNeeded("Record " + SelectedCompanyCode.CompanyCodeID + " Does Not Exist.  Create A New Record?");
-                }
                 else
-                {
                     SelectedCompanyCode = CompanyCodeList.FirstOrDefault();
-                }
             }
             else
             {
+                string errorMessage = "ID Is Required.";
                 NotifyMessage(errorMessage);
                 //revert back to the value it was before it was changed...
                 if (SelectedCompanyCode.CompanyCodeID != SelectedCompanyCodeMirror.CompanyCodeID)
-                {
                     SelectedCompanyCode.CompanyCodeID = SelectedCompanyCodeMirror.CompanyCodeID;
-                }
             }
         }
         //XERP allows for bulk updates we only allow save
         //if all bulk update requirements are met...
         private bool CommitIsAllowed()
-        {
-            string errorMessage = "";
-            bool rBool = true;
-            Dirty = false;
-            foreach (CompanyCode companyCode in CompanyCodeList)
-            {
-                EntityStates entityState = GetCompanyCodeState(companyCode);
-                if (entityState == EntityStates.Modified ||
-                    entityState == EntityStates.Detached)
-                {
-                    Dirty = true;
-                }
-                if (entityState == EntityStates.Added)
-                {
-                    Dirty = true;
-                    //only one record can be added at a time...
-                    if (NewKeyIsValid(companyCode, out errorMessage) == false)
-                    {
-                        rBool = false;
-                    }
-                }
-                if (NameIsValid(companyCode.Code, out errorMessage) == false)
-                {
-                    rBool = false;
-                }
-            }
-            //more bulk validation as required...
-            //note bulk validation should coincide with property validation...
-            //as we will not allow a commit until all data is valid...
-            return rBool;
-        }
-
-        private bool PropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string code)
-        {
-            string errorMessage;
-            bool rBool = true;
-            switch (propertyName)
-            {
-                case "CompanyCodeID":
-                    rBool = NewKeyIsValid(SelectedCompanyCode, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
-                    break;
-                case "Name":
-                    rBool = NameIsValid(changedValue, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
-                    break;
-            }
-            return true;
-        }
-
-        private bool NewKeyIsValid(CompanyCode companyCode, out string errorMessage)
-        {
-            errorMessage = "";
-            if (KeyChangeIsValid(companyCode.CompanyCodeID, out errorMessage) == false)
-            {
+        {//Check for any repository changes that are not yet committed to the db...
+            Dirty = RepositoryIsDirty();
+            //check for any invalid rows...
+            int count = (from q in CompanyCodeList where q.IsValid == 1 select q).Count();
+            if (count > 0)
                 return false;
-            }
-            if (CompanyCodeExists(companyCode.CompanyCodeID.ToString()))
-            {
-                errorMessage = "CompanyCodeID " + companyCode.CompanyCodeID + " Allready Exists...";
-                return false;
-            }
             return true;
         }
-
-        private bool KeyChangeIsValid(object companyCodeID, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)companyCodeID))
-            {
-                errorMessage = "CompanyCodeID Is Required...";
-                return false;
-            }
-            return true;
-        }
-
-        private bool NameIsValid(object value, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)value))
-            {
-                errorMessage = "Name Is Required...";
-                return false;
-            }
-            return true;
-        }
-        #endregion ViewModel Logic Methods
-
-        #region ServiceAgent Call Methods
-
-        private EntityStates GetCompanyCodeState(CompanyCode companyCode)
-        {
-            return _serviceAgent.GetCompanyCodeEntityState(companyCode);
-        }
-
-        #region CompanyCode CRUD
-        private void Refresh()
-        {
-
-            //refetch current records...
-            long selectedAutoID = SelectedCompanyCode.AutoID;
-            string autoIDs = "";
-            //bool isFirstItem = true;
-            foreach (CompanyCode companyCode in CompanyCodeList)
-            {//auto seeded starts at 1 any records at 0 or less or not valid records...
-                if (companyCode.AutoID > 0)
-                {
-                    autoIDs = autoIDs + companyCode.AutoID.ToString() + ",";
-                }
-            }
-            if (autoIDs.Length > 0)
-            {
-                //ditch the extra comma...
-                autoIDs = autoIDs.Remove(autoIDs.Length - 1, 1);
-                CompanyCodeList = new BindingList<CompanyCode>(_serviceAgent.RefreshCompanyCode(autoIDs).ToList());
-                SelectedCompanyCode = (from q in CompanyCodeList
-                                   where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
-
-                Dirty = false;
-                AllowCommit = false;
-            }
-        }
-
-        private BindingList<CompanyCode> GetCompanyCodes()
-        {
-            BindingList<CompanyCode> companyCodeList = new BindingList<CompanyCode>(_serviceAgent.GetCompanyCodes().ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return companyCodeList;
-        }
-
-        private BindingList<CompanyCode> GetCompanyCodes(CompanyCode companyCode)
-        {
-            BindingList<CompanyCode> companyCodeList = new BindingList<CompanyCode>(_serviceAgent.GetCompanyCodes(companyCode).ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return companyCodeList;
-        }
-
-        private BindingList<CompanyCode> GetCompanyCodeByID(string id)
-        {
-            BindingList<CompanyCode> companyCodeList = new BindingList<CompanyCode>(_serviceAgent.GetCompanyCodeByID(id).ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return companyCodeList;
-        }
-
-        private bool CompanyCodeExists(string companyCodeID)
-        {
-            return _serviceAgent.CompanyCodeExists(companyCodeID);
-        }
-        //udpate merely updates the repository a commit is required 
-        //to commit it to the db...
-        private bool Update(CompanyCode companyCode)
-        {
-            _serviceAgent.UpdateCompanyCodeRepository(companyCode);
-            Dirty = true;
-            if (CommitIsAllowed())
-            {
-                AllowCommit = true;
-                return true;
-            }
-            else
-            {
-                AllowCommit = false;
-                return false;
-            }
-        }
-        //commits repository to the db...
-        private bool Commit()
-        {
-            _serviceAgent.CommitCompanyCodeRepository();
-            Dirty = false;
-            AllowCommit = false;
-            return true;
-        }
-
-        private bool Delete(CompanyCode companyCode)
-        {//deletes are done indenpendently of the repository as a delete will not commit 
-            //dirty records it will simply just delete the record...
-            _serviceAgent.DeleteFromCompanyCodeRepository(companyCode);
-            return true;
-        }
-
-        private bool NewCompanyCode(string companyCodeID)
-        {
-            CompanyCode companyCode = new CompanyCode();
-            companyCode.CompanyCodeID = companyCodeID;
-            CompanyCodeList.Add(companyCode);
-            _serviceAgent.AddToCompanyCodeRepository(companyCode);
-            SelectedCompanyCode = CompanyCodeList.LastOrDefault();
-
-            AllowEdit = true;
-            Dirty = false;
-            return true;
-        }
-
-        #endregion CompanyCode CRUD
-        #endregion ServiceAgent Call Methods
 
         private void SetAsEmptySelection()
         {
@@ -676,7 +450,222 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             SetAsEmptySelection();
         }
 
-        #endregion Methods
+        private bool CompanyCodePropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        {
+            string errorMessage = "";
+            bool rBool = true;
+            switch (propertyName)
+            {
+                case "CompanyCodeID":
+                    rBool = CompanyCodeIsValid(SelectedCompanyCode, _itemValidationProperties.CompanyCodeID, out errorMessage);
+                    break;
+                case "Name":
+                    rBool = CompanyCodeIsValid(SelectedCompanyCode, _itemValidationProperties.Name, out errorMessage);
+                    break;
+            }
+            if (rBool == false)
+            {//here we give a specific error to the specific change
+                NotifyMessage(errorMessage);
+                SelectedCompanyCode.IsValid = 1;
+            }
+            else //check the enire rows validity...
+            {//here we check the entire row for validity the property change may be valid
+                //but we still do not know if the entire row is valid...
+                //if the row is valid we will set it to 2 (pending changes...)
+                //on the commit we will set it to 0 and it will be valid and saved to the db...
+                SelectedCompanyCode.IsValid = CompanyCodeIsValid(SelectedCompanyCode, out errorMessage);
+                if (SelectedCompanyCode.IsValid == 2)
+                    errorMessage = "Pending Changes...";
+            }
+            SelectedCompanyCode.NotValidMessage = errorMessage;
+            return rBool;
+        }
+
+        #region Validation Methods
+        //XERP Validation is done by the entire object or by Object property...
+        //So we must be sure to add the validation in both places...
+        private enum _itemValidationProperties
+        {//we list all fields that require validation...
+            CompanyCodeID,
+            Name
+        }
+
+        //Object.Property Scope Validation...
+        private bool CompanyCodeIsValid(CompanyCode item, _itemValidationProperties validationProperties, out string errorMessage)
+        {
+            errorMessage = "";
+            switch (validationProperties)
+            {
+                case _itemValidationProperties.CompanyCodeID:
+                    //validate key
+                    if (string.IsNullOrEmpty(item.CompanyCodeID))
+                    {
+                        errorMessage = "ID Is Required.";
+                        return false;
+                    }
+                    EntityStates entityState = GetCompanyCodeState(item);
+                    if (entityState == EntityStates.Added && CompanyCodeExists(item.CompanyCodeID))
+                    {
+                        errorMessage = "Item AllReady Exists...";
+                        return false;
+                    }
+                    break;
+                case _itemValidationProperties.Name:
+                    //validate Description
+                    if (string.IsNullOrEmpty(item.Description))
+                    {
+                        errorMessage = "Description Is Required.";
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+        //CompanyCode Object Scope Validation check the entire object for validity...
+        private byte CompanyCodeIsValid(CompanyCode item, out string errorMessage)
+        {   //validate key
+            errorMessage = "";
+            if (string.IsNullOrEmpty(item.CompanyCodeID))
+            {
+                errorMessage = "ID Is Required.";
+                return 1;
+            }
+            EntityStates entityState = GetCompanyCodeState(item);
+            if (entityState == EntityStates.Added && CompanyCodeExists(item.CompanyCodeID))
+            {
+                errorMessage = "Item AllReady Exists.";
+                return 1;
+            }
+
+            //validate Description
+            if (string.IsNullOrEmpty(item.Description))
+            {
+                errorMessage = "Description Is Required.";
+                return 1;
+            }
+            //a value of 2 is pending changes...
+            //On Commit we will give it a value of 0...
+            return 2;
+        }
+        #endregion Validation Methods
+        #endregion ViewModel Logic Methods
+        #region ServiceAgent Call Methods
+        private EntityStates GetCompanyCodeState(CompanyCode item)
+        {
+            return _serviceAgent.GetCompanyCodeEntityState(item);
+        }
+
+        //check to see if the repository has pending changes...
+        private bool RepositoryIsDirty()
+        {
+            return _serviceAgent.CompanyRepositoryIsDirty();
+        }
+
+        #region CompanyCode CRUD
+        private void Refresh()
+        {//refetch current records...
+            long selectedAutoID = SelectedCompanyCode.AutoID;
+            string autoIDs = "";
+            //bool isFirstItem = true;
+            foreach (CompanyCode item in CompanyCodeList)
+            {//auto seeded starts at 1 any records at 0 or less or not valid records...
+                if (item.AutoID > 0)
+                    autoIDs = autoIDs + item.AutoID.ToString() + ",";
+            }
+            if (autoIDs.Length > 0)
+            {
+                //ditch the extra comma...
+                autoIDs = autoIDs.Remove(autoIDs.Length - 1, 1);
+                CompanyCodeList = new BindingList<CompanyCode>(_serviceAgent.RefreshCompanyCode(autoIDs).ToList());
+                SelectedCompanyCode = (from q in CompanyCodeList
+                                   where q.AutoID == selectedAutoID
+                                   select q).SingleOrDefault();
+                Dirty = false;
+                AllowCommit = false;
+            }
+        }
+
+        private BindingList<CompanyCode> GetCompanyCodes()
+        {
+            BindingList<CompanyCode> itemList = new BindingList<CompanyCode>(_serviceAgent.GetCompanyCodes().ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return itemList;
+        }
+
+        private BindingList<CompanyCode> GetCompanyCodes(CompanyCode item)
+        {
+            BindingList<CompanyCode> itemList = new BindingList<CompanyCode>(_serviceAgent.GetCompanyCodes(item).ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return itemList;
+        }
+
+        private BindingList<CompanyCode> GetCompanyCodeByID(string id)
+        {
+            BindingList<CompanyCode> itemList = new BindingList<CompanyCode>(_serviceAgent.GetCompanyCodeByID(id).ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return itemList;
+        }
+
+        private bool CompanyCodeExists(string itemID)
+        {
+            return _serviceAgent.CompanyCodeExists(itemID);
+        }
+        //udpate merely updates the repository a commit is required 
+        //to commit it to the db...
+        private bool Update(CompanyCode item)
+        {
+            _serviceAgent.UpdateCompanyCodeRepository(item);
+            Dirty = true;
+            if (CommitIsAllowed())
+                AllowCommit = true;
+            else
+                AllowCommit = false;
+            return AllowCommit;
+        }
+        //commits repository to the db...
+        private bool Commit()
+        {   //search non respository UI list for pending saved marked records and mark them as valid...
+            var items = (from q in CompanyCodeList where q.IsValid == 2 select q).ToList();
+            foreach(CompanyCode item in items)
+            {
+                item.IsValid = 0;
+                item.NotValidMessage = null;
+            }
+            _serviceAgent.CommitCompanyCodeRepository();
+            Dirty = false;
+            AllowCommit = false;
+            return true;
+        }
+
+        private bool Delete(CompanyCode item)
+        {//deletes are done indenpendently of the repository as a delete will not commit 
+            //dirty records it will simply just delete the record...
+            _serviceAgent.DeleteFromCompanyCodeRepository(item);
+            return true;
+        }
+
+        private bool NewCompanyCode(string itemID)
+        {
+            CompanyCode newItem = new CompanyCode();
+            _newCompanyCodeAutoId = _newCompanyCodeAutoId - 1;
+            newItem.AutoID = _newCompanyCodeAutoId;
+            newItem.CompanyCodeID = itemID;
+            newItem.IsValid = 1;
+            newItem.NotValidMessage = "New Record Key Field/s Are Required.";
+            CompanyCodeList.Add(newItem);
+            _serviceAgent.AddToCompanyCodeRepository(newItem);
+            SelectedCompanyCode = CompanyCodeList.LastOrDefault();
+
+            AllowEdit = true;
+            Dirty = false;
+            return true;
+        }
+
+        #endregion CompanyCode CRUD
+        #endregion ServiceAgent Call Methods
 
         #region Commands
         public void PasteRowCommand()
@@ -696,7 +685,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewCompanyCodeCommand(""); //this will generate a new companyCode and set it as the selected companyCode...
+                    NewCompanyCodeCommand(""); //this will generate a new item and set it as the selected item Code...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -718,49 +707,61 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             if (GetCompanyCodeState(SelectedCompanyCode) != EntityStates.Detached)
             {
                 if (Update(SelectedCompanyCode))
-                {
                     Commit();
-                }
                 else
-                {//this should not be hit but just in case we will catch it and then see 
-                    //if and where we have a hole in our allowcommit logic...
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
-                }
             }
         }
         public void RefreshCommand()
         {
             Refresh();
         }
-        public void DeleteCommand()
+
+        public void DeleteCompanyCodeCommand()
         {
-            int i = 0;
-            bool isFirstDelete = true;
-            for (int j = SelectedCompanyCodeList.Count - 1; j >= 0; j--)
+            try
             {
-                CompanyCode companyCode = (CompanyCode)SelectedCompanyCodeList[j];
-                if (isFirstDelete)
-                {//the result of this will be the record directly before the selected records...
-                    i = CompanyCodeList.IndexOf(companyCode) - SelectedCompanyCodeList.Count;
-                }
-
-                Delete(companyCode);
-                CompanyCodeList.Remove(companyCode);
-            }
-
-            if (CompanyCodeList != null && CompanyCodeList.Count > 0)
-            {
-                //if they delete the first row...
-                if (i < 0)
+                int i = 0;
+                int ii = 0;
+                for (int j = SelectedCompanyCodeList.Count - 1; j >= 0; j--)
                 {
-                    i = 0;
+                    CompanyCode item = (CompanyCode)SelectedCompanyCodeList[j];
+                    //get Max Index...
+                    i = CompanyCodeList.IndexOf(item);
+                    if (i > ii)
+                        ii = i;
+                    Delete(item);
+                    CompanyCodeList.Remove(item);
                 }
-                SelectedCompanyCode = CompanyCodeList[i];
-                AllowCommit = CommitIsAllowed();
-            }
-            else
-            {//only one record, deleting will result in no records...
-                SetAsEmptySelection();
+
+                if (CompanyCodeList != null && CompanyCodeList.Count > 0)
+                {
+                    //back off one index from the max index...
+                    ii = ii - 1;
+
+                    //if they delete the first row...
+                    if (ii < 0)
+                        ii = 0;
+
+                    //make sure it does not exceed the list count...
+                    if (ii >= CompanyCodeList.Count())
+                        ii = CompanyCodeList.Count - 1;
+
+                    SelectedCompanyCode = CompanyCodeList[ii];
+                    //we will only enable committ for dirty validated records...
+                    if (Dirty == true)
+                        AllowCommit = CommitIsAllowed();
+                    else
+                        AllowCommit = false;
+                }
+                else//only one record, deleting will result in no records...
+                    SetAsEmptySelection();
+            }//we try catch the item to delete as it may be used in another table as a key...
+            //As well we will force a refresh to sqare up the UI after the botched delete...
+            catch
+            {
+                NotifyMessage("CompanyCode/s Can Not Be Deleted.  Contact XERP Admin For More Details.");
+                Refresh();
             }
         }
 
@@ -770,41 +771,29 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             AllowCommit = false;
         }
 
-        public void NewCompanyCodeCommand(string companyCodeID)
+        public void NewCompanyCodeCommand(string newItemID)
         {
-
-            NewCompanyCode(companyCodeID);
-            if (string.IsNullOrEmpty(companyCodeID))
-            {//don't allow a save until a securityGroupCodeID is provided...
+            NewCompanyCode(newItemID);
+            if (string.IsNullOrEmpty(newItemID))//don't allow a save until a securityGroupCodeID is provided...
                 AllowCommit = false;
-            }
-            {
+            else
                 AllowCommit = CommitIsAllowed();
-            }
         }
 
         public void ClearCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
-            }
             else
-            {
                 ClearLogic();
-            }
         }
 
         public void SearchCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
-            }
             else
-            {
                 SearchLogic();
-            }
         }
 
         private void SearchLogic()
@@ -824,42 +813,26 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             }
             UnregisterToReceiveMessages<BindingList<CompanyCode>>(MessageTokens.CompanyCodeSearchToken.ToString(), OnSearchResult);
         }
-
         #endregion Commands
 
-        #region Completion Callbacks
-
-        // TODO: Optionally add callback methods for async calls to the service agent
-
-        #endregion Completion Callbacks
-
         #region Helpers
-        //notify the view that a new record was created...
-        //allows us to set focus to key field...
-        //private void NotifyNewRecordCreated()
-        //{
-        //    Notify(NewRecordCreatedNotice, new NotificationEventArgs());
-        //}
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
         private void NotifyMessage(string message)
-        {
-            // Notify view of an error message w/o throwing an error...
+        {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
         }
-        //Notify view to launch search...
+        
         private void NotifySearch(string message)
-        {
+        {//Notify view to launch search...
             Notify(SearchNotice, new NotificationEventArgs(message));
         }
 
-        //Notify view new record may be required...
         private void NotifyNewRecordNeeded(string message)
-        {
+        {//Notify view new record may be required...
             Notify(NewRecordNeededNotice, new NotificationEventArgs<bool, MessageBoxResult>
             (message, true, result => { OnNewRecordNeededResult(result); }));
         }
@@ -930,7 +903,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-
     public static partial class XERPExtensions
     {
         public static object GetPropertyValue(this CompanyCode myObj, string propertyName)
@@ -938,27 +910,19 @@ namespace ExtensionMethods
             var propInfo = typeof(CompanyCode).GetProperty(propertyName);
 
             if (propInfo != null)
-            {
                 return propInfo.GetValue(myObj, null);
-            }
             else
-            {
                 return string.Empty;
-            }
         }
 
-        public static string GetPropertyCode(this CompanyCode myObj, string propertyName)
+        public static string GetPropertyType(this CompanyCode myObj, string propertyName)
         {
             var propInfo = typeof(CompanyCode).GetProperty(propertyName);
 
             if (propInfo != null)
-            {
                 return propInfo.PropertyType.Name.ToString();
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static void SetPropertyValue(this CompanyCode myObj, object propertyName, object propertyValue)
@@ -966,9 +930,7 @@ namespace ExtensionMethods
             var propInfo = typeof(CompanyCode).GetProperty((string)propertyName);
 
             if (propInfo != null)
-            {
                 propInfo.SetValue(myObj, propertyValue, null);
-            }
         }
     }
 }

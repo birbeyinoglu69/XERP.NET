@@ -23,8 +23,6 @@ namespace XERP.Client.WPF.Helpers
         void ___ICH(object sender, RoutedPropertyChangedEventArgs<object> e) 
         {
             SetValue(SelectedItem_Property, SelectedItem); 
-            //if (SelectedItem != null) { SetValue(SelectedItem_Property, SelectedItem); 
-            //} 
         } 
         public object SelectedItem_ 
         { 

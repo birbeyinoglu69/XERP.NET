@@ -46,8 +46,11 @@ namespace XERP.Domain.SystemUserDomain.Services
         System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUserCode> RefreshSystemUserCode(string autoIDs);
         System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUserType> RefreshSystemUserType(string autoIDs);
         bool SystemUserCodeExists(string systemUserCodeID);
+        bool SystemUserCodeRepositoryIsDirty();
         bool SystemUserExists(string systemUserID);
+        bool SystemUserRepositoryIsDirty();
         bool SystemUserTypeExists(string systemUserTypeID);
+        bool SystemUserTypeRepositoryIsDirty();
         void UpdateAddressRepository(XERP.Domain.SystemUserDomain.SystemUserDataService.Address systemUser);
         void UpdateSystemUserCodeRepository(XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUserCode systemUserCode);
         void UpdateSystemUserRepository(XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUser systemUser);

@@ -1,6 +1,17 @@
 ﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
   <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
     <Schema Namespace="MenuSecurityModel" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="Temp">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
+        <Property Name="Bool_1" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="ShortChar_1" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Int_1" Type="Edm.Int32" Nullable="true" />
+        <Property Name="Decimal_1" Type="Edm.Decimal" Nullable="true" Precision="12" Scale="5" />
+      </EntityType>
       <EntityType Name="Company">
         <Key>
           <PropertyRef Name="CompanyID" />
@@ -29,23 +40,24 @@
         <Property Name="Email" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="Email2" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="DBStoredImages" Relationship="MenuSecurityModel.FK_Image_Company" FromRole="Companies" ToRole="DBStoredImages" />
-        <NavigationProperty Name="MenuItemCodes" Relationship="MenuSecurityModel.FK_MenuItemCode_Company" FromRole="Companies" ToRole="MenuItemCodes" />
-        <NavigationProperty Name="MenuItemTypes" Relationship="MenuSecurityModel.FK_MenuItemType_Company" FromRole="Companies" ToRole="MenuItemTypes" />
-        <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_Company" FromRole="Companies" ToRole="MenuSecurities" />
-        <NavigationProperty Name="SecurityGroups" Relationship="MenuSecurityModel.FK_SecurityGroup_Company" FromRole="Companies" ToRole="SecurityGroups" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
         <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutableProgram_Company" FromRole="Company" ToRole="ExecutableProgram" />
         <NavigationProperty Name="ExecutableProgramCodes" Relationship="MenuSecurityModel.FK_ExecutableProgramCode_Company" FromRole="Company" ToRole="ExecutableProgramCode" />
         <NavigationProperty Name="ExecutableProgramTypes" Relationship="MenuSecurityModel.FK_ExecutableProgramType_Company" FromRole="Company" ToRole="ExecutableProgramType" />
+        <NavigationProperty Name="DBStoredImages" Relationship="MenuSecurityModel.FK_Image_Company" FromRole="Company" ToRole="DBStoredImage" />
         <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_Company" FromRole="Company" ToRole="MenuItem" />
-        <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
+        <NavigationProperty Name="MenuItemCodes" Relationship="MenuSecurityModel.FK_MenuItemCode_Company" FromRole="Company" ToRole="MenuItemCode" />
+        <NavigationProperty Name="MenuItemTypes" Relationship="MenuSecurityModel.FK_MenuItemType_Company" FromRole="Company" ToRole="MenuItemType" />
+        <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_Company" FromRole="Company" ToRole="MenuSecurity" />
+        <NavigationProperty Name="SecurityGroups" Relationship="MenuSecurityModel.FK_SecurityGroup_Company" FromRole="Company" ToRole="SecurityGroup" />
         <NavigationProperty Name="UdLists" Relationship="MenuSecurityModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
         <NavigationProperty Name="UdListItems" Relationship="MenuSecurityModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+        <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
       </EntityType>
       <EntityType Name="DBStoredImage">
         <Key>
@@ -58,128 +70,14 @@
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_Image_Company" FromRole="DBStoredImages" ToRole="Companies" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_Image_Company" FromRole="DBStoredImage" ToRole="Company" />
         <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_Image" FromRole="DBStoredImage" ToRole="MenuItem" />
-      </EntityType>
-      <EntityType Name="MenuItemCode">
-        <Key>
-          <PropertyRef Name="CompanyID" />
-          <PropertyRef Name="MenuItemCodeID" />
-        </Key>
-        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="MenuItemCodeID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Code" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
-        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemCode_Company" FromRole="MenuItemCodes" ToRole="Companies" />
-        <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemCode" FromRole="MenuItemCode" ToRole="MenuItem" />
-      </EntityType>
-      <EntityType Name="MenuItemType">
-        <Key>
-          <PropertyRef Name="CompanyID" />
-          <PropertyRef Name="MenuItemTypeID" />
-        </Key>
-        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="MenuItemTypeID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Type" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
-        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemType_Company" FromRole="MenuItemTypes" ToRole="Companies" />
-        <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemType" FromRole="MenuItemType" ToRole="MenuItem" />
-      </EntityType>
-      <EntityType Name="MenuSecurity">
-        <Key>
-          <PropertyRef Name="CompanyID" />
-          <PropertyRef Name="MenuItemID" />
-          <PropertyRef Name="SecurityGroupID" />
-        </Key>
-        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="MenuItemID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="SecurityGroupID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuSecurity_Company" FromRole="MenuSecurities" ToRole="Companies" />
-        <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="MenuSecurities" ToRole="SecurityGroups" />
-        <NavigationProperty Name="MenuItem" Relationship="MenuSecurityModel.FK_MenuSecurity_MenuItem" FromRole="MenuSecurity" ToRole="MenuItem" />
-      </EntityType>
-      <EntityType Name="SecurityGroup">
-        <Key>
-          <PropertyRef Name="CompanyID" />
-          <PropertyRef Name="SecurityGroupID" />
-        </Key>
-        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="SecurityGroupID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
-        <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
-        <Property Name="Active" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="SecurityGroupTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="SecurityGroupCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
-        <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="MenuSecurities" />
-        <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="SystemUserSecurity" />
-      </EntityType>
-      <EntityType Name="SystemUser">
-        <Key>
-          <PropertyRef Name="SystemUserID" />
-        </Key>
-        <Property Name="SystemUserID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="Password" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="SystemUserTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="SystemUserCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Active" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="EmailAddress" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
-        <Property Name="PasswordExpired" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="PasswordExpiresOn" Type="Edm.DateTime" Nullable="true" />
-        <Property Name="SystemManager" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="DefaultCompanyID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="DefaultPlantID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="AddressID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Image" Type="Edm.Binary" Nullable="true" MaxLength="Max" FixedLength="false" />
-        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
-      </EntityType>
-      <EntityType Name="Temp">
-        <Key>
-          <PropertyRef Name="ID" />
-        </Key>
-        <Property Name="ID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
-        <Property Name="Bool_1" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="ShortChar_1" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Int_1" Type="Edm.Int32" Nullable="true" />
-        <Property Name="Decimal_1" Type="Edm.Decimal" Nullable="true" Precision="12" Scale="5" />
       </EntityType>
       <EntityType Name="ExecutableProgramCode">
         <Key>
@@ -191,11 +89,12 @@
         <Property Name="Code" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
         <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_ExecutableProgramCode_Company" FromRole="ExecutableProgramCode" ToRole="Company" />
         <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramCodes" FromRole="ExecutableProgramCode" ToRole="ExecutableProgram" />
       </EntityType>
@@ -214,11 +113,12 @@
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         <Property Name="ExecutableProgramTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
         <Property Name="ExecutableProgramCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
         <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_ExecutableProgram_Company" FromRole="ExecutableProgram" ToRole="Company" />
         <NavigationProperty Name="ExecutableProgramCode" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramCodes" FromRole="ExecutableProgram" ToRole="ExecutableProgramCode" />
         <NavigationProperty Name="ExecutableProgramType" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramTypes" FromRole="ExecutableProgram" ToRole="ExecutableProgramType" />
@@ -234,13 +134,33 @@
         <Property Name="Type" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
         <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_ExecutableProgramType_Company" FromRole="ExecutableProgramType" ToRole="Company" />
         <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramTypes" FromRole="ExecutableProgramType" ToRole="ExecutableProgram" />
+      </EntityType>
+      <EntityType Name="MenuItemCode">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="MenuItemCodeID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="MenuItemCodeID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Code" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
+        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemCode_Company" FromRole="MenuItemCode" ToRole="Company" />
+        <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemCode" FromRole="MenuItemCode" ToRole="MenuItem" />
       </EntityType>
       <EntityType Name="MenuItem">
         <Key>
@@ -262,17 +182,108 @@
         <Property Name="HideMenu" Type="Edm.Boolean" Nullable="true" />
         <Property Name="AllowAll" Type="Edm.Boolean" Nullable="true" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
         <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItem_Company" FromRole="MenuItem" ToRole="Company" />
         <NavigationProperty Name="DBStoredImage" Relationship="MenuSecurityModel.FK_MenuItem_Image" FromRole="MenuItem" ToRole="DBStoredImage" />
         <NavigationProperty Name="ExecutableProgram" Relationship="MenuSecurityModel.FK_MenuItems_ExecutablePrograms" FromRole="MenuItem" ToRole="ExecutableProgram" />
         <NavigationProperty Name="MenuItemCode" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemCode" FromRole="MenuItem" ToRole="MenuItemCode" />
         <NavigationProperty Name="MenuItemType" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemType" FromRole="MenuItem" ToRole="MenuItemType" />
         <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_MenuItem" FromRole="MenuItem" ToRole="MenuSecurity" />
+      </EntityType>
+      <EntityType Name="MenuItemType">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="MenuItemTypeID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="MenuItemTypeID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Type" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
+        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemType_Company" FromRole="MenuItemType" ToRole="Company" />
+        <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemType" FromRole="MenuItemType" ToRole="MenuItem" />
+      </EntityType>
+      <EntityType Name="MenuSecurity">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="MenuItemID" />
+          <PropertyRef Name="SecurityGroupID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="MenuItemID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="SecurityGroupID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
+        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuSecurity_Company" FromRole="MenuSecurity" ToRole="Company" />
+        <NavigationProperty Name="MenuItem" Relationship="MenuSecurityModel.FK_MenuSecurity_MenuItem" FromRole="MenuSecurity" ToRole="MenuItem" />
+        <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="MenuSecurity" ToRole="SecurityGroup" />
+      </EntityType>
+      <EntityType Name="SecurityGroup">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="SecurityGroupID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="SecurityGroupID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="SecurityGroupTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="SecurityGroupCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
+        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_SecurityGroup_Company" FromRole="SecurityGroup" ToRole="Company" />
+        <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="MenuSecurity" />
+        <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="SystemUserSecurity" />
+      </EntityType>
+      <EntityType Name="SystemUser">
+        <Key>
+          <PropertyRef Name="SystemUserID" />
+        </Key>
+        <Property Name="SystemUserID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Password" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="SystemUserTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="SystemUserCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="EmailAddress" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="PasswordExpired" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="PasswordExpiresOn" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="SystemManager" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="DefaultCompanyID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="DefaultPlantID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="AddressID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Image" Type="Edm.Binary" Nullable="true" MaxLength="Max" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
+        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
       </EntityType>
       <EntityType Name="SystemUserSecurity">
         <Key>
@@ -284,33 +295,15 @@
         <Property Name="SystemUserID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
         <Property Name="SecurityGroupID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
         <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UserSecurity_Company" FromRole="SystemUserSecurity" ToRole="Company" />
         <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurity" ToRole="SecurityGroup" />
         <NavigationProperty Name="SystemUser" Relationship="MenuSecurityModel.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurity" ToRole="SystemUser" />
-      </EntityType>
-      <EntityType Name="UdList">
-        <Key>
-          <PropertyRef Name="CompanyID" />
-          <PropertyRef Name="UdListID" />
-        </Key>
-        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="UdListID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
-        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
-        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
-        <NavigationProperty Name="UdListItems" Relationship="MenuSecurityModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
       </EntityType>
       <EntityType Name="UdListItem">
         <Key>
@@ -324,88 +317,33 @@
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
         <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
         <NavigationProperty Name="UdList" Relationship="MenuSecurityModel.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
       </EntityType>
-      <Association Name="FK_Image_Company">
-        <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="DBStoredImages" Type="MenuSecurityModel.DBStoredImage" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Companies">
-            <PropertyRef Name="CompanyID" />
-          </Principal>
-          <Dependent Role="DBStoredImages">
-            <PropertyRef Name="CompanyID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_MenuItemCode_Company">
-        <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="MenuItemCodes" Type="MenuSecurityModel.MenuItemCode" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Companies">
-            <PropertyRef Name="CompanyID" />
-          </Principal>
-          <Dependent Role="MenuItemCodes">
-            <PropertyRef Name="CompanyID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_MenuItemType_Company">
-        <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="MenuItemTypes" Type="MenuSecurityModel.MenuItemType" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Companies">
-            <PropertyRef Name="CompanyID" />
-          </Principal>
-          <Dependent Role="MenuItemTypes">
-            <PropertyRef Name="CompanyID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_MenuSecurity_Company">
-        <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="MenuSecurities" Type="MenuSecurityModel.MenuSecurity" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Companies">
-            <PropertyRef Name="CompanyID" />
-          </Principal>
-          <Dependent Role="MenuSecurities">
-            <PropertyRef Name="CompanyID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_SecurityGroup_Company">
-        <End Role="Companies" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="SecurityGroups" Type="MenuSecurityModel.SecurityGroup" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Companies">
-            <PropertyRef Name="CompanyID" />
-          </Principal>
-          <Dependent Role="SecurityGroups">
-            <PropertyRef Name="CompanyID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_MenuSecurity_SecurityGroup">
-        <End Role="SecurityGroups" Type="MenuSecurityModel.SecurityGroup" Multiplicity="1" />
-        <End Role="MenuSecurities" Type="MenuSecurityModel.MenuSecurity" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="SecurityGroups">
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SecurityGroupID" />
-          </Principal>
-          <Dependent Role="MenuSecurities">
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SecurityGroupID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
+      <EntityType Name="UdList">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="UdListID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="UdListID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
+        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
+        <NavigationProperty Name="UdListItems" Relationship="MenuSecurityModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
+      </EntityType>
       <Association Name="FK_ExecutableProgram_Company">
         <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
         <End Role="ExecutableProgram" Type="MenuSecurityModel.ExecutableProgram" Multiplicity="*" />
@@ -442,6 +380,18 @@
           </Dependent>
         </ReferentialConstraint>
       </Association>
+      <Association Name="FK_Image_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="DBStoredImage" Type="MenuSecurityModel.DBStoredImage" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="DBStoredImage">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
       <Association Name="FK_MenuItem_Company">
         <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
         <End Role="MenuItem" Type="MenuSecurityModel.MenuItem" Multiplicity="*" />
@@ -450,6 +400,90 @@
             <PropertyRef Name="CompanyID" />
           </Principal>
           <Dependent Role="MenuItem">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MenuItemCode_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="MenuItemCode" Type="MenuSecurityModel.MenuItemCode" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="MenuItemCode">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MenuItemType_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="MenuItemType" Type="MenuSecurityModel.MenuItemType" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="MenuItemType">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MenuSecurity_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="MenuSecurity" Type="MenuSecurityModel.MenuSecurity" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="MenuSecurity">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_SecurityGroup_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="SecurityGroup" Type="MenuSecurityModel.SecurityGroup" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="SecurityGroup">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_UdList_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="UdList" Type="MenuSecurityModel.UdList" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="UdList">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_UdListItem_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="UdListItem" Type="MenuSecurityModel.UdListItem" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="UdListItem">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_UserSecurity_Company">
+        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
+        <End Role="SystemUserSecurity" Type="MenuSecurityModel.SystemUserSecurity" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="SystemUserSecurity">
             <PropertyRef Name="CompanyID" />
           </Dependent>
         </ReferentialConstraint>
@@ -552,15 +586,17 @@
           </Dependent>
         </ReferentialConstraint>
       </Association>
-      <Association Name="FK_UserSecurity_Company">
-        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="SystemUserSecurity" Type="MenuSecurityModel.SystemUserSecurity" Multiplicity="*" />
+      <Association Name="FK_MenuSecurity_SecurityGroup">
+        <End Role="SecurityGroup" Type="MenuSecurityModel.SecurityGroup" Multiplicity="1" />
+        <End Role="MenuSecurity" Type="MenuSecurityModel.MenuSecurity" Multiplicity="*" />
         <ReferentialConstraint>
-          <Principal Role="Company">
+          <Principal Role="SecurityGroup">
             <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupID" />
           </Principal>
-          <Dependent Role="SystemUserSecurity">
+          <Dependent Role="MenuSecurity">
             <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupID" />
           </Dependent>
         </ReferentialConstraint>
       </Association>
@@ -587,30 +623,6 @@
           </Principal>
           <Dependent Role="SystemUserSecurity">
             <PropertyRef Name="SystemUserID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_UdList_Company">
-        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="UdList" Type="MenuSecurityModel.UdList" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Company">
-            <PropertyRef Name="CompanyID" />
-          </Principal>
-          <Dependent Role="UdList">
-            <PropertyRef Name="CompanyID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_UdListItem_Company">
-        <End Role="Company" Type="MenuSecurityModel.Company" Multiplicity="1" />
-        <End Role="UdListItem" Type="MenuSecurityModel.UdListItem" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Company">
-            <PropertyRef Name="CompanyID" />
-          </Principal>
-          <Dependent Role="UdListItem">
-            <PropertyRef Name="CompanyID" />
           </Dependent>
         </ReferentialConstraint>
       </Association>
@@ -647,45 +659,21 @@
           <Parameter Name="systemUserID" Type="Edm.String" Mode="In" />
           <Parameter Name="companyID" Type="Edm.String" Mode="In" />
         </FunctionImport>
+        <EntitySet Name="Temps" EntityType="MenuSecurityModel.Temp" />
         <EntitySet Name="Companies" EntityType="MenuSecurityModel.Company" />
         <EntitySet Name="DBStoredImages" EntityType="MenuSecurityModel.DBStoredImage" />
+        <EntitySet Name="ExecutableProgramCodes" EntityType="MenuSecurityModel.ExecutableProgramCode" />
+        <EntitySet Name="ExecutablePrograms" EntityType="MenuSecurityModel.ExecutableProgram" />
+        <EntitySet Name="ExecutableProgramTypes" EntityType="MenuSecurityModel.ExecutableProgramType" />
         <EntitySet Name="MenuItemCodes" EntityType="MenuSecurityModel.MenuItemCode" />
+        <EntitySet Name="MenuItems" EntityType="MenuSecurityModel.MenuItem" />
         <EntitySet Name="MenuItemTypes" EntityType="MenuSecurityModel.MenuItemType" />
         <EntitySet Name="MenuSecurities" EntityType="MenuSecurityModel.MenuSecurity" />
         <EntitySet Name="SecurityGroups" EntityType="MenuSecurityModel.SecurityGroup" />
         <EntitySet Name="SystemUsers" EntityType="MenuSecurityModel.SystemUser" />
-        <EntitySet Name="Temps" EntityType="MenuSecurityModel.Temp" />
-        <EntitySet Name="ExecutableProgramCodes" EntityType="MenuSecurityModel.ExecutableProgramCode" />
-        <EntitySet Name="ExecutablePrograms" EntityType="MenuSecurityModel.ExecutableProgram" />
-        <EntitySet Name="ExecutableProgramTypes" EntityType="MenuSecurityModel.ExecutableProgramType" />
-        <EntitySet Name="MenuItems" EntityType="MenuSecurityModel.MenuItem" />
         <EntitySet Name="SystemUserSecurities" EntityType="MenuSecurityModel.SystemUserSecurity" />
-        <EntitySet Name="UdLists" EntityType="MenuSecurityModel.UdList" />
         <EntitySet Name="UdListItems" EntityType="MenuSecurityModel.UdListItem" />
-        <AssociationSet Name="FK_Image_Company" Association="MenuSecurityModel.FK_Image_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="DBStoredImages" EntitySet="DBStoredImages" />
-        </AssociationSet>
-        <AssociationSet Name="FK_MenuItemCode_Company" Association="MenuSecurityModel.FK_MenuItemCode_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="MenuItemCodes" EntitySet="MenuItemCodes" />
-        </AssociationSet>
-        <AssociationSet Name="FK_MenuItemType_Company" Association="MenuSecurityModel.FK_MenuItemType_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="MenuItemTypes" EntitySet="MenuItemTypes" />
-        </AssociationSet>
-        <AssociationSet Name="FK_MenuSecurity_Company" Association="MenuSecurityModel.FK_MenuSecurity_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="MenuSecurities" EntitySet="MenuSecurities" />
-        </AssociationSet>
-        <AssociationSet Name="FK_SecurityGroup_Company" Association="MenuSecurityModel.FK_SecurityGroup_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-        </AssociationSet>
-        <AssociationSet Name="FK_MenuSecurity_SecurityGroup" Association="MenuSecurityModel.FK_MenuSecurity_SecurityGroup">
-          <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-          <End Role="MenuSecurities" EntitySet="MenuSecurities" />
-        </AssociationSet>
+        <EntitySet Name="UdLists" EntityType="MenuSecurityModel.UdList" />
         <AssociationSet Name="FK_ExecutableProgram_Company" Association="MenuSecurityModel.FK_ExecutableProgram_Company">
           <End Role="Company" EntitySet="Companies" />
           <End Role="ExecutableProgram" EntitySet="ExecutablePrograms" />
@@ -698,9 +686,41 @@
           <End Role="Company" EntitySet="Companies" />
           <End Role="ExecutableProgramType" EntitySet="ExecutableProgramTypes" />
         </AssociationSet>
+        <AssociationSet Name="FK_Image_Company" Association="MenuSecurityModel.FK_Image_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="DBStoredImage" EntitySet="DBStoredImages" />
+        </AssociationSet>
         <AssociationSet Name="FK_MenuItem_Company" Association="MenuSecurityModel.FK_MenuItem_Company">
           <End Role="Company" EntitySet="Companies" />
           <End Role="MenuItem" EntitySet="MenuItems" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MenuItemCode_Company" Association="MenuSecurityModel.FK_MenuItemCode_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="MenuItemCode" EntitySet="MenuItemCodes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MenuItemType_Company" Association="MenuSecurityModel.FK_MenuItemType_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="MenuItemType" EntitySet="MenuItemTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MenuSecurity_Company" Association="MenuSecurityModel.FK_MenuSecurity_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="MenuSecurity" EntitySet="MenuSecurities" />
+        </AssociationSet>
+        <AssociationSet Name="FK_SecurityGroup_Company" Association="MenuSecurityModel.FK_SecurityGroup_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="SecurityGroup" EntitySet="SecurityGroups" />
+        </AssociationSet>
+        <AssociationSet Name="FK_UdList_Company" Association="MenuSecurityModel.FK_UdList_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="UdList" EntitySet="UdLists" />
+        </AssociationSet>
+        <AssociationSet Name="FK_UdListItem_Company" Association="MenuSecurityModel.FK_UdListItem_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="UdListItem" EntitySet="UdListItems" />
+        </AssociationSet>
+        <AssociationSet Name="FK_UserSecurity_Company" Association="MenuSecurityModel.FK_UserSecurity_Company">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
         </AssociationSet>
         <AssociationSet Name="FK_MenuItem_Image" Association="MenuSecurityModel.FK_MenuItem_Image">
           <End Role="DBStoredImage" EntitySet="DBStoredImages" />
@@ -730,9 +750,9 @@
           <End Role="MenuItem" EntitySet="MenuItems" />
           <End Role="MenuSecurity" EntitySet="MenuSecurities" />
         </AssociationSet>
-        <AssociationSet Name="FK_UserSecurity_Company" Association="MenuSecurityModel.FK_UserSecurity_Company">
-          <End Role="Company" EntitySet="Companies" />
-          <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
+        <AssociationSet Name="FK_MenuSecurity_SecurityGroup" Association="MenuSecurityModel.FK_MenuSecurity_SecurityGroup">
+          <End Role="SecurityGroup" EntitySet="SecurityGroups" />
+          <End Role="MenuSecurity" EntitySet="MenuSecurities" />
         </AssociationSet>
         <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="MenuSecurityModel.FK_UserSecurity_SecurityGroup">
           <End Role="SecurityGroup" EntitySet="SecurityGroups" />
@@ -741,14 +761,6 @@
         <AssociationSet Name="FK_UserSecurity_SystemUser" Association="MenuSecurityModel.FK_UserSecurity_SystemUser">
           <End Role="SystemUser" EntitySet="SystemUsers" />
           <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
-        </AssociationSet>
-        <AssociationSet Name="FK_UdList_Company" Association="MenuSecurityModel.FK_UdList_Company">
-          <End Role="Company" EntitySet="Companies" />
-          <End Role="UdList" EntitySet="UdLists" />
-        </AssociationSet>
-        <AssociationSet Name="FK_UdListItem_Company" Association="MenuSecurityModel.FK_UdListItem_Company">
-          <End Role="Company" EntitySet="Companies" />
-          <End Role="UdListItem" EntitySet="UdListItems" />
         </AssociationSet>
         <AssociationSet Name="FK_UdListItem_UdList" Association="MenuSecurityModel.FK_UdListItem_UdList">
           <End Role="UdList" EntitySet="UdLists" />

@@ -22,15 +22,18 @@ namespace XERP.Domain.SystemUserDomain.Services
             get
             {
                 if (_instance == null)
-                {
                     _instance = new SystemUserCodeSingletonRepository();
-                }
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private SystemUserEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<SystemUserCode> GetSystemUserCodes()
         {
@@ -51,19 +54,13 @@ namespace XERP.Domain.SystemUserDomain.Services
                               select q;
 
             if (!string.IsNullOrEmpty(companyCodeQuerryObject.Code))
-            {
                 queryResult = queryResult.Where(q => q.Code.StartsWith(companyCodeQuerryObject.Code.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(companyCodeQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(companyCodeQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(companyCodeQuerryObject.SystemUserCodeID))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(companyCodeQuerryObject.SystemUserCodeID.ToString()));
-            }
 
             return queryResult;
         }
@@ -77,13 +74,11 @@ namespace XERP.Domain.SystemUserDomain.Services
             var queryResult = (from q in _repositoryContext.SystemUserCodes
                                where q.SystemUserCodeID == companyCodeID
                                select q);
-
             return queryResult;
         }
 
         public IEnumerable<SystemUserCode> Refresh(string autoIDs)
         {
-
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -135,22 +130,16 @@ namespace XERP.Domain.SystemUserDomain.Services
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if (GetSystemUserCodeEntityState(companyCode) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(companyCode);
-                }
             }
         }
 
         public EntityStates GetSystemUserCodeEntityState(SystemUserCode companyCode)
         {
             if (_repositoryContext.GetEntityDescriptor(companyCode) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(companyCode).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }
     }
 }

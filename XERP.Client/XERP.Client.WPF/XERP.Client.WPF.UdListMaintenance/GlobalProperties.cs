@@ -11,9 +11,5 @@ namespace XERP.Client.WPF.UdListMaintenance
         {
             get { return _executableProgramName; }
         }
-
-        
-        
     }
-
 }

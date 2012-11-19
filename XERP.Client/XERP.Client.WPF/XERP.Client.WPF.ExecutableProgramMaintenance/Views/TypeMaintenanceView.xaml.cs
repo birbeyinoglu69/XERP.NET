@@ -157,6 +157,11 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.Views
                 if (_viewModel.AllowNew)
                 {
                     _viewModel.NewExecutableProgramTypeCommand("");
+                    //set the first visible column to allow for edit w/o requireing a click to select it...
+                    dgMain.CurrentCell = new DataGridCellInfo(
+                    dgMain.Items[dgMain.Items.Count - 1], dgMain.Columns[0]);
+                    dgMain.BeginEdit();
+
                 }
                 else
                 {

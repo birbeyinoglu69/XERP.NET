@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.ComponentModel;
-
-// Toolkit namespace
+using System.Linq;
 using SimpleMvvmToolkit;
-
-// Toolkit extension methods
-//XERP namespace
 using XERP.Domain.CompanyDomain.CompanyDataService;
 using XERP.Domain.CompanyDomain.Services;
-
 
 namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 {
@@ -21,8 +15,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         private GlobalProperties _globalProperties = new GlobalProperties();
         private ICompanyServiceAgent _serviceAgent;
 
-        public MainSearchViewModel()
-        { }
+        public MainSearchViewModel(){ }
 
         public MainSearchViewModel(ICompanyServiceAgent serviceAgent)
         {
@@ -34,33 +27,23 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             ResultList = new BindingList<Company>();
             SelectedList = new BindingList<Company>();
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
                 FormIsEnabled = false;
-                //we will do forms authentication once the log in returns a valid System User...
             }
         }
         #endregion Initialization and Cleanup
 
         #region Authentication
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -72,9 +55,8 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
         #endregion Authentication
@@ -86,15 +68,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         public event EventHandler<NotificationEventArgs> AuthenticatedNotice;
         #endregion Notifications
 
-        private void NotifyAuthenticated()
-        {
-            Notify(AuthenticatedNotice, new NotificationEventArgs());
-        }
-
-
         #region Properties
-        
-
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
         {
@@ -178,9 +152,9 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             return new BindingList<Company>(_serviceAgent.GetCompanies().ToList());
         }
 
-        private BindingList<Company> GetCompanies(Company companyQueryObject)
+        private BindingList<Company> GetCompanies(Company itemQueryObject)
         {//note this get is to the singleton repository...
-            return new BindingList<Company>(_serviceAgent.GetCompanies(companyQueryObject).ToList());
+            return new BindingList<Company>(_serviceAgent.GetCompanies(itemQueryObject).ToList());
         }
         #endregion Methods
 
@@ -206,10 +180,13 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         #endregion Commands
 
         #region Helpers
+        private void NotifyAuthenticated()
+        {
+            Notify(AuthenticatedNotice, new NotificationEventArgs());
+        }
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
 

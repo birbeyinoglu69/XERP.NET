@@ -80,7 +80,7 @@
                                 <i:EventTrigger EventName="Click">
                                     <ei:CallMethodAction
                                     TargetObject="{Binding}"
-                                    MethodName="DeleteItemCommand"/>
+                                    MethodName="DeleteUdListItemCommand"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </MenuItem>
@@ -165,7 +165,7 @@
                         <i:EventTrigger EventName="Click">
                             <ei:CallMethodAction
                             TargetObject="{Binding}"
-                            MethodName="DeleteCommand"/>
+                            MethodName="DeleteUdListCommand"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </MenuItem>
@@ -175,7 +175,7 @@
                         <i:EventTrigger EventName="Click">
                             <ei:CallMethodAction
                         TargetObject="{Binding}"
-                        MethodName="DeleteItemCommand"/>
+                        MethodName="DeleteUdListItemCommand"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </MenuItem>
@@ -245,13 +245,16 @@
                                         <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
                                             <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=IsValid}" Value="True">
+                                        <DataTrigger Binding="{Binding Path=IsValid}" Value="0">
                                             <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=IsValid}" Value="False">
+                                        <DataTrigger Binding="{Binding Path=IsValid}" Value="1">
                                             <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
                                         </DataTrigger>
-                                    </Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="2">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/flag2.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
                                 </Style>
                             </Image.Style>
                         </Image>
@@ -275,11 +278,14 @@
                                                     <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
                                                         <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="True">
+                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="0">
                                                         <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="False">
+                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="1">
                                                         <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=IsValid}" Value="2">
+                                                        <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/flag2.png" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -406,8 +412,6 @@
                 <my:UdListItemView 
                 xmlns:my="clr-namespace:XERP.Client.WPF.UdListMaintenance.Views"/>
             </TabItem>
-        </TabControl>
-        
+        </TabControl> 
     </Grid>
-    
 </UserControl>

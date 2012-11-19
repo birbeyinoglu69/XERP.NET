@@ -24,10 +24,6 @@ namespace XERP.Server.DAL.MenuSecurityDAL
             get { return EntityBuilder.ConnectionString; }
         }
 
-        public DALUtility()
-        {
-            
-          
-        }
+        public DALUtility(){}
     }
 }

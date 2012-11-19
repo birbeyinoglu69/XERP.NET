@@ -18,9 +18,9 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdList_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.UdListDAL.Company), "UdLists", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.UdListDAL.UdList), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_Company", "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.UdListDAL.Company), "UdListItems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.UdListDAL.UdListItem), true)]
-[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_UdList", "UdLists", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.UdListDAL.UdList), "UdListItems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.UdListDAL.UdListItem), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdList_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.UdListDAL.Company), "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.UdListDAL.UdList), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.UdListDAL.Company), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.UdListDAL.UdListItem), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_UdList", "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.UdListDAL.UdList), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.UdListDAL.UdListItem), true)]
 
 #endregion
 
@@ -75,22 +75,6 @@ namespace XERP.Server.DAL.UdListDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Company> Companies
-        {
-            get
-            {
-                if ((_Companies == null))
-                {
-                    _Companies = base.CreateObjectSet<Company>("Companies");
-                }
-                return _Companies;
-            }
-        }
-        private ObjectSet<Company> _Companies;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Temp> Temps
         {
             get
@@ -103,6 +87,22 @@ namespace XERP.Server.DAL.UdListDAL
             }
         }
         private ObjectSet<Temp> _Temps;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Company> Companies
+        {
+            get
+            {
+                if ((_Companies == null))
+                {
+                    _Companies = base.CreateObjectSet<Company>("Companies");
+                }
+                return _Companies;
+            }
+        }
+        private ObjectSet<Company> _Companies;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -140,19 +140,19 @@ namespace XERP.Server.DAL.UdListDAL
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCompanies(Company company)
-        {
-            base.AddObject("Companies", company);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Temps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTemps(Temp temp)
         {
             base.AddObject("Temps", temp);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCompanies(Company company)
+        {
+            base.AddObject("Companies", company);
         }
     
         /// <summary>
@@ -789,7 +789,7 @@ namespace XERP.Server.DAL.UdListDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -804,8 +804,8 @@ namespace XERP.Server.DAL.UdListDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -813,7 +813,7 @@ namespace XERP.Server.DAL.UdListDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -828,8 +828,8 @@ namespace XERP.Server.DAL.UdListDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -903,6 +903,30 @@ namespace XERP.Server.DAL.UdListDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -914,18 +938,18 @@ namespace XERP.Server.DAL.UdListDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdList_Company", "UdLists")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdList_Company", "UdList")]
         public EntityCollection<UdList> UdLists
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdList>("XERPModel.FK_UdList_Company", "UdLists");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdList>("XERPModel.FK_UdList_Company", "UdList");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdList>("XERPModel.FK_UdList_Company", "UdLists", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdList>("XERPModel.FK_UdList_Company", "UdList", value);
                 }
             }
         }
@@ -936,18 +960,18 @@ namespace XERP.Server.DAL.UdListDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_Company", "UdListItems")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_Company", "UdListItem")]
         public EntityCollection<UdListItem> UdListItems
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_Company", "UdListItems");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_Company", "UdListItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_Company", "UdListItems", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_Company", "UdListItem", value);
                 }
             }
         }
@@ -1313,7 +1337,7 @@ namespace XERP.Server.DAL.UdListDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1328,8 +1352,8 @@ namespace XERP.Server.DAL.UdListDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1337,7 +1361,7 @@ namespace XERP.Server.DAL.UdListDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1352,8 +1376,8 @@ namespace XERP.Server.DAL.UdListDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1438,16 +1462,16 @@ namespace XERP.Server.DAL.UdListDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdList_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdList_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -1459,13 +1483,13 @@ namespace XERP.Server.DAL.UdListDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UdList_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UdList_Company", "Company", value);
                 }
             }
         }
@@ -1476,18 +1500,18 @@ namespace XERP.Server.DAL.UdListDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdListItems")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdListItem")]
         public EntityCollection<UdListItem> UdListItems
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItems");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItems", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UdListItem>("XERPModel.FK_UdListItem_UdList", "UdListItem", value);
                 }
             }
         }
@@ -1683,7 +1707,7 @@ namespace XERP.Server.DAL.UdListDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1698,8 +1722,8 @@ namespace XERP.Server.DAL.UdListDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1707,7 +1731,7 @@ namespace XERP.Server.DAL.UdListDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1722,8 +1746,8 @@ namespace XERP.Server.DAL.UdListDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1808,16 +1832,16 @@ namespace XERP.Server.DAL.UdListDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_Company", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_Company", "Company")]
         public Company Company
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Companies").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Companies").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company").Value = value;
             }
         }
         /// <summary>
@@ -1829,13 +1853,13 @@ namespace XERP.Server.DAL.UdListDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UdListItem_Company", "Company", value);
                 }
             }
         }
@@ -1846,16 +1870,16 @@ namespace XERP.Server.DAL.UdListDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdLists")]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UdListItem_UdList", "UdList")]
         public UdList UdList
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList").Value = value;
             }
         }
         /// <summary>
@@ -1867,13 +1891,13 @@ namespace XERP.Server.DAL.UdListDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdLists", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UdList>("XERPModel.FK_UdListItem_UdList", "UdList", value);
                 }
             }
         }

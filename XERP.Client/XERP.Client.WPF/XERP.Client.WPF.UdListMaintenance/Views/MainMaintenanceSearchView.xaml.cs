@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using XERP.Client.WPF.UdListMaintenance.ViewModels;
 using SimpleMvvmToolkit;
-using XERP.Client.WPF;
+using XERP.Client.WPF.UdListMaintenance.ViewModels;
 namespace XERP.Client.WPF.UdListMaintenance.Views
 {
     public partial class MainMaintenanceSearchView : UserControl

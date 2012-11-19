@@ -1,28 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.Services.Client;
-using System.ComponentModel;
-// Toolkit namespace
 using SimpleMvvmToolkit;
-//XERP Namespaces
-using XERP.Domain.UdListDomain.Services;
-using XERP.Domain.UdListDomain.UdListDataService;
-//using XERP.Domain.UdListDomain.ClientModels;
-using XERP.Domain.ClientModels;
 using XERP.Client.Models;
-//required for extension methods...
-using ExtensionMethods;
 using XERP.Client.WPF.UdListMaintenance.ViewModels;
 namespace XERP.Client.WPF.UdListMaintenance.Views
 {
@@ -40,24 +23,8 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
                 this.Resources.MergedDictionaries.Add(XERP.Client.WPF.UdListMaintenance.Resources.SharedDictionaryManager.MenuImagesSharedDictionary);
                 this.Resources.MergedDictionaries.Add(XERP.Client.WPF.UdListMaintenance.Resources.SharedDictionaryManager.BaseControlsSharedDictionary);
                 _viewModel = _vml.SharedMainMaintenanceViewModel;
-                //DataContext = _viewModel;
-                //_viewModel.ErrorNotice += OnErrorNotice;
-                //_viewModel.MessageNotice += OnMessageNotice;
-                //_viewModel.SearchNotice += OnSearchNotice;
-                //_viewModel.SaveRequiredNotice += OnSaveRequiredNotice;
-                //_viewModel.NewRecordNeededNotice += OnNewRecordNeededNotice;
-                //_viewModel.AuthenticatedNotice += OnAuthenticatedNotice;
                 _viewModel.WiggleToGhostFieldNotice += OnWiggleToGhostFieldNotice;
-                //I use try catch as because the context is inherited it does not have 
-                //reference to it at design time...
-                //perhaps when I have more time I will go back and fix this for now...
-                //we will leave it...
-                try
-                {
-                    //_viewModel.NewItemRecordCreatedNotice += OnNewRecordCreatedNotice;
-                }
-                catch { }
-
+              
                 InitializeComponent();
             }
             catch (Exception ex)
@@ -65,39 +32,6 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
                 //throw ex;
             }
         }
-
-        //private void OnErrorNotice(object sender, NotificationEventArgs<Exception> e)
-        //{
-        //    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
-        //}
-
-        //private void OnMessageNotice(object sender, NotificationEventArgs e)
-        //{
-        //    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
-        //}
-
-        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        //{
-        //    if (tabctrlMain.SelectedItem == tabDetail)
-        //    {
-        //        txtKey.Focus();
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabList)
-        //    {
-        //        dgMain.Focus();
-        //        if (dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-        //        {//set the last records first column to have focus...
-        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1],
-        //                dgMain.Columns[0]);
-        //            dgMain.BeginEdit();
-        //        }
-        //    }
-        //}
-
-        //private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //WiggleToGhostField();
-        //}
 
         private void OnWiggleToGhostFieldNotice(object sender, NotificationEventArgs e)
         {//textboxex by default set bindings on lost focus
@@ -107,67 +41,21 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
             Keyboard.Focus(ghost2);
             Keyboard.Focus(elem);
         }
-
-        //private void OnSearchNotice(Object sender, NotificationEventArgs e)
-        //{
-        //    MainSearchWindow searchWindow = new MainSearchWindow();
-        //    searchWindow.Show(); 
-        //}
-
-        //private void OnSaveRequiredNotice(Object sender, NotificationEventArgs<bool, MessageBoxResult> e)
-        //{
-        //    string messageBoxText = e.Message;
-        //    string caption = "XERP Warning";
-        //    MessageBoxButton button = MessageBoxButton.YesNoCancel;
-        //    MessageBoxImage icon = MessageBoxImage.Warning;
-        //    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-        //    switch (result)
-        //    {
-        //        case MessageBoxResult.Yes:
-        //            e.Completed(MessageBoxResult.Yes);
-        //            break;
-        //        case MessageBoxResult.No:
-        //            e.Completed(MessageBoxResult.No);
-        //            break;
-        //        case MessageBoxResult.Cancel:
-        //            e.Completed(MessageBoxResult.Cancel);
-        //            break;
-        //    }
-        //}
-
-        //private void OnNewItemRecordNeededNotice(Object sender, NotificationEventArgs<bool, MessageBoxResult> e)
-        //{
-        //    string messageBoxText = e.Message;
-        //    string caption = "XERP Warning";
-        //    MessageBoxButton button = MessageBoxButton.YesNoCancel;
-        //    MessageBoxImage icon = MessageBoxImage.Warning;
-        //    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-        //    switch (result)
-        //    {
-        //        case MessageBoxResult.Yes:
-        //            e.Completed(MessageBoxResult.Yes);
-        //            break;
-        //        case MessageBoxResult.No:
-        //            e.Completed(MessageBoxResult.No);
-        //            break;
-        //        case MessageBoxResult.Cancel:
-        //            e.Completed(MessageBoxResult.Cancel);
-        //            break;
-        //    }
-        //}
         
         private void dgMain_PreviewKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                if (_viewModel.AllowNewItem)
+                if (_viewModel.AllowNewUdListItem)
                 {
                     _viewModel.NewUdListItemCommand("");
+                    //set the first visible column to allow for edit w/o requireing a click to select it...
+                    dgMain.CurrentCell = new DataGridCellInfo(
+                    dgMain.Items[dgMain.Items.Count - 1], dgMain.Columns[0]);
+                    dgMain.BeginEdit();
                 }
                 else
-                {
                     MessageBox.Show("New UdListItem Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
             }  
         }
 
@@ -198,7 +86,6 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {//set the focus as the control is loaded...
-
                 txtKey.Focus();
         }
 
@@ -212,7 +99,7 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
                     switch (e.Key)
                     {
                         case Key.N:
-                            if (_viewModel.AllowNewItem)
+                            if (_viewModel.AllowNewUdListItem)
                             {
                                 _viewModel.NewUdListItemCommand("");
                                 return;
@@ -253,16 +140,16 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
                 columnMetaData.Order = column.DisplayIndex;
                 _viewModel.UdListItemColumnMetaDataList.Add(columnMetaData);
             }        
-            _viewModel.ItemPasteRowCommand();
+            _viewModel.UdListItemPasteRowCommand();
         }
 
         private void dgMain_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
             {
-                if (_viewModel.AllowDeleteItem)
+                if (_viewModel.AllowDeleteUdListItem)
                 {
-                    _viewModel.DeleteItemCommand();
+                    _viewModel.DeleteUdListItemCommand();
                     return;
                 }
                 //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

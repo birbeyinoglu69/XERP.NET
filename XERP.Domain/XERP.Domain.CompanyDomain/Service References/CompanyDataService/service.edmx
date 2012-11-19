@@ -1,6 +1,17 @@
 ﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
   <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
     <Schema Namespace="XERP" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="Temp">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
+        <Property Name="Bool_1" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="ShortChar_1" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Int_1" Type="Edm.Int32" Nullable="true" />
+        <Property Name="Decimal_1" Type="Edm.Decimal" Nullable="true" Precision="12" Scale="5" />
+      </EntityType>
       <EntityType Name="Company">
         <Key>
           <PropertyRef Name="CompanyID" />
@@ -29,13 +40,14 @@
         <Property Name="Email" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="Email2" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="CompanyCode" Relationship="XERP.FK_Company_CompanyCode" FromRole="Companies" ToRole="CompanyCodes" />
-        <NavigationProperty Name="CompanyType" Relationship="XERP.FK_Company_CompanyType" FromRole="Companies" ToRole="CompanyTypes" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="CompanyCode" Relationship="XERP.FK_Company_CompanyCode" FromRole="Company" ToRole="CompanyCode" />
+        <NavigationProperty Name="CompanyType" Relationship="XERP.FK_Company_CompanyType" FromRole="Company" ToRole="CompanyType" />
         <NavigationProperty Name="UdLists" Relationship="XERP.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
         <NavigationProperty Name="UdListItems" Relationship="XERP.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
       </EntityType>
@@ -47,12 +59,13 @@
         <Property Name="Code" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Companies" Relationship="XERP.FK_Company_CompanyCode" FromRole="CompanyCodes" ToRole="Companies" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Companies" Relationship="XERP.FK_Company_CompanyCode" FromRole="CompanyCode" ToRole="Company" />
       </EntityType>
       <EntityType Name="CompanyType">
         <Key>
@@ -62,23 +75,13 @@
         <Property Name="Type" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Companies" Relationship="XERP.FK_Company_CompanyType" FromRole="CompanyTypes" ToRole="Companies" />
-      </EntityType>
-      <EntityType Name="Temp">
-        <Key>
-          <PropertyRef Name="ID" />
-        </Key>
-        <Property Name="ID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
-        <Property Name="Bool_1" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="ShortChar_1" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Int_1" Type="Edm.Int32" Nullable="true" />
-        <Property Name="Decimal_1" Type="Edm.Decimal" Nullable="true" Precision="12" Scale="5" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Companies" Relationship="XERP.FK_Company_CompanyType" FromRole="CompanyType" ToRole="Company" />
       </EntityType>
       <EntityType Name="UdListItem">
         <Key>
@@ -92,8 +95,8 @@
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
@@ -111,8 +114,8 @@
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
@@ -120,25 +123,25 @@
         <NavigationProperty Name="UdListItems" Relationship="XERP.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
       </EntityType>
       <Association Name="FK_Company_CompanyCode">
-        <End Role="CompanyCodes" Type="XERP.CompanyCode" Multiplicity="0..1" />
-        <End Role="Companies" Type="XERP.Company" Multiplicity="*" />
+        <End Role="CompanyCode" Type="XERP.CompanyCode" Multiplicity="0..1" />
+        <End Role="Company" Type="XERP.Company" Multiplicity="*" />
         <ReferentialConstraint>
-          <Principal Role="CompanyCodes">
+          <Principal Role="CompanyCode">
             <PropertyRef Name="CompanyCodeID" />
           </Principal>
-          <Dependent Role="Companies">
+          <Dependent Role="Company">
             <PropertyRef Name="CompanyCodeID" />
           </Dependent>
         </ReferentialConstraint>
       </Association>
       <Association Name="FK_Company_CompanyType">
-        <End Role="CompanyTypes" Type="XERP.CompanyType" Multiplicity="0..1" />
-        <End Role="Companies" Type="XERP.Company" Multiplicity="*" />
+        <End Role="CompanyType" Type="XERP.CompanyType" Multiplicity="0..1" />
+        <End Role="Company" Type="XERP.Company" Multiplicity="*" />
         <ReferentialConstraint>
-          <Principal Role="CompanyTypes">
+          <Principal Role="CompanyType">
             <PropertyRef Name="CompanyTypeID" />
           </Principal>
-          <Dependent Role="Companies">
+          <Dependent Role="Company">
             <PropertyRef Name="CompanyTypeID" />
           </Dependent>
         </ReferentialConstraint>
@@ -196,19 +199,19 @@
         <FunctionImport Name="RefreshCompanyCode" EntitySet="CompanyCodes" ReturnType="Collection(XERP.CompanyCode)" m:HttpMethod="GET">
           <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
         </FunctionImport>
+        <EntitySet Name="Temps" EntityType="XERP.Temp" />
         <EntitySet Name="Companies" EntityType="XERP.Company" />
         <EntitySet Name="CompanyCodes" EntityType="XERP.CompanyCode" />
         <EntitySet Name="CompanyTypes" EntityType="XERP.CompanyType" />
-        <EntitySet Name="Temps" EntityType="XERP.Temp" />
         <EntitySet Name="UdListItems" EntityType="XERP.UdListItem" />
         <EntitySet Name="UdLists" EntityType="XERP.UdList" />
         <AssociationSet Name="FK_Company_CompanyCode" Association="XERP.FK_Company_CompanyCode">
-          <End Role="CompanyCodes" EntitySet="CompanyCodes" />
-          <End Role="Companies" EntitySet="Companies" />
+          <End Role="CompanyCode" EntitySet="CompanyCodes" />
+          <End Role="Company" EntitySet="Companies" />
         </AssociationSet>
         <AssociationSet Name="FK_Company_CompanyType" Association="XERP.FK_Company_CompanyType">
-          <End Role="CompanyTypes" EntitySet="CompanyTypes" />
-          <End Role="Companies" EntitySet="Companies" />
+          <End Role="CompanyType" EntitySet="CompanyTypes" />
+          <End Role="Company" EntitySet="Companies" />
         </AssociationSet>
         <AssociationSet Name="FK_UdList_Company" Association="XERP.FK_UdList_Company">
           <End Role="Company" EntitySet="Companies" />

@@ -22,15 +22,19 @@ namespace XERP.Domain.MenuSecurityDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new MenuItemSingletonRepository();
-                }
+
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private MenuSecurityEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<MenuItem> GetMenuItems(string companyID)
         {
@@ -53,24 +57,16 @@ namespace XERP.Domain.MenuSecurityDomain
                              select q;
             
             if  (!string.IsNullOrEmpty(menuItemQuerryObject.Name))
-            {
                 queryResult = queryResult.Where(q => q.Name.StartsWith(menuItemQuerryObject.Name.ToString())); 
-            }
 
             if (!string.IsNullOrEmpty(menuItemQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(menuItemQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(menuItemQuerryObject.MenuItemTypeID))
-            {
                 queryResult = queryResult.Where(q => q.MenuItemTypeID.StartsWith(menuItemQuerryObject.MenuItemTypeID.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(menuItemQuerryObject.MenuItemCodeID))
-            {
                 queryResult = queryResult.Where(q => q.MenuItemCodeID.StartsWith(menuItemQuerryObject.MenuItemCodeID.ToString()));
-            }
             return queryResult;
         }
 
@@ -83,7 +79,6 @@ namespace XERP.Domain.MenuSecurityDomain
                           where q.MenuItemID == menuItemID &&
                           q.CompanyID == companyID
                           select q);
-            
             return queryResult;
         }
 
@@ -104,12 +99,14 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(MenuItem menuItem)
+        public void UpdateRepository(MenuItem item)
         {
-            if (_repositoryContext.GetEntityDescriptor(menuItem) != null)
+            if (_repositoryContext.GetEntityDescriptor(item) != null)
             {
+                item.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                item.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(menuItem);
+                _repositoryContext.UpdateObject(item);
             }
         }
 
@@ -123,8 +120,7 @@ namespace XERP.Domain.MenuSecurityDomain
         public void DeleteFromRepository(MenuItem menuItem)
         {
             if (_repositoryContext.GetEntityDescriptor(menuItem) != null)
-            {
-                //if it exists in the db delete it from the db
+            {//if it exists in the db delete it from the db
                 MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
@@ -141,22 +137,16 @@ namespace XERP.Domain.MenuSecurityDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if(GetMenuItemEntityState(menuItem) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(menuItem);
-                }
             }
         }
 
         public EntityStates GetMenuItemEntityState(MenuItem menuItem)
         {
             if (_repositoryContext.GetEntityDescriptor(menuItem) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(menuItem).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }   
     }
 }

@@ -24,10 +24,6 @@ namespace XERP.Server.DAL.LogInDAL
             get { return EntityBuilder.ConnectionString; }
         }
 
-        public DALUtility()
-        {
-            
-          
-        }
+        public DALUtility(){}
     }
 }

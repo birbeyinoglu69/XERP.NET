@@ -18,8 +18,8 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("XERP", "FK_Company_CompanyCode", "CompanyCodes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.CompanyDAL.CompanyCode), "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.CompanyDAL.Company), true)]
-[assembly: EdmRelationshipAttribute("XERP", "FK_Company_CompanyType", "CompanyTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.CompanyDAL.CompanyType), "Companies", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.CompanyDAL.Company), true)]
+[assembly: EdmRelationshipAttribute("XERP", "FK_Company_CompanyCode", "CompanyCode", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.CompanyDAL.CompanyCode), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.CompanyDAL.Company), true)]
+[assembly: EdmRelationshipAttribute("XERP", "FK_Company_CompanyType", "CompanyType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.CompanyDAL.CompanyType), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.CompanyDAL.Company), true)]
 [assembly: EdmRelationshipAttribute("XERP", "FK_UdList_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.CompanyDAL.Company), "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.CompanyDAL.UdList), true)]
 [assembly: EdmRelationshipAttribute("XERP", "FK_UdListItem_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.CompanyDAL.Company), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.CompanyDAL.UdListItem), true)]
 [assembly: EdmRelationshipAttribute("XERP", "FK_UdListItem_UdList", "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.CompanyDAL.UdList), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.CompanyDAL.UdListItem), true)]
@@ -77,6 +77,22 @@ namespace XERP.Server.DAL.CompanyDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Temp> Temps
+        {
+            get
+            {
+                if ((_Temps == null))
+                {
+                    _Temps = base.CreateObjectSet<Temp>("Temps");
+                }
+                return _Temps;
+            }
+        }
+        private ObjectSet<Temp> _Temps;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Company> Companies
         {
             get
@@ -125,22 +141,6 @@ namespace XERP.Server.DAL.CompanyDAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Temp> Temps
-        {
-            get
-            {
-                if ((_Temps == null))
-                {
-                    _Temps = base.CreateObjectSet<Temp>("Temps");
-                }
-                return _Temps;
-            }
-        }
-        private ObjectSet<Temp> _Temps;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UdListItem> UdListItems
         {
             get
@@ -174,35 +174,35 @@ namespace XERP.Server.DAL.CompanyDAL
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCompanies(Company company)
-        {
-            base.AddObject("Companies", company);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CompanyCodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCompanyCodes(CompanyCode companyCode)
-        {
-            base.AddObject("CompanyCodes", companyCode);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CompanyTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCompanyTypes(CompanyType companyType)
-        {
-            base.AddObject("CompanyTypes", companyType);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Temps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTemps(Temp temp)
         {
             base.AddObject("Temps", temp);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCompanies(Company item)
+        {
+            base.AddObject("Companies", item);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CompanyCodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCompanyCodes(CompanyCode item)
+        {
+            base.AddObject("CompanyCodes", item);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CompanyTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCompanyTypes(CompanyType item)
+        {
+            base.AddObject("CompanyTypes", item);
         }
     
         /// <summary>
@@ -839,7 +839,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -854,8 +854,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -863,7 +863,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -878,8 +878,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -953,6 +953,30 @@ namespace XERP.Server.DAL.CompanyDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -964,16 +988,16 @@ namespace XERP.Server.DAL.CompanyDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyCode", "CompanyCodes")]
+        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyCode", "CompanyCode")]
         public CompanyCode CompanyCode
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCodes").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCode").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCodes").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCode").Value = value;
             }
         }
         /// <summary>
@@ -985,13 +1009,13 @@ namespace XERP.Server.DAL.CompanyDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCodes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCode");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCodes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CompanyCode>("XERP.FK_Company_CompanyCode", "CompanyCode", value);
                 }
             }
         }
@@ -1002,16 +1026,16 @@ namespace XERP.Server.DAL.CompanyDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyType", "CompanyTypes")]
+        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyType", "CompanyType")]
         public CompanyType CompanyType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyTypes").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyTypes").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyType").Value = value;
             }
         }
         /// <summary>
@@ -1023,13 +1047,13 @@ namespace XERP.Server.DAL.CompanyDAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyTypes");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyTypes", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CompanyType>("XERP.FK_Company_CompanyType", "CompanyType", value);
                 }
             }
         }
@@ -1211,7 +1235,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1226,8 +1250,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1235,7 +1259,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1250,8 +1274,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1325,6 +1349,30 @@ namespace XERP.Server.DAL.CompanyDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -1336,18 +1384,18 @@ namespace XERP.Server.DAL.CompanyDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyCode", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyCode", "Company")]
         public EntityCollection<Company> Companies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Company>("XERP.FK_Company_CompanyCode", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Company>("XERP.FK_Company_CompanyCode", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Company>("XERP.FK_Company_CompanyCode", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Company>("XERP.FK_Company_CompanyCode", "Company", value);
                 }
             }
         }
@@ -1485,7 +1533,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -1500,8 +1548,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -1509,7 +1557,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -1524,8 +1572,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -1599,6 +1647,30 @@ namespace XERP.Server.DAL.CompanyDAL
         private Nullable<global::System.DateTime> _LastModifiedByDate;
         partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
         partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
 
         #endregion
     
@@ -1610,18 +1682,18 @@ namespace XERP.Server.DAL.CompanyDAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyType", "Companies")]
+        [EdmRelationshipNavigationPropertyAttribute("XERP", "FK_Company_CompanyType", "Company")]
         public EntityCollection<Company> Companies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Company>("XERP.FK_Company_CompanyType", "Companies");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Company>("XERP.FK_Company_CompanyType", "Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Company>("XERP.FK_Company_CompanyType", "Companies", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Company>("XERP.FK_Company_CompanyType", "Company", value);
                 }
             }
         }
@@ -1987,7 +2059,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -2002,8 +2074,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -2011,7 +2083,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -2026,8 +2098,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>
@@ -2357,7 +2429,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsExpanded
+        public Nullable<global::System.Byte> IsExpanded
         {
             get
             {
@@ -2372,8 +2444,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsExpandedChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsExpanded;
-        partial void OnIsExpandedChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
         partial void OnIsExpandedChanged();
     
         /// <summary>
@@ -2381,7 +2453,7 @@ namespace XERP.Server.DAL.CompanyDAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsValid
+        public Nullable<global::System.Byte> IsValid
         {
             get
             {
@@ -2396,8 +2468,8 @@ namespace XERP.Server.DAL.CompanyDAL
                 OnIsValidChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsValid;
-        partial void OnIsValidChanging(Nullable<global::System.Boolean> value);
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
         partial void OnIsValidChanged();
     
         /// <summary>

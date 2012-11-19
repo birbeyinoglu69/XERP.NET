@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Data.Services.Client;
 using System.ComponentModel;
@@ -8,10 +7,8 @@ using System.Collections.Generic;
 // Toolkit namespace
 using SimpleMvvmToolkit;
 //XERP Namespaces
-using XERP.Domain.UdListDomain.Services;
 using XERP.Domain.UdListDomain.UdListDataService;
 //using XERP.Domain.UdListDomain.ClientModels;
-using XERP.Domain.ClientModels;
 using XERP.Client.Models;
 //required for extension methods...
 using ExtensionMethods;
@@ -21,9 +18,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
     public partial class MainMaintenanceViewModel : ViewModelBase<MainMaintenanceViewModel>
     {
         #region Initialization and Cleanup
-
         #endregion Initialization and Cleanup
-
         #region Notifications
 
         #endregion Notifications   
@@ -43,64 +38,63 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             }
         }
 
-        private bool _allowRowCopyItem;
-        public bool AllowRowCopyItem
+        private bool _allowRowCopyUdListItem;
+        public bool AllowRowCopyUdListItem
         {
-            get { return _allowRowCopyItem; }
+            get { return _allowRowCopyUdListItem; }
             set
             {
-                _allowRowCopyItem = value;
-                NotifyPropertyChanged(m => m.AllowRowCopyItem);
+                _allowRowCopyUdListItem = value;
+                NotifyPropertyChanged(m => m.AllowRowCopyUdListItem);
             }
         }
 
-        private bool _allowRowPasteItem;
-        public bool AllowRowPasteItem
+        private bool _allowRowPasteUdListItem;
+        public bool AllowRowPasteUdListItem
         {
-            get { return _allowRowPasteItem; }
+            get { return _allowRowPasteUdListItem; }
             set
             {
-                _allowRowPasteItem = value;
-                NotifyPropertyChanged(m => m.AllowRowPasteItem);
+                _allowRowPasteUdListItem = value;
+                NotifyPropertyChanged(m => m.AllowRowPasteUdListItem);
             }
         }
 
-        private bool _allowNewItem;
-        public bool AllowNewItem
+        private bool _allowNewUdListItem;
+        public bool AllowNewUdListItem
         {
-            get { return _allowNewItem; }
+            get { return _allowNewUdListItem; }
             set
             {
-                _allowNewItem = value;
-                NotifyPropertyChanged(m => m.AllowNewItem);
+                _allowNewUdListItem = value;
+                NotifyPropertyChanged(m => m.AllowNewUdListItem);
             }
         }
 
-        private bool _allowDeleteItem;
-        public bool AllowDeleteItem
+        private bool _allowDeleteUdListItem;
+        public bool AllowDeleteUdListItem
         {
-            get { return _allowDeleteItem; }
+            get { return _allowDeleteUdListItem; }
             set
             {
-                _allowDeleteItem = value;
-                NotifyPropertyChanged(m => m.AllowDeleteItem);
+                _allowDeleteUdListItem = value;
+                NotifyPropertyChanged(m => m.AllowDeleteUdListItem);
             }
         }
 
-        private bool _allowEditItem;
-        public bool AllowEditItem
+        private bool _allowEditUdListItem;
+        public bool AllowEditUdListItem
         {
-            get { return _allowEditItem; }
+            get { return _allowEditUdListItem; }
             set
             {
-                _allowEditItem = value;
-                NotifyPropertyChanged(m => m.AllowEditItem);
+                _allowEditUdListItem = value;
+                NotifyPropertyChanged(m => m.AllowEditUdListItem);
             }
         }
         #endregion GeneralProperties
 
         #region UdListItem Properties
-
         private UdListItem _selectedUdListItemMirror;
         public UdListItem SelectedUdListItemMirror
         {
@@ -187,18 +181,15 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             get
             {
                 if (_udListItemMaxFieldValueDictionary != null)
-                {
                     return _udListItemMaxFieldValueDictionary;
-                }
+
                 _udListItemMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("UdListItems");
 
                 foreach (var data in metaData)
                 {
                     if (data.ShortChar_1 == "String")
-                    {
                         _udListItemMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                    }
                 }
                 return _udListItemMaxFieldValueDictionary;
             }
@@ -212,11 +203,11 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             //IsSelected and IsExpanded are not to be persisted we will igore them...
             if (e.PropertyName == "IsSelected" || 
                 e.PropertyName == "IsExpanded" || 
-                e.PropertyName == "IsValid" || 
-                e.PropertyName == "NotValidMessage")
-            {
+                e.PropertyName == "IsValid" ||
+                e.PropertyName == "NotValidMessage" ||
+                e.PropertyName == "LastModifiedBy" ||
+                e.PropertyName == "LastModifiedByDate")
                 return;
-            }
             
             object propertyChangedValue = SelectedUdListItem.GetPropertyValue(e.PropertyName);
             object prevPropertyValue = SelectedUdListItemMirror.GetPropertyValue(e.PropertyName);
@@ -227,42 +218,35 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             bool objectsAreEqual;
             if (propertyChangedValue == null)
             {
-                if (prevPropertyValue == null)
-                {//both values are null
+                if (prevPropertyValue == null)//both values are null
                     objectsAreEqual = true;
-                }
-                else
-                {//only one value is null
+                else//only one value is null
                     objectsAreEqual = false;
-                }
             }
             else
             {
-                if (prevPropertyValue == null)
-                {//only one value is null
+                if (prevPropertyValue == null)//only one value is null
                     objectsAreEqual = false;
-                }
                 else //both values are not null use .Equals...
-                {
                     objectsAreEqual = propertyChangedValue.Equals(prevPropertyValue);
-                }
             }
             if (!objectsAreEqual)
-            {
-                //Here we do property change validation if false is returned we will reset the value
+            {   //Here we do property change validation if false is returned we will reset the value
                 //Back to its mirrored value and return out of the property change w/o updating the repository...
-                if (ItemPropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
+                if (UdListItemPropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
                 {
                     Update(SelectedUdListItem);
                     //set the mirrored objects field...
                     SelectedUdListItemMirror.SetPropertyValue(e.PropertyName, propertyChangedValue);
                     SelectedUdListItemMirror.IsValid = SelectedUdListItem.IsValid;
+                    SelectedUdListItemMirror.IsExpanded = SelectedUdListItem.IsExpanded;
                     SelectedUdListItemMirror.NotValidMessage = SelectedUdListItem.NotValidMessage;
                 }
                 else
                 {//revert back to its previous value... 
                     SelectedUdListItem.SetPropertyValue(e.PropertyName, prevPropertyValue);
                     SelectedUdListItem.IsValid = SelectedUdListItemMirror.IsValid;
+                    SelectedUdListItem.IsExpanded = SelectedUdListItemMirror.IsExpanded;
                     SelectedUdListItem.NotValidMessage = SelectedUdListItemMirror.NotValidMessage;
                     return;
                 }
@@ -271,7 +255,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         #endregion ViewModel Propertie's Events
 
         #region Methods
-        private bool ItemPropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        private bool UdListItemPropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
         {
             string errorMessage = "";
             bool rBool = true;
@@ -289,14 +273,11 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             if (rBool == false)
             {//here we give a specific error to the specific change
                 NotifyMessage(errorMessage);
-
-                SelectedUdListItem.IsValid = rBool;
+                SelectedUdListItem.IsValid = 1;
             }
             else //check the enire rows validity...
-            {//here we check the entire row for validity the property change may be valid
-                //but we still do not know if the entire row is valid...
                 SelectedUdListItem.IsValid = UdListItemIsValid(SelectedUdListItem, out errorMessage);  
-            }
+
             SelectedUdListItem.NotValidMessage = errorMessage;
             return rBool;
         }
@@ -304,9 +285,9 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         private void SetAsEmptyItemSelection()
         {
             SelectedUdListItem = new UdListItem();
-            AllowEditItem = false;
-            AllowDeleteItem = false;
-            AllowRowCopyItem = false;
+            AllowEditUdListItem = false;
+            AllowDeleteUdListItem = false;
+            AllowRowCopyUdListItem = false;
         }
 
         #region Validation Methods
@@ -363,14 +344,14 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             return true;
         }
         //UdList Object Scope Validation validate entire object...
-        private bool UdListItemIsValid(UdListItem udListItem, out string errorMessage)
+        private byte UdListItemIsValid(UdListItem udListItem, out string errorMessage)
         {
             //validate key
             errorMessage = "";
             if (string.IsNullOrEmpty(udListItem.UdListItemID))
             {
                 errorMessage = "ID Is Required.";
-                return false;
+                return 1;
             }
 
             var count = UdListList.
@@ -380,23 +361,22 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             if (count > 1)
             {
                 errorMessage = "UdListItem ID " + udListItem.UdListItemID + " Allready Exists...";
-                return false;
+                return 1;
             }
 
             if (UdListItemExists(udListItem.UdListID, udListItem.UdListItemID.ToString(), (int)udListItem.AutoID))
             {
                 errorMessage = "UdListItem ID " + udListItem.UdListItemID + " Allready Exists...";
-                return false;
+                return 1;
             }
-
 
             //validate Description
             if (string.IsNullOrEmpty(udListItem.Description))
             {
                 errorMessage = "Description Is Required.";
-                return false;
+                return 1;
             }
-            return true;
+            return 0;
         }
         #endregion Validation Methods
 
@@ -424,15 +404,10 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             _serviceAgent.UpdateUdListRepository(udListItem);
             Dirty = true;
             if (CommitIsAllowed())
-            {
                 AllowCommit = true;
-                return true;
-            }
             else
-            {
                 AllowCommit = false;
-                return false;
-            }
+            return AllowCommit;
         }
 
         private bool Delete(UdListItem udListItem)
@@ -449,22 +424,21 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             udListItem.AutoID = _newUdListItemAutoId;
             udListItem.UdListID = SelectedUdList.UdListID;
             udListItem.UdListItemID = udListItemID;
-            udListItem.IsValid = false;
+            udListItem.IsValid = 1;
             udListItem.NotValidMessage = "New Record Key Field/s Required.";
             udListItem.CompanyID = ClientSessionSingleton.Instance.CompanyID;
             UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).SingleOrDefault().UdListItems.Add(udListItem);
             _serviceAgent.AddToUdListRepository(udListItem);
             SelectedUdListItem = SelectedUdList.UdListItems.LastOrDefault();
-            AllowEditItem = true;
+            AllowEditUdListItem = true;
             return true;
         }
-
         #endregion UdListItem CRUD
         #endregion ServiceAgent Call Methods
         #endregion Methods
 
         #region Commands
-        public void ItemPasteRowCommand()
+        public void UdListItemPasteRowCommand()
         {
             try
             {
@@ -498,44 +472,43 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             }
         }
 
-        public void DeleteItemCommand()
+        public void DeleteUdListItemCommand()
         {
-            int i = 0;
-            bool isFirstDelete = true;
+            int i = 0;//temp index
+            int ii = 0;//calculated index
+
             for (int j = SelectedUdListItemList.Count - 1; j >= 0; j--)
             {
                 UdListItem udListItem = (UdListItem)SelectedUdListItemList[j];
-                if (isFirstDelete)
-                {//the result of this will be the record directly before the selected records...
-                    i = SelectedUdList.UdListItems.IndexOf(udListItem) - SelectedUdList.UdListItems.Count;
-                }
-
+                //get Max Index...
+                i = SelectedUdList.UdListItems.IndexOf(udListItem);
+                if (i > ii)
+                    ii = i;
                 Delete(udListItem);
                 UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).SingleOrDefault().UdListItems.Remove(udListItem);
             }
 
             if (UdListList != null && SelectedUdList != null && SelectedUdList.UdListItems.Count > 0)
             {
+                //back off one index from the max index...
+                ii = ii - 1;  
                 //if they delete the first row...
-                if (i < 0)
-                {
-                    i = 0;
-                }
+                if (ii < 0)
+                    ii = 0;
+
+                //need some work on this...
+                //make sure it does not exceed the list count...
+                if (ii >= SelectedUdList.UdListItems.Count)
+                    ii = SelectedUdList.UdListItems.Count - 1;
                 //only allow commit for dirty validated records...
-                SelectedUdListItem = SelectedUdList.UdListItems[i];
+                SelectedUdListItem = SelectedUdList.UdListItems[ii];
                 if (Dirty)
-                {
                     AllowCommit = CommitIsAllowed();
-                }
                 else
-                {
                     AllowCommit = false;
-                }
             }
-            else
-            {//only one record, deleting will result in no records...
+            else//only one record, deleting will result in no records...
                 SetAsEmptySelection();
-            }
         }
 
         public void NewUdListItemCommand()
@@ -547,15 +520,11 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         public void NewUdListItemCommand(string udListItemID)
         {
             NewUdListItem(udListItemID);
-            if (string.IsNullOrEmpty(udListItemID))
-            {//don't allow a save until a udListID is provided...
+            if (string.IsNullOrEmpty(udListItemID))//don't allow a save until a udListID is provided...
                 AllowCommit = false;
-            }
-            {
+            else
                 AllowCommit = CommitIsAllowed();
-            }
         }
-
         #endregion Commands
         
         #region Helpers
@@ -571,15 +540,10 @@ namespace ExtensionMethods
         public static object GetPropertyValue(this UdListItem myObj, string propertyName)
         {
             var propInfo = typeof(UdListItem).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.GetValue(myObj, null);
-            }
             else
-            {
                 return string.Empty;
-            }
         }
 
         public static string GetPropertyType(this UdListItem myObj, string propertyName)
@@ -587,23 +551,16 @@ namespace ExtensionMethods
             var propInfo = typeof(UdListItem).GetProperty(propertyName);
 
             if (propInfo != null)
-            {
                 return propInfo.PropertyType.Name.ToString();
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static void SetPropertyValue(this UdListItem myObj, object propertyName, object propertyValue)
         {
             var propInfo = typeof(UdListItem).GetProperty((string)propertyName);
-
             if (propInfo != null)
-            {
                 propInfo.SetValue(myObj, propertyValue, null);
-            }
         }
         #endregion UdListItem Extensions
     }

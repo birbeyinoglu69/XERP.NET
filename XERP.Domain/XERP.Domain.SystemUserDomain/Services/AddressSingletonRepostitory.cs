@@ -22,15 +22,19 @@ namespace XERP.Domain.SystemUserDomain
             get
             {
                 if (_instance == null)
-                {
                     _instance = new AddressSingletonRepository();
-                }
+
                 return _instance;
             }
         }
 
         private Uri _rootUri;
         private SystemUserEntities _repositoryContext;
+
+        public bool RepositoryIsDirty()
+        {
+            return _repositoryContext.Entities.Any(ed => ed.State != EntityStates.Unchanged);
+        }
 
         public IEnumerable<Address> GetAddresses(string companyID)
         {
@@ -53,68 +57,50 @@ namespace XERP.Domain.SystemUserDomain
                              select q;
             
             if  (!string.IsNullOrEmpty(addressQuerryObject.Name))
-            {
                 queryResult = queryResult.Where(q => q.Name.StartsWith(addressQuerryObject.Name.ToString())); 
-            }
+            
             if (!string.IsNullOrEmpty(addressQuerryObject.Description))
-            {
                 queryResult = queryResult.Where(q => q.Description.StartsWith(addressQuerryObject.Description.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(addressQuerryObject.Notes))
-            {
                 queryResult = queryResult.Where(q => q.Notes.StartsWith(addressQuerryObject.Notes.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.Address1))
-            {
                 queryResult = queryResult.Where(q => q.Address1.StartsWith(addressQuerryObject.Address1.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(addressQuerryObject.Address2))
-            {
                 queryResult = queryResult.Where(q => q.Address2.StartsWith(addressQuerryObject.Address2.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.Address3))
-            {
                 queryResult = queryResult.Where(q => q.Address3.StartsWith(addressQuerryObject.Address3.ToString()));
-            }
 
             if (!string.IsNullOrEmpty(addressQuerryObject.City))
-            {
                 queryResult = queryResult.Where(q => q.City.StartsWith(addressQuerryObject.City.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.State))
-            {
                 queryResult = queryResult.Where(q => q.State.StartsWith(addressQuerryObject.State.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.Zip))
-            {
                 queryResult = queryResult.Where(q => q.Zip.StartsWith(addressQuerryObject.Zip.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.Country))
-            {
                 queryResult = queryResult.Where(q => q.Country.StartsWith(addressQuerryObject.Country.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.PhoneNum))
-            {
                 queryResult = queryResult.Where(q => q.PhoneNum.StartsWith(addressQuerryObject.PhoneNum.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.PhoneNum2))
-            {
                 queryResult = queryResult.Where(q => q.PhoneNum2.StartsWith(addressQuerryObject.PhoneNum2.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.FaxNum))
-            {
                 queryResult = queryResult.Where(q => q.FaxNum.StartsWith(addressQuerryObject.FaxNum.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.Email))
-            {
                 queryResult = queryResult.Where(q => q.Email.StartsWith(addressQuerryObject.Email.ToString()));
-            }
+
             if (!string.IsNullOrEmpty(addressQuerryObject.Email2))
-            {
                 queryResult = queryResult.Where(q => q.Email2.StartsWith(addressQuerryObject.Email2.ToString()));
-            }
+
             return queryResult;
         }
 
@@ -133,7 +119,6 @@ namespace XERP.Domain.SystemUserDomain
 
         public IEnumerable<Address> Refresh(string autoIDs)
         {
-
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
@@ -167,8 +152,7 @@ namespace XERP.Domain.SystemUserDomain
         public void DeleteFromRepository(Address address, string companyID)
         {
             if (_repositoryContext.GetEntityDescriptor(address) != null)
-            {
-                //if it exists in the db delete it from the db
+            {//if it exists in the db delete it from the db
                 SystemUserEntities context = new SystemUserEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
@@ -186,22 +170,16 @@ namespace XERP.Domain.SystemUserDomain
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
                 if(GetAddressEntityState(address) != EntityStates.Detached)
-                {
                     _repositoryContext.Detach(address);
-                }
             }
         }
 
         public EntityStates GetAddressEntityState(Address address)
         {
             if (_repositoryContext.GetEntityDescriptor(address) != null)
-            {
                 return _repositoryContext.GetEntityDescriptor(address).State;
-            }
             else
-            {
                 return EntityStates.Detached;
-            }
         }   
     }
 }

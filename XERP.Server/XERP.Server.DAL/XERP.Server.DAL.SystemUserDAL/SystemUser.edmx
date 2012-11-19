@@ -84,11 +84,12 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Email2" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="Companies">
           <Key>
@@ -118,11 +119,12 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Email2" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="SecurityGroups">
           <Key>
@@ -138,11 +140,12 @@
           <Property Name="SecurityGroupTypeID" Type="nvarchar" MaxLength="20" />
           <Property Name="SecurityGroupCodeID" Type="nvarchar" MaxLength="20" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="SystemUserCodes">
           <Key>
@@ -152,11 +155,12 @@
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="SystemUsers">
           <Key>
@@ -177,11 +181,12 @@
           <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
           <Property Name="Image" Type="image" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="SystemUserSecurities">
           <Key>
@@ -193,11 +198,12 @@
           <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
           <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="SystemUserTypes">
           <Key>
@@ -207,11 +213,12 @@
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="Temp">
           <Key>
@@ -236,8 +243,8 @@
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IsSelected" Type="bit" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
@@ -253,8 +260,8 @@
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IsSelected" Type="bit" />
-          <Property Name="IsExpanded" Type="bit" />
-          <Property Name="IsValid" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
           <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastModifiedByDate" Type="datetime" />
@@ -408,6 +415,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="XERPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="SystemUserEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
           <EntitySet Name="Addresses" EntityType="XERPModel.Address" />
           <EntitySet Name="Companies" EntityType="XERPModel.Company" />
           <EntitySet Name="SecurityGroups" EntityType="XERPModel.SecurityGroup" />
@@ -415,41 +423,20 @@
           <EntitySet Name="SystemUsers" EntityType="XERPModel.SystemUser" />
           <EntitySet Name="SystemUserSecurities" EntityType="XERPModel.SystemUserSecurity" />
           <EntitySet Name="SystemUserTypes" EntityType="XERPModel.SystemUserType" />
-          <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
-          <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
-            <End Role="Companies" EntitySet="Companies" />
-            <End Role="Addresses" EntitySet="Addresses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUsers_Addresses" Association="XERPModel.FK_SystemUsers_Addresses">
-            <End Role="Addresses" EntitySet="Addresses" />
-            <End Role="SystemUsers" EntitySet="SystemUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SecurityGroup_Company" Association="XERPModel.FK_SecurityGroup_Company">
-            <End Role="Companies" EntitySet="Companies" />
-            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserSecurity_Company" Association="XERPModel.FK_UserSecurity_Company">
-            <End Role="Companies" EntitySet="Companies" />
-            <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="XERPModel.FK_UserSecurity_SecurityGroup">
-            <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-            <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUser_SystemUserCode" Association="XERPModel.FK_SystemUser_SystemUserCode">
-            <End Role="SystemUserCodes" EntitySet="SystemUserCodes" />
-            <End Role="SystemUsers" EntitySet="SystemUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUser_SystemUserType" Association="XERPModel.FK_SystemUser_SystemUserType">
-            <End Role="SystemUserTypes" EntitySet="SystemUserTypes" />
-            <End Role="SystemUsers" EntitySet="SystemUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserSecurity_SystemUser" Association="XERPModel.FK_UserSecurity_SystemUser">
-            <End Role="SystemUsers" EntitySet="SystemUsers" />
-            <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
-          </AssociationSet>
           <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
           <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+          <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUsers_Addresses" Association="XERPModel.FK_SystemUsers_Addresses">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="SystemUser" EntitySet="SystemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityGroup_Company" Association="XERPModel.FK_SecurityGroup_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="SecurityGroup" EntitySet="SecurityGroups" />
+          </AssociationSet>
           <AssociationSet Name="FK_UdList_Company" Association="XERPModel.FK_UdList_Company">
             <End Role="Company" EntitySet="Companies" />
             <End Role="UdList" EntitySet="UdLists" />
@@ -458,181 +445,31 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="UdListItem" EntitySet="UdListItems" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserSecurity_Company" Association="XERPModel.FK_UserSecurity_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="XERPModel.FK_UserSecurity_SecurityGroup">
+            <End Role="SecurityGroup" EntitySet="SecurityGroups" />
+            <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_SystemUserCode" Association="XERPModel.FK_SystemUser_SystemUserCode">
+            <End Role="SystemUserCode" EntitySet="SystemUserCodes" />
+            <End Role="SystemUser" EntitySet="SystemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_SystemUserType" Association="XERPModel.FK_SystemUser_SystemUserType">
+            <End Role="SystemUserType" EntitySet="SystemUserTypes" />
+            <End Role="SystemUser" EntitySet="SystemUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSecurity_SystemUser" Association="XERPModel.FK_UserSecurity_SystemUser">
+            <End Role="SystemUser" EntitySet="SystemUsers" />
+            <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
+          </AssociationSet>
           <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
             <End Role="UdList" EntitySet="UdLists" />
             <End Role="UdListItem" EntitySet="UdListItems" />
           </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Address">
-          <Key>
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="AddressID" />
-          </Key>
-          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="AddressID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Addresses" ToRole="Companies" />
-          <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="Addresses" ToRole="SystemUsers" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <Property Type="Boolean" Name="IsValid" />
-          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastModifiedByDate" />
-        </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="CompanyID" />
-          </Key>
-          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="CurrentFiscalYear" Type="Int32" />
-          <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Addresses" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Companies" ToRole="Addresses" />
-          <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="Companies" ToRole="SecurityGroups" />
-          <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="Companies" ToRole="SystemUserSecurities" />
-          <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
-          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <Property Type="Boolean" Name="IsValid" />
-          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastModifiedByDate" />
-        </EntityType>
-        <EntityType Name="SecurityGroup">
-          <Key>
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SecurityGroupID" />
-          </Key>
-          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="SecurityGroupTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="SecurityGroupCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
-          <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroups" ToRole="SystemUserSecurities" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <Property Type="Boolean" Name="IsValid" />
-          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastModifiedByDate" />
-        </EntityType>
-        <EntityType Name="SystemUserCode">
-          <Key>
-            <PropertyRef Name="SystemUserCodeID" />
-          </Key>
-          <Property Name="SystemUserCodeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUser_SystemUserCode" FromRole="SystemUserCodes" ToRole="SystemUsers" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <Property Type="Boolean" Name="IsValid" />
-          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastModifiedByDate" />
-        </EntityType>
-        <EntityType Name="SystemUser">
-          <Key>
-            <PropertyRef Name="SystemUserID" />
-          </Key>
-          <Property Name="SystemUserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="SystemUserTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="SystemUserCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="EmailAddress" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordExpired" Type="Boolean" />
-          <Property Name="PasswordExpiresOn" Type="DateTime" />
-          <Property Name="SystemManager" Type="Boolean" />
-          <Property Name="DefaultCompanyID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="DefaultPlantID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Address" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="SystemUsers" ToRole="Addresses" />
-          <NavigationProperty Name="SystemUserCode" Relationship="XERPModel.FK_SystemUser_SystemUserCode" FromRole="SystemUsers" ToRole="SystemUserCodes" />
-          <NavigationProperty Name="SystemUserType" Relationship="XERPModel.FK_SystemUser_SystemUserType" FromRole="SystemUsers" ToRole="SystemUserTypes" />
-          <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUsers" ToRole="SystemUserSecurities" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <Property Type="Boolean" Name="IsValid" />
-          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastModifiedByDate" />
-        </EntityType>
-        <EntityType Name="SystemUserSecurity">
-          <Key>
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SystemUserID" />
-            <PropertyRef Name="SecurityGroupID" />
-          </Key>
-          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="SystemUserID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="SecurityGroupID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="SystemUserSecurities" ToRole="Companies" />
-          <NavigationProperty Name="SecurityGroup" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurities" ToRole="SecurityGroups" />
-          <NavigationProperty Name="SystemUser" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurities" ToRole="SystemUsers" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <Property Type="Boolean" Name="IsValid" />
-          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastModifiedByDate" />
-        </EntityType>
-        <EntityType Name="SystemUserType">
-          <Key>
-            <PropertyRef Name="SystemUserTypeID" />
-          </Key>
-          <Property Name="SystemUserTypeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUser_SystemUserType" FromRole="SystemUserTypes" ToRole="SystemUsers" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <Property Type="Boolean" Name="IsValid" />
-          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastModifiedByDate" />
-        </EntityType>
+          </EntityContainer>
         <EntityType Name="Temp">
           <Key>
             <PropertyRef Name="ID" />
@@ -644,106 +481,183 @@
           <Property Name="Int_1" Type="Int32" />
           <Property Name="Decimal_1" Type="Decimal" Precision="12" Scale="5" />
         </EntityType>
-        <Association Name="FK_Addresses_Companies">
-          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-          <End Role="Addresses" Type="XERPModel.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Companies">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="Addresses">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUsers_Addresses">
-          <End Role="Addresses" Type="XERPModel.Address" Multiplicity="0..1" />
-          <End Role="SystemUsers" Type="XERPModel.SystemUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Addresses">
-              <PropertyRef Name="CompanyID" />
-              <PropertyRef Name="AddressID" />
-            </Principal>
-            <Dependent Role="SystemUsers">
-              <PropertyRef Name="DefaultCompanyID" />
-              <PropertyRef Name="AddressID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SecurityGroup_Company">
-          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-          <End Role="SecurityGroups" Type="XERPModel.SecurityGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Companies">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="SecurityGroups">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserSecurity_Company">
-          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-          <End Role="SystemUserSecurities" Type="XERPModel.SystemUserSecurity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Companies">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="SystemUserSecurities">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserSecurity_SecurityGroup">
-          <End Role="SecurityGroups" Type="XERPModel.SecurityGroup" Multiplicity="1" />
-          <End Role="SystemUserSecurities" Type="XERPModel.SystemUserSecurity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SecurityGroups">
-              <PropertyRef Name="CompanyID" />
-              <PropertyRef Name="SecurityGroupID" />
-            </Principal>
-            <Dependent Role="SystemUserSecurities">
-              <PropertyRef Name="CompanyID" />
-              <PropertyRef Name="SecurityGroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUser_SystemUserCode">
-          <End Role="SystemUserCodes" Type="XERPModel.SystemUserCode" Multiplicity="0..1" />
-          <End Role="SystemUsers" Type="XERPModel.SystemUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemUserCodes">
-              <PropertyRef Name="SystemUserCodeID" />
-            </Principal>
-            <Dependent Role="SystemUsers">
-              <PropertyRef Name="SystemUserCodeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUser_SystemUserType">
-          <End Role="SystemUserTypes" Type="XERPModel.SystemUserType" Multiplicity="0..1" />
-          <End Role="SystemUsers" Type="XERPModel.SystemUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemUserTypes">
-              <PropertyRef Name="SystemUserTypeID" />
-            </Principal>
-            <Dependent Role="SystemUsers">
-              <PropertyRef Name="SystemUserTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserSecurity_SystemUser">
-          <End Role="SystemUsers" Type="XERPModel.SystemUser" Multiplicity="1" />
-          <End Role="SystemUserSecurities" Type="XERPModel.SystemUserSecurity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemUsers">
-              <PropertyRef Name="SystemUserID" />
-            </Principal>
-            <Dependent Role="SystemUserSecurities">
-              <PropertyRef Name="SystemUserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Notes" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address3" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Zip" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNum" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNum2" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FaxNum" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email2" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Address" ToRole="Company" />
+          <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="Address" ToRole="SystemUser" />
+          <Property Type="Boolean" Name="IsSelected" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Notes" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <Property Type="String" Name="CompanyTypeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StateTaxCode" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TaxRegionCode" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CurrentFiscalYear" />
+          <Property Type="String" Name="DefaultExecutablePath" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address3" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Zip" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNum" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNum2" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FaxNum" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email2" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="Addresses" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Company" ToRole="Address" />
+          <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="Company" ToRole="SecurityGroup" />
+          <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+          <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
+          <Property Type="Boolean" Name="IsSelected" />
+        </EntityType>
+        <EntityType Name="SecurityGroup">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SecurityGroupID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Notes" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <Property Type="String" Name="SecurityGroupTypeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SecurityGroupCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="SecurityGroup" ToRole="Company" />
+          <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="SystemUserSecurity" />
+          <Property Type="Boolean" Name="IsSelected" />
+        </EntityType>
+        <EntityType Name="SystemUserCode">
+          <Key>
+            <PropertyRef Name="SystemUserCodeID" />
+          </Key>
+          <Property Type="String" Name="SystemUserCodeID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUser_SystemUserCode" FromRole="SystemUserCode" ToRole="SystemUser" />
+          <Property Type="Boolean" Name="IsSelected" />
+        </EntityType>
+        <EntityType Name="SystemUser">
+          <Key>
+            <PropertyRef Name="SystemUserID" />
+          </Key>
+          <Property Type="String" Name="SystemUserID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SystemUserTypeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SystemUserCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <Property Type="String" Name="EmailAddress" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="PasswordExpired" />
+          <Property Type="DateTime" Name="PasswordExpiresOn" />
+          <Property Type="Boolean" Name="SystemManager" />
+          <Property Type="String" Name="DefaultCompanyID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DefaultPlantID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="Address" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="SystemUser" ToRole="Address" />
+          <NavigationProperty Name="SystemUserCode" Relationship="XERPModel.FK_SystemUser_SystemUserCode" FromRole="SystemUser" ToRole="SystemUserCode" />
+          <NavigationProperty Name="SystemUserType" Relationship="XERPModel.FK_SystemUser_SystemUserType" FromRole="SystemUser" ToRole="SystemUserType" />
+          <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
+          <Property Type="Boolean" Name="IsSelected" />
+        </EntityType>
+        <EntityType Name="SystemUserSecurity">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SystemUserID" />
+            <PropertyRef Name="SecurityGroupID" />
+          </Key>
+          <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SystemUserID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SecurityGroupID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="SystemUserSecurity" ToRole="Company" />
+          <NavigationProperty Name="SecurityGroup" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurity" ToRole="SecurityGroup" />
+          <NavigationProperty Name="SystemUser" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurity" ToRole="SystemUser" />
+          <Property Type="Boolean" Name="IsSelected" />
+        </EntityType>
+        <EntityType Name="SystemUserType">
+          <Key>
+            <PropertyRef Name="SystemUserTypeID" />
+          </Key>
+          <Property Type="String" Name="SystemUserTypeID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUser_SystemUserType" FromRole="SystemUserType" ToRole="SystemUser" />
+          <Property Type="Boolean" Name="IsSelected" />
+        </EntityType>
         <EntityType Name="UdListItem">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -756,13 +670,13 @@
           <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Boolean" Name="IsSelected" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
-          <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
-          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
           <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItem" ToRole="Company" />
+          <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItem" ToRole="UdList" />
         </EntityType>
         <EntityType Name="UdList">
           <Key>
@@ -775,14 +689,52 @@
           <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Boolean" Name="IsSelected" />
-          <Property Type="Boolean" Name="IsExpanded" />
-          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
-          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
-          <Property Type="Boolean" Name="IsValid" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
           <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="LastModifiedByDate" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
         </EntityType>
+        <Association Name="FK_Addresses_Companies">
+          <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="XERPModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUsers_Addresses">
+          <End Type="XERPModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="XERPModel.SystemUser" Role="SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="DefaultCompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityGroup_Company">
+          <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="XERPModel.SecurityGroup" Role="SecurityGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SecurityGroup">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UdList_Company">
           <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
           <End Type="XERPModel.UdList" Role="UdList" Multiplicity="*" />
@@ -807,6 +759,68 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserSecurity_Company">
+          <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="XERPModel.SystemUserSecurity" Role="SystemUserSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SystemUserSecurity">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSecurity_SecurityGroup">
+          <End Type="XERPModel.SecurityGroup" Role="SecurityGroup" Multiplicity="1" />
+          <End Type="XERPModel.SystemUserSecurity" Role="SystemUserSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityGroup">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Principal>
+            <Dependent Role="SystemUserSecurity">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="SecurityGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_SystemUserCode">
+          <End Type="XERPModel.SystemUserCode" Role="SystemUserCode" Multiplicity="0..1" />
+          <End Type="XERPModel.SystemUser" Role="SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUserCode">
+              <PropertyRef Name="SystemUserCodeID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="SystemUserCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_SystemUserType">
+          <End Type="XERPModel.SystemUserType" Role="SystemUserType" Multiplicity="0..1" />
+          <End Type="XERPModel.SystemUser" Role="SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUserType">
+              <PropertyRef Name="SystemUserTypeID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="SystemUserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSecurity_SystemUser">
+          <End Type="XERPModel.SystemUser" Role="SystemUser" Multiplicity="1" />
+          <End Type="XERPModel.SystemUserSecurity" Role="SystemUserSecurity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="SystemUserID" />
+            </Principal>
+            <Dependent Role="SystemUserSecurity">
+              <PropertyRef Name="SystemUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UdListItem_UdList">
           <End Type="XERPModel.UdList" Role="UdList" Multiplicity="1" />
           <End Type="XERPModel.UdListItem" Role="UdListItem" Multiplicity="*" />
@@ -821,139 +835,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="XERPModelStoreContainer" CdmEntityContainer="SystemUserEntities">
-          <EntitySetMapping Name="Addresses"><EntityTypeMapping TypeName="XERPModel.Address"><MappingFragment StoreEntitySet="Addresses">
-            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
-                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
-                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="Notes" ColumnName="Notes" />
-            <ScalarProperty Name="Address1" ColumnName="Address1" />
-            <ScalarProperty Name="Address2" ColumnName="Address2" />
-            <ScalarProperty Name="Address3" ColumnName="Address3" />
-            <ScalarProperty Name="City" ColumnName="City" />
-            <ScalarProperty Name="State" ColumnName="State" />
-            <ScalarProperty Name="Zip" ColumnName="Zip" />
-            <ScalarProperty Name="Country" ColumnName="Country" />
-            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
-            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
-            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
-            <ScalarProperty Name="Email" ColumnName="Email" />
-            <ScalarProperty Name="Email2" ColumnName="Email2" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="XERPModel.Company"><MappingFragment StoreEntitySet="Companies">
-            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
-                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
-                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="Notes" ColumnName="Notes" />
-            <ScalarProperty Name="Active" ColumnName="Active" />
-            <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
-            <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
-            <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
-            <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
-            <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
-            <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
-            <ScalarProperty Name="Address1" ColumnName="Address1" />
-            <ScalarProperty Name="Address2" ColumnName="Address2" />
-            <ScalarProperty Name="Address3" ColumnName="Address3" />
-            <ScalarProperty Name="City" ColumnName="City" />
-            <ScalarProperty Name="State" ColumnName="State" />
-            <ScalarProperty Name="Zip" ColumnName="Zip" />
-            <ScalarProperty Name="Country" ColumnName="Country" />
-            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
-            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
-            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
-            <ScalarProperty Name="Email" ColumnName="Email" />
-            <ScalarProperty Name="Email2" ColumnName="Email2" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SecurityGroups"><EntityTypeMapping TypeName="XERPModel.SecurityGroup"><MappingFragment StoreEntitySet="SecurityGroups">
-            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
-                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
-                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="Notes" ColumnName="Notes" />
-            <ScalarProperty Name="Active" ColumnName="Active" />
-            <ScalarProperty Name="SecurityGroupTypeID" ColumnName="SecurityGroupTypeID" />
-            <ScalarProperty Name="SecurityGroupCodeID" ColumnName="SecurityGroupCodeID" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SystemUserCodes"><EntityTypeMapping TypeName="XERPModel.SystemUserCode"><MappingFragment StoreEntitySet="SystemUserCodes">
-            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
-                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
-                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
-                <ScalarProperty Name="SystemUserCodeID" ColumnName="SystemUserCodeID" />
-            <ScalarProperty Name="Code" ColumnName="Code" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SystemUsers"><EntityTypeMapping TypeName="XERPModel.SystemUser"><MappingFragment StoreEntitySet="SystemUsers">
-            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
-                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
-                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
-                <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Password" ColumnName="Password" />
-            <ScalarProperty Name="SystemUserTypeID" ColumnName="SystemUserTypeID" />
-            <ScalarProperty Name="SystemUserCodeID" ColumnName="SystemUserCodeID" />
-            <ScalarProperty Name="Active" ColumnName="Active" />
-            <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-            <ScalarProperty Name="PasswordExpired" ColumnName="PasswordExpired" />
-            <ScalarProperty Name="PasswordExpiresOn" ColumnName="PasswordExpiresOn" />
-            <ScalarProperty Name="SystemManager" ColumnName="SystemManager" />
-            <ScalarProperty Name="DefaultCompanyID" ColumnName="DefaultCompanyID" />
-            <ScalarProperty Name="DefaultPlantID" ColumnName="DefaultPlantID" />
-            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
-            <ScalarProperty Name="Image" ColumnName="Image" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SystemUserSecurities"><EntityTypeMapping TypeName="XERPModel.SystemUserSecurity"><MappingFragment StoreEntitySet="SystemUserSecurities">
-            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
-                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
-                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
-            <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SystemUserTypes"><EntityTypeMapping TypeName="XERPModel.SystemUserType"><MappingFragment StoreEntitySet="SystemUserTypes">
-            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
-                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
-                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
-                <ScalarProperty Name="SystemUserTypeID" ColumnName="SystemUserTypeID" />
-            <ScalarProperty Name="Type" ColumnName="Type" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Temps"><EntityTypeMapping TypeName="XERPModel.Temp"><MappingFragment StoreEntitySet="Temp">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Name" ColumnName="Name" />
@@ -962,6 +849,168 @@
             <ScalarProperty Name="Int_1" ColumnName="Int_1" />
             <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="XERPModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+                <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="XERPModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+                <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+                <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+                <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+                <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+                <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+                <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityGroups">
+            <EntityTypeMapping TypeName="XERPModel.SecurityGroup">
+              <MappingFragment StoreEntitySet="SecurityGroups">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="SecurityGroupCodeID" ColumnName="SecurityGroupCodeID" />
+                <ScalarProperty Name="SecurityGroupTypeID" ColumnName="SecurityGroupTypeID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUserCodes">
+            <EntityTypeMapping TypeName="XERPModel.SystemUserCode">
+              <MappingFragment StoreEntitySet="SystemUserCodes">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="SystemUserCodeID" ColumnName="SystemUserCodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUsers">
+            <EntityTypeMapping TypeName="XERPModel.SystemUser">
+              <MappingFragment StoreEntitySet="SystemUsers">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="DefaultPlantID" ColumnName="DefaultPlantID" />
+                <ScalarProperty Name="DefaultCompanyID" ColumnName="DefaultCompanyID" />
+                <ScalarProperty Name="SystemManager" ColumnName="SystemManager" />
+                <ScalarProperty Name="PasswordExpiresOn" ColumnName="PasswordExpiresOn" />
+                <ScalarProperty Name="PasswordExpired" ColumnName="PasswordExpired" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SystemUserCodeID" ColumnName="SystemUserCodeID" />
+                <ScalarProperty Name="SystemUserTypeID" ColumnName="SystemUserTypeID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUserSecurities">
+            <EntityTypeMapping TypeName="XERPModel.SystemUserSecurity">
+              <MappingFragment StoreEntitySet="SystemUserSecurities">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+                <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUserTypes">
+            <EntityTypeMapping TypeName="XERPModel.SystemUserType">
+              <MappingFragment StoreEntitySet="SystemUserTypes">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="SystemUserTypeID" ColumnName="SystemUserTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UdListItems">
             <EntityTypeMapping TypeName="XERPModel.UdListItem">
               <MappingFragment StoreEntitySet="UdListItems">
@@ -996,7 +1045,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -1017,88 +1066,74 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="SystemUser">
-        <EntityTypeShape EntityType="XERPModel.Address" Width="1.5" PointX="3" PointY="1.375" Height="4.2218636067708326" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.Company" Width="1.5" PointX="0.75" PointY="3.75" Height="5.7009895833333308" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.SecurityGroup" Width="1.5" PointX="7.75" PointY="7.875" Height="2.7427376302083326" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.SystemUserCode" Width="1.5" PointX="3" PointY="13.375" Height="1.7566536458333353" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.SystemUser" Width="1.5" PointX="5.625" PointY="0.625" Height="4.0575162760416665" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.SystemUserSecurity" Width="2" PointX="7.5" PointY="4.375" Height="2.0853483072916665" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.SystemUserType" Width="1.5" PointX="6.875" PointY="14" Height="1.7566536458333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="XERPModel.Temp" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9210009765624996" IsExpanded="true" />
-        <AssociationConnector Association="XERPModel.FK_Addresses_Companies" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.6734318033854159" />
-          <ConnectorPoint PointX="3" PointY="4.6734318033854159" />
+        <EntityTypeShape EntityType="XERPModel.Temp" Width="1.5" PointX="7" PointY="2.25" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Address" Width="1.5" PointX="3" PointY="4.5" Height="5.0436002604166674" />
+        <EntityTypeShape EntityType="XERPModel.Company" Width="1.5" PointX="0.75" PointY="7.75" Height="6.5227262369791674" />
+        <EntityTypeShape EntityType="XERPModel.SecurityGroup" Width="1.5" PointX="3" PointY="10.25" Height="3.5644742838541674" />
+        <EntityTypeShape EntityType="XERPModel.SystemUserCode" Width="1.5" PointX="3" PointY="1" Height="2.5783902994791674" />
+        <EntityTypeShape EntityType="XERPModel.SystemUser" Width="1.5" PointX="5.25" PointY="4.625" Height="4.8792529296875031" />
+        <EntityTypeShape EntityType="XERPModel.SystemUserSecurity" Width="1.5" PointX="7.5" PointY="8" Height="2.9070849609375031" />
+        <EntityTypeShape EntityType="XERPModel.SystemUserType" Width="1.5" PointX="3" PointY="19.375" Height="2.5783902994791674" />
+        <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="5.25" PointY="11.25" Height="3.0714322916666674" />
+        <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="3" PointY="14.625" Height="3.0714322916666674" />
+        <AssociationConnector Association="XERPModel.FK_Addresses_Companies" >
+          <ConnectorPoint PointX="2.25" PointY="8.6468001302083337" />
+          <ConnectorPoint PointX="3" PointY="8.6468001302083337" />
         </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_SystemUsers_Addresses" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="3.0287581380208337" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="3.0287581380208333" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="3.0287581380208337" />
-          <ConnectorPoint PointX="5.625" PointY="3.0287581380208337" />
+        <AssociationConnector Association="XERPModel.FK_SystemUsers_Addresses" >
+          <ConnectorPoint PointX="4.5" PointY="7.0646264648437516" />
+          <ConnectorPoint PointX="5.25" PointY="7.0646264648437516" />
         </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_SecurityGroup_Company" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="9.1512662760416674" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.1512662760416674" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.1512662760416674" />
-          <ConnectorPoint PointX="5.729166666666667" PointY="9.1512662760416674" />
-          <ConnectorPoint PointX="5.895833333333333" PointY="9.1512662760416674" />
-          <ConnectorPoint PointX="6.291666666666667" PointY="9.1512662760416674" />
-          <ConnectorPoint PointX="6.458333333333333" PointY="9.1512662760416674" />
-          <ConnectorPoint PointX="7.75" PointY="9.1512662760416674" />
+        <AssociationConnector Association="XERPModel.FK_SecurityGroup_Company" >
+          <ConnectorPoint PointX="2.25" PointY="12.032237141927084" />
+          <ConnectorPoint PointX="3" PointY="12.032237141927084" />
         </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_UserSecurity_Company" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.0200921458333339" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="6.020092145833333" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="6.0200921458333339" />
-          <ConnectorPoint PointX="6.916666666666667" PointY="6.020092145833333" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="6.0200921458333339" />
-          <ConnectorPoint PointX="7.5" PointY="6.0200921458333339" />
-        </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_UserSecurity_SecurityGroup" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.5" PointY="7.875" />
-          <ConnectorPoint PointX="8.5" PointY="6.4603483072916665" />
-        </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_SystemUser_SystemUserCode" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="13.376152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="13.001152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="2.6537581380208337" />
-          <ConnectorPoint PointX="5.625" PointY="2.6537581380208337" />
-        </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_SystemUser_SystemUserType" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.875" PointY="14.878326822916666" />
-          <ConnectorPoint PointX="6.375" PointY="14.878326822916666" />
-          <ConnectorPoint PointX="6.375" PointY="8.91404296875" />
-          <ConnectorPoint PointX="7" PointY="8.91404296875" />
-          <ConnectorPoint PointX="7" PointY="5.0575162760416674" />
-          <ConnectorPoint PointX="6.781252" PointY="5.0575162760416674" />
-          <ConnectorPoint PointX="6.781252" PointY="4.6825162760416665" />
-        </AssociationConnector>
-        <AssociationConnector Association="XERPModel.FK_UserSecurity_SystemUser" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.375" PointY="4.6825162760416665" />
-          <ConnectorPoint PointX="6.375" PointY="5.6026842916666677" />
-          <ConnectorPoint PointX="6.916666666666667" PointY="5.6026842916666668" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="5.6026842916666677" />
-          <ConnectorPoint PointX="7.5" PointY="5.6026842916666677" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="5.25" PointY="6.375" Height="2.4140429687500005" />
-        <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="3" PointY="6.375" Height="2.4140429687500005" />
         <AssociationConnector Association="XERPModel.FK_UdList_Company" >
-          <ConnectorPoint PointX="2.25" PointY="7.582021484375" />
-          <ConnectorPoint PointX="3" PointY="7.582021484375" />
+          <ConnectorPoint PointX="1.5" PointY="14.272726236979167" />
+          <ConnectorPoint PointX="1.5" PointY="16.160716145833334" />
+          <ConnectorPoint PointX="3" PointY="16.160716145833334" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UdListItem_Company" >
-          <ConnectorPoint PointX="2.25" PointY="9.3323804296875" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.3323804296875" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.3323804296875" />
-          <ConnectorPoint PointX="5.8125" PointY="9.3323804296875" />
-          <ConnectorPoint PointX="5.8125" PointY="8.78904296875" />
+          <ConnectorPoint PointX="2.25" PointY="14.074850260416667" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.074850260416667" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="14.074850260416667" />
+          <ConnectorPoint PointX="5.25" PointY="14.074850260416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UserSecurity_Company" >
+          <ConnectorPoint PointX="2.25" PointY="9.8968001302083337" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.8968001302083337" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.8968001302083337" />
+          <ConnectorPoint PointX="7.5" PointY="9.8968001302083337" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UserSecurity_SecurityGroup" >
+          <ConnectorPoint PointX="4.5" PointY="10.578542480468752" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="10.578542480468752" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="10.578542480468752" />
+          <ConnectorPoint PointX="7.5" PointY="10.578542480468752" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_SystemUser_SystemUserCode" >
+          <ConnectorPoint PointX="4.5" PointY="2.2891951497395837" />
+          <ConnectorPoint PointX="6" PointY="2.2891951497395837" />
+          <ConnectorPoint PointX="6" PointY="4.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_SystemUser_SystemUserType" >
+          <ConnectorPoint PointX="4.5" PointY="19.376152846153843" />
+          <ConnectorPoint PointX="4.875" PointY="19.001152846153843" />
+          <ConnectorPoint PointX="4.875" PointY="8.31569169726562" />
+          <ConnectorPoint PointX="5.25" PointY="8.31569169726562" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UserSecurity_SystemUser" >
+          <ConnectorPoint PointX="6.75" PointY="8.7521264648437516" />
+          <ConnectorPoint PointX="7.5" PointY="8.7521264648437516" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UdListItem_UdList" >
-          <ConnectorPoint PointX="4.5" PointY="7.582021484375" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="7.5820214843749989" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="7.582021484375" />
-          <ConnectorPoint PointX="5.25" PointY="7.582021484375" />
+          <ConnectorPoint PointX="4.5" PointY="16.160716145833334" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="16.160716145833334" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="16.160716145833334" />
+          <ConnectorPoint PointX="6" PointY="16.160716145833334" />
+          <ConnectorPoint PointX="6" PointY="14.321432291666667" />
         </AssociationConnector>
-      </Diagram>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>

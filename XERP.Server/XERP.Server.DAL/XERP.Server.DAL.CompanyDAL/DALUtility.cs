@@ -23,9 +23,6 @@ namespace XERP.Server.DAL.CompanyDAL
             get { return EntityBuilder.ConnectionString; }
         }
 
-        public DALUtility()
-        {
-
-        }
+        public DALUtility(){}
     }
 }

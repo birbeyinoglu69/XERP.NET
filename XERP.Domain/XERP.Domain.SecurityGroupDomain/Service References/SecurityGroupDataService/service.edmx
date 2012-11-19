@@ -1,6 +1,17 @@
 ﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
   <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
     <Schema Namespace="XERPModel" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="Temp">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
+        <Property Name="Bool_1" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="ShortChar_1" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Int_1" Type="Edm.Int32" Nullable="true" />
+        <Property Name="Decimal_1" Type="Edm.Decimal" Nullable="true" Precision="12" Scale="5" />
+      </EntityType>
       <EntityType Name="Company">
         <Key>
           <PropertyRef Name="CompanyID" />
@@ -29,14 +40,15 @@
         <Property Name="Email" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="Email2" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="Companies" ToRole="SecurityGroups" />
-        <NavigationProperty Name="SecurityGroupCodes" Relationship="XERPModel.FK_SecurityGroupCode_Company" FromRole="Companies" ToRole="SecurityGroupCodes" />
-        <NavigationProperty Name="SecurityGroupTypes" Relationship="XERPModel.FK_SecurityGroupType_Company" FromRole="Companies" ToRole="SecurityGroupTypes" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="Company" ToRole="SecurityGroup" />
+        <NavigationProperty Name="SecurityGroupCodes" Relationship="XERPModel.FK_SecurityGroupCode_Company" FromRole="Company" ToRole="SecurityGroupCode" />
+        <NavigationProperty Name="SecurityGroupTypes" Relationship="XERPModel.FK_SecurityGroupType_Company" FromRole="Company" ToRole="SecurityGroupType" />
         <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
         <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
       </EntityType>
@@ -50,13 +62,14 @@
         <Property Name="Code" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroupCode_Company" FromRole="SecurityGroupCodes" ToRole="Companies" />
-        <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupCode" FromRole="SecurityGroupCodes" ToRole="SecurityGroups" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroupCode_Company" FromRole="SecurityGroupCode" ToRole="Company" />
+        <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroups_SecurityGroupCodes" FromRole="SecurityGroupCode" ToRole="SecurityGroup" />
       </EntityType>
       <EntityType Name="SecurityGroup">
         <Key>
@@ -72,14 +85,15 @@
         <Property Name="SecurityGroupTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
         <Property Name="SecurityGroupCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="SecurityGroups" ToRole="Companies" />
-        <NavigationProperty Name="SecurityGroupCode" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupCode" FromRole="SecurityGroups" ToRole="SecurityGroupCodes" />
-        <NavigationProperty Name="SecurityGroupType" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupType" FromRole="SecurityGroups" ToRole="SecurityGroupTypes" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="SecurityGroup" ToRole="Company" />
+        <NavigationProperty Name="SecurityGroupCode" Relationship="XERPModel.FK_SecurityGroups_SecurityGroupCodes" FromRole="SecurityGroup" ToRole="SecurityGroupCode" />
+        <NavigationProperty Name="SecurityGroupType" Relationship="XERPModel.FK_SecurityGroups_SecurityGroupTypes" FromRole="SecurityGroup" ToRole="SecurityGroupType" />
       </EntityType>
       <EntityType Name="SecurityGroupType">
         <Key>
@@ -91,24 +105,14 @@
         <Property Name="Type" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
-        <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroupType_Company" FromRole="SecurityGroupTypes" ToRole="Companies" />
-        <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroup_SecurityGroupType" FromRole="SecurityGroupTypes" ToRole="SecurityGroups" />
-      </EntityType>
-      <EntityType Name="Temp">
-        <Key>
-          <PropertyRef Name="ID" />
-        </Key>
-        <Property Name="ID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
-        <Property Name="Bool_1" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="ShortChar_1" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
-        <Property Name="Int_1" Type="Edm.Int32" Nullable="true" />
-        <Property Name="Decimal_1" Type="Edm.Decimal" Nullable="true" Precision="12" Scale="5" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroupType_Company" FromRole="SecurityGroupType" ToRole="Company" />
+        <NavigationProperty Name="SecurityGroups" Relationship="XERPModel.FK_SecurityGroups_SecurityGroupTypes" FromRole="SecurityGroupType" ToRole="SecurityGroup" />
       </EntityType>
       <EntityType Name="UdListItem">
         <Key>
@@ -122,8 +126,8 @@
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
@@ -141,8 +145,8 @@
         <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
         <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsExpanded" Type="Edm.Boolean" Nullable="true" />
-        <Property Name="IsValid" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
         <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
@@ -150,66 +154,38 @@
         <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
       </EntityType>
       <Association Name="FK_SecurityGroup_Company">
-        <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-        <End Role="SecurityGroups" Type="XERPModel.SecurityGroup" Multiplicity="*" />
+        <End Role="Company" Type="XERPModel.Company" Multiplicity="1" />
+        <End Role="SecurityGroup" Type="XERPModel.SecurityGroup" Multiplicity="*" />
         <ReferentialConstraint>
-          <Principal Role="Companies">
+          <Principal Role="Company">
             <PropertyRef Name="CompanyID" />
           </Principal>
-          <Dependent Role="SecurityGroups">
+          <Dependent Role="SecurityGroup">
             <PropertyRef Name="CompanyID" />
           </Dependent>
         </ReferentialConstraint>
       </Association>
       <Association Name="FK_SecurityGroupCode_Company">
-        <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-        <End Role="SecurityGroupCodes" Type="XERPModel.SecurityGroupCode" Multiplicity="*" />
+        <End Role="Company" Type="XERPModel.Company" Multiplicity="1" />
+        <End Role="SecurityGroupCode" Type="XERPModel.SecurityGroupCode" Multiplicity="*" />
         <ReferentialConstraint>
-          <Principal Role="Companies">
+          <Principal Role="Company">
             <PropertyRef Name="CompanyID" />
           </Principal>
-          <Dependent Role="SecurityGroupCodes">
+          <Dependent Role="SecurityGroupCode">
             <PropertyRef Name="CompanyID" />
           </Dependent>
         </ReferentialConstraint>
       </Association>
       <Association Name="FK_SecurityGroupType_Company">
-        <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
-        <End Role="SecurityGroupTypes" Type="XERPModel.SecurityGroupType" Multiplicity="*" />
+        <End Role="Company" Type="XERPModel.Company" Multiplicity="1" />
+        <End Role="SecurityGroupType" Type="XERPModel.SecurityGroupType" Multiplicity="*" />
         <ReferentialConstraint>
-          <Principal Role="Companies">
+          <Principal Role="Company">
             <PropertyRef Name="CompanyID" />
           </Principal>
-          <Dependent Role="SecurityGroupTypes">
+          <Dependent Role="SecurityGroupType">
             <PropertyRef Name="CompanyID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_SecurityGroup_SecurityGroupCode">
-        <End Role="SecurityGroupCodes" Type="XERPModel.SecurityGroupCode" Multiplicity="0..1" />
-        <End Role="SecurityGroups" Type="XERPModel.SecurityGroup" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="SecurityGroupCodes">
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SecurityGroupCodeID" />
-          </Principal>
-          <Dependent Role="SecurityGroups">
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SecurityGroupCodeID" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>
-      <Association Name="FK_SecurityGroup_SecurityGroupType">
-        <End Role="SecurityGroupTypes" Type="XERPModel.SecurityGroupType" Multiplicity="0..1" />
-        <End Role="SecurityGroups" Type="XERPModel.SecurityGroup" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="SecurityGroupTypes">
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SecurityGroupTypeID" />
-          </Principal>
-          <Dependent Role="SecurityGroups">
-            <PropertyRef Name="CompanyID" />
-            <PropertyRef Name="SecurityGroupTypeID" />
           </Dependent>
         </ReferentialConstraint>
       </Association>
@@ -234,6 +210,34 @@
           </Principal>
           <Dependent Role="UdListItem">
             <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_SecurityGroups_SecurityGroupCodes">
+        <End Role="SecurityGroupCode" Type="XERPModel.SecurityGroupCode" Multiplicity="0..1" />
+        <End Role="SecurityGroup" Type="XERPModel.SecurityGroup" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="SecurityGroupCode">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupCodeID" />
+          </Principal>
+          <Dependent Role="SecurityGroup">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupCodeID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_SecurityGroups_SecurityGroupTypes">
+        <End Role="SecurityGroupType" Type="XERPModel.SecurityGroupType" Multiplicity="0..1" />
+        <End Role="SecurityGroup" Type="XERPModel.SecurityGroup" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="SecurityGroupType">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupTypeID" />
+          </Principal>
+          <Dependent Role="SecurityGroup">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="SecurityGroupTypeID" />
           </Dependent>
         </ReferentialConstraint>
       </Association>
@@ -266,32 +270,24 @@
         <FunctionImport Name="RefreshSecurityGroupCode" EntitySet="SecurityGroupCodes" ReturnType="Collection(XERPModel.SecurityGroupCode)" m:HttpMethod="GET">
           <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
         </FunctionImport>
+        <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
         <EntitySet Name="Companies" EntityType="XERPModel.Company" />
         <EntitySet Name="SecurityGroupCodes" EntityType="XERPModel.SecurityGroupCode" />
         <EntitySet Name="SecurityGroups" EntityType="XERPModel.SecurityGroup" />
         <EntitySet Name="SecurityGroupTypes" EntityType="XERPModel.SecurityGroupType" />
-        <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
         <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
         <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
         <AssociationSet Name="FK_SecurityGroup_Company" Association="XERPModel.FK_SecurityGroup_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="SecurityGroup" EntitySet="SecurityGroups" />
         </AssociationSet>
         <AssociationSet Name="FK_SecurityGroupCode_Company" Association="XERPModel.FK_SecurityGroupCode_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="SecurityGroupCode" EntitySet="SecurityGroupCodes" />
         </AssociationSet>
         <AssociationSet Name="FK_SecurityGroupType_Company" Association="XERPModel.FK_SecurityGroupType_Company">
-          <End Role="Companies" EntitySet="Companies" />
-          <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
-        </AssociationSet>
-        <AssociationSet Name="FK_SecurityGroup_SecurityGroupCode" Association="XERPModel.FK_SecurityGroup_SecurityGroupCode">
-          <End Role="SecurityGroupCodes" EntitySet="SecurityGroupCodes" />
-          <End Role="SecurityGroups" EntitySet="SecurityGroups" />
-        </AssociationSet>
-        <AssociationSet Name="FK_SecurityGroup_SecurityGroupType" Association="XERPModel.FK_SecurityGroup_SecurityGroupType">
-          <End Role="SecurityGroupTypes" EntitySet="SecurityGroupTypes" />
-          <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="SecurityGroupType" EntitySet="SecurityGroupTypes" />
         </AssociationSet>
         <AssociationSet Name="FK_UdList_Company" Association="XERPModel.FK_UdList_Company">
           <End Role="Company" EntitySet="Companies" />
@@ -300,6 +296,14 @@
         <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.FK_UdListItem_Company">
           <End Role="Company" EntitySet="Companies" />
           <End Role="UdListItem" EntitySet="UdListItems" />
+        </AssociationSet>
+        <AssociationSet Name="FK_SecurityGroups_SecurityGroupCodes" Association="XERPModel.FK_SecurityGroups_SecurityGroupCodes">
+          <End Role="SecurityGroupCode" EntitySet="SecurityGroupCodes" />
+          <End Role="SecurityGroup" EntitySet="SecurityGroups" />
+        </AssociationSet>
+        <AssociationSet Name="FK_SecurityGroups_SecurityGroupTypes" Association="XERPModel.FK_SecurityGroups_SecurityGroupTypes">
+          <End Role="SecurityGroupType" EntitySet="SecurityGroupTypes" />
+          <End Role="SecurityGroup" EntitySet="SecurityGroups" />
         </AssociationSet>
         <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
           <End Role="UdList" EntitySet="UdLists" />

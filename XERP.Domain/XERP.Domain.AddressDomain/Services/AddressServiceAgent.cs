@@ -6,7 +6,7 @@ using System.Data.Services.Client;
 using XERP.Domain.AddressDomain.AddressDataService;
 namespace XERP.Domain.AddressDomain.Services
 {
-    public class AddressServiceAgent : XERP.Domain.AddressDomain.Services.IAddressServiceAgent 
+    public class AddressServiceAgent : XERP.Domain.AddressDomain.Services.IAddressServiceAgent
     {
         #region Initialize Service
         public AddressServiceAgent()
@@ -25,7 +25,11 @@ namespace XERP.Domain.AddressDomain.Services
         #endregion Properties
 
         #region Read Only Methods  No Repository Required
-
+        public bool AddressRepositoryIsDirty()
+        {
+            return AddressSingletonRepository.Instance.RepositoryIsDirty();
+        }
+ 
         public bool AddressExists(string addressID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;
@@ -35,17 +39,13 @@ namespace XERP.Domain.AddressDomain.Services
                            q.CompanyID == companyID
                            select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
+
             return false;
         }
 
-        
-
         public IEnumerable<Temp> GetMetaData(string tableName)
-        {
-            //WCF Data Services does not allow for Complex query where you need to mine linked table data
+        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;

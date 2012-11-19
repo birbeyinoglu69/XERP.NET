@@ -4,10 +4,10 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="{x:Type UserControl}" x:Key="BaseUserControl">
-
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
     </Style>
     <Style TargetType="{x:Type Grid}" x:Key="BaseGrid">
-
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
     </Style>
     <Style TargetType="{x:Type GridSplitter}" x:Key="BaseVerticalGridSplitter">
         <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
@@ -26,12 +26,14 @@
         <Setter Property="Height" Value="4"/>
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlock">
-
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="BaseHeader">
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="BaseErrorBlock">
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
         <Setter Property="FontSize" Value="8"/>
         <Setter Property="Foreground" Value="Red"/>
         <Style.Triggers>
@@ -62,10 +64,10 @@
     </Style>
     <!--DataGridTextColumn and DataGridComboBoxColumn can not be styled-->
     <Style TargetType="{x:Type ListBox}" x:Key="BaseListBox">
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Margin" Value="5"/>
-        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>  
     </Style>
     <Style TargetType="{x:Type ListBoxItem}" x:Key="BaseListBoxItem">
         <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>

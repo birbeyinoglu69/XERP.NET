@@ -25,6 +25,20 @@ namespace XERP.Domain.SystemUserDomain.Services
         #endregion Properties
 
         #region Read Only Methods  No Repository Required
+        public bool SystemUserRepositoryIsDirty()
+        {
+            return SystemUserSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool SystemUserTypeRepositoryIsDirty()
+        {
+            return SystemUserTypeSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
+        public bool SystemUserCodeRepositoryIsDirty()
+        {
+            return SystemUserCodeSingletonRepository.Instance.RepositoryIsDirty();
+        }
         public IEnumerable<SystemUserSecurity> GetSystemUserSecuritiesReadOnly()
         {
             _context.MergeOption = MergeOption.NoTracking;
@@ -60,9 +74,7 @@ namespace XERP.Domain.SystemUserDomain.Services
                            where q.SystemUserID == systemUserID
                            select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
             return false;
         }
 
@@ -74,9 +86,7 @@ namespace XERP.Domain.SystemUserDomain.Services
                                where q.SystemUserTypeID == systemUserTypeID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
             return false;
         }
 
@@ -88,15 +98,12 @@ namespace XERP.Domain.SystemUserDomain.Services
                                where q.SystemUserCodeID == systemUserCodeID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
-            {
                 return true;
-            }
             return false;
         }
 
         public IEnumerable<Temp> GetMetaData(string tableName)
-        {
-            //WCF Data Services does not allow for Complex query where you need to mine linked table data
+        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;
@@ -105,8 +112,7 @@ namespace XERP.Domain.SystemUserDomain.Services
         }
 
         public IEnumerable<SecurityGroup> GetAvailableSecurityGroups(string securityGroupID)
-        {
-            //WCF Data Services does not allow for Complex query where you need to mine linked table data
+        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;

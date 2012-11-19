@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using XERP.Server.DAL.LogInDAL;
 using System.Data.Metadata.Edm;
-namespace XERP.Server.DAL.LogInDAL
-{
-    //public partial class LogIn :EntityObject
-    //{
-        
-    //}
-}
-
 namespace ExtensionMethods
 {
     public static class MyExtensions
