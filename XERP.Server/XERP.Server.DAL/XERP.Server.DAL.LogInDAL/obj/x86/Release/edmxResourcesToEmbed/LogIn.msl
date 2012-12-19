@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.Company">
         <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -39,6 +40,7 @@
     <EntitySetMapping Name="ExecutablePrograms">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.ExecutableProgram">
         <MappingFragment StoreEntitySet="ExecutablePrograms">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -60,6 +62,7 @@
     <EntitySetMapping Name="MenuItems">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.MenuItem">
         <MappingFragment StoreEntitySet="MenuItems">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -86,6 +89,7 @@
     <EntitySetMapping Name="MenuSecurities">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.MenuSecurity">
         <MappingFragment StoreEntitySet="MenuSecurities">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -101,6 +105,7 @@
     <EntitySetMapping Name="SecurityGroupCodes">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.SecurityGroupCode">
         <MappingFragment StoreEntitySet="SecurityGroupCodes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -117,6 +122,7 @@
     <EntitySetMapping Name="SecurityGroups">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.SecurityGroup">
         <MappingFragment StoreEntitySet="SecurityGroups">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -137,6 +143,7 @@
     <EntitySetMapping Name="SecurityGroupTypes">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.SecurityGroupType">
         <MappingFragment StoreEntitySet="SecurityGroupTypes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -153,6 +160,7 @@
     <EntitySetMapping Name="SystemUserCodes">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.SystemUserCode">
         <MappingFragment StoreEntitySet="SystemUserCodes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -168,6 +176,7 @@
     <EntitySetMapping Name="SystemUsers">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.SystemUser">
         <MappingFragment StoreEntitySet="SystemUsers">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -194,6 +203,7 @@
     <EntitySetMapping Name="SystemUserSecurities">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.SystemUserSecurity">
         <MappingFragment StoreEntitySet="SystemUserSecurities">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -209,6 +219,7 @@
     <EntitySetMapping Name="SystemUserTypes">
       <EntityTypeMapping TypeName="XERP.LogIn.DAL.LogInDAL.SystemUserType">
         <MappingFragment StoreEntitySet="SystemUserTypes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />

@@ -22,11 +22,13 @@
         <GridSplitter Style="{StaticResource BaseHorizontalGridSplitter}" Grid.Row="0" Grid.ColumnSpan="3" 
                       Grid.RowSpan="2" HorizontalAlignment="Stretch" />
         <TextBlock Style="{StaticResource BaseHeader}" Grid.ColumnSpan="2" HorizontalAlignment="Center"
-                   Margin="5">SystemUser Search</TextBlock>
+                   Margin="5">System User Search</TextBlock>
         <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="1"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
             <TextBlock Style="{StaticResource BaseTextBlock}" 
                        HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Name:</TextBlock>
+            <TextBlock Style="{StaticResource BaseTextBlock}"
+                       HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Description:</TextBlock>
             <TextBlock Style="{StaticResource BaseTextBlock}"
                        HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Type:</TextBlock>
             <TextBlock Style="{StaticResource BaseTextBlock}"
@@ -36,6 +38,8 @@
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
             <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="200"
                                  Text="{Binding Path=SearchObject.Name}"/>
+            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="200"
+                                 Text="{Binding Path=SearchObject.Description}"/>
             <ComboBox Style="{StaticResource BaseComboBox}" Width="200" Margin="5"
                               ItemsSource="{Binding Path=SystemUserTypeList, Mode=TwoWay}"
                               DisplayMemberPath="Type"
@@ -70,6 +74,8 @@
                                                 Header="ID" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding Name}"
                                                 Header="Name" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Description}"
+                                                Header="Description" Width="Auto" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding SystemUserTypeID}"
                                                 Header="Type" Width="*" IsReadOnly="True"/>
             </DataGrid.Columns>

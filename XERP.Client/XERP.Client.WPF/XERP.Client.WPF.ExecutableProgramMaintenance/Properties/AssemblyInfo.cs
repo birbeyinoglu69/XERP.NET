@@ -10,6 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("XERP.Client.WPF.ExecutableProgramMaintenance")]
 [assembly: AssemblyDescription("XERP.Client.WPF.ExecutableProgramMaintenance")]
 [assembly: AssemblyConfiguration("")]
+
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

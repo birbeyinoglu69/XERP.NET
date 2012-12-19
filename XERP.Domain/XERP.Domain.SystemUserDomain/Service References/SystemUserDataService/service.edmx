@@ -375,20 +375,11 @@
         <FunctionImport Name="RefreshSystemUser" EntitySet="SystemUsers" ReturnType="Collection(XERPModel.SystemUser)" m:HttpMethod="GET">
           <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
         </FunctionImport>
-        <FunctionImport Name="RefreshSystemUserSecurity" EntitySet="SystemUserSecurities" ReturnType="Collection(XERPModel.SystemUserSecurity)" m:HttpMethod="GET">
-          <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
-        </FunctionImport>
-        <FunctionImport Name="RefreshAddress" EntitySet="Addresses" ReturnType="Collection(XERPModel.Address)" m:HttpMethod="GET">
-          <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
-        </FunctionImport>
         <FunctionImport Name="RefreshSystemUserType" EntitySet="SystemUserTypes" ReturnType="Collection(XERPModel.SystemUserType)" m:HttpMethod="GET">
           <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
         </FunctionImport>
         <FunctionImport Name="RefreshSystemUserCode" EntitySet="SystemUserCodes" ReturnType="Collection(XERPModel.SystemUserCode)" m:HttpMethod="GET">
           <Parameter Name="autoIDs" Type="Edm.String" Mode="In" />
-        </FunctionImport>
-        <FunctionImport Name="GetAvailableSecurityGroups" EntitySet="SecurityGroups" ReturnType="Collection(XERPModel.SecurityGroup)" m:HttpMethod="GET">
-          <Parameter Name="securityGroupID" Type="Edm.String" Mode="In" />
         </FunctionImport>
         <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
         <EntitySet Name="Addresses" EntityType="XERPModel.Address" />

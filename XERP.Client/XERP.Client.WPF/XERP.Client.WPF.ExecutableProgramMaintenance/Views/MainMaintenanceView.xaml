@@ -19,7 +19,7 @@
           <ColumnDefinition Width="422*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Style="{StaticResource BaseHeader}"
-            HorizontalAlignment="Left" Grid.Column="1" Text="ExecutableProgram Maintenance Form"
+            HorizontalAlignment="Left" Grid.Column="1" Text="Executable Program Maintenance Form"
             FontSize="13" Margin="138,10,0,5" >
         </TextBlock>
         <StackPanel Style="{StaticResource BaseStackPanel}"
@@ -58,7 +58,7 @@
                                 <i:EventTrigger EventName="Click">
                                     <ei:CallMethodAction
                                     TargetObject="{Binding}"
-                                    MethodName="DeleteCommand"/>
+                                    MethodName="DeleteExecutableProgramCommand"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </MenuItem>
@@ -132,7 +132,7 @@
                         <i:EventTrigger EventName="Click">
                             <ei:CallMethodAction
                             TargetObject="{Binding}"
-                            MethodName="DeleteCommand"/>
+                            MethodName="DeleteExecutableProgramCommand"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </MenuItem>
@@ -187,10 +187,40 @@
             SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Style="{StaticResource BaseTextBlock}"
-                        Text="{Binding Path=ExecutableProgramID, Mode=TwoWay}" Margin="5"/>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="0">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="1">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="2">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/flag2.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Text="{Binding Path=ExecutableProgramID}" >
+                            </TextBlock>
+                            <TextBlock Width="0"
+                                Text="{Binding Path=IsValid}" Visibility="Hidden">
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource BaseErrorBlock}" Height="Auto"
+                                       Text="{Binding Path = NotValidMessage}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
         </ListBox>
         <TabControl Style="{StaticResource BaseTabControl}" Name="tabctrlMain" Grid.Column="1" Grid.Row="1">
             <TabItem  Style="{StaticResource BaseTabItem}" Name="tabDetail" Header="Detail">
@@ -236,18 +266,8 @@
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Code:
                         </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Internal Program:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">URL Path:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}" 
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8,38,8,8">Notes:
-                        </TextBlock>
-                        <TextBox Style="{StaticResource BaseTextBox}" Width="0" Height="0" Name="ghost" KeyboardNavigation.IsTabStop="False" />
-                        
-                        
+                        <TextBox Style="{StaticResource BaseTextBox}" 
+                            Width="0" Height="0"  Name="ghost"  KeyboardNavigation.IsTabStop="False"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource BaseStackPanel}"
                         Grid.Row="1" Grid.Column="1"
@@ -255,6 +275,7 @@
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
                         <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
                             Text="{Binding Path=SelectedExecutableProgram.Name, Mode=TwoWay, TargetNullValue=''}"
+                            IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding ExecutableProgramMaxFieldValueDictionary[Name]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
@@ -314,22 +335,6 @@
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
                         </ComboBox>
-                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8"
-                            KeyboardNavigation.TabIndex="60"
-                            IsChecked="{Binding Path=SelectedExecutableProgram.URLPath, Mode=TwoWay}" >      
-                        </CheckBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedExecutableProgram.Notes, Mode=TwoWay}" 
-                            MaxLength= "{Binding ExecutableProgramMaxFieldValueDictionary[Notes]}" 
-                            KeyboardNavigation.TabIndex="70" BorderBrush="DimGray" VerticalAlignment="Stretch" Height="49"
-                            TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
-                        </TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedExecutableProgram.Notes, Mode=TwoWay}" 
-                            MaxLength= "{Binding ExecutableProgramMaxFieldValueDictionary[Notes]}" 
-                            KeyboardNavigation.TabIndex="80" BorderBrush="DimGray" VerticalAlignment="Stretch" Height="49"
-                            TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
-                        </TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -402,13 +407,6 @@
                                     </Style>
                                 </DataGridComboBoxColumn.EditingElementStyle>
                             </DataGridComboBoxColumn>
-                            <DataGridCheckBoxColumn Binding="{Binding InternalProgram, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                Header="Internal&#10;Program" Width="*">   
-                            </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Binding="{Binding URLPath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                Header="URL&#10;Path" Width="*"/>
-                            <DataGridTextColumn Binding="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                Header="Notes" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox Style="{StaticResource BaseTextBox}" Name="ghost2" Grid.Column="2" 

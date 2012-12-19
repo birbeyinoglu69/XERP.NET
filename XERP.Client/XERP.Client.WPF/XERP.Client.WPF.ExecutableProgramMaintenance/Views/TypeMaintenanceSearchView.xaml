@@ -23,7 +23,7 @@
         <GridSplitter Style="{StaticResource BaseHorizontalGridSplitter}" Grid.Row="0" Grid.ColumnSpan="3"
                       Grid.RowSpan="2" HorizontalAlignment="Stretch"/>
         <TextBlock Style="{StaticResource BaseHeader}" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
-                   Margin="5">ExecutableProgram Type Search</TextBlock>
+                   Margin="5">Executable Program Type Search</TextBlock>
         <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="1" 
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" >
             <TextBlock Style="{StaticResource BaseTextBlock}" 

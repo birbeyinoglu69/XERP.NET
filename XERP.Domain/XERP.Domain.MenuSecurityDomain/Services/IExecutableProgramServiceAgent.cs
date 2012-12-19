@@ -13,6 +13,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         void DeleteFromExecutableProgramRepository(XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.ExecutableProgram executableProgram);
         void DeleteFromExecutableProgramTypeRepository(XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.ExecutableProgramType executableProgramType);
         bool ExecutableProgramCodeExists(string executableProgramCodeID, string companyID);
+        bool ExecutableProgramCodeRepositoryIsDirty();
         bool ExecutableProgramExists(string executableProgramID, string companyID);
         bool ExecutableProgramRepositoryIsDirty();
         bool ExecutableProgramTypeExists(string executableProgramTypeID, string companyID);

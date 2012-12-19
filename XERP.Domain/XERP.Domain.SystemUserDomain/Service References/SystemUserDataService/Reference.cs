@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 11/6/2012 8:31:45 AM
+// Generation date: 12/18/2012 1:19:34 PM
 namespace XERP.Domain.SystemUserDomain.SystemUserDataService
 {
     

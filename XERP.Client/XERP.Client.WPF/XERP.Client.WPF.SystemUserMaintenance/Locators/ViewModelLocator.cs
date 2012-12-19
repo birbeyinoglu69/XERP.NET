@@ -9,25 +9,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance
 {
     public class ViewModelLocator
     {
-        //private static ViewModelLocator _instance;
-        //private ViewModelLocator() 
-        //{
-            
-        //}
-
-        //public static ViewModelLocator Instance
-        //{
-        //    get
-        //    {
-        //        if (_instance == null)
-        //        {
-        //            _instance = new ViewModelLocator();
-        //        }
-        //        return _instance;
-        //    }
-        //}
-        
-        
         public MainMaintenanceViewModel MainMaintenanceViewModel
         {
             get

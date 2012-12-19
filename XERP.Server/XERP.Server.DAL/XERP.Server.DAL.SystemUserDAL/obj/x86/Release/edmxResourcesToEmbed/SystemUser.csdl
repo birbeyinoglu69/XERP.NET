@@ -97,6 +97,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Address" ToRole="Company" />
     <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="Address" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="Company">
     <Key>
@@ -136,6 +137,7 @@
     <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
     <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SecurityGroup">
     <Key>
@@ -158,6 +160,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Company" Relationship="XERPModel.FK_SecurityGroup_Company" FromRole="SecurityGroup" ToRole="Company" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SystemUserCode">
     <Key>
@@ -173,6 +176,7 @@
     <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUser_SystemUserCode" FromRole="SystemUserCode" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SystemUser">
     <Key>
@@ -202,6 +206,7 @@
     <NavigationProperty Name="SystemUserCode" Relationship="XERPModel.FK_SystemUser_SystemUserCode" FromRole="SystemUser" ToRole="SystemUserCode" />
     <NavigationProperty Name="SystemUserType" Relationship="XERPModel.FK_SystemUser_SystemUserType" FromRole="SystemUser" ToRole="SystemUserType" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SystemUserSecurity">
     <Key>
@@ -221,6 +226,7 @@
     <NavigationProperty Name="Company" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="SystemUserSecurity" ToRole="Company" />
     <NavigationProperty Name="SecurityGroup" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurity" ToRole="SecurityGroup" />
     <NavigationProperty Name="SystemUser" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurity" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SystemUserType">
     <Key>
@@ -236,6 +242,7 @@
     <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUser_SystemUserType" FromRole="SystemUserType" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="UdListItem">
     <Key>

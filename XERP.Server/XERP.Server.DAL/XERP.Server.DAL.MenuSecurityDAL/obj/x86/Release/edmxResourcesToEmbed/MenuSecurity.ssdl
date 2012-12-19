@@ -142,6 +142,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="DBStoredImages">
     <Key>
@@ -159,6 +160,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="ExecutableProgramCodes">
     <Key>
@@ -175,6 +177,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="ExecutablePrograms">
     <Key>
@@ -196,6 +199,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="ExecutableProgramTypes">
     <Key>
@@ -212,6 +216,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuItemCodes">
     <Key>
@@ -228,6 +233,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuItems">
     <Key>
@@ -254,6 +260,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuItemTypes">
     <Key>
@@ -270,6 +277,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="MenuSecurities">
     <Key>
@@ -286,6 +294,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="SecurityGroups">
     <Key>
@@ -306,6 +315,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="SystemUsers">
     <Key>
@@ -331,6 +341,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="SystemUserSecurities">
     <Key>
@@ -347,6 +358,7 @@
     <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
   </EntityType>
   <EntityType Name="Temp">
     <Key>

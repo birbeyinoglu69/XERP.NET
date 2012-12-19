@@ -35,6 +35,11 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             return ExecutableProgramTypeSingletonRepository.Instance.RepositoryIsDirty();
         }
 
+        public bool ExecutableProgramCodeRepositoryIsDirty()
+        {
+            return ExecutableProgramCodeSingletonRepository.Instance.RepositoryIsDirty();
+        }
+
         public bool MenuItemCodeRepositoryIsDirty()
         {
             return ExecutableProgramCodeSingletonRepository.Instance.RepositoryIsDirty();

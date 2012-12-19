@@ -936,6 +936,9 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             {
                 UdListList = e.Data;
                 SelectedUdList = UdListList.FirstOrDefault();
+                if (SelectedUdList.UdListItems.Count > 0)
+                    SelectedUdListItem = SelectedUdList.UdListItems[0];
+
                 Dirty = false;
                 AllowCommit = false;
             }

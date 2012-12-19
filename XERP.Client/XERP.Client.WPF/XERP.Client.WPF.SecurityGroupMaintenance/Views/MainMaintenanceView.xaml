@@ -19,7 +19,7 @@
           <ColumnDefinition Width="422*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Style="{StaticResource BaseHeader}"
-            HorizontalAlignment="Left" Grid.Column="1" Text="SecurityGroup Maintenance Form"
+            HorizontalAlignment="Left" Grid.Column="1" Text="Security Group Maintenance Form"
             FontSize="13" Margin="138,10,0,5" >
         </TextBlock>
         <StackPanel Style="{StaticResource BaseStackPanel}"

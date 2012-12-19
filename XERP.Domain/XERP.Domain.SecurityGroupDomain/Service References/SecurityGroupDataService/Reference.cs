@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 11/6/2012 8:31:39 AM
+// Generation date: 12/19/2012 3:23:47 PM
 namespace XERP.Domain.SecurityGroupDomain.SecurityGroupDataService
 {
     

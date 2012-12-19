@@ -16,6 +16,7 @@
     <EntitySetMapping Name="Addresses">
       <EntityTypeMapping TypeName="XERPModel.Address">
         <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -45,6 +46,7 @@
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="XERPModel.Company">
         <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />

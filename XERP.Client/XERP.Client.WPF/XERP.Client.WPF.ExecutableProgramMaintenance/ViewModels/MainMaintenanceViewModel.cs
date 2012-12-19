@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Windows;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Data.Services.Client;
-using System.ComponentModel;
 using System.Collections.Generic;
-// Toolkit namespace
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data.Services.Client;
+using System.Linq;
+using System.Windows;
+using ExtensionMethods;
 using SimpleMvvmToolkit;
-//XERP Namespaces
+using XERP.Client.Models;
+
 using XERP.Domain.MenuSecurityDomain.Services;
 using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
-//required for extension methods...
-using ExtensionMethods;
-using XERP.Client.Models;
 
 namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 {
@@ -21,7 +19,8 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         #region Initialization and Cleanup
         //GlobalProperties Class allows us to share properties amonst multiple classes...
         private GlobalProperties _globalProperties = new GlobalProperties();
-        
+        private int _newExecutableProgramAutoId;
+
         private IExecutableProgramServiceAgent _serviceAgent;
         private enum _saveRequiredResultActions
         {
@@ -30,8 +29,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             ClearLogic
         }
         //required else it generates debug view designer issues 
-        public MainMaintenanceViewModel()
-        { }
+        public MainMaintenanceViewModel(){}
 
         public void BuildDropDowns()
         {
@@ -51,11 +49,8 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             ExecutableProgramList.AllowNew = false;
             
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI... 
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
@@ -69,17 +64,11 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 
         #region Authentication Logic
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if(ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -91,9 +80,8 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
         
@@ -112,7 +100,6 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> SaveRequiredNotice;
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> NewRecordNeededNotice;
         public event EventHandler<NotificationEventArgs> AuthenticatedNotice;
-        public event EventHandler<NotificationEventArgs> NewRecordCreatedNotice;
         #endregion Notifications    
 
         #region Properties
@@ -139,7 +126,6 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.AllowRowPaste);
             }
         }
-
 
         private bool _allowNew;
         public bool AllowNew
@@ -196,7 +182,6 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             }
         }
         
-
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
         {
@@ -341,18 +326,15 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             get
             {
                 if (_executableProgramMaxFieldValueDictionary != null)
-                {
                     return _executableProgramMaxFieldValueDictionary;
-                }
+
                 _executableProgramMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("ExecutablePrograms");
 
                 foreach (var data in metaData)
                 {
                     if (data.ShortChar_1 == "String")
-                    {
                         _executableProgramMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                    }
                 }
                 return _executableProgramMaxFieldValueDictionary;
             }
@@ -362,7 +344,17 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 
         #region ViewModel Propertie's Events
         private void SelectedExecutableProgram_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {   //Key ID Logic...
+        {//these properties are not to be persisted we will igore them...
+            if (e.PropertyName == "IsSelected" ||
+                e.PropertyName == "IsExpanded" ||
+                e.PropertyName == "IsValid" ||
+                e.PropertyName == "NotValidMessage" ||
+                e.PropertyName == "LastModifiedBy" ||
+                e.PropertyName == "LastModifiedByDate")
+            {
+                return;
+            }
+   //Key ID Logic...
             if (e.PropertyName == "ExecutableProgramID")
             {//make sure it is has changed...
                 if (SelectedExecutableProgramMirror.ExecutableProgramID != SelectedExecutableProgram.ExecutableProgramID)
@@ -380,14 +372,11 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
                     {//once a key is added it can not be modified...
-                        if (Dirty  && AllowCommit)
-                        {//dirty record exists ask if save is required...
+                        if (Dirty  && AllowCommit)//dirty record exists ask if save is required...
                             NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
-                        }
                         else
-                        {
                             ChangeKeyLogic();
-                        }
+
                         return;
                     }
                 }
@@ -402,40 +391,37 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             bool objectsAreEqual;
             if (propertyChangedValue == null)
             {
-                if (prevPropertyValue == null)
-                {//both values are null
+                if (prevPropertyValue == null)//both values are null
                     objectsAreEqual = true;
-                }
-                else
-                {//only one value is null
+                else//only one value is null
                     objectsAreEqual = false;
-                }
             }
             else 
             {
-                if (prevPropertyValue == null)
-                {//only one value is null
+                if (prevPropertyValue == null)//only one value is null
                     objectsAreEqual = false;
-                }
                 else //both values are not null use .Equals...
-                {
                     objectsAreEqual = propertyChangedValue.Equals(prevPropertyValue);
-                }
             }
             if (!objectsAreEqual)
             {
                 //Here we do property change validation if false is returned we will reset the value
                 //Back to its mirrored value and return out of the property change w/o updating the repository...
-                if (PropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
+                if (ExecutableProgramPropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
                 {
                     Update(SelectedExecutableProgram);
                     //set the mirrored objects field...
                     SelectedExecutableProgramMirror.SetPropertyValue(e.PropertyName, propertyChangedValue);
+                    SelectedExecutableProgramMirror.IsValid = SelectedExecutableProgram.IsValid;
+                    SelectedExecutableProgramMirror.IsExpanded = SelectedExecutableProgram.IsExpanded;
+                    SelectedExecutableProgramMirror.NotValidMessage = SelectedExecutableProgram.NotValidMessage;
                 }
                 else
-                {//revert back to its previous value... 
+                {
                     SelectedExecutableProgram.SetPropertyValue(e.PropertyName, prevPropertyValue);
-                    return;
+                    SelectedExecutableProgram.IsValid = SelectedExecutableProgramMirror.IsValid;
+                    SelectedExecutableProgram.IsExpanded = SelectedExecutableProgramMirror.IsExpanded;
+                    SelectedExecutableProgram.NotValidMessage = SelectedExecutableProgramMirror.NotValidMessage;
                 }
             }
         }
@@ -443,138 +429,162 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 
         #region Methods
         #region ViewModel Logic Methods
-
         private void ChangeKeyLogic()
         {
-            string errorMessage = "";
-            if (KeyChangeIsValid(SelectedExecutableProgram.ExecutableProgramID, out errorMessage))
-            {
-                //check to see if key is part of the current executableProgramlist...
-                ExecutableProgram query = ExecutableProgramList.Where(executableProgram => executableProgram.ExecutableProgramID == SelectedExecutableProgram.ExecutableProgramID &&
-                                                        executableProgram.AutoID != SelectedExecutableProgram.AutoID).FirstOrDefault();
+            if (!string.IsNullOrEmpty(SelectedExecutableProgram.ExecutableProgramID))
+            {//check to see if key is part of the current companylist...
+                ExecutableProgram query = ExecutableProgramList.Where(company => company.ExecutableProgramID == SelectedExecutableProgram.ExecutableProgramID &&
+                                                        company.AutoID != SelectedExecutableProgram.AutoID).SingleOrDefault();
                 if (query != null)
-                {//change to the newly selected executableProgram...
+                {//revert it back
+                    SelectedExecutableProgram.ExecutableProgramID = SelectedExecutableProgramMirror.ExecutableProgramID;
+                    //change to the newly selected company...
                     SelectedExecutableProgram = query;
                     return;
                 }
                 //it is not part of the existing list try to fetch it from the db...
-                ExecutableProgramList = GetExecutableProgramByID(SelectedExecutableProgram.ExecutableProgramID, ClientSessionSingleton.Instance.CompanyID);
-                if (ExecutableProgramList.Count == 0)
-                {//it was not found do new record required logic...
+                ExecutableProgramList = GetExecutableProgramByID(SelectedExecutableProgram.ExecutableProgramID, XERP.Client.ClientSessionSingleton.Instance.CompanyID);
+                if (ExecutableProgramList.Count == 0)//it was not found do new record required logic...
                     NotifyNewRecordNeeded("Record " + SelectedExecutableProgram.ExecutableProgramID + " Does Not Exist.  Create A New Record?");
-                }
                 else
-                {
                     SelectedExecutableProgram = ExecutableProgramList.FirstOrDefault();
-                }
             }
             else
             {
+                string errorMessage = "ID Is Required.";
                 NotifyMessage(errorMessage);
                 //revert back to the value it was before it was changed...
                 if (SelectedExecutableProgram.ExecutableProgramID != SelectedExecutableProgramMirror.ExecutableProgramID)
-                {
                     SelectedExecutableProgram.ExecutableProgramID = SelectedExecutableProgramMirror.ExecutableProgramID;
-                }
             }
         }
         //XERP allows for bulk updates we only allow save
         //if all bulk update requirements are met...
         private bool CommitIsAllowed()
-        {
-            string errorMessage = "";
-            bool rBool = true;
-            Dirty = false;
-            foreach (ExecutableProgram executableProgram in ExecutableProgramList)
-            {
-                EntityStates entityState = GetExecutableProgramState(executableProgram);
-                if (entityState == EntityStates.Modified || 
-                    entityState == EntityStates.Detached)
-                {
-                    Dirty = true;
-                }
-                if (entityState == EntityStates.Added)
-                {
-                    Dirty = true;
-                    //only one record can be added at a time...
-                    if (NewKeyIsValid(executableProgram, out errorMessage) == false)
-                    {
-                        rBool = false;
-                    }
-                }
-                if (NameIsValid(executableProgram.Name, out errorMessage) == false)
-                {
-                    rBool = false;
-                }
-            }
-            //more bulk validation as required...
-            //note bulk validation should coincide with property validation...
-            //as we will not allow a commit until all data is valid...
-            return rBool;
+        {//Check for any repository changes that are not yet committed to the db...
+            Dirty = RepositoryIsDirty();
+            //check for any invalid rows...
+            int count = (from q in ExecutableProgramList where q.IsValid == 1 select q).Count();
+            if (count > 0)
+                return false;
+            return true;
         }
 
-        private bool PropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        private void SetAsEmptySelection()
         {
-            string errorMessage;
+            SelectedExecutableProgram = new ExecutableProgram();
+            AllowEdit = false;
+            AllowDelete = false;
+            Dirty = false;
+            AllowCommit = false;
+            AllowRowCopy = false;
+        }
+
+        public void ClearLogic()
+        {
+            ExecutableProgramList.Clear();
+            SetAsEmptySelection();
+        }
+
+        private bool ExecutableProgramPropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        {
+            string errorMessage = "";
             bool rBool = true;
             switch (propertyName)
             {
                 case "ExecutableProgramID":
-                    rBool = NewKeyIsValid(SelectedExecutableProgram, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
+                    rBool = ExecutableProgramIsValid(SelectedExecutableProgram, _executableProgramValidationProperties.ExecutableProgramID, out errorMessage);
                     break;
                 case "Name":
-                    rBool = NameIsValid(changedValue, out errorMessage);
-                    if (rBool == false)
+                    rBool = ExecutableProgramIsValid(SelectedExecutableProgram, _executableProgramValidationProperties.Name, out errorMessage);
+                    break;
+            }
+            if (rBool == false)
+            {//here we give a specific error to the specific change
+                NotifyMessage(errorMessage);
+                SelectedExecutableProgram.IsValid = 1;
+            }
+            else //check the enire rows validity...
+            {//here we check the entire row for validity the property change may be valid
+                //but we still do not know if the entire row is valid...
+                //if the row is valid we will set it to 2 (pending changes...)
+                //on the commit we will set it to 0 and it will be valid and saved to the db...
+                SelectedExecutableProgram.IsValid = ExecutableProgramIsValid(SelectedExecutableProgram, out errorMessage);
+                if (SelectedExecutableProgram.IsValid == 2)
+                    errorMessage = "Pending Changes...";
+            }
+            SelectedExecutableProgram.NotValidMessage = errorMessage;
+            return rBool;
+        }
+
+        #region Validation Methods
+        //XERP Validation is done by the entire object or by Object property...
+        //So we must be sure to add the validation in both places...
+        private enum _executableProgramValidationProperties
+        {//we list all fields that require validation...
+            ExecutableProgramID,
+            Name
+        }
+
+        //Object.Property Scope Validation...
+        private bool ExecutableProgramIsValid(ExecutableProgram item, _executableProgramValidationProperties validationProperties, out string errorMessage)
+        {
+            errorMessage = "";
+            switch (validationProperties)
+            {
+                case _executableProgramValidationProperties.ExecutableProgramID:
+                    //validate key
+                    if (string.IsNullOrEmpty(item.ExecutableProgramID))
                     {
-                        NotifyMessage(errorMessage);
-                        return rBool;
+                        errorMessage = "ID Is Required.";
+                        return false;
+                    }
+                    EntityStates entityState = GetExecutableProgramState(item);
+                    if (entityState == EntityStates.Added && ExecutableProgramExists(item.ExecutableProgramID))
+                    {
+                        errorMessage = "Item AllReady Exists...";
+                        return false;
+                    }
+                    break;
+                case _executableProgramValidationProperties.Name:
+                    //validate Description
+                    if (string.IsNullOrEmpty(item.Name))
+                    {
+                        errorMessage = "Description Is Required.";
+                        return false;
                     }
                     break;
             }
             return true;
         }
-
-        private bool NewKeyIsValid(ExecutableProgram executableProgram, out string errorMessage)
-        {
+        //ExecutableProgram Object Scope Validation check the entire object for validity...
+        private byte ExecutableProgramIsValid(ExecutableProgram item, out string errorMessage)
+        {   //validate key
             errorMessage = "";
-            if (KeyChangeIsValid(executableProgram.ExecutableProgramID, out errorMessage) == false)
+            if (string.IsNullOrEmpty(item.ExecutableProgramID))
             {
-                return false;
+                errorMessage = "ID Is Required.";
+                return 1;
             }
-            if (ExecutableProgramExists(executableProgram.ExecutableProgramID.ToString()))
+            EntityStates entityState = GetExecutableProgramState(item);
+            if (entityState == EntityStates.Added && ExecutableProgramExists(item.ExecutableProgramID))
             {
-                errorMessage = "ExecutableProgramID " + executableProgram.ExecutableProgramID + " Allready Exists...";
-                return false;
+                errorMessage = "Item AllReady Exists.";
+                return 1;
             }
-            return true;
-        }
 
-        private bool KeyChangeIsValid(object executableProgramID, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)executableProgramID))
+            //validate Description
+            if (string.IsNullOrEmpty(item.Name))
             {
-                errorMessage = "ExecutableProgramID Is Required...";
-                return false;
+                errorMessage = "Name Is Required.";
+                return 1;
             }
-            return true;
+            //a value of 2 is pending changes...
+            //On Commit we will give it a value of 0...
+            return 2;
         }
+        #endregion Validation Methods
 
-        private bool NameIsValid(object value, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)value))
-            {
-                errorMessage = "Name Is Required...";
-                return false;
-            }
-            return true;
-        }
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
@@ -598,25 +608,26 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             return new ObservableCollection<ExecutableProgramCode>(list);
         }
 
-        private EntityStates GetExecutableProgramState(ExecutableProgram executableProgram)
+        private EntityStates GetExecutableProgramState(ExecutableProgram item)
         {
-            return _serviceAgent.GetExecutableProgramEntityState(executableProgram);
+            return _serviceAgent.GetExecutableProgramEntityState(item);
+        }
+
+        private bool RepositoryIsDirty()
+        {
+            return _serviceAgent.ExecutableProgramRepositoryIsDirty();
         }
 
         #region ExecutableProgram CRUD
         private void Refresh()
-        {
-
-            //refetch current records...
+        {//refetch current records...
             long selectedAutoID = SelectedExecutableProgram.AutoID;
             string autoIDs = "";
             //bool isFirstItem = true;
-            foreach (ExecutableProgram executableProgram in ExecutableProgramList)
+            foreach (ExecutableProgram item in ExecutableProgramList)
             {//auto seeded starts at 1 any records at 0 or less or not valid records...
-                if (executableProgram.AutoID > 0)
-                {
-                    autoIDs = autoIDs + executableProgram.AutoID.ToString() + ",";
-                }
+                if (item.AutoID > 0)
+                    autoIDs = autoIDs + item.AutoID.ToString() + ",";
             }
             if(autoIDs.Length > 0)
             {
@@ -626,7 +637,6 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 SelectedExecutableProgram = (from q in ExecutableProgramList
                                    where q.AutoID == selectedAutoID
                                    select q).SingleOrDefault();
-
                 Dirty = false;
                 AllowCommit = false;
             }
@@ -634,72 +644,85 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 
         private BindingList<ExecutableProgram> GetExecutablePrograms(string companyID)
         {
-            BindingList<ExecutableProgram> executableProgramList = new BindingList<ExecutableProgram>(_serviceAgent.GetExecutablePrograms(companyID).ToList());
+            BindingList<ExecutableProgram> itemList = new BindingList<ExecutableProgram>(_serviceAgent.GetExecutablePrograms(companyID).ToList());
             Dirty = false;
             AllowCommit = false;
-            return executableProgramList; 
+            return itemList; 
         }
 
-        private BindingList<ExecutableProgram> GetExecutablePrograms(ExecutableProgram executableProgram, string companyID)
+        private BindingList<ExecutableProgram> GetExecutablePrograms(ExecutableProgram item, string companyID)
         {
-            BindingList<ExecutableProgram> executableProgramList = new BindingList<ExecutableProgram>(_serviceAgent.GetExecutablePrograms(executableProgram, companyID).ToList());
+            BindingList<ExecutableProgram> itemList = new BindingList<ExecutableProgram>(_serviceAgent.GetExecutablePrograms(item, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
-            return executableProgramList;
+            return itemList;
         }
 
-        private BindingList<ExecutableProgram> GetExecutableProgramByID(string executableProgramID, string companyID)
+        private BindingList<ExecutableProgram> GetExecutableProgramByID(string itemID, string companyID)
         {
-            BindingList<ExecutableProgram> executableProgramList = new BindingList<ExecutableProgram>(_serviceAgent.GetExecutableProgramByID(executableProgramID, companyID).ToList());
+            BindingList<ExecutableProgram> itemList = new BindingList<ExecutableProgram>(_serviceAgent.GetExecutableProgramByID(itemID, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
-            return executableProgramList; 
+            return itemList; 
         }
 
-        private bool ExecutableProgramExists(string executableProgramID)
+        private bool ExecutableProgramExists(string itemID)
         {
-            return _serviceAgent.ExecutableProgramExists(executableProgramID, ClientSessionSingleton.Instance.CompanyID);
+            return _serviceAgent.ExecutableProgramExists(itemID, ClientSessionSingleton.Instance.CompanyID);
         }
         //udpate merely updates the repository a commit is required 
         //to commit it to the db...
-        private bool Update(ExecutableProgram executableProgram)
+        private bool Update(ExecutableProgram item)
         {
-            _serviceAgent.UpdateExecutableProgramRepository(executableProgram);
+            _serviceAgent.UpdateExecutableProgramRepository(item);
             Dirty = true;
             if (CommitIsAllowed())
-            {
                 AllowCommit = true;
-                return true;
-            }
             else
-            {
                 AllowCommit = false;
-                return false;
-            }
+            return AllowCommit;
         }
+
         //commits repository to the db...
         private bool Commit()
-        {
+        {   //search non respository UI list for pending saved marked records and mark them as valid...
+            var items = (from q in ExecutableProgramList where q.IsValid == 2 select q).ToList();
+            foreach (ExecutableProgram item in items)
+            {
+                item.IsValid = 0;
+                item.NotValidMessage = null;
+            }
             _serviceAgent.CommitExecutableProgramRepository();
             Dirty = false;
             AllowCommit = false;
             return true;
         }
 
-        private bool Delete(ExecutableProgram executableProgram)
+
+        private bool Delete(ExecutableProgram item)
         {//deletes are done indenpendently of the repository as a delete will not commit 
             //dirty records it will simply just delete the record...
-            _serviceAgent.DeleteFromExecutableProgramRepository(executableProgram);
+            _serviceAgent.DeleteFromExecutableProgramRepository(item);
             return true;
         }
 
-        private bool NewExecutableProgram(string executableProgramID)
+        private bool NewExecutableProgram(string itemID)
         {
-            ExecutableProgram executableProgram = new ExecutableProgram();
-            executableProgram.ExecutableProgramID = executableProgramID;
-            executableProgram.CompanyID = ClientSessionSingleton.Instance.CompanyID;
-            ExecutableProgramList.Add(executableProgram);
-            _serviceAgent.AddToExecutableProgramRepository(executableProgram);
+            ExecutableProgram newItem = new ExecutableProgram();
+            //all new records will be give a negative int autoid...
+            //when they are updated then sql will generate one for them overiding this set value...
+            //it will allow us to give uniqueness to the tempory new records...
+            //Before they are updated to the entity and given an autoid...
+            //we use a negative number and keep subtracting by 1 for each new item added...
+            //This will allow it to alwasy be unique and never interfere with SQL's positive autoid...
+            _newExecutableProgramAutoId = _newExecutableProgramAutoId - 1;
+            newItem.AutoID = _newExecutableProgramAutoId;
+            newItem.ExecutableProgramID = itemID;
+            newItem.CompanyID = ClientSessionSingleton.Instance.CompanyID;
+            newItem.IsValid = 1;
+            newItem.NotValidMessage = "New Record Key Field/s Are Required.";
+            ExecutableProgramList.Add(newItem);
+            _serviceAgent.AddToExecutableProgramRepository(newItem);
             SelectedExecutableProgram = ExecutableProgramList.LastOrDefault();
 
             AllowEdit = true;
@@ -707,25 +730,9 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             return true;
         }
 
+
         #endregion ExecutableProgram CRUD
         #endregion ServiceAgent Call Methods
-
-        private void SetAsEmptySelection()
-        {
-            SelectedExecutableProgram = new ExecutableProgram();
-            AllowEdit = false;
-            AllowDelete = false;
-            Dirty = false;
-            AllowCommit = false;
-            AllowRowCopy = false;
-        }
-
-        public void ClearLogic()
-        {
-            ExecutableProgramList.Clear();
-            SetAsEmptySelection();
-        }
-
         #endregion Methods
 
         #region Commands
@@ -746,7 +753,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewExecutableProgramCommand(""); //this will generate a new executableProgram and set it as the selected executableProgram...
+                    NewExecutableProgramCommand(""); //this will generate a new item and set it as the selected item...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -768,50 +775,61 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             if (GetExecutableProgramState(SelectedExecutableProgram) != EntityStates.Detached)
             {
                 if (Update(SelectedExecutableProgram))
-                {
                     Commit();
-                }
-                else
-                {//this should not be hit but just in case we will catch it and then see 
-                    //if and where we have a hole in our allowcommit logic...
+                else//if and where we have a hole in our allowcommit logic...
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
-                }
             }
         }
         public void RefreshCommand()
         {
             Refresh();
         }
-        public void DeleteCommand()
+        public void DeleteExecutableProgramCommand()
         {
-            int i = 0;
-            bool isFirstDelete = true;
-            for (int j = SelectedExecutableProgramList.Count - 1; j >= 0; j--)
+            try
             {
-                ExecutableProgram executableProgram = (ExecutableProgram)SelectedExecutableProgramList[j];
-                if (isFirstDelete)
-                {//the result of this will be the record directly before the selected records...
-                    i = ExecutableProgramList.IndexOf(executableProgram) - SelectedExecutableProgramList.Count;
-                }
-                
-                Delete(executableProgram);
-                ExecutableProgramList.Remove(executableProgram);
-            }
-
-            if (ExecutableProgramList != null && ExecutableProgramList.Count > 0)
-            {
-                //if they delete the first row...
-                if (i < 0)
+                int i = 0;
+                int ii = 0;
+                for (int j = SelectedExecutableProgramList.Count - 1; j >= 0; j--)
                 {
-                    i = 0;
+                    ExecutableProgram item = (ExecutableProgram)SelectedExecutableProgramList[j];
+                    //get Max Index...
+                    i = ExecutableProgramList.IndexOf(item);
+                    if (i > ii)
+                        ii = i;
+                    Delete(item);
+                    ExecutableProgramList.Remove(item);
                 }
-                SelectedExecutableProgram = ExecutableProgramList[i];
-                AllowCommit = CommitIsAllowed();
+
+                if (ExecutableProgramList != null && ExecutableProgramList.Count > 0)
+                {
+                    //back off one index from the max index...
+                    ii = ii - 1;
+
+                    //if they delete the first row...
+                    if (ii < 0)
+                        ii = 0;
+
+                    //make sure it does not exceed the list count...
+                    if (ii >= ExecutableProgramList.Count())
+                        ii = ExecutableProgramList.Count - 1;
+
+                    SelectedExecutableProgram = ExecutableProgramList[ii];
+                    //we will only enable committ for dirty validated records...
+                    if (Dirty == true)
+                        AllowCommit = CommitIsAllowed();
+                    else
+                        AllowCommit = false;
+                }
+                else//only one record, deleting will result in no records...
+                    SetAsEmptySelection();
+            }//we try catch company delete as it may be used in another table as a key...
+            //As well we will force a refresh to sqare up the UI after the botched delete...
+            catch
+            {
+                NotifyMessage("ExecutableProgram/s Can Not Be Deleted.  Contact XERP Admin For More Details.");
+                Refresh();
             }
-            else
-            {//only one record, deleting will result in no records...
-                SetAsEmptySelection();
-            }  
         }
 
         public void NewExecutableProgramCommand()
@@ -820,40 +838,29 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             AllowCommit = false;
         }
 
-        public void NewExecutableProgramCommand(string executableProgramID)
+        public void NewExecutableProgramCommand(string itemID)
         {
-            NewExecutableProgram(executableProgramID);
-            if (string.IsNullOrEmpty(executableProgramID))
-            {//don't allow a save until a executableProgramID is provided...
+            NewExecutableProgram(itemID);
+            if (string.IsNullOrEmpty(itemID))//don't allow a save until a itemID is provided...
                 AllowCommit = false;
-            }
-            {
+            else
                 AllowCommit = CommitIsAllowed();
-            }
         }
 
         public void ClearCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
-            }
             else
-            {
                 ClearLogic();
-            }  
         }
 
         public void SearchCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
-            }
             else
-            {
-                SearchLogic(); 
-            }   
+                SearchLogic();  
         }
 
         private void SearchLogic()
@@ -883,9 +890,8 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         private void OnTypeSearchResult(object sender, NotificationEventArgs<BindingList<ExecutableProgramType>> e)
         {
             if (e.Data != null && e.Data.Count > 0)
-            {
                 SelectedExecutableProgram.ExecutableProgramTypeID = e.Data.FirstOrDefault().ExecutableProgramTypeID;
-            }
+
             UnregisterToReceiveMessages<BindingList<ExecutableProgramType>>(MessageTokens.ExecutableProgramTypeSearchToken.ToString(), OnTypeSearchResult);
         }
 
@@ -898,41 +904,26 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         private void OnCodeSearchResult(object sender, NotificationEventArgs<BindingList<ExecutableProgramCode>> e)
         {
             if (e.Data != null && e.Data.Count > 0)
-            {
                 SelectedExecutableProgram.ExecutableProgramCodeID = e.Data.FirstOrDefault().ExecutableProgramCodeID;
-            }
+
             UnregisterToReceiveMessages<BindingList<ExecutableProgramType>>(MessageTokens.ExecutableProgramTypeSearchToken.ToString(), OnTypeSearchResult);
         }
         
         #endregion Commands
 
-        #region Completion Callbacks
-
-        // TODO: Optionally add callback methods for async calls to the service agent
-
-        #endregion Completion Callbacks
-
         #region Helpers
-        //notify the view that a new record was created...
-        //allows us to set focus to key field...
-        //private void NotifyNewRecordCreated()
-        //{
-        //    Notify(NewRecordCreatedNotice, new NotificationEventArgs());
-        //}
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
         private void NotifyMessage(string message)
-        {
-            // Notify view of an error message w/o throwing an error...
+        {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
         }
-        //Notify view to launch search...
+        
         private void NotifySearch(string message)
-        {
+        {//Notify view to launch search...
             Notify(SearchNotice, new NotificationEventArgs(message));
         }
 
@@ -946,9 +937,8 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             Notify(CodeSearchNotice, new NotificationEventArgs(message));
         }
 
-        //Notify view new record may be required...
         private void NotifyNewRecordNeeded(string message)
-        {
+        {//Notify view new record may be required...
             Notify(NewRecordNeededNotice, new NotificationEventArgs<bool, MessageBoxResult>
             (message, true, result => { OnNewRecordNeededResult(result); }));
         }
@@ -1019,45 +1009,31 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-
     public static partial class XERPExtensions
     {
         public static object GetPropertyValue(this ExecutableProgram myObj, string propertyName)
         {
             var propInfo = typeof(ExecutableProgram).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.GetValue(myObj, null);
-            }
             else
-            {
                 return string.Empty;
-            }
         }
 
         public static string GetPropertyType(this ExecutableProgram myObj, string propertyName)
         {
             var propInfo = typeof(ExecutableProgram).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.PropertyType.Name.ToString();
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static void SetPropertyValue(this ExecutableProgram myObj, object propertyName, object propertyValue)
         {
             var propInfo = typeof(ExecutableProgram).GetProperty((string)propertyName);
-
             if (propInfo != null)
-            {
                 propInfo.SetValue(myObj, propertyValue, null);
-            }
         }
     }
 }

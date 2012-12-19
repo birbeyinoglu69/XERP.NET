@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0E639783-C5B6-4428-8265-38D8763CE33B}</ProjectGuid>
+    <ProjectGuid>{62FFC372-7274-4698-A4C5-746A335D40FD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XERP.Client.WPF.ExecutableProgramMaintenance</RootNamespace>

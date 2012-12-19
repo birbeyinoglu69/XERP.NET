@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.ComponentModel;
-
-// Toolkit namespace
+using System.Linq;
 using SimpleMvvmToolkit;
-
-// Toolkit extension methods
-//XERP namespace
 using XERP.Domain.AddressDomain.AddressDataService;
 using XERP.Domain.AddressDomain.Services;
 
@@ -21,8 +16,7 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
         private GlobalProperties _globalProperties = new GlobalProperties();
         private IAddressServiceAgent _serviceAgent;
 
-        public MainSearchViewModel()
-        { }
+        public MainSearchViewModel(){}
 
         public MainSearchViewModel(IAddressServiceAgent serviceAgent)
         {
@@ -32,33 +26,23 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
             ResultList = new BindingList<Address>();
             SelectedList = new BindingList<Address>();
             //make sure of session authentication...
-            if (ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (ClientSessionSingleton.Instance.SessionIsAuthentic) //make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
                 FormIsEnabled = false;
-                //we will do forms authentication once the log in returns a valid System User...
             }
         }
         #endregion Initialization and Cleanup
 
         #region Authentication
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -70,9 +54,8 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
         #endregion Authentication
@@ -89,10 +72,7 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
             Notify(AuthenticatedNotice, new NotificationEventArgs());
         }
 
-
         #region Properties
-        
-
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
         {
@@ -145,9 +125,9 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
             return new BindingList<Address>(_serviceAgent.GetAddresses(companyID).ToList());
         }
 
-        private BindingList<Address> GetAddresses(Address addressQueryObject, string companyID)
+        private BindingList<Address> GetAddresses(Address itemQueryObject, string companyID)
         {//note this get is to the singleton repository...
-            return new BindingList<Address>(_serviceAgent.GetAddresses(addressQueryObject, companyID).ToList());
+            return new BindingList<Address>(_serviceAgent.GetAddresses(itemQueryObject, companyID).ToList());
         }
         #endregion Methods
 
@@ -175,8 +155,7 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
         #region Helpers
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
 

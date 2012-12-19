@@ -26,6 +26,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupCodes", "SecurityGroupCode", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupCode), "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroupType), "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), true)]
 [assembly: EdmRelationshipAttribute("XERPModel", "FK_UdListItem_UdList", "UdList", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.UdList), "UdListItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.UdListItem), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UserSecurity_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.Company), "SystemUserSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SystemUserSecurity), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UserSecurity_SecurityGroup", "SecurityGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.SecurityGroup), "SystemUserSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SystemUserSecurity), true)]
+[assembly: EdmRelationshipAttribute("XERPModel", "FK_UserSecurity_SystemUser", "SystemUser", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(XERP.Server.DAL.SecurityGroupDAL.SystemUser), "SystemUserSecurity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(XERP.Server.DAL.SecurityGroupDAL.SystemUserSecurity), true)]
 
 #endregion
 
@@ -188,6 +191,38 @@ namespace XERP.Server.DAL.SecurityGroupDAL
             }
         }
         private ObjectSet<UdList> _UdLists;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SystemUser> SystemUsers
+        {
+            get
+            {
+                if ((_SystemUsers == null))
+                {
+                    _SystemUsers = base.CreateObjectSet<SystemUser>("SystemUsers");
+                }
+                return _SystemUsers;
+            }
+        }
+        private ObjectSet<SystemUser> _SystemUsers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SystemUserSecurity> SystemUserSecurities
+        {
+            get
+            {
+                if ((_SystemUserSecurities == null))
+                {
+                    _SystemUserSecurities = base.CreateObjectSet<SystemUserSecurity>("SystemUserSecurities");
+                }
+                return _SystemUserSecurities;
+            }
+        }
+        private ObjectSet<SystemUserSecurity> _SystemUserSecurities;
 
         #endregion
         #region AddTo Methods
@@ -246,6 +281,22 @@ namespace XERP.Server.DAL.SecurityGroupDAL
         public void AddToUdLists(UdList udList)
         {
             base.AddObject("UdLists", udList);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SystemUsers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSystemUsers(SystemUser systemUser)
+        {
+            base.AddObject("SystemUsers", systemUser);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SystemUserSecurities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSystemUserSecurities(SystemUserSecurity systemUserSecurity)
+        {
+            base.AddObject("SystemUserSecurities", systemUserSecurity);
         }
 
         #endregion
@@ -1118,6 +1169,28 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UserSecurity_Company", "SystemUserSecurity")]
+        public EntityCollection<SystemUserSecurity> SystemUserSecurities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SystemUserSecurity>("XERPModel.FK_UserSecurity_Company", "SystemUserSecurity");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SystemUserSecurity>("XERPModel.FK_UserSecurity_Company", "SystemUserSecurity", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -1630,6 +1703,28 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroupType>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroupType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UserSecurity_SecurityGroup", "SystemUserSecurity")]
+        public EntityCollection<SystemUserSecurity> SystemUserSecurities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SystemUserSecurity>("XERPModel.FK_UserSecurity_SecurityGroup", "SystemUserSecurity");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SystemUserSecurity>("XERPModel.FK_UserSecurity_SecurityGroup", "SystemUserSecurity", value);
                 }
             }
         }
@@ -2360,6 +2455,968 @@ namespace XERP.Server.DAL.SecurityGroupDAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SecurityGroup>("XERPModel.FK_SecurityGroups_SecurityGroupTypes", "SecurityGroup", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="XERPModel", Name="SystemUser")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SystemUser : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SystemUser object.
+        /// </summary>
+        /// <param name="systemUserID">Initial value of the SystemUserID property.</param>
+        /// <param name="autoID">Initial value of the AutoID property.</param>
+        public static SystemUser CreateSystemUser(global::System.String systemUserID, global::System.Int64 autoID)
+        {
+            SystemUser systemUser = new SystemUser();
+            systemUser.SystemUserID = systemUserID;
+            systemUser.AutoID = autoID;
+            return systemUser;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SystemUserID
+        {
+            get
+            {
+                return _SystemUserID;
+            }
+            set
+            {
+                if (_SystemUserID != value)
+                {
+                    OnSystemUserIDChanging(value);
+                    ReportPropertyChanging("SystemUserID");
+                    _SystemUserID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("SystemUserID");
+                    OnSystemUserIDChanged();
+                }
+            }
+        }
+        private global::System.String _SystemUserID;
+        partial void OnSystemUserIDChanging(global::System.String value);
+        partial void OnSystemUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Password
+        {
+            get
+            {
+                return _Password;
+            }
+            set
+            {
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
+            }
+        }
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SystemUserTypeID
+        {
+            get
+            {
+                return _SystemUserTypeID;
+            }
+            set
+            {
+                OnSystemUserTypeIDChanging(value);
+                ReportPropertyChanging("SystemUserTypeID");
+                _SystemUserTypeID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SystemUserTypeID");
+                OnSystemUserTypeIDChanged();
+            }
+        }
+        private global::System.String _SystemUserTypeID;
+        partial void OnSystemUserTypeIDChanging(global::System.String value);
+        partial void OnSystemUserTypeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SystemUserCodeID
+        {
+            get
+            {
+                return _SystemUserCodeID;
+            }
+            set
+            {
+                OnSystemUserCodeIDChanging(value);
+                ReportPropertyChanging("SystemUserCodeID");
+                _SystemUserCodeID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SystemUserCodeID");
+                OnSystemUserCodeIDChanged();
+            }
+        }
+        private global::System.String _SystemUserCodeID;
+        partial void OnSystemUserCodeIDChanging(global::System.String value);
+        partial void OnSystemUserCodeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Active
+        {
+            get
+            {
+                return _Active;
+            }
+            set
+            {
+                OnActiveChanging(value);
+                ReportPropertyChanging("Active");
+                _Active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Active");
+                OnActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Active;
+        partial void OnActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EmailAddress
+        {
+            get
+            {
+                return _EmailAddress;
+            }
+            set
+            {
+                OnEmailAddressChanging(value);
+                ReportPropertyChanging("EmailAddress");
+                _EmailAddress = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("EmailAddress");
+                OnEmailAddressChanged();
+            }
+        }
+        private global::System.String _EmailAddress;
+        partial void OnEmailAddressChanging(global::System.String value);
+        partial void OnEmailAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> PasswordExpired
+        {
+            get
+            {
+                return _PasswordExpired;
+            }
+            set
+            {
+                OnPasswordExpiredChanging(value);
+                ReportPropertyChanging("PasswordExpired");
+                _PasswordExpired = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PasswordExpired");
+                OnPasswordExpiredChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _PasswordExpired;
+        partial void OnPasswordExpiredChanging(Nullable<global::System.Boolean> value);
+        partial void OnPasswordExpiredChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> PasswordExpiresOn
+        {
+            get
+            {
+                return _PasswordExpiresOn;
+            }
+            set
+            {
+                OnPasswordExpiresOnChanging(value);
+                ReportPropertyChanging("PasswordExpiresOn");
+                _PasswordExpiresOn = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PasswordExpiresOn");
+                OnPasswordExpiresOnChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _PasswordExpiresOn;
+        partial void OnPasswordExpiresOnChanging(Nullable<global::System.DateTime> value);
+        partial void OnPasswordExpiresOnChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> SystemManager
+        {
+            get
+            {
+                return _SystemManager;
+            }
+            set
+            {
+                OnSystemManagerChanging(value);
+                ReportPropertyChanging("SystemManager");
+                _SystemManager = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SystemManager");
+                OnSystemManagerChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _SystemManager;
+        partial void OnSystemManagerChanging(Nullable<global::System.Boolean> value);
+        partial void OnSystemManagerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DefaultCompanyID
+        {
+            get
+            {
+                return _DefaultCompanyID;
+            }
+            set
+            {
+                OnDefaultCompanyIDChanging(value);
+                ReportPropertyChanging("DefaultCompanyID");
+                _DefaultCompanyID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DefaultCompanyID");
+                OnDefaultCompanyIDChanged();
+            }
+        }
+        private global::System.String _DefaultCompanyID;
+        partial void OnDefaultCompanyIDChanging(global::System.String value);
+        partial void OnDefaultCompanyIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DefaultPlantID
+        {
+            get
+            {
+                return _DefaultPlantID;
+            }
+            set
+            {
+                OnDefaultPlantIDChanging(value);
+                ReportPropertyChanging("DefaultPlantID");
+                _DefaultPlantID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DefaultPlantID");
+                OnDefaultPlantIDChanged();
+            }
+        }
+        private global::System.String _DefaultPlantID;
+        partial void OnDefaultPlantIDChanging(global::System.String value);
+        partial void OnDefaultPlantIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AddressID
+        {
+            get
+            {
+                return _AddressID;
+            }
+            set
+            {
+                OnAddressIDChanging(value);
+                ReportPropertyChanging("AddressID");
+                _AddressID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AddressID");
+                OnAddressIDChanged();
+            }
+        }
+        private global::System.String _AddressID;
+        partial void OnAddressIDChanging(global::System.String value);
+        partial void OnAddressIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] Image
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_Image);
+            }
+            set
+            {
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
+            }
+        }
+        private global::System.Byte[] _Image;
+        partial void OnImageChanging(global::System.Byte[] value);
+        partial void OnImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 AutoID
+        {
+            get
+            {
+                return _AutoID;
+            }
+            set
+            {
+                OnAutoIDChanging(value);
+                ReportPropertyChanging("AutoID");
+                _AutoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AutoID");
+                OnAutoIDChanged();
+            }
+        }
+        private global::System.Int64 _AutoID;
+        partial void OnAutoIDChanging(global::System.Int64 value);
+        partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UserSecurity_SystemUser", "SystemUserSecurity")]
+        public EntityCollection<SystemUserSecurity> SystemUserSecurities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SystemUserSecurity>("XERPModel.FK_UserSecurity_SystemUser", "SystemUserSecurity");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SystemUserSecurity>("XERPModel.FK_UserSecurity_SystemUser", "SystemUserSecurity", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="XERPModel", Name="SystemUserSecurity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SystemUserSecurity : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SystemUserSecurity object.
+        /// </summary>
+        /// <param name="companyID">Initial value of the CompanyID property.</param>
+        /// <param name="systemUserID">Initial value of the SystemUserID property.</param>
+        /// <param name="securityGroupID">Initial value of the SecurityGroupID property.</param>
+        /// <param name="autoID">Initial value of the AutoID property.</param>
+        public static SystemUserSecurity CreateSystemUserSecurity(global::System.String companyID, global::System.String systemUserID, global::System.String securityGroupID, global::System.Int64 autoID)
+        {
+            SystemUserSecurity systemUserSecurity = new SystemUserSecurity();
+            systemUserSecurity.CompanyID = companyID;
+            systemUserSecurity.SystemUserID = systemUserID;
+            systemUserSecurity.SecurityGroupID = securityGroupID;
+            systemUserSecurity.AutoID = autoID;
+            return systemUserSecurity;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CompanyID
+        {
+            get
+            {
+                return _CompanyID;
+            }
+            set
+            {
+                if (_CompanyID != value)
+                {
+                    OnCompanyIDChanging(value);
+                    ReportPropertyChanging("CompanyID");
+                    _CompanyID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CompanyID");
+                    OnCompanyIDChanged();
+                }
+            }
+        }
+        private global::System.String _CompanyID;
+        partial void OnCompanyIDChanging(global::System.String value);
+        partial void OnCompanyIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SystemUserID
+        {
+            get
+            {
+                return _SystemUserID;
+            }
+            set
+            {
+                if (_SystemUserID != value)
+                {
+                    OnSystemUserIDChanging(value);
+                    ReportPropertyChanging("SystemUserID");
+                    _SystemUserID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("SystemUserID");
+                    OnSystemUserIDChanged();
+                }
+            }
+        }
+        private global::System.String _SystemUserID;
+        partial void OnSystemUserIDChanging(global::System.String value);
+        partial void OnSystemUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SecurityGroupID
+        {
+            get
+            {
+                return _SecurityGroupID;
+            }
+            set
+            {
+                if (_SecurityGroupID != value)
+                {
+                    OnSecurityGroupIDChanging(value);
+                    ReportPropertyChanging("SecurityGroupID");
+                    _SecurityGroupID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("SecurityGroupID");
+                    OnSecurityGroupIDChanged();
+                }
+            }
+        }
+        private global::System.String _SecurityGroupID;
+        partial void OnSecurityGroupIDChanging(global::System.String value);
+        partial void OnSecurityGroupIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 AutoID
+        {
+            get
+            {
+                return _AutoID;
+            }
+            set
+            {
+                OnAutoIDChanging(value);
+                ReportPropertyChanging("AutoID");
+                _AutoID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AutoID");
+                OnAutoIDChanged();
+            }
+        }
+        private global::System.Int64 _AutoID;
+        partial void OnAutoIDChanging(global::System.Int64 value);
+        partial void OnAutoIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> IsExpanded
+        {
+            get
+            {
+                return _IsExpanded;
+            }
+            set
+            {
+                OnIsExpandedChanging(value);
+                ReportPropertyChanging("IsExpanded");
+                _IsExpanded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsExpanded");
+                OnIsExpandedChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _IsExpanded;
+        partial void OnIsExpandedChanging(Nullable<global::System.Byte> value);
+        partial void OnIsExpandedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> IsValid
+        {
+            get
+            {
+                return _IsValid;
+            }
+            set
+            {
+                OnIsValidChanging(value);
+                ReportPropertyChanging("IsValid");
+                _IsValid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsValid");
+                OnIsValidChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _IsValid;
+        partial void OnIsValidChanging(Nullable<global::System.Byte> value);
+        partial void OnIsValidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NotValidMessage
+        {
+            get
+            {
+                return _NotValidMessage;
+            }
+            set
+            {
+                OnNotValidMessageChanging(value);
+                ReportPropertyChanging("NotValidMessage");
+                _NotValidMessage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NotValidMessage");
+                OnNotValidMessageChanged();
+            }
+        }
+        private global::System.String _NotValidMessage;
+        partial void OnNotValidMessageChanging(global::System.String value);
+        partial void OnNotValidMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastModifiedBy
+        {
+            get
+            {
+                return _LastModifiedBy;
+            }
+            set
+            {
+                OnLastModifiedByChanging(value);
+                ReportPropertyChanging("LastModifiedBy");
+                _LastModifiedBy = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastModifiedBy");
+                OnLastModifiedByChanged();
+            }
+        }
+        private global::System.String _LastModifiedBy;
+        partial void OnLastModifiedByChanging(global::System.String value);
+        partial void OnLastModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedByDate
+        {
+            get
+            {
+                return _LastModifiedByDate;
+            }
+            set
+            {
+                OnLastModifiedByDateChanging(value);
+                ReportPropertyChanging("LastModifiedByDate");
+                _LastModifiedByDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedByDate");
+                OnLastModifiedByDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedByDate;
+        partial void OnLastModifiedByDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedByDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                OnIsSelectedChanging(value);
+                ReportPropertyChanging("IsSelected");
+                _IsSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsSelected");
+                OnIsSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSelected;
+        partial void OnIsSelectedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSelectedChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UserSecurity_Company", "Company")]
+        public Company Company
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UserSecurity_Company", "Company").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UserSecurity_Company", "Company").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Company> CompanyReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Company>("XERPModel.FK_UserSecurity_Company", "Company");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Company>("XERPModel.FK_UserSecurity_Company", "Company", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UserSecurity_SecurityGroup", "SecurityGroup")]
+        public SecurityGroup SecurityGroup
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("XERPModel.FK_UserSecurity_SecurityGroup", "SecurityGroup").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("XERPModel.FK_UserSecurity_SecurityGroup", "SecurityGroup").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SecurityGroup> SecurityGroupReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecurityGroup>("XERPModel.FK_UserSecurity_SecurityGroup", "SecurityGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecurityGroup>("XERPModel.FK_UserSecurity_SecurityGroup", "SecurityGroup", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("XERPModel", "FK_UserSecurity_SystemUser", "SystemUser")]
+        public SystemUser SystemUser
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SystemUser>("XERPModel.FK_UserSecurity_SystemUser", "SystemUser").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SystemUser>("XERPModel.FK_UserSecurity_SystemUser", "SystemUser").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SystemUser> SystemUserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SystemUser>("XERPModel.FK_UserSecurity_SystemUser", "SystemUser");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SystemUser>("XERPModel.FK_UserSecurity_SystemUser", "SystemUser", value);
                 }
             }
         }

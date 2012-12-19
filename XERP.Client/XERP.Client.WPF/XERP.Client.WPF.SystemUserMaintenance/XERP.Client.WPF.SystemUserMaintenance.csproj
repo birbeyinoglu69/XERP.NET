@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2D46B753-4BE0-46EA-83D2-7C2EE0F4FE48}</ProjectGuid>
+    <ProjectGuid>{8C08E523-6D1D-440E-8F6A-719B25E9899C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XERP.Client.WPF.SystemUserMaintenance</RootNamespace>
@@ -40,9 +40,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Services.Client" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,16 +54,20 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\SharedAssemblyInfo.cs">
-      <Link>SharedAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Compile Include="CodeMaintenanceWindow.xaml.cs">
       <DependentUpon>CodeMaintenanceWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Locators\ViewModelLocator.cs" />
+    <Compile Include="CodeSearchWindow.xaml.cs">
+      <DependentUpon>CodeSearchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalProperties.cs" />
+    <Compile Include="MainSearchWindow.xaml.cs">
+      <DependentUpon>MainSearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\SharedDictionaryManager.cs" />
     <Compile Include="TypeMaintenanceWindow.xaml.cs">
       <DependentUpon>TypeMaintenanceWindow.xaml</DependentUpon>
@@ -98,69 +99,6 @@
     <Compile Include="Views\TypeMaintenanceView.xaml.cs">
       <DependentUpon>TypeMaintenanceView.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CodeSearchWindow.xaml.cs">
-      <DependentUpon>CodeSearchWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GlobalProperties.cs" />
-    <Compile Include="MainSearchWindow.xaml.cs">
-      <DependentUpon>MainSearchWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.csproj">
-      <Project>{37A9326D-E256-4081-A7C8-D8CE855CFD4F}</Project>
-      <Name>XERP.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\SimpleMvvmToolkit-WPF.csproj">
-      <Project>{6A6DD3AB-484B-48FD-8BE7-107728A26341}</Project>
-      <Name>SimpleMvvmToolkit-WPF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\XERP.Client.csproj">
-      <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
-      <Name>XERP.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XERP.Client.WPF.csproj">
-      <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
-      <Name>XERP.Client.WPF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XERP.Client.WPF.LogIn\XERP.Client.WPF.LogIn.csproj">
-      <Project>{6201296D-4907-46E1-A57E-A2357B0AF04C}</Project>
-      <Name>XERP.Client.WPF.LogIn</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Page Include="CodeMaintenanceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -177,6 +115,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\..\..\SharedAssemblyInfo.cs">
+      <Link>SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Locators\ViewModelLocator.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Page Include="TypeMaintenanceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -209,6 +159,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.csproj">
+      <Project>{37A9326D-E256-4081-A7C8-D8CE855CFD4F}</Project>
+      <Name>XERP.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.SystemUserDomain\XERP.Domain.SystemUserDomain.csproj">
+      <Project>{7139617B-FD8C-4D94-BD9F-08FDC3B785BD}</Project>
+      <Name>XERP.Domain.SystemUserDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\SimpleMvvmToolkit-WPF.csproj">
+      <Project>{6A6DD3AB-484B-48FD-8BE7-107728A26341}</Project>
+      <Name>SimpleMvvmToolkit-WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client.csproj">
+      <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
+      <Name>XERP.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.csproj">
+      <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
+      <Name>XERP.Client.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.LogIn\XERP.Client.WPF.LogIn.csproj">
+      <Project>{6201296D-4907-46E1-A57E-A2357B0AF04C}</Project>
+      <Name>XERP.Client.WPF.LogIn</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

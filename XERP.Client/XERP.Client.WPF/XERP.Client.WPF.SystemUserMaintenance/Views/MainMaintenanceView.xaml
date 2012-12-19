@@ -19,7 +19,7 @@
           <ColumnDefinition Width="422*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Style="{StaticResource BaseHeader}"
-            HorizontalAlignment="Left" Grid.Column="1" Text="SystemUser Maintenance Form"
+            HorizontalAlignment="Left" Grid.Column="1" Text="System User Maintenance Form"
             FontSize="13" Margin="138,10,0,5" >
         </TextBlock>
         <StackPanel Style="{StaticResource BaseStackPanel}"
@@ -58,7 +58,7 @@
                                 <i:EventTrigger EventName="Click">
                                     <ei:CallMethodAction
                                     TargetObject="{Binding}"
-                                    MethodName="DeleteCommand"/>
+                                    MethodName="DeleteSystemUserCommand"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </MenuItem>
@@ -132,7 +132,7 @@
                         <i:EventTrigger EventName="Click">
                             <ei:CallMethodAction
                             TargetObject="{Binding}"
-                            MethodName="DeleteCommand"/>
+                            MethodName="DeleteSystemUserCommand"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </MenuItem>
@@ -187,10 +187,40 @@
             SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Style="{StaticResource BaseTextBlock}"
-                        Text="{Binding Path=SystemUserID, Mode=TwoWay}" Margin="5"/>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="0">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="1">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="2">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/flag2.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Text="{Binding Path=SystemUserID}" >
+                            </TextBlock>
+                            <TextBlock Width="0"
+                                Text="{Binding Path=IsValid}" Visibility="Hidden">
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource BaseErrorBlock}" Height="Auto"
+                                       Text="{Binding Path = NotValidMessage}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
         </ListBox>
         <TabControl Style="{StaticResource BaseTabControl}" Name="tabctrlMain" Grid.Column="1" Grid.Row="1">
             <TabItem  Style="{StaticResource BaseTabItem}" Name="tabDetail" Header="Detail">
@@ -206,7 +236,7 @@
                     <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="0" 
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
-                        <Button Style="{StaticResource BaseButton}" Content="SystemUser..." Width="100" Height="20" Margin="10" 
+                        <Button Style="{StaticResource BaseButton}" Content="Security Group..." Width="108" Height="25" Margin="10" 
                             KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
                           <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -216,7 +246,7 @@
                             </i:EventTrigger>
                           </i:Interaction.Triggers>
                         </Button>
-                        <TextBox Style="{StaticResource BaseTextBox}"  Width="100" Height="20" Margin=" 10"
+                        <TextBox Style="{StaticResource BaseTextBox}"  Width="251" Height="20" 
                             Text="{Binding Path=SelectedSystemUser.SystemUserID, Mode=TwoWay}"
                             MaxLength= "{Binding SystemUserMaxFieldValueDictionary[SystemUserID]}" 
                             KeyboardNavigation.TabIndex="10" Name="txtKey"></TextBox>
@@ -226,15 +256,6 @@
                         Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Name:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Password:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Active:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">PassWord Expired:
                         </TextBlock>
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Type:
@@ -251,28 +272,9 @@
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
                         <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
                             Text="{Binding Path=SelectedSystemUser.Name, Mode=TwoWay, TargetNullValue=''}"
+                            IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding SystemUserMaxFieldValueDictionary[Name]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
-                        <TextBox Style="{StaticResource BaseTextBox}"
-                            MaxLength= "{Binding SystemUserMaxFieldValueDictionary[Password]}" 
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
-                            Text="{Binding Path=SelectedSystemUser.Password, Mode=TwoWay}"
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
-                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="5,8,8,8"
-                                  KeyboardNavigation.TabIndex="35"
-                                  IsChecked="{Binding Path=SelectedSystemUser.Active, Mode=TwoWay}" 
-                                  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Style="{StaticResource BaseCheckBox}" Margin="5,8,8,8"
-                                  IsChecked="{Binding Path=SelectedSystemUser.PasswordExpired, Mode=TwoWay}" 
-                                  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                            <DatePicker Style="{StaticResource BaseDatePicker}" Width="100"
-                                        KeyboardNavigation.TabIndex="37"
-                                        SelectedDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}"
-                                        DisplayDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}">
-                                
-                            </DatePicker>
-                        </StackPanel>
                         <ComboBox  Style="{StaticResource BaseComboBox}"
                             HorizontalAlignment="Left" Width="200" Margin="5"
                             ItemsSource="{Binding Path=SystemUserTypeList, Mode=TwoWay}"
@@ -337,12 +339,12 @@
                         <ColumnDefinition Width="37*" />
                         <ColumnDefinition Width="354*" />
                     </Grid.ColumnDefinitions>
-                    <DataGrid AutoGenerateColumns = "False" Style="{StaticResource BaseDataGrid}" Name="dgMain" Grid.ColumnSpan="2" Grid.Column="1"
+                    <DataGrid Style="{StaticResource BaseDataGrid}" Name="dgMain" Grid.ColumnSpan="2" Grid.Column="1"
                         ItemsSource="{Binding SystemUserList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SelectedItem="{Binding SelectedSystemUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                         SelectionMode="Extended" Initialized="DataGrid_Initialized" 
                         PreviewKeyUp="dgMain_PreviewKeyUp" SelectionChanged="dgMain_SelectionChanged" 
-                        PreviewKeyDown="dgMain_PreviewKeyDown">
+                        PreviewKeyDown="dgMain_PreviewKeyDown" AutoGenerateColumns="False">
                         <DataGrid.ContextMenu>
                             <ContextMenu >
                                 <MenuItem Header="Copy Row/s" IsEnabled="{Binding AllowRowCopy}"
@@ -359,34 +361,7 @@
                             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                     Header="Name" Width="*">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                Header="Password" Width="*"/>
-                            <DataGridCheckBoxColumn Binding="{Binding Active, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                Header="Active" Width="*">
-                            </DataGridCheckBoxColumn>
-                            <DataGridCheckBoxColumn Binding="{Binding PasswordExpired, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                Header="Password&#10;Expired" Width="*">
-                            </DataGridCheckBoxColumn>
-                            <DataGridTemplateColumn Header="Expires&#10;On">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <DatePicker Style="{StaticResource BaseDatePicker}" Width="100"
-                                        KeyboardNavigation.TabIndex="37"
-                                        SelectedDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}"
-                                        DisplayDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}">
-                                        </DatePicker>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                                <DataGridTemplateColumn.CellEditingTemplate>
-                                    <DataTemplate>
-                                        <DatePicker Style="{StaticResource BaseDatePicker}" Width="100"
-                                        KeyboardNavigation.TabIndex="37"
-                                        SelectedDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}"
-                                        DisplayDate="{Binding SelectedSystemUser.PasswordExpiresOn, Mode=TwoWay}">
-                                        </DatePicker>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellEditingTemplate>
-                            </DataGridTemplateColumn>
+
                             <DataGridComboBoxColumn Header="Type" Width="*"
                                 SelectedValueBinding ="{Binding SystemUserTypeID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                 DisplayMemberPath="Type"  
@@ -427,83 +402,6 @@
                     </DataGrid>
                     <TextBox Style="{StaticResource BaseTextBox}" Name="ghost2" Grid.Column="2" 
                         Height="0" Width="0" KeyboardNavigation.IsTabStop="False"/>
-                </Grid>
-            </TabItem>
-            <TabItem Style="{StaticResource BaseTabItem}" Name="tabSecurity" Header="Security Groups" 
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                KeyboardNavigation.IsTabStop="False">
-                <Grid Style="{StaticResource BaseGrid}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="197" />
-                        <ColumnDefinition Width="50*" />
-                        <ColumnDefinition Width="250*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20*"></RowDefinition>
-                        <RowDefinition Height="400*"></RowDefinition>
-                        <RowDefinition Height="20*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Style="{StaticResource BaseTextBlock}" 
-                               HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                               Text="Security Groups Available"/>
-                    <ListBox Style="{StaticResource BaseListBox}" Grid.Row="1"
-                             Name="lbxSecurityGroupsAvailable"
-                             ItemsSource="{Binding SecurityGroupAvailableList}"
-                             SelectionMode="Extended"
-                             IsEnabled="{Binding AllowEdit}"
-                             Margin="10,0,0,0" SelectionChanged="lbxSecurityGroupsAvailable_SelectionChanged">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding SecurityGroupID}" Margin="2,2,2,2" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>   
-                    </ListBox>
-                    <TextBlock Style="{StaticResource BaseTextBlock}" Grid.Column="2" 
-                               HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                               Text="Security Groups Authorized"/>
-                    <ListBox Style="{StaticResource BaseListBox}" Grid.Row="1" Grid.Column="2"
-                             Name="lbxSecurityGroupsAuthorized"
-                             ItemsSource="{Binding SystemUserSecurityGroupAuthorizedList}"
-                             SelectionMode="Extended"
-                             IsEnabled="{Binding AllowEdit}"
-                             Margin="0,0,10,0" SelectionChanged="lbxSecurityGroupsAuthorized_SelectionChanged">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding SecurityGroupID}" Margin="2,2,2,2" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
-                                Orientation="Vertical">
-                    <Button Style="{StaticResource BaseButton}" 
-                            Margin="0,10,0,10" Height="25" HorizontalAlignment="Center"
-                            Content="---&gt;" IsEnabled="{Binding AllowSecurityEdit}"
-                            FontWeight="ExtraBold">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <ei:CallMethodAction
-                                      TargetObject="{Binding}"
-                                      MethodName="AddSecurityGroupCommand"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-                    <Button Style="{StaticResource BaseButton}" 
-                            Margin="0,10,0,10" Height="25" HorizontalAlignment="Center"
-                            Content="&lt;---" IsEnabled="{Binding AllowSecurityEdit}"
-                            FontWeight="ExtraBold">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <ei:CallMethodAction
-                                      TargetObject="{Binding}"
-                                      MethodName="RemoveSecurityGroupCommand"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                    </Button>
-                    </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>

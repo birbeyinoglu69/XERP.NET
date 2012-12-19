@@ -5,6 +5,8 @@
     <EntitySet Name="SecurityGroupCodes" EntityType="XERPModel.Store.SecurityGroupCodes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SecurityGroups" EntityType="XERPModel.Store.SecurityGroups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SecurityGroupTypes" EntityType="XERPModel.Store.SecurityGroupTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SystemUsers" EntityType="XERPModel.Store.SystemUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SystemUserSecurities" EntityType="XERPModel.Store.SystemUserSecurities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Temp" EntityType="XERPModel.Store.Temp" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UdListItems" EntityType="XERPModel.Store.UdListItems" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UdLists" EntityType="XERPModel.Store.UdLists" store:Type="Tables" Schema="dbo" />
@@ -39,6 +41,18 @@
     <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.Store.FK_UdListItem_UdList">
       <End Role="UdLists" EntitySet="UdLists" />
       <End Role="UdListItems" EntitySet="UdListItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_Company" Association="XERPModel.Store.FK_UserSecurity_Company">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="XERPModel.Store.FK_UserSecurity_SecurityGroup">
+      <End Role="SecurityGroups" EntitySet="SecurityGroups" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_SystemUser" Association="XERPModel.Store.FK_UserSecurity_SystemUser">
+      <End Role="SystemUsers" EntitySet="SystemUsers" />
+      <End Role="SystemUserSecurities" EntitySet="SystemUserSecurities" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Companies">
@@ -123,6 +137,49 @@
     <Property Name="SecurityGroupTypeID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
+  </EntityType>
+  <EntityType Name="SystemUsers">
+    <Key>
+      <PropertyRef Name="SystemUserID" />
+    </Key>
+    <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="SystemUserTypeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="SystemUserCodeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="PasswordExpired" Type="bit" />
+    <Property Name="PasswordExpiresOn" Type="datetime" />
+    <Property Name="SystemManager" Type="bit" />
+    <Property Name="DefaultCompanyID" Type="nvarchar" MaxLength="20" />
+    <Property Name="DefaultPlantID" Type="nvarchar" MaxLength="20" />
+    <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
+    <Property Name="Image" Type="image" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
+  </EntityType>
+  <EntityType Name="SystemUserSecurities">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="SystemUserID" />
+      <PropertyRef Name="SecurityGroupID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="SystemUserID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="SecurityGroupID" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="IsExpanded" Type="tinyint" />
     <Property Name="IsValid" Type="tinyint" />
@@ -280,6 +337,48 @@
       <Dependent Role="UdListItems">
         <PropertyRef Name="CompanyID" />
         <PropertyRef Name="UdListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_Company">
+    <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+    <End Role="SystemUserSecurities" Type="XERPModel.Store.SystemUserSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_SecurityGroup">
+    <End Role="SecurityGroups" Type="XERPModel.Store.SecurityGroups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SystemUserSecurities" Type="XERPModel.Store.SystemUserSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityGroups">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_SystemUser">
+    <End Role="SystemUsers" Type="XERPModel.Store.SystemUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SystemUserSecurities" Type="XERPModel.Store.SystemUserSecurities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUsers">
+        <PropertyRef Name="SystemUserID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurities">
+        <PropertyRef Name="SystemUserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

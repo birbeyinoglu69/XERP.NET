@@ -7,11 +7,13 @@ using System.ServiceModel.Web;
 using System.Collections.Generic;
 using ExtensionMethods;
 
+
 namespace XERP.Server.Service.SystemUserService
 {
-    public class SystemUserDataService : DataService< SystemUserEntities >
+    [System.ServiceModel.ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+    public class SystemUserDataService : DataService<SystemUserEntities>
     {
-        // This method is called only once to initialize service-wide policies.
+        //private SystemUserEntities _context;
         public static void InitializeService(DataServiceConfiguration config)
         {
             config.SetEntitySetAccessRule("*", EntitySetRights.All);
@@ -21,6 +23,7 @@ namespace XERP.Server.Service.SystemUserService
             //config.SetEntitySetPageSize("*", 50);
             config.SetServiceOperationAccessRule("*", ServiceOperationRights.All);
         }
+
         //The procedure below uses the Temp table as following...
         //ID item count key id...
         //Name MetaData FieldName
@@ -31,18 +34,15 @@ namespace XERP.Server.Service.SystemUserService
         {
             switch (tableName)
             {
-                case "Addresses":
-                    Address Address = new Address();
-                    return Address.GetMetaData().AsQueryable();
                 case "SystemUsers":
-                    SystemUser SystemUser = new SystemUser();
-                    return SystemUser.GetMetaData().AsQueryable();
+                    SystemUser item = new SystemUser();
+                    return item.GetMetaData().AsQueryable();
                 case "SystemUserTypes":
-                    SystemUserType SystemUserType = new SystemUserType();
-                    return SystemUserType.GetMetaData().AsQueryable();
+                    SystemUserType itemType = new SystemUserType();
+                    return itemType.GetMetaData().AsQueryable();
                 case "SystemUserCodes":
-                    SystemUserCode SystemUserCode = new SystemUserCode();
-                    return SystemUserCode.GetMetaData().AsQueryable();
+                    SystemUserCode itemCode = new SystemUserCode();
+                    return itemCode.GetMetaData().AsQueryable();
                 default: //no table exists for the given tablename given...
                     List<Temp> tempList = new List<Temp>();
                     Temp temp = new Temp();
@@ -65,36 +65,6 @@ namespace XERP.Server.Service.SystemUserService
             var context = new SystemUserEntities(dalUtility.EntityConectionString);
 
             var queryResult = (from q in context.SystemUsers
-                               where query.Contains(q.AutoID)
-                               select q);
-
-            return queryResult;
-        }
-
-        [WebGet]
-        public IQueryable<SystemUserSecurity> RefreshSystemUserSecurity(string autoIDs)
-        {
-            var query = from val in autoIDs.Split(',')
-                        select long.Parse(val);
-            XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
-            var context = new SystemUserEntities(dalUtility.EntityConectionString);
-
-            var queryResult = (from q in context.SystemUserSecurities
-                               where query.Contains(q.AutoID)
-                               select q);
-
-            return queryResult;
-        }
-
-        [WebGet]
-        public IQueryable<Address> RefreshAddress(string autoIDs)
-        {
-            var query = from val in autoIDs.Split(',')
-                        select long.Parse(val);
-            XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
-            var context = new SystemUserEntities(dalUtility.EntityConectionString);
-
-            var queryResult = (from q in context.Addresses
                                where query.Contains(q.AutoID)
                                select q);
 
@@ -131,43 +101,30 @@ namespace XERP.Server.Service.SystemUserService
             return queryResult;
         }
 
-        [WebGet]
-        public IQueryable<SecurityGroup> GetAvailableSecurityGroups(string securityGroupID)
-        {
-            XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
-            var context = new SystemUserEntities(dalUtility.EntityConectionString);
-            var queryResult =
-                from sg in context.SecurityGroups
-                where !context.SystemUserSecurities.Any(sus => sus.SecurityGroupID == sg.SecurityGroupID &&
-                    sus.SystemUserID == securityGroupID)
-                select sg;
-            return queryResult;
-        }
-
         [ChangeInterceptor("SystemUserTypes")]
-        public void OnChangeSecurityGroupTypes(SystemUserType systemUserType, UpdateOperations operations)
+        public void OnChangeSystemUserTypes(SystemUserType itemType, UpdateOperations operations)
         {
             if (operations == UpdateOperations.Delete)
             {//update a null to any place the Type was used by its parent record...
                 XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
                 var context = new SystemUserEntities(dalUtility.EntityConectionString);
                 context.SystemUsers.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                string typeID = systemUserType.SystemUserTypeID;
-                string sqlstring = "UPDATE SystemUsers SET SeystemUserTypeID = null WHERE SystemUserTypeID = '" + typeID + "'";
+                string typeID = itemType.SystemUserTypeID;
+                string sqlstring = "UPDATE SystemUsers SET SystemUserTypeID = null WHERE SystemUserTypeID = '" + typeID + "'";
                 context.ExecuteStoreCommand(sqlstring);
             }
         }
 
         [ChangeInterceptor("SystemUserCodes")]
-        public void OnChangeSecurityGroupTypes(SystemUserCode systemUserCode, UpdateOperations operations)
+        public void OnChangeSystemUserCodes(SystemUserCode itemCode, UpdateOperations operations)
         {
             if (operations == UpdateOperations.Delete)
             {//update a null to any place the Code was used by its parent record...
                 XERP.Server.DAL.SystemUserDAL.DALUtility dalUtility = new DALUtility();
                 var context = new SystemUserEntities(dalUtility.EntityConectionString);
                 context.SystemUsers.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                string codeID = systemUserCode.SystemUserCodeID;
-                string sqlstring = "UPDATE SystemUsers SET SystemUserCodeID = null WHERE SystemUserCodeID = '" + codeID + "'";
+                string codeID = itemCode.SystemUserCodeID;
+                string sqlstring = "UPDATE SystemUsers SET SystemUserCodeID = null Where SystemUserCodeID = '" + codeID + "'";
                 context.ExecuteStoreCommand(sqlstring);
             }
         }
@@ -180,29 +137,16 @@ namespace XERP.Server.Service.SystemUserService
                 var context = new SystemUserEntities(dalUtility.EntityConectionString);
 
                 //test it...
-                //IQueryable<SystemUserSecurity> query = (from q in context.SystemUserSecurities where q.SystemUserID == "Base"
-                //                                   select q);
-                //IQueryable<SecurityGroup> query2 = from sg in context.SecurityGroups
-                //                                  where !context.SystemUserSecurities.Any(sus => query.SecurityGroupID == sg.SecurityGroupCodeID)
-                //                                  select sg;
-                //IQueryable<SecurityGroup> query = from sg in context.SecurityGroups
-                //                                  select sg;
                 //GetMetaData("SystemUsers");
-                //IQueryable<SystemUser> SystemUserQuery = (from c in context.SystemUsers
+                //IQueryable<SystemUser> itemQuerry = (from c in context.SystemUsers
                 //                                    select c);
 
                 //foreach (SystemUser cc in SystemUserQuery)
                 //{
                 //    string s = cc.Name.ToString();
                 //}
-                //SystemUser SystemUser = new SystemUser();
-                //IQueryable<SystemUser> SystemUserQuery = Refresh("5,6");
-                //var query =
-                //    from sg in context.SecurityGroups
-                //    where !context.SystemUserSecurities.Any(sus => sus.SecurityGroupID == sg.SecurityGroupID &&
-                //        sus.SystemUserID == "Base")
-                //    select sg;
-                RefreshSystemUser("1,6");
+                //SystemUser item = new SystemUser();
+                //IQueryable<SystemUser> itemQuery = Refresh("5,6");
                 return context;
             }
             catch (Exception ex)

@@ -40,6 +40,20 @@
       <End Role="UdList" EntitySet="UdLists" />
       <End Role="UdListItem" EntitySet="UdListItems" />
     </AssociationSet>
+    <EntitySet Name="SystemUsers" EntityType="XERPModel.SystemUser" />
+    <EntitySet Name="SystemUserSecurities" EntityType="XERPModel.SystemUserSecurity" />
+    <AssociationSet Name="FK_UserSecurity_Company" Association="XERPModel.FK_UserSecurity_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_SecurityGroup" Association="XERPModel.FK_UserSecurity_SecurityGroup">
+      <End Role="SecurityGroup" EntitySet="SecurityGroups" />
+      <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSecurity_SystemUser" Association="XERPModel.FK_UserSecurity_SystemUser">
+      <End Role="SystemUser" EntitySet="SystemUsers" />
+      <End Role="SystemUserSecurity" EntitySet="SystemUserSecurities" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Temp">
     <Key>
@@ -91,6 +105,7 @@
     <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
     <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
     <Property Type="Boolean" Name="IsSelected" />
+    <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
   </EntityType>
   <EntityType Name="SecurityGroupCode">
     <Key>
@@ -134,6 +149,7 @@
     <NavigationProperty Name="SecurityGroupCode" Relationship="XERPModel.FK_SecurityGroups_SecurityGroupCodes" FromRole="SecurityGroup" ToRole="SecurityGroupCode" />
     <NavigationProperty Name="SecurityGroupType" Relationship="XERPModel.FK_SecurityGroups_SecurityGroupTypes" FromRole="SecurityGroup" ToRole="SecurityGroupType" />
     <Property Type="Boolean" Name="IsSelected" />
+    <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="SystemUserSecurity" />
   </EntityType>
   <EntityType Name="SecurityGroupType">
     <Key>
@@ -292,6 +308,91 @@
       <Dependent Role="UdListItem">
         <PropertyRef Name="CompanyID" />
         <PropertyRef Name="UdListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SystemUser">
+    <Key>
+      <PropertyRef Name="SystemUserID" />
+    </Key>
+    <Property Type="String" Name="SystemUserID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SystemUserTypeID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SystemUserCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Active" />
+    <Property Type="String" Name="EmailAddress" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="PasswordExpired" />
+    <Property Type="DateTime" Name="PasswordExpiresOn" />
+    <Property Type="Boolean" Name="SystemManager" />
+    <Property Type="String" Name="DefaultCompanyID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DefaultPlantID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AddressID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Byte" Name="IsExpanded" />
+    <Property Type="Byte" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+    <Property Type="Boolean" Name="IsSelected" />
+    <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
+  </EntityType>
+  <EntityType Name="SystemUserSecurity">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="SystemUserID" />
+      <PropertyRef Name="SecurityGroupID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SystemUserID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SecurityGroupID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Byte" Name="IsExpanded" />
+    <Property Type="Byte" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+    <Property Type="Boolean" Name="IsSelected" />
+    <NavigationProperty Name="Company" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="SystemUserSecurity" ToRole="Company" />
+    <NavigationProperty Name="SecurityGroup" Relationship="XERPModel.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurity" ToRole="SecurityGroup" />
+    <NavigationProperty Name="SystemUser" Relationship="XERPModel.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurity" ToRole="SystemUser" />
+  </EntityType>
+  <Association Name="FK_UserSecurity_Company">
+    <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="XERPModel.SystemUserSecurity" Role="SystemUserSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurity">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_SecurityGroup">
+    <End Type="XERPModel.SecurityGroup" Role="SecurityGroup" Multiplicity="1" />
+    <End Type="XERPModel.SystemUserSecurity" Role="SystemUserSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityGroup">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurity">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="SecurityGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSecurity_SystemUser">
+    <End Type="XERPModel.SystemUser" Role="SystemUser" Multiplicity="1" />
+    <End Type="XERPModel.SystemUserSecurity" Role="SystemUserSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUser">
+        <PropertyRef Name="SystemUserID" />
+      </Principal>
+      <Dependent Role="SystemUserSecurity">
+        <PropertyRef Name="SystemUserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -126,6 +126,10 @@
       <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
       <Name>XERP.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.AddressMaintenance\XERP.Client.WPF.AddressMaintenance.csproj">
+      <Project>{BDDC0122-946B-4A4C-8502-A3DFE2397D55}</Project>
+      <Name>XERP.Client.WPF.AddressMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.CompanyMaintenance\XERP.Client.WPF.CompanyMaintenance.csproj">
       <Project>{13F89664-A2A4-4E1A-9566-F8BCFD49DA24}</Project>
       <Name>XERP.Client.WPF.CompanyMaintenance</Name>
@@ -134,9 +138,17 @@
       <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
       <Name>XERP.Client.WPF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.ExecutableProgramMaintenance\XERP.Client.WPF.ExecutableProgramMaintenance.csproj">
+      <Project>{62FFC372-7274-4698-A4C5-746A335D40FD}</Project>
+      <Name>XERP.Client.WPF.ExecutableProgramMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.SecurityGroupMaintenance\XERP.Client.WPF.SecurityGroupMaintenance.csproj">
       <Project>{B49BF76D-C8BD-4C20-B3C1-23648B73F603}</Project>
       <Name>XERP.Client.WPF.SecurityGroupMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.SystemUserMaintenance\XERP.Client.WPF.SystemUserMaintenance.csproj">
+      <Project>{8C08E523-6D1D-440E-8F6A-719B25E9899C}</Project>
+      <Name>XERP.Client.WPF.SystemUserMaintenance</Name>
     </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.UdListMaintenance\XERP.Client.WPF.UdListMaintenance.csproj">
       <Project>{02B6109A-F0EE-4D36-A0AA-795D1E112DDE}</Project>

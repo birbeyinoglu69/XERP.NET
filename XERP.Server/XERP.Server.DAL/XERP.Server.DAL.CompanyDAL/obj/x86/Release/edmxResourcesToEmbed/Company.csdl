@@ -76,6 +76,7 @@
     <NavigationProperty Name="CompanyType" Relationship="XERP.FK_Company_CompanyType" FromRole="Company" ToRole="CompanyType" />
     <NavigationProperty Name="UdLists" Relationship="XERP.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
     <NavigationProperty Name="UdListItems" Relationship="XERP.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="CompanyCode">
     <Key>
@@ -91,6 +92,7 @@
     <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Companies" Relationship="XERP.FK_Company_CompanyCode" FromRole="CompanyCode" ToRole="Company" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="CompanyType">
     <Key>
@@ -106,6 +108,7 @@
     <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Companies" Relationship="XERP.FK_Company_CompanyType" FromRole="CompanyType" ToRole="Company" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="UdListItem">
     <Key>

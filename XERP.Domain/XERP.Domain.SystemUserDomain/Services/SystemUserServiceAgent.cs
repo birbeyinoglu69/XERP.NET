@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Services.Client;
-
+using System.Linq;
 using XERP.Domain.SystemUserDomain.SystemUserDataService;
+
 namespace XERP.Domain.SystemUserDomain.Services
 {
-    public class SystemUserServiceAgent : XERP.Domain.SystemUserDomain.Services.ISystemUserServiceAgent
+    public class SystemUserServiceAgent : XERP.Domain.SystemUserDomain.Services.ISystemUserServiceAgent 
     {
         #region Initialize Service
         public SystemUserServiceAgent()
@@ -38,15 +38,7 @@ namespace XERP.Domain.SystemUserDomain.Services
         public bool SystemUserCodeRepositoryIsDirty()
         {
             return SystemUserCodeSingletonRepository.Instance.RepositoryIsDirty();
-        }
-        public IEnumerable<SystemUserSecurity> GetSystemUserSecuritiesReadOnly()
-        {
-            _context.MergeOption = MergeOption.NoTracking;
-            _context.IgnoreResourceNotFoundException = true;
-            var queryResult = (from q in _context.SystemUserSecurities
-                               select q);
-            return queryResult;
-        }
+        } 
 
         public IEnumerable<SystemUserType> GetSystemUserTypesReadOnly()
         {
@@ -66,77 +58,52 @@ namespace XERP.Domain.SystemUserDomain.Services
             return queryResult;
         }
 
-        public bool SystemUserExists(string systemUserID)
+        public bool SystemUserExists(string itemID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SystemUsers
-                           where q.SystemUserID == systemUserID
-                           select q).ToList();
+                               where q.SystemUserID == itemID
+                               select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
                 return true;
+
             return false;
         }
 
-        public bool SystemUserTypeExists(string systemUserTypeID)
+        public bool SystemUserTypeExists(string itemTypeID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SystemUserTypes
-                               where q.SystemUserTypeID == systemUserTypeID
+                               where q.SystemUserTypeID == itemTypeID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
                 return true;
+
             return false;
         }
 
-        public bool SystemUserCodeExists(string systemUserCodeID)
+        public bool SystemUserCodeExists(string itemCodeID)
         {
             _context.MergeOption = MergeOption.NoTracking;
             _context.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _context.SystemUserCodes
-                               where q.SystemUserCodeID == systemUserCodeID
+                               where q.SystemUserCodeID == itemCodeID
                                select q).ToList();
             if (queryResult != null && queryResult.Count() > 0)
                 return true;
+
             return false;
         }
 
         public IEnumerable<Temp> GetMetaData(string tableName)
-        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
+        {   //WCF Data Services does not allow for Complex query where you need to mine linked table data
             //with the same query so I have opted to use a webget sever side and do the query their...
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;
             var query = _context.CreateQuery<Temp>("GetMetaData").AddQueryOption("TableName", "'" + tableName + "'");
             return query;
-        }
-
-        public IEnumerable<SecurityGroup> GetAvailableSecurityGroups(string securityGroupID)
-        {//WCF Data Services does not allow for Complex query where you need to mine linked table data
-            //with the same query so I have opted to use a webget sever side and do the query their...
-            _context.IgnoreResourceNotFoundException = true;
-            _context.MergeOption = MergeOption.NoTracking;
-            var query = _context.CreateQuery<SecurityGroup>("GetAvailableSecurityGroups").AddQueryOption("SecurityGroupID", "'" + securityGroupID + "'");
-            return query;
-        }
-
-        public IEnumerable<SecurityGroup> GetAllSecurityGroups()
-        {
-            _context.IgnoreResourceNotFoundException = true;
-            _context.MergeOption = MergeOption.NoTracking;
-            var query = _context.CreateQuery<SecurityGroup>("GetAvailableSecurityGroups");
-            return query;
-        }
-
-        public IEnumerable<SecurityGroup> GetSecurityGroupByIDReadOnly(string companyID, string securtiyGroupID)
-        {
-            _context.IgnoreResourceNotFoundException = true;
-            _context.MergeOption = MergeOption.NoTracking;
-            var queryResult = (from q in _context.SecurityGroups
-                               where q.CompanyID == companyID &&
-                               q.SecurityGroupID == securtiyGroupID 
-                               select q);
-            return queryResult;
         }
         #endregion Read Only Methods  No Repository Required
 
@@ -145,20 +112,19 @@ namespace XERP.Domain.SystemUserDomain.Services
         {
             return SystemUserSingletonRepository.Instance.Refresh(autoIDs);
         }
-
         public IEnumerable<SystemUser> GetSystemUsers()
         {
             return SystemUserSingletonRepository.Instance.GetSystemUsers();
         }
 
-        public IEnumerable<SystemUser> GetSystemUsers(SystemUser systemUserQuerryObject)
+        public IEnumerable<SystemUser> GetSystemUsers(SystemUser itemQuerryObject)
         {
-            return SystemUserSingletonRepository.Instance.GetSystemUsers(systemUserQuerryObject);
+            return SystemUserSingletonRepository.Instance.GetSystemUsers(itemQuerryObject);
         }
 
-        public IEnumerable<SystemUser> GetSystemUserByID(string systemUserID)
+        public IEnumerable<SystemUser> GetSystemUserByID(string itemID)
         {
-            return SystemUserSingletonRepository.Instance.GetSystemUserByID(systemUserID);
+            return SystemUserSingletonRepository.Instance.GetSystemUserByID(itemID);
         }
 
         public void CommitSystemUserRepository()
@@ -166,39 +132,24 @@ namespace XERP.Domain.SystemUserDomain.Services
             SystemUserSingletonRepository.Instance.CommitRepository();
         }
 
-        public void UpdateSystemUserRepository(SystemUser systemUser)
+        public void UpdateSystemUserRepository(SystemUser item)
         {
-            SystemUserSingletonRepository.Instance.UpdateRepository(systemUser);
+            SystemUserSingletonRepository.Instance.UpdateRepository(item);
         }
 
-        public void AddToSystemUserRepository(SystemUser systemUser)
+        public void AddToSystemUserRepository(SystemUser item)
         {
-            SystemUserSingletonRepository.Instance.AddToRepository(systemUser);
+            SystemUserSingletonRepository.Instance.AddToRepository(item);
         }
 
-        public void AddToSystemUserRepository(SystemUserSecurity systemUserSecurity)
+        public void DeleteFromSystemUserRepository(SystemUser item)
         {
-            SystemUserSingletonRepository.Instance.AddToRepository(systemUserSecurity);
+            SystemUserSingletonRepository.Instance.DeleteFromRepository(item);
         }
 
-        public void DeleteFromSystemUserRepository(SystemUser systemUser)
+        public EntityStates GetSystemUserEntityState(SystemUser item)
         {
-            SystemUserSingletonRepository.Instance.DeleteFromRepository(systemUser);
-        }
-
-        public void DeleteFromSystemUserRepository(SystemUserSecurity systemUserSecurity)
-        {
-            SystemUserSingletonRepository.Instance.DeleteFromRepository(systemUserSecurity);
-        }
-
-        public EntityStates GetSystemUserEntityState(SystemUser systemUser)
-        {
-            return SystemUserSingletonRepository.Instance.GetSystemUserEntityState(systemUser);
-        }
-
-        public EntityStates GetSystemUserSecurityEntityState(SystemUserSecurity systemUserSecurity)
-        {
-            return SystemUserSingletonRepository.Instance.GetSystemUserSecurityEntityState(systemUserSecurity);
+            return SystemUserSingletonRepository.Instance.GetSystemUserEntityState(item);
         }
         #endregion SystemUser Repository CRUD
 
@@ -213,40 +164,39 @@ namespace XERP.Domain.SystemUserDomain.Services
             return SystemUserTypeSingletonRepository.Instance.GetSystemUserTypes();
         }
 
-        public IEnumerable<SystemUserType> GetSystemUserTypes(SystemUserType systemUserTypeQuerryObject)
+        public IEnumerable<SystemUserType> GetSystemUserTypes(SystemUserType itemTypeQuerryObject)
         {
-            return SystemUserTypeSingletonRepository.Instance.GetSystemUserTypes(systemUserTypeQuerryObject);
+            return SystemUserTypeSingletonRepository.Instance.GetSystemUserTypes(itemTypeQuerryObject);
         }
 
-        public IEnumerable<SystemUserType> GetSystemUserTypeByID(string systemUserTypeID)
+        public IEnumerable<SystemUserType> GetSystemUserTypeByID(string itemTypeID)
         {
-            return SystemUserTypeSingletonRepository.Instance.GetSystemUserTypeByID(systemUserTypeID);
+            return SystemUserTypeSingletonRepository.Instance.GetSystemUserTypeByID(itemTypeID);
         }
         public void CommitSystemUserTypeRepository()
         {
             SystemUserTypeSingletonRepository.Instance.CommitRepository();
         }
 
-        public void UpdateSystemUserTypeRepository(SystemUserType systemUserType)
+        public void UpdateSystemUserTypeRepository(SystemUserType itemType)
         {
-            SystemUserTypeSingletonRepository.Instance.UpdateRepository(systemUserType);
+            SystemUserTypeSingletonRepository.Instance.UpdateRepository(itemType);
         }
 
-        public void AddToSystemUserTypeRepository(SystemUserType systemUserType)
+        public void AddToSystemUserTypeRepository(SystemUserType itemType)
         {
-            SystemUserTypeSingletonRepository.Instance.AddToRepository(systemUserType);
+            SystemUserTypeSingletonRepository.Instance.AddToRepository(itemType);
         }
 
-        public void DeleteFromSystemUserTypeRepository(SystemUserType systemUserType)
+        public void DeleteFromSystemUserTypeRepository(SystemUserType itemType)
         {
-            SystemUserTypeSingletonRepository.Instance.DeleteFromRepository(systemUserType);
+            SystemUserTypeSingletonRepository.Instance.DeleteFromRepository(itemType);
         }
 
-        public EntityStates GetSystemUserTypeEntityState(SystemUserType systemUserType)
+        public EntityStates GetSystemUserTypeEntityState(SystemUserType itemType)
         {
-            return SystemUserTypeSingletonRepository.Instance.GetSystemUserTypeEntityState(systemUserType);
+            return SystemUserTypeSingletonRepository.Instance.GetSystemUserTypeEntityState(itemType);
         }
-
         #endregion SystemUserType Repository CRUD
 
         #region SystemUserCode Repository CRUD
@@ -260,86 +210,39 @@ namespace XERP.Domain.SystemUserDomain.Services
             return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodes();
         }
 
-        public IEnumerable<SystemUserCode> GetSystemUserCodes(SystemUserCode systemUserCodeQuerryObject)
+        public IEnumerable<SystemUserCode> GetSystemUserCodes(SystemUserCode itemCodeQuerryObject)
         {
-            return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodes(systemUserCodeQuerryObject);
+            return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodes(itemCodeQuerryObject);
         }
 
-        public IEnumerable<SystemUserCode> GetSystemUserCodeByID(string systemUserCodeID)
+        public IEnumerable<SystemUserCode> GetSystemUserCodeByID(string itemCodeID)
         {
-            return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodeByID(systemUserCodeID);
+            return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodeByID(itemCodeID);
         }
         public void CommitSystemUserCodeRepository()
         {
             SystemUserCodeSingletonRepository.Instance.CommitRepository();
         }
 
-        public void UpdateSystemUserCodeRepository(SystemUserCode systemUserCode)
+        public void UpdateSystemUserCodeRepository(SystemUserCode itemCode)
         {
-            SystemUserCodeSingletonRepository.Instance.UpdateRepository(systemUserCode);
+            SystemUserCodeSingletonRepository.Instance.UpdateRepository(itemCode);
         }
 
-        public void AddToSystemUserCodeRepository(SystemUserCode systemUserCode)
+        public void AddToSystemUserCodeRepository(SystemUserCode itemCode)
         {
-            SystemUserCodeSingletonRepository.Instance.AddToRepository(systemUserCode);
+            SystemUserCodeSingletonRepository.Instance.AddToRepository(itemCode);
         }
 
-        public void DeleteFromSystemUserCodeRepository(SystemUserCode systemUserCode)
+        public void DeleteFromSystemUserCodeRepository(SystemUserCode itemCode)
         {
-            SystemUserCodeSingletonRepository.Instance.DeleteFromRepository(systemUserCode);
+            SystemUserCodeSingletonRepository.Instance.DeleteFromRepository(itemCode);
         }
 
-        public EntityStates GetSystemUserCodeEntityState(SystemUserCode systemUserCode)
+        public EntityStates GetSystemUserCodeEntityState(SystemUserCode itemCode)
         {
-            return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodeEntityState(systemUserCode);
+            return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodeEntityState(itemCode);
         }
-
         #endregion SystemUserCode Repository CRUD
-
-        #region Address Repository CRUD
-        public IEnumerable<Address> RefreshAddress(string autoIDs)
-        {
-            return AddressSingletonRepository.Instance.Refresh(autoIDs);
-        }
-        public IEnumerable<Address> GetAddresss(string companyID)
-        {
-            return AddressSingletonRepository.Instance.GetAddresses(companyID);
-        }
-
-        public IEnumerable<Address> GetAddresss(Address systemUserQuerryObject, string companyID)
-        {
-            return AddressSingletonRepository.Instance.GetAddresses(systemUserQuerryObject, companyID);
-        }
-
-        public IEnumerable<Address> GetAddressByID(string systemUserID, string companyID)
-        {
-            return AddressSingletonRepository.Instance.GetAddressByID(systemUserID, companyID);
-        }
-
-        public void CommitAddressRepository()
-        {
-            AddressSingletonRepository.Instance.CommitRepository();
-        }
-
-        public void UpdateAddressRepository(Address systemUser)
-        {
-            AddressSingletonRepository.Instance.UpdateRepository(systemUser);
-        }
-
-        public void AddToAddressRepository(Address systemUser)
-        {
-            AddressSingletonRepository.Instance.AddToRepository(systemUser);
-        }
-
-        public void DeleteFromAddressRepository(Address systemUser, string companyID)
-        {
-            AddressSingletonRepository.Instance.DeleteFromRepository(systemUser, companyID);
-        }
-
-        public EntityStates GetAddressEntityState(Address systemUser)
-        {
-            return AddressSingletonRepository.Instance.GetAddressEntityState(systemUser);
-        }
-        #endregion Address Repository CRUD
     }
 }

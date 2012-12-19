@@ -1,5 +1,5 @@
+C:\XERP\XERP.Domain\XERP.Domain.SystemUserDomain\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.SystemUserDomain.dll
 C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.SystemUserDomain.pdb
-C:\XERP\XERP.Domain\XERP.Domain.SystemUserDomain\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Domain\XERP.Domain.SystemUserDomain\obj\x86\Debug\XERP.Domain.SystemUserDomain.dll
 C:\XERP\XERP.Domain\XERP.Domain.SystemUserDomain\obj\x86\Debug\XERP.Domain.SystemUserDomain.pdb

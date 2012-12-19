@@ -16,6 +16,7 @@
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="MenuSecurityModel.Company">
         <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -51,6 +52,7 @@
     <EntitySetMapping Name="DBStoredImages">
       <EntityTypeMapping TypeName="MenuSecurityModel.DBStoredImage">
         <MappingFragment StoreEntitySet="DBStoredImages">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -68,6 +70,7 @@
     <EntitySetMapping Name="ExecutableProgramCodes">
       <EntityTypeMapping TypeName="MenuSecurityModel.ExecutableProgramCode">
         <MappingFragment StoreEntitySet="ExecutableProgramCodes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -84,6 +87,7 @@
     <EntitySetMapping Name="ExecutablePrograms">
       <EntityTypeMapping TypeName="MenuSecurityModel.ExecutableProgram">
         <MappingFragment StoreEntitySet="ExecutablePrograms">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -105,6 +109,7 @@
     <EntitySetMapping Name="ExecutableProgramTypes">
       <EntityTypeMapping TypeName="MenuSecurityModel.ExecutableProgramType">
         <MappingFragment StoreEntitySet="ExecutableProgramTypes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -121,6 +126,7 @@
     <EntitySetMapping Name="MenuItemCodes">
       <EntityTypeMapping TypeName="MenuSecurityModel.MenuItemCode">
         <MappingFragment StoreEntitySet="MenuItemCodes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -137,6 +143,7 @@
     <EntitySetMapping Name="MenuItems">
       <EntityTypeMapping TypeName="MenuSecurityModel.MenuItem">
         <MappingFragment StoreEntitySet="MenuItems">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -163,6 +170,7 @@
     <EntitySetMapping Name="MenuItemTypes">
       <EntityTypeMapping TypeName="MenuSecurityModel.MenuItemType">
         <MappingFragment StoreEntitySet="MenuItemTypes">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -179,6 +187,7 @@
     <EntitySetMapping Name="MenuSecurities">
       <EntityTypeMapping TypeName="MenuSecurityModel.MenuSecurity">
         <MappingFragment StoreEntitySet="MenuSecurities">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -194,6 +203,7 @@
     <EntitySetMapping Name="SecurityGroups">
       <EntityTypeMapping TypeName="MenuSecurityModel.SecurityGroup">
         <MappingFragment StoreEntitySet="SecurityGroups">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -214,6 +224,7 @@
     <EntitySetMapping Name="SystemUsers">
       <EntityTypeMapping TypeName="MenuSecurityModel.SystemUser">
         <MappingFragment StoreEntitySet="SystemUsers">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
@@ -240,6 +251,7 @@
     <EntitySetMapping Name="SystemUserSecurities">
       <EntityTypeMapping TypeName="MenuSecurityModel.SystemUserSecurity">
         <MappingFragment StoreEntitySet="SystemUserSecurities">
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
           <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
           <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />

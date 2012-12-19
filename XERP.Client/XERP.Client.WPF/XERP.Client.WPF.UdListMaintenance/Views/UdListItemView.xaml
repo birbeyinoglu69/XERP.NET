@@ -17,18 +17,14 @@
                 <TabItem  Style="{StaticResource BaseTabItem}" Name="tabDetail" Header="Detail">
                     <Grid Style="{StaticResource BaseGrid}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="46*"></RowDefinition>
                             <RowDefinition Height="657*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="246*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="0" 
-                Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch" Orientation="Horizontal" ></StackPanel>
                         <StackPanel Style="{StaticResource BaseStackPanel}"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch" VerticalAlignment="Top" 
                 Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
                             <TextBlock Style="{StaticResource BaseTextBlock}"
                     HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">ID:
@@ -41,17 +37,16 @@
                     </StackPanel>
                         <StackPanel Style="{StaticResource BaseStackPanel}"
                 Grid.Row="1" Grid.Column="1"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                Orientation="Vertical" IsEnabled="{Binding AllowEditItem}">
-                        <TextBox Name="txtKey" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Width="157"
+                HorizontalAlignment="Stretch" VerticalAlignment="top" 
+                Orientation="Vertical" IsEnabled="{Binding AllowEditUdListItem}">
+                        <TextBox Name="txtKey" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="157"
                     Text="{Binding Path=SelectedUdListItem.UdListItemID, Mode=TwoWay, TargetNullValue=''}"
-                    IsEnabled="{Binding AllowEditItem}"
                     MaxLength= "{Binding UdListMaxFieldValueDictionary[Name]}" 
                     KeyboardNavigation.TabIndex="20"  BorderBrush="DimGray"
                                  >
                         </TextBox>
                         <TextBox Style="{StaticResource BaseTextBox}"
-                    HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Width="159"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="159"
                     Text="{Binding Path=SelectedUdListItem.Description, Mode=TwoWay}"
                     MaxLength= "{Binding UdListMaxFieldValueDictionary[Description]}" 
                     KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>

@@ -45,34 +45,33 @@ namespace XERP.Domain.SystemUserDomain.Services
             return queryResult;
         }
 
-        public IEnumerable<SystemUserCode> GetSystemUserCodes(SystemUserCode companyCodeQuerryObject)
+        public IEnumerable<SystemUserCode> GetSystemUserCodes(SystemUserCode itemCodeQuerryObject)
         {
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.SystemUserCodes
                               select q;
+            if (!string.IsNullOrEmpty(itemCodeQuerryObject.Code))
+                queryResult = queryResult.Where(q => q.Code.StartsWith(itemCodeQuerryObject.Code.ToString()));
 
-            if (!string.IsNullOrEmpty(companyCodeQuerryObject.Code))
-                queryResult = queryResult.Where(q => q.Code.StartsWith(companyCodeQuerryObject.Code.ToString()));
+            if (!string.IsNullOrEmpty(itemCodeQuerryObject.Description))
+                queryResult = queryResult.Where(q => q.Description.StartsWith(itemCodeQuerryObject.Description.ToString()));
 
-            if (!string.IsNullOrEmpty(companyCodeQuerryObject.Description))
-                queryResult = queryResult.Where(q => q.Description.StartsWith(companyCodeQuerryObject.Description.ToString()));
-
-            if (!string.IsNullOrEmpty(companyCodeQuerryObject.SystemUserCodeID))
-                queryResult = queryResult.Where(q => q.Description.StartsWith(companyCodeQuerryObject.SystemUserCodeID.ToString()));
+            if (!string.IsNullOrEmpty(itemCodeQuerryObject.SystemUserCodeID))
+                queryResult = queryResult.Where(q => q.Description.StartsWith(itemCodeQuerryObject.SystemUserCodeID.ToString()));
 
             return queryResult;
         }
 
 
-        public IEnumerable<SystemUserCode> GetSystemUserCodeByID(string companyCodeID)
+        public IEnumerable<SystemUserCode> GetSystemUserCodeByID(string itemCodeID)
         {
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SystemUserCodes
-                               where q.SystemUserCodeID == companyCodeID
+                               where q.SystemUserCodeID == itemCodeID
                                select q);
             return queryResult;
         }
@@ -94,31 +93,32 @@ namespace XERP.Domain.SystemUserDomain.Services
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(SystemUserCode companyCode)
+        public void UpdateRepository(SystemUserCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(companyCode) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemCode) != null)
             {
+                itemCode.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemCode.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(companyCode);
+                _repositoryContext.UpdateObject(itemCode);
             }
         }
 
-        public void AddToRepository(SystemUserCode companyCode)
+        public void AddToRepository(SystemUserCode itemCode)
         {
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
-            _repositoryContext.AddToSystemUserCodes(companyCode);
+            _repositoryContext.AddToSystemUserCodes(itemCode);
         }
 
-        public void DeleteFromRepository(SystemUserCode companyCode)
+        public void DeleteFromRepository(SystemUserCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(companyCode) != null)
-            {
-                //if it exists in the db delete it from the db
+            if (_repositoryContext.GetEntityDescriptor(itemCode) != null)
+            {//if it exists in the db delete it from the db
                 SystemUserEntities context = new SystemUserEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
                 SystemUserCode deletedSystemUserCode = (from q in context.SystemUserCodes
-                                          where q.SystemUserCodeID == companyCode.SystemUserCodeID
+                                          where q.SystemUserCodeID == itemCode.SystemUserCodeID
                                           select q).SingleOrDefault();
                 if (deletedSystemUserCode != null)
                 {
@@ -129,15 +129,15 @@ namespace XERP.Domain.SystemUserDomain.Services
 
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
-                if (GetSystemUserCodeEntityState(companyCode) != EntityStates.Detached)
-                    _repositoryContext.Detach(companyCode);
+                if (GetSystemUserCodeEntityState(itemCode) != EntityStates.Detached)
+                    _repositoryContext.Detach(itemCode);
             }
         }
 
-        public EntityStates GetSystemUserCodeEntityState(SystemUserCode companyCode)
+        public EntityStates GetSystemUserCodeEntityState(SystemUserCode itemCode)
         {
-            if (_repositoryContext.GetEntityDescriptor(companyCode) != null)
-                return _repositoryContext.GetEntityDescriptor(companyCode).State;
+            if (_repositoryContext.GetEntityDescriptor(itemCode) != null)
+                return _repositoryContext.GetEntityDescriptor(itemCode).State;
             else
                 return EntityStates.Detached;
         }

@@ -58,7 +58,7 @@
                                 <i:EventTrigger EventName="Click">
                                     <ei:CallMethodAction
                                     TargetObject="{Binding}"
-                                    MethodName="DeleteCommand"/>
+                                    MethodName="DeleteAddressCommand"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </MenuItem>
@@ -132,7 +132,7 @@
                         <i:EventTrigger EventName="Click">
                             <ei:CallMethodAction
                             TargetObject="{Binding}"
-                            MethodName="DeleteCommand"/>
+                            MethodName="DeleteAddressCommand"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </MenuItem>
@@ -187,10 +187,40 @@
             SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Style="{StaticResource BaseTextBlock}"
-                        Text="{Binding Path=AddressID, Mode=TwoWay}" Margin="5"/>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="0">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="1">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="2">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/flag2.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Text="{Binding Path=AddressID}" >
+                            </TextBlock>
+                            <TextBlock Width="0"
+                                Text="{Binding Path=IsValid}" Visibility="Hidden">
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource BaseErrorBlock}" Height="Auto"
+                                       Text="{Binding Path = NotValidMessage}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
         </ListBox>
         <TabControl Style="{StaticResource BaseTabControl}" Name="tabctrlMain" Grid.Column="1" Grid.Row="1">
             <TabItem  Style="{StaticResource BaseTabItem}" Name="tabDetail" Header="Detail">
@@ -200,13 +230,13 @@
                         <RowDefinition Height="657*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="97"></ColumnDefinition>
-                        <ColumnDefinition Width="336*"></ColumnDefinition>
+                        <ColumnDefinition Width="171"></ColumnDefinition>
+                        <ColumnDefinition Width="246*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="0" 
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
-                        <Button Style="{StaticResource BaseButton}" Content="Address ID..." Width="108" Height="25" Margin="10" 
+                        <Button Style="{StaticResource BaseButton}" Content="Address..." Width="108" Height="25" Margin="10" 
                             KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
                           <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -223,120 +253,30 @@
                     </StackPanel>
                     <StackPanel Style="{StaticResource BaseStackPanel}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                        Orientation="Vertical" Grid.Row="1">
+                        Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Name:
                         </TextBlock>
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Description:
                         </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Address 1:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Address 2:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Address 3:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">City:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">State:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Zip:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Country:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Phone:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Phone 2:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Fax Num:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Email:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Email 2:
-                        </TextBlock>
-                        <TextBlock Style="{StaticResource BaseTextBlock}"
-                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Notes:
-                        </TextBlock>
                         <TextBox Style="{StaticResource BaseTextBox}" 
                             Width="0" Height="0"  Name="ghost"  KeyboardNavigation.IsTabStop="False"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource BaseStackPanel}"
-                        Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                        Orientation="Vertical" IsEnabled="{Binding AllowEdit}" Grid.Column="1">
-                        <TextBox Margin="5" 
+                        Grid.Row="1" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
                             Text="{Binding Path=SelectedAddress.Name, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding AddressMaxFieldValueDictionary[Name]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
                             Text="{Binding Path=SelectedAddress.Description, Mode=TwoWay}"
+                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Description]}" 
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedAddress.Address1, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Address1]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedAddress.Address2, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Address2]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedAddress.Address3, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Address3]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedAddress.City, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[City]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" HorizontalAlignment="Left"
-                            Text="{Binding Path=SelectedAddress.State, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[State]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Width="170"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" HorizontalAlignment="Left"
-                            Text="{Binding Path=SelectedAddress.Zip, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Zip]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Width="170"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" HorizontalAlignment="Left"
-                            Text="{Binding Path=SelectedAddress.Country, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Country]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Width="170"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" HorizontalAlignment="Left"
-                            Text="{Binding Path=SelectedAddress.Phone, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Phone]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Width="170"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" HorizontalAlignment="Left"
-                            Text="{Binding Path=SelectedAddress.Phone2, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Phone2]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Width="170"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" HorizontalAlignment="Left"
-                            Text="{Binding Path=SelectedAddress.FaxNum, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[FaxNum]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Width="170"></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedAddress.Email, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Email]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" ></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" 
-                            Text="{Binding Path=SelectedAddress.Email2, Mode=TwoWay}"
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Email2]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" ></TextBox>
-                        <TextBox Style="{StaticResource BaseTextBox}" Margin="5" HorizontalAlignment="Left"
-                            Text="{Binding Path=SelectedAddress.Notes, Mode=TwoWay}" 
-                            MaxLength= "{Binding AddressMaxFieldValueDictionary[Notes]}" 
-                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Width="323" Height="49"
-                            TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
-                        </TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>

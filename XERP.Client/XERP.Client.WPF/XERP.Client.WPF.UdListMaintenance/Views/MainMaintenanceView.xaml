@@ -75,7 +75,7 @@
                             </i:Interaction.Triggers>
                         </MenuItem>
                         <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete UdListItem" 
-                                  IsEnabled="{Binding AllowDeleteItem}">
+                                  IsEnabled="{Binding AllowDeleteUdListItem}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <ei:CallMethodAction
@@ -170,7 +170,7 @@
                     </i:Interaction.Triggers>
                 </MenuItem>
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete UdListItem" 
-                        IsEnabled="{Binding AllowDeleteItem}">
+                        IsEnabled="{Binding AllowDeleteUdListItem}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ei:CallMethodAction

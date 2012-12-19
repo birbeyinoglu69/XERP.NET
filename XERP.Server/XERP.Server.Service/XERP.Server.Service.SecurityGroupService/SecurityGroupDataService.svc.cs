@@ -139,7 +139,7 @@ namespace XERP.Server.Service.SecurityGroupService
                 //test it...
                 //GetMetaData("SecurityGroups");
                 //IQueryable<SecurityGroup> SecurityGroupQuery = (from c in context.SecurityGroups
-                //                                    select c);
+                                                               // select c);
 
                 //foreach (SecurityGroup cc in SecurityGroupQuery)
                 //{

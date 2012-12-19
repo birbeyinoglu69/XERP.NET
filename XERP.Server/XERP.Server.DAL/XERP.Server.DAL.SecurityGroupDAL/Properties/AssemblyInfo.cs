@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("XERP.Server.DAL.SecurityGroupDAL")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("XERP.Server.DAL.SecurityGroupDAL")]
 [assembly: AssemblyConfiguration("")]
 
 [assembly: AssemblyTrademark("")]

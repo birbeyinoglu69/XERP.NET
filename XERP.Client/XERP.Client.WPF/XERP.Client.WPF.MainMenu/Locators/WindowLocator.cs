@@ -53,18 +53,18 @@ namespace XERP.Client.WPF.MainMenu
                     window = new CompanyMaintenance.CodeMaintenanceWindow();
                     window.Show();
                     break;
-                //case _executableProgramEnum.SystemUserMaintenance:
-                //    window = new SystemUserMaintenance.MainWindow();
-                //    window.Show();
-                //    break;
-                //case _executableProgramEnum.SystemUserTypeMaintenance:
-                //    window = new SystemUserMaintenance.TypeMaintenanceWindow();
-                //    window.Show();
-                //    break;
-                //case _executableProgramEnum.SystemUserCodeMaintenance:
-                //    window = new SystemUserMaintenance.CodeMaintenanceWindow();
-                //    window.Show();
-                //    break;
+                case _executableProgramEnum.SystemUserMaintenance:
+                    window = new SystemUserMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SystemUserTypeMaintenance:
+                    window = new SystemUserMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.SystemUserCodeMaintenance:
+                    window = new SystemUserMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
                 case _executableProgramEnum.SecurityGroupMaintenance:
                     window = new SecurityGroupMaintenance.MainWindow();
                     window.Show();
@@ -77,10 +77,10 @@ namespace XERP.Client.WPF.MainMenu
                     window = new SecurityGroupMaintenance.CodeMaintenanceWindow();
                     window.Show();
                     break;
-                //case _executableProgramEnum.AddressMaintenance:
-                //    window = new AddressMaintenance.MainWindow();
-                //    window.Show();
-                //    break;                  
+                case _executableProgramEnum.AddressMaintenance:
+                    window = new AddressMaintenance.MainWindow();
+                    window.Show();
+                    break;                  
                 //case _executableProgramEnum.MenuItemMaintenance:
                 //    window = new MenuItemMaintenance.MainWindow();
                 //    window.Show();
@@ -93,18 +93,18 @@ namespace XERP.Client.WPF.MainMenu
                 //    window = new MenuItemMaintenance.CodeMaintenanceWindow();
                 //    window.Show();
                 //    break;
-                //case _executableProgramEnum.ExecutableProgramMaintenance:
-                //    window = new ExecutableProgramMaintenance.MainWindow();
-                //    window.Show();
-                //    break;
-                //case _executableProgramEnum.ExecutableProgramTypeMaintenance:
-                //    window = new ExecutableProgramMaintenance.TypeMaintenanceWindow();
-                //    window.Show();
-                //    break;
-                //case _executableProgramEnum.ExecutableProgramCodeMaintenance:
-                //    window = new ExecutableProgramMaintenance.CodeMaintenanceWindow();
-                //    window.Show();
-                //    break;
+                case _executableProgramEnum.ExecutableProgramMaintenance:
+                    window = new ExecutableProgramMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.ExecutableProgramTypeMaintenance:
+                    window = new ExecutableProgramMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.ExecutableProgramCodeMaintenance:
+                    window = new ExecutableProgramMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
                 case _executableProgramEnum.UdListMaintenance:
                     window = new UdListMaintenance.MainWindow();
                     window.Show();

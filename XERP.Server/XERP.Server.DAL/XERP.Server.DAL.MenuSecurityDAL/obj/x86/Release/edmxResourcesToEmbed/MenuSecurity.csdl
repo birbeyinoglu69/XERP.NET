@@ -165,6 +165,7 @@
     <NavigationProperty Name="UdLists" Relationship="MenuSecurityModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
     <NavigationProperty Name="UdListItems" Relationship="MenuSecurityModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="DBStoredImage">
     <Key>
@@ -184,6 +185,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_Image_Company" FromRole="DBStoredImage" ToRole="Company" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_Image" FromRole="DBStoredImage" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="ExecutableProgramCode">
     <Key>
@@ -202,6 +204,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_ExecutableProgramCode_Company" FromRole="ExecutableProgramCode" ToRole="Company" />
     <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramCodes" FromRole="ExecutableProgramCode" ToRole="ExecutableProgram" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="ExecutableProgram">
     <Key>
@@ -227,6 +230,7 @@
     <NavigationProperty Name="ExecutableProgramCode" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramCodes" FromRole="ExecutableProgram" ToRole="ExecutableProgramCode" />
     <NavigationProperty Name="ExecutableProgramType" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramTypes" FromRole="ExecutableProgram" ToRole="ExecutableProgramType" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItems_ExecutablePrograms" FromRole="ExecutableProgram" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="ExecutableProgramType">
     <Key>
@@ -245,6 +249,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_ExecutableProgramType_Company" FromRole="ExecutableProgramType" ToRole="Company" />
     <NavigationProperty Name="ExecutablePrograms" Relationship="MenuSecurityModel.FK_ExecutablePrograms_ExecutableProgramTypes" FromRole="ExecutableProgramType" ToRole="ExecutableProgram" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="MenuItemCode">
     <Key>
@@ -263,6 +268,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemCode_Company" FromRole="MenuItemCode" ToRole="Company" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemCode" FromRole="MenuItemCode" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="MenuItem">
     <Key>
@@ -295,6 +301,7 @@
     <NavigationProperty Name="MenuItemCode" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemCode" FromRole="MenuItem" ToRole="MenuItemCode" />
     <NavigationProperty Name="MenuItemType" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemType" FromRole="MenuItem" ToRole="MenuItemType" />
     <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_MenuItem" FromRole="MenuItem" ToRole="MenuSecurity" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="MenuItemType">
     <Key>
@@ -313,6 +320,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuItemType_Company" FromRole="MenuItemType" ToRole="Company" />
     <NavigationProperty Name="MenuItems" Relationship="MenuSecurityModel.FK_MenuItem_MenuItemType" FromRole="MenuItemType" ToRole="MenuItem" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="MenuSecurity">
     <Key>
@@ -332,6 +340,7 @@
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_MenuSecurity_Company" FromRole="MenuSecurity" ToRole="Company" />
     <NavigationProperty Name="MenuItem" Relationship="MenuSecurityModel.FK_MenuSecurity_MenuItem" FromRole="MenuSecurity" ToRole="MenuItem" />
     <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="MenuSecurity" ToRole="SecurityGroup" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SecurityGroup">
     <Key>
@@ -355,6 +364,7 @@
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_SecurityGroup_Company" FromRole="SecurityGroup" ToRole="Company" />
     <NavigationProperty Name="MenuSecurities" Relationship="MenuSecurityModel.FK_MenuSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="MenuSecurity" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SecurityGroup" FromRole="SecurityGroup" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SystemUser">
     <Key>
@@ -381,6 +391,7 @@
     <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="MenuSecurityModel.FK_UserSecurity_SystemUser" FromRole="SystemUser" ToRole="SystemUserSecurity" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="SystemUserSecurity">
     <Key>
@@ -400,6 +411,7 @@
     <NavigationProperty Name="Company" Relationship="MenuSecurityModel.FK_UserSecurity_Company" FromRole="SystemUserSecurity" ToRole="Company" />
     <NavigationProperty Name="SecurityGroup" Relationship="MenuSecurityModel.FK_UserSecurity_SecurityGroup" FromRole="SystemUserSecurity" ToRole="SecurityGroup" />
     <NavigationProperty Name="SystemUser" Relationship="MenuSecurityModel.FK_UserSecurity_SystemUser" FromRole="SystemUserSecurity" ToRole="SystemUser" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="UdListItem">
     <Key>

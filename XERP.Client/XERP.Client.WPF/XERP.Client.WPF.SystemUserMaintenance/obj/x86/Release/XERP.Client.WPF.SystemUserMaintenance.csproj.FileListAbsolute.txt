@@ -1,3 +1,5 @@
+C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SystemUserMaintenance.exe
+C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SystemUserMaintenance.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\CodeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\CodeMaintenanceView.baml
@@ -5,7 +7,6 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x8
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\MainMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\TypeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\TypeMaintenanceView.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\App.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\CodeMaintenanceWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\CodeSearchWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\MainSearchWindow.g.cs
@@ -18,11 +19,10 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x8
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\MainMaintenanceView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\TypeMaintenanceSearchView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\Views\TypeMaintenanceView.g.cs
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\App.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\GeneratedInternalTypeHelper.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\XERP.Client.WPF.SystemUserMaintenance_MarkupCompile.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\XERP.Client.WPF.SystemUserMaintenance_MarkupCompile.lref
-C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SystemUserMaintenance.exe
-C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SystemUserMaintenance.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\App.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\CodeMaintenanceWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Release\CodeSearchWindow.baml

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Services.Client;
+using System.Linq;
 using XERP.Domain.SystemUserDomain.SystemUserDataService;
 using XERP.Domain.SystemUserDomain.Services;
 
@@ -23,6 +23,7 @@ namespace XERP.Domain.SystemUserDomain
             {
                 if (_instance == null)
                     _instance = new SystemUserTypeSingletonRepository();
+
                 return _instance;
             }
         }
@@ -45,34 +46,33 @@ namespace XERP.Domain.SystemUserDomain
             return queryResult;
         }
 
-        public IEnumerable<SystemUserType> GetSystemUserTypes(SystemUserType systemUserTypeQuerryObject)
+        public IEnumerable<SystemUserType> GetSystemUserTypes(SystemUserType itemTypeQuerryObject)
         {
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = from q in _repositoryContext.SystemUserTypes
                               select q;
+            if (!string.IsNullOrEmpty(itemTypeQuerryObject.Type))
+                queryResult = queryResult.Where(q => q.Type.StartsWith(itemTypeQuerryObject.Type.ToString()));
 
-            if (!string.IsNullOrEmpty(systemUserTypeQuerryObject.Type))
-                queryResult = queryResult.Where(q => q.Type.StartsWith(systemUserTypeQuerryObject.Type.ToString()));
+            if (!string.IsNullOrEmpty(itemTypeQuerryObject.Description))
+                queryResult = queryResult.Where(q => q.Description.StartsWith(itemTypeQuerryObject.Description.ToString()));
 
-            if (!string.IsNullOrEmpty(systemUserTypeQuerryObject.Description))
-                queryResult = queryResult.Where(q => q.Description.StartsWith(systemUserTypeQuerryObject.Description.ToString()));
-
-            if (!string.IsNullOrEmpty(systemUserTypeQuerryObject.SystemUserTypeID))
-                queryResult = queryResult.Where(q => q.Description.StartsWith(systemUserTypeQuerryObject.SystemUserTypeID.ToString()));
+            if (!string.IsNullOrEmpty(itemTypeQuerryObject.SystemUserTypeID))
+                queryResult = queryResult.Where(q => q.Description.StartsWith(itemTypeQuerryObject.SystemUserTypeID.ToString()));
 
             return queryResult;
         }
 
 
-        public IEnumerable<SystemUserType> GetSystemUserTypeByID(string systemUserTypeID)
+        public IEnumerable<SystemUserType> GetSystemUserTypeByID(string itemTypeID)
         {
             _repositoryContext = new SystemUserEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
             var queryResult = (from q in _repositoryContext.SystemUserTypes
-                               where q.SystemUserTypeID == systemUserTypeID
+                               where q.SystemUserTypeID == itemTypeID
                                select q);
             return queryResult;
         }
@@ -94,31 +94,33 @@ namespace XERP.Domain.SystemUserDomain
             _repositoryContext.SaveChanges();
         }
 
-        public void UpdateRepository(SystemUserType systemUserType)
+        public void UpdateRepository(SystemUserType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(systemUserType) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
             {
+                itemType.LastModifiedBy = XERP.Client.ClientSessionSingleton.Instance.SystemUserID;
+                itemType.LastModifiedByDate = DateTime.Now;
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
-                _repositoryContext.UpdateObject(systemUserType);
+                _repositoryContext.UpdateObject(itemType);
             }
         }
 
-        public void AddToRepository(SystemUserType systemUserType)
+        public void AddToRepository(SystemUserType itemType)
         {
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
-            _repositoryContext.AddToSystemUserTypes(systemUserType);
+            _repositoryContext.AddToSystemUserTypes(itemType);
         }
 
-        public void DeleteFromRepository(SystemUserType systemUserType)
+        public void DeleteFromRepository(SystemUserType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(systemUserType) != null)
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
             {
                 //if it exists in the db delete it from the db
                 SystemUserEntities context = new SystemUserEntities(_rootUri);
                 context.MergeOption = MergeOption.AppendOnly;
                 context.IgnoreResourceNotFoundException = true;
                 SystemUserType deletedSystemUserType = (from q in context.SystemUserTypes
-                                          where q.SystemUserTypeID == systemUserType.SystemUserTypeID
+                                          where q.SystemUserTypeID == itemType.SystemUserTypeID
                                           select q).SingleOrDefault();
                 if (deletedSystemUserType != null)
                 {
@@ -129,15 +131,15 @@ namespace XERP.Domain.SystemUserDomain
 
                 _repositoryContext.MergeOption = MergeOption.AppendOnly;
                 //if it is being tracked remove it...
-                if (GetSystemUserTypeEntityState(systemUserType) != EntityStates.Detached)
-                    _repositoryContext.Detach(systemUserType);
+                if (GetSystemUserTypeEntityState(itemType) != EntityStates.Detached)
+                    _repositoryContext.Detach(itemType);
             }
         }
 
-        public EntityStates GetSystemUserTypeEntityState(SystemUserType systemUserType)
+        public EntityStates GetSystemUserTypeEntityState(SystemUserType itemType)
         {
-            if (_repositoryContext.GetEntityDescriptor(systemUserType) != null)
-                return _repositoryContext.GetEntityDescriptor(systemUserType).State;
+            if (_repositoryContext.GetEntityDescriptor(itemType) != null)
+                return _repositoryContext.GetEntityDescriptor(itemType).State;
             else
                 return EntityStates.Detached;
         }

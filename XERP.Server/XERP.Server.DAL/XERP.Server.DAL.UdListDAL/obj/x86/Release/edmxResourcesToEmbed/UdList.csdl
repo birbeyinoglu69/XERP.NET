@@ -64,6 +64,7 @@
     <Property Type="DateTime" Name="LastModifiedByDate" />
     <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
     <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
+    <Property Type="Boolean" Name="IsSelected" />
   </EntityType>
   <EntityType Name="UdListItem">
     <Key>

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C330E053-C01C-4334-8F72-507AA490ECF1}</ProjectGuid>
+    <ProjectGuid>{7139617B-FD8C-4D94-BD9F-08FDC3B785BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XERP.Domain.SystemUserDomain</RootNamespace>
@@ -46,12 +46,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
-    <Compile Include="Services\AddressSingletonRepostitory.cs" />
-    <Compile Include="Services\ISystemUserServiceAgent.cs" />
     <Compile Include="Services\SystemUserCodeSingletonRepository.cs" />
     <Compile Include="Services\SystemUserServiceAgent.cs" />
     <Compile Include="Services\SystemUserSingletonRepostitory.cs" />
     <Compile Include="Services\SystemUserTypeSingletonRepostitory.cs" />
+    <Compile Include="Services\ISystemUserServiceAgent.cs" />
     <Compile Include="Services\ServiceUtility.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,12 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\XERP.Client\XERP.Client.csproj">
-      <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
-      <Name>XERP.Client</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ServiceReferenceMetadataStorage Include="Service References\SystemUserDataService\">
@@ -83,6 +76,12 @@
       <Generator>DataServiceClientGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.csproj">
+      <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
+      <Name>XERP.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

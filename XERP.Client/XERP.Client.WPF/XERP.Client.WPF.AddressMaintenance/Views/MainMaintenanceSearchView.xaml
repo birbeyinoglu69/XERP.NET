@@ -62,7 +62,6 @@
                                                 Header="Name" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding Description}"
                                                 Header="Description" Width="Auto" IsReadOnly="True"/>
-                
             </DataGrid.Columns>
         </DataGrid>
         <Button Style="{StaticResource BaseButton}" Grid.Column="1" Grid.Row="3" 

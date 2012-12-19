@@ -126,6 +126,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.AddressDomain\XERP.Domain.AddressDomain.csproj">
+      <Project>{EDEFF0B3-FD25-4A61-B90F-B0FF54F88F48}</Project>
+      <Name>XERP.Domain.AddressDomain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.csproj">
       <Project>{37A9326D-E256-4081-A7C8-D8CE855CFD4F}</Project>
       <Name>XERP.Domain</Name>
@@ -146,6 +150,9 @@
       <Project>{6201296D-4907-46E1-A57E-A2357B0AF04C}</Project>
       <Name>XERP.Client.WPF.LogIn</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

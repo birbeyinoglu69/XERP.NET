@@ -6,8 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("XERP.Server.Service.SystemUserService")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyDescription("XERP.Server.Service.SystemUserService")]
 
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -18,5 +17,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fec93397-e9ba-455a-b9e0-f38fe1f6610b")]
+[assembly: Guid("8277626c-4e7a-483b-bcfc-b779a0f04040")]
 

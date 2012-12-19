@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8A79D15B-FFF7-402F-AB64-60BAC8065721}</ProjectGuid>
+    <ProjectGuid>{E32FDA26-5B99-485C-9B05-4EB325F84133}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -73,6 +73,12 @@
     <Compile Include="SystemUserDataService.svc.cs">
       <DependentUpon>SystemUserDataService.svc</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XERP.Server.DAL\XERP.Server.DAL.SystemUserDAL\XERP.Server.DAL.SystemUserDAL.csproj">
+      <Project>{20F37A87-7914-4268-B14F-413BC265BDC1}</Project>
+      <Name>XERP.Server.DAL.SystemUserDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

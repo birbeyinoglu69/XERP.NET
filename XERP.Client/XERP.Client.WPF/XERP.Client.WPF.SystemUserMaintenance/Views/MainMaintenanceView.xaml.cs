@@ -59,24 +59,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
 
-        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        //{
-        //    if (tabctrlMain.SelectedItem == tabDetail)
-        //    {
-        //        txtKey.Focus();
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabList)
-        //    {
-        //        dgMain.Focus();
-        //        if(dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-        //        {//set the last records first column to have focus...
-        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1], 
-        //                dgMain.Columns[0]);
-        //            dgMain.BeginEdit();
-        //        }
-        //    }
-        //}
-
         private void OpenTypeMaintenance_Click(object sender, RoutedEventArgs e)
         {
             TypeMaintenanceWindow maintenanceWindow = new TypeMaintenanceWindow();
@@ -283,21 +265,11 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
             {
                 if (_viewModel.AllowDelete)
                 {
-                    _viewModel.DeleteCommand();
+                    _viewModel.DeleteSystemUserCommand();
                     return;
                 }
                 //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void lbxSecurityGroupsAvailable_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {//cordinate selected items to the view model...
-            _viewModel.SelectedSecurityGroupAvailableList = lbxSecurityGroupsAvailable.SelectedItems;
-        }
-
-        private void lbxSecurityGroupsAuthorized_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {//cordinate selected items to the view model...
-            _viewModel.SelectedSystemUserSecurityGroupAuthorizedList = lbxSecurityGroupsAuthorized.SelectedItems;
         }
     }  
 }

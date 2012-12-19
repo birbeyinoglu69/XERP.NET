@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Windows;
-using System.Linq;
-using System.Data.Services.Client;
-using System.ComponentModel;
 using System.Collections.Generic;
-// Toolkit namespace
-using SimpleMvvmToolkit;
-//XERP Namespaces
-using XERP.Domain.SystemUserDomain.Services;
-using XERP.Domain.SystemUserDomain.SystemUserDataService;
-//required for extension methods...
+using System.ComponentModel;
+using System.Data.Services.Client;
+using System.Linq;
+using System.Windows;
 using ExtensionMethods;
+using SimpleMvvmToolkit;
 using XERP.Client.Models;
+using XERP.Domain.SystemUserDomain.SystemUserDataService;
+using XERP.Domain.SystemUserDomain.Services;
 
 namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 {
@@ -20,6 +17,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #region Initialization and Cleanup
         //GlobalProperties Class allows us to share properties amonst multiple classes...
         private GlobalProperties _globalProperties = new GlobalProperties();
+        private int _newSystemUserCodeAutoId;
 
         private ISystemUserServiceAgent _serviceAgent;
         private enum _saveRequiredResultActions
@@ -29,8 +27,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             ClearLogic
         }
         //required else it generates debug view designer issues 
-        public CodeMaintenanceViewModel()
-        { }
+        public CodeMaintenanceViewModel(){}
 
         public CodeMaintenanceViewModel(ISystemUserServiceAgent serviceAgent)
         {
@@ -43,11 +40,8 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             SystemUserCodeList.AllowNew = false;
 
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
@@ -56,23 +50,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
             AllowNew = true;
             AllowRowPaste = true;
-            //SystemUserCodeColumnMetaDataList = new List<ColumnMetaData>();
         }
         #endregion Initialization and Cleanup
 
         #region Authentication Logic
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -84,9 +71,8 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
 
@@ -120,7 +106,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         }
 
         private bool _allowRowPaste;
-
         public bool AllowRowPaste
         {
             get { return _allowRowPaste; }
@@ -130,7 +115,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.AllowRowPaste);
             }
         }
-
 
         private bool _allowNew;
         public bool AllowNew
@@ -144,7 +128,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         }
 
         private bool _allowCommit;
-
         public bool AllowCommit
         {
             get { return _allowCommit; }
@@ -187,7 +170,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.AllowEdit);
             }
         }
-
 
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
@@ -320,9 +302,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 foreach (var data in metaData)
                 {
                     if (data.ShortChar_1 == "String")
-                    {
                         _systemUserCodeMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                    }
                 }
                 return _systemUserCodeMaxFieldValueDictionary;
             }
@@ -332,7 +312,18 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
         #region ViewModel Propertie's Events
         private void SelectedSystemUserCode_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {   //Key ID Logic...
+        {//these properties are not to be persisted we will igore them...
+            if (e.PropertyName == "IsSelected" ||
+                e.PropertyName == "IsExpanded" ||
+                e.PropertyName == "IsValid" ||
+                e.PropertyName == "NotValidMessage" ||
+                e.PropertyName == "LastModifiedBy" ||
+                e.PropertyName == "LastModifiedByDate")
+            {
+                return;
+            }
+
+            //Key ID Logic...
             if (e.PropertyName == "SystemUserCodeID")
             {//make sure it is has changed...
                 if (SelectedSystemUserCodeMirror.SystemUserCodeID != SelectedSystemUserCode.SystemUserCodeID)
@@ -350,14 +341,11 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
                     {//once a key is added it can not be modified...
-                        if (Dirty && AllowCommit)
-                        {//dirty record exists ask if save is required...
+                        if (Dirty && AllowCommit)//dirty record exists ask if save is required...
                             NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
-                        }
                         else
-                        {
                             ChangeKeyLogic();
-                        }
+
                         return;
                     }
                 }
@@ -372,293 +360,85 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             bool objectsAreEqual;
             if (propertyChangedValue == null)
             {
-                if (prevPropertyValue == null)
-                {//both values are null
+                if (prevPropertyValue == null)//both values are null
                     objectsAreEqual = true;
-                }
-                else
-                {//only one value is null
+                else//only one value is null
                     objectsAreEqual = false;
-                }
             }
             else
             {
-                if (prevPropertyValue == null)
-                {//only one value is null
+                if (prevPropertyValue == null)//only one value is null
                     objectsAreEqual = false;
-                }
                 else //both values are not null use .Equals...
-                {
                     objectsAreEqual = propertyChangedValue.Equals(prevPropertyValue);
-                }
             }
             if (!objectsAreEqual)
             {
                 //Here we do property change validation if false is returned we will reset the value
                 //Back to its mirrored value and return out of the property change w/o updating the repository...
-                if (PropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyCode))
+                if (SystemUserCodePropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyCode))
                 {
                     Update(SelectedSystemUserCode);
-                    //set the mirrored objects field...
                     SelectedSystemUserCodeMirror.SetPropertyValue(e.PropertyName, propertyChangedValue);
+                    SelectedSystemUserCodeMirror.IsValid = SelectedSystemUserCode.IsValid;
+                    SelectedSystemUserCodeMirror.IsExpanded = SelectedSystemUserCode.IsExpanded;
+                    SelectedSystemUserCodeMirror.NotValidMessage = SelectedSystemUserCode.NotValidMessage;
+
                 }
-                else
-                {//revert back to its previous value... 
+                else//revert back to its previous value... 
+                {
                     SelectedSystemUserCode.SetPropertyValue(e.PropertyName, prevPropertyValue);
-                    return;
+                    SelectedSystemUserCode.IsValid = SelectedSystemUserCodeMirror.IsValid;
+                    SelectedSystemUserCode.IsExpanded = SelectedSystemUserCodeMirror.IsExpanded;
+                    SelectedSystemUserCode.NotValidMessage = SelectedSystemUserCodeMirror.NotValidMessage;
                 }
+
             }
         }
         #endregion ViewModel Propertie's Events
 
         #region Methods
         #region ViewModel Logic Methods
-
         private void ChangeKeyLogic()
         {
-            string errorMessage = "";
-            if (KeyChangeIsValid(SelectedSystemUserCode.SystemUserCodeID, out errorMessage))
-            {
-                //check to see if key is part of the current systemUserCodelist...
-                SystemUserCode query = SystemUserCodeList.Where(systemUserCode => systemUserCode.SystemUserCodeID == SelectedSystemUserCode.SystemUserCodeID &&
-                                                        systemUserCode.AutoID != SelectedSystemUserCode.AutoID).FirstOrDefault();
+            if (!string.IsNullOrEmpty(SelectedSystemUserCode.SystemUserCodeID))
+            {//check to see if key is part of the current companylist...
+                SystemUserCode query = SystemUserCodeList.Where(company => company.SystemUserCodeID == SelectedSystemUserCode.SystemUserCodeID &&
+                                                        company.AutoID != SelectedSystemUserCode.AutoID).SingleOrDefault();
                 if (query != null)
-                {//change to the newly selected systemUserCode...
+                {//revert it back...
+                    SelectedSystemUserCode.SystemUserCodeID = SelectedSystemUserCodeMirror.SystemUserCodeID;
+                    //change to the newly selected item...
                     SelectedSystemUserCode = query;
                     return;
                 }
                 //it is not part of the existing list try to fetch it from the db...
-                SystemUserCodeList = GetSystemUserCodeByID(SelectedSystemUserCode.SystemUserCodeID);
-                if (SystemUserCodeList.Count == 0)
-                {//it was not found do new record required logic...
+                SystemUserCodeList = GetSystemUserCodeByID(SelectedSystemUserCode.SystemUserCodeID, XERP.Client.ClientSessionSingleton.Instance.CompanyID);
+                if (SystemUserCodeList.Count == 0)//it was not found do new record required logic...
                     NotifyNewRecordNeeded("Record " + SelectedSystemUserCode.SystemUserCodeID + " Does Not Exist.  Create A New Record?");
-                }
                 else
-                {
                     SelectedSystemUserCode = SystemUserCodeList.FirstOrDefault();
-                }
             }
             else
             {
+                string errorMessage = "ID Is Required.";
                 NotifyMessage(errorMessage);
                 //revert back to the value it was before it was changed...
                 if (SelectedSystemUserCode.SystemUserCodeID != SelectedSystemUserCodeMirror.SystemUserCodeID)
-                {
                     SelectedSystemUserCode.SystemUserCodeID = SelectedSystemUserCodeMirror.SystemUserCodeID;
-                }
             }
         }
         //XERP allows for bulk updates we only allow save
         //if all bulk update requirements are met...
         private bool CommitIsAllowed()
-        {
-            string errorMessage = "";
-            bool rBool = true;
-            Dirty = false;
-            foreach (SystemUserCode systemUserCode in SystemUserCodeList)
-            {
-                EntityStates entityState = GetSystemUserCodeState(systemUserCode);
-                if (entityState == EntityStates.Modified ||
-                    entityState == EntityStates.Detached)
-                {
-                    Dirty = true;
-                }
-                if (entityState == EntityStates.Added)
-                {
-                    Dirty = true;
-                    //only one record can be added at a time...
-                    if (NewKeyIsValid(systemUserCode, out errorMessage) == false)
-                    {
-                        rBool = false;
-                    }
-                }
-                if (NameIsValid(systemUserCode.Code, out errorMessage) == false)
-                {
-                    rBool = false;
-                }
-            }
-            //more bulk validation as required...
-            //note bulk validation should coincide with property validation...
-            //as we will not allow a commit until all data is valid...
-            return rBool;
-        }
-
-        private bool PropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string code)
-        {
-            string errorMessage;
-            bool rBool = true;
-            switch (propertyName)
-            {
-                case "SystemUserCodeID":
-                    rBool = NewKeyIsValid(SelectedSystemUserCode, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
-                    break;
-                case "Name":
-                    rBool = NameIsValid(changedValue, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
-                    break;
-            }
-            return true;
-        }
-
-        private bool NewKeyIsValid(SystemUserCode systemUserCode, out string errorMessage)
-        {
-            errorMessage = "";
-            if (KeyChangeIsValid(systemUserCode.SystemUserCodeID, out errorMessage) == false)
-            {
+        {//Check for any repository changes that are not yet committed to the db...
+            Dirty = RepositoryIsDirty();
+            //check for any invalid rows...
+            int count = (from q in SystemUserCodeList where q.IsValid == 1 select q).Count();
+            if (count > 0)
                 return false;
-            }
-            if (SystemUserCodeExists(systemUserCode.SystemUserCodeID.ToString()))
-            {
-                errorMessage = "SystemUserCodeID " + systemUserCode.SystemUserCodeID + " Allready Exists...";
-                return false;
-            }
             return true;
         }
-
-        private bool KeyChangeIsValid(object systemUserCodeID, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)systemUserCodeID))
-            {
-                errorMessage = "SystemUserCodeID Is Required...";
-                return false;
-            }
-            return true;
-        }
-
-        private bool NameIsValid(object value, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)value))
-            {
-                errorMessage = "Name Is Required...";
-                return false;
-            }
-            return true;
-        }
-        #endregion ViewModel Logic Methods
-
-        #region ServiceAgent Call Methods
-
-        private EntityStates GetSystemUserCodeState(SystemUserCode systemUserCode)
-        {
-            return _serviceAgent.GetSystemUserCodeEntityState(systemUserCode);
-        }
-
-        #region SystemUserCode CRUD
-        private void Refresh()
-        {
-
-            //refetch current records...
-            long selectedAutoID = SelectedSystemUserCode.AutoID;
-            string autoIDs = "";
-            //bool isFirstItem = true;
-            foreach (SystemUserCode systemUserCode in SystemUserCodeList)
-            {//auto seeded starts at 1 any records at 0 or less or not valid records...
-                if (systemUserCode.AutoID > 0)
-                {
-                    autoIDs = autoIDs + systemUserCode.AutoID.ToString() + ",";
-                }
-            }
-            if (autoIDs.Length > 0)
-            {
-                //ditch the extra comma...
-                autoIDs = autoIDs.Remove(autoIDs.Length - 1, 1);
-                SystemUserCodeList = new BindingList<SystemUserCode>(_serviceAgent.RefreshSystemUserCode(autoIDs).ToList());
-                SelectedSystemUserCode = (from q in SystemUserCodeList
-                                   where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
-
-                Dirty = false;
-                AllowCommit = false;
-            }
-        }
-
-        private BindingList<SystemUserCode> GetSystemUserCodes()
-        {
-            BindingList<SystemUserCode> systemUserCodeList = new BindingList<SystemUserCode>(_serviceAgent.GetSystemUserCodes().ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return systemUserCodeList;
-        }
-
-        private BindingList<SystemUserCode> GetSystemUserCodes(SystemUserCode systemUserCode)
-        {
-            BindingList<SystemUserCode> systemUserCodeList = new BindingList<SystemUserCode>(_serviceAgent.GetSystemUserCodes(systemUserCode).ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return systemUserCodeList;
-        }
-
-        private BindingList<SystemUserCode> GetSystemUserCodeByID(string id)
-        {
-            BindingList<SystemUserCode> systemUserCodeList = new BindingList<SystemUserCode>(_serviceAgent.GetSystemUserCodeByID(id).ToList());
-            Dirty = false;
-            AllowCommit = false;
-            return systemUserCodeList;
-        }
-
-        private bool SystemUserCodeExists(string systemUserCodeID)
-        {
-            return _serviceAgent.SystemUserCodeExists(systemUserCodeID);
-        }
-        //udpate merely updates the repository a commit is required 
-        //to commit it to the db...
-        private bool Update(SystemUserCode systemUserCode)
-        {
-            _serviceAgent.UpdateSystemUserCodeRepository(systemUserCode);
-            Dirty = true;
-            if (CommitIsAllowed())
-            {
-                AllowCommit = true;
-                return true;
-            }
-            else
-            {
-                AllowCommit = false;
-                return false;
-            }
-        }
-        //commits repository to the db...
-        private bool Commit()
-        {
-            _serviceAgent.CommitSystemUserCodeRepository();
-            Dirty = false;
-            AllowCommit = false;
-            return true;
-        }
-
-        private bool Delete(SystemUserCode systemUserCode)
-        {//deletes are done indenpendently of the repository as a delete will not commit 
-            //dirty records it will simply just delete the record...
-            _serviceAgent.DeleteFromSystemUserCodeRepository(systemUserCode);
-            return true;
-        }
-
-        private bool NewSystemUserCode(string systemUserCodeID)
-        {
-            SystemUserCode systemUserCode = new SystemUserCode();
-            systemUserCode.SystemUserCodeID = systemUserCodeID;
-            SystemUserCodeList.Add(systemUserCode);
-            _serviceAgent.AddToSystemUserCodeRepository(systemUserCode);
-            SelectedSystemUserCode = SystemUserCodeList.LastOrDefault();
-
-            AllowEdit = true;
-            Dirty = false;
-            return true;
-        }
-
-        #endregion SystemUserCode CRUD
-        #endregion ServiceAgent Call Methods
 
         private void SetAsEmptySelection()
         {
@@ -676,6 +456,229 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             SetAsEmptySelection();
         }
 
+        private bool SystemUserCodePropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        {
+            string errorMessage = "";
+            bool rBool = true;
+            switch (propertyName)
+            {
+                case "SystemUserCodeID":
+                    rBool = SystemUserCodeIsValid(SelectedSystemUserCode, _companyValidationProperties.SystemUserCodeID, out errorMessage);
+                    break;
+                case "Name":
+                    rBool = SystemUserCodeIsValid(SelectedSystemUserCode, _companyValidationProperties.Name, out errorMessage);
+                    break;
+            }
+            if (rBool == false)
+            {//here we give a specific error to the specific change
+                NotifyMessage(errorMessage);
+                SelectedSystemUserCode.IsValid = 1;
+            }
+            else //check the enire rows validity...
+            {//here we check the entire row for validity the property change may be valid
+                //but we still do not know if the entire row is valid...
+                //if the row is valid we will set it to 2 (pending changes...)
+                //on the commit we will set it to 0 and it will be valid and saved to the db...
+                SelectedSystemUserCode.IsValid = SystemUserCodeIsValid(SelectedSystemUserCode, out errorMessage);
+                if (SelectedSystemUserCode.IsValid == 2)
+                    errorMessage = "Pending Changes...";
+            }
+            SelectedSystemUserCode.NotValidMessage = errorMessage;
+            return rBool;
+        }
+
+        #region Validation Methods
+        //XERP Validation is done by the entire object or by Object property...
+        //So we must be sure to add the validation in both places...
+        private enum _companyValidationProperties
+        {//we list all fields that require validation...
+            SystemUserCodeID,
+            Name
+        }
+
+        //Object.Property Scope Validation...
+        private bool SystemUserCodeIsValid(SystemUserCode company, _companyValidationProperties validationProperties, out string errorMessage)
+        {
+            errorMessage = "";
+            switch (validationProperties)
+            {
+                case _companyValidationProperties.SystemUserCodeID:
+                    //validate key
+                    if (string.IsNullOrEmpty(company.SystemUserCodeID))
+                    {
+                        errorMessage = "ID Is Required.";
+                        return false;
+                    }
+                    EntityStates entityState = GetSystemUserCodeState(company);
+                    if (entityState == EntityStates.Added && SystemUserCodeExists(company.SystemUserCodeID, ClientSessionSingleton.Instance.CompanyID))
+                    {
+                        errorMessage = "Item AllReady Exists...";
+                        return false;
+                    }
+                    break;
+                case _companyValidationProperties.Name:
+                    //validate Description
+                    if (string.IsNullOrEmpty(company.Description))
+                    {
+                        errorMessage = "Description Is Required.";
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+        //SystemUserCode Object Scope Validation check the entire object for validity...
+        private byte SystemUserCodeIsValid(SystemUserCode item, out string errorMessage)
+        {   //validate key
+            errorMessage = "";
+            if (string.IsNullOrEmpty(item.SystemUserCodeID))
+            {
+                errorMessage = "ID Is Required.";
+                return 1;
+            }
+            EntityStates entityState = GetSystemUserCodeState(item);
+            if (entityState == EntityStates.Added && SystemUserCodeExists(item.SystemUserCodeID, ClientSessionSingleton.Instance.CompanyID))
+            {
+                errorMessage = "Item AllReady Exists.";
+                return 1;
+            }
+
+            //validate Description
+            if (string.IsNullOrEmpty(item.Description))
+            {
+                errorMessage = "Description Is Required.";
+                return 1;
+            }
+            //a value of 2 is pending changes...
+            //On Commit we will give it a value of 0...
+            return 2;
+        }
+        #endregion Validation Methods
+        #endregion ViewModel Logic Methods
+
+        #region ServiceAgent Call Methods
+        private EntityStates GetSystemUserCodeState(SystemUserCode itemCode)
+        {
+            return _serviceAgent.GetSystemUserCodeEntityState(itemCode);
+        }
+
+        private bool RepositoryIsDirty()
+        {
+            return _serviceAgent.SystemUserCodeRepositoryIsDirty();
+        }
+
+        #region SystemUserCode CRUD
+        private void Refresh()
+        {//refetch current records...
+            long selectedAutoID = SelectedSystemUserCode.AutoID;
+            string autoIDs = "";
+            //bool isFirstItem = true;
+            foreach (SystemUserCode itemCode in SystemUserCodeList)
+            {//auto seeded starts at 1 any records at 0 or less or not valid records...
+                if (itemCode.AutoID > 0)
+                    autoIDs = autoIDs + itemCode.AutoID.ToString() + ",";
+            }
+            if (autoIDs.Length > 0)
+            {
+                //ditch the extra comma...
+                autoIDs = autoIDs.Remove(autoIDs.Length - 1, 1);
+                SystemUserCodeList = new BindingList<SystemUserCode>(_serviceAgent.RefreshSystemUserCode(autoIDs).ToList());
+                SelectedSystemUserCode = (from q in SystemUserCodeList
+                                   where q.AutoID == selectedAutoID
+                                   select q).SingleOrDefault();
+                Dirty = false;
+                AllowCommit = false;
+            }
+        }
+
+        private BindingList<SystemUserCode> GetSystemUserCodes(string companyID)
+        {
+            BindingList<SystemUserCode> systemUserCodeList = new BindingList<SystemUserCode>(_serviceAgent.GetSystemUserCodes().ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return systemUserCodeList;
+        }
+
+        private BindingList<SystemUserCode> GetSystemUserCodes(SystemUserCode itemCode, string companyID)
+        {
+            BindingList<SystemUserCode> itemCodeList = new BindingList<SystemUserCode>(_serviceAgent.GetSystemUserCodes(itemCode).ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return itemCodeList;
+        }
+
+        private BindingList<SystemUserCode> GetSystemUserCodeByID(string itemCodeID, string companyID)
+        {
+            BindingList<SystemUserCode> itemCodeList = new BindingList<SystemUserCode>(_serviceAgent.GetSystemUserCodeByID(itemCodeID).ToList());
+            Dirty = false;
+            AllowCommit = false;
+            return itemCodeList;
+        }
+
+        private bool SystemUserCodeExists(string itemCodeID, string companyID)
+        {
+            return _serviceAgent.SystemUserCodeExists(itemCodeID);
+        }
+        //udpate merely updates the repository a commit is required 
+        //to commit it to the db...
+        private bool Update(SystemUserCode item)
+        {
+            _serviceAgent.UpdateSystemUserCodeRepository(item);
+            Dirty = true;
+            if (CommitIsAllowed())
+                AllowCommit = true;
+            else
+                AllowCommit = false;
+            return AllowCommit;
+        }
+
+        //commits repository to the db...
+        private bool Commit()
+        {   //search non respository UI list for pending saved marked records and mark them as valid...
+            var items = (from q in SystemUserCodeList where q.IsValid == 2 select q).ToList();
+            foreach (SystemUserCode item in items)
+            {
+                item.IsValid = 0;
+                item.NotValidMessage = null;
+            }
+            _serviceAgent.CommitSystemUserCodeRepository();
+            Dirty = false;
+            AllowCommit = false;
+            return true;
+        }
+
+
+        private bool Delete(SystemUserCode itemCode)
+        {
+            _serviceAgent.DeleteFromSystemUserCodeRepository(itemCode);
+            return true;
+        }
+
+        private bool NewSystemUserCode(string id)
+        {
+            SystemUserCode item = new SystemUserCode();
+            //all new records will be give a negative int autoid...
+            //when they are updated then sql will generate one for them overiding this set value...
+            //it will allow us to give uniqueness to the tempory new records...
+            //Before they are updated to the entity and given an autoid...
+            //we use a negative number and keep subtracting by 1 for each new item added...
+            //This will allow it to alwasy be unique and never interfere with SQL's positive autoid...
+            _newSystemUserCodeAutoId = _newSystemUserCodeAutoId - 1;
+            item.AutoID = _newSystemUserCodeAutoId;
+            item.SystemUserCodeID = id;
+            item.IsValid = 1;
+            item.NotValidMessage = "New Record Key Field/s Are Required.";
+            SystemUserCodeList.Add(item);
+            _serviceAgent.AddToSystemUserCodeRepository(item);
+            SelectedSystemUserCode = SystemUserCodeList.LastOrDefault();
+
+            AllowEdit = true;
+            Dirty = false;
+            return true;
+        }
+
+        #endregion SystemUserCode CRUD
+        #endregion ServiceAgent Call Methods
         #endregion Methods
 
         #region Commands
@@ -696,7 +699,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
                 foreach (string row in rowsInClipboard)
                 {
-                    NewSystemUserCodeCommand(""); //this will generate a new systemUserCode and set it as the selected systemUserCode...
+                    NewSystemUserCodeCommand(""); //this will generate a new itemCode and set it as the selected itemCode...
                     //split row into cell values
                     string[] valuesInRow = row.Split(columnSplitter);
                     int i = 0;
@@ -718,51 +721,63 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             if (GetSystemUserCodeState(SelectedSystemUserCode) != EntityStates.Detached)
             {
                 if (Update(SelectedSystemUserCode))
-                {
                     Commit();
-                }
                 else
-                {//this should not be hit but just in case we will catch it and then see 
-                    //if and where we have a hole in our allowcommit logic...
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
-                }
             }
         }
         public void RefreshCommand()
         {
             Refresh();
         }
-        public void DeleteCommand()
+        public void DeleteSystemUserCodeCommand()
         {
-            int i = 0;
-            bool isFirstDelete = true;
-            for (int j = SelectedSystemUserCodeList.Count - 1; j >= 0; j--)
-            {
-                SystemUserCode systemUserCode = (SystemUserCode)SelectedSystemUserCodeList[j];
-                if (isFirstDelete)
-                {//the result of this will be the record directly before the selected records...
-                    i = SystemUserCodeList.IndexOf(systemUserCode) - SelectedSystemUserCodeList.Count;
-                }
-
-                Delete(systemUserCode);
-                SystemUserCodeList.Remove(systemUserCode);
-            }
-
-            if (SystemUserCodeList != null && SystemUserCodeList.Count > 0)
-            {
-                //if they delete the first row...
-                if (i < 0)
+            try
+            {//company is fk to 100's of tables deleting it can be tricky...
+                int i = 0;
+                int ii = 0;
+                for (int j = SelectedSystemUserCodeList.Count - 1; j >= 0; j--)
                 {
-                    i = 0;
+                    SystemUserCode item = (SystemUserCode)SelectedSystemUserCodeList[j];
+                    //get Max Index...
+                    i = SystemUserCodeList.IndexOf(item);
+                    if (i > ii)
+                        ii = i;
+                    Delete(item);
+                    SystemUserCodeList.Remove(item);
                 }
-                SelectedSystemUserCode = SystemUserCodeList[i];
-                AllowCommit = CommitIsAllowed();
-            }
-            else
-            {//only one record, deleting will result in no records...
-                SetAsEmptySelection();
+
+                if (SystemUserCodeList != null && SystemUserCodeList.Count > 0)
+                {
+                    //back off one index from the max index...
+                    ii = ii - 1;
+
+                    //if they delete the first row...
+                    if (ii < 0)
+                        ii = 0;
+
+                    //make sure it does not exceed the list count...
+                    if (ii >= SystemUserCodeList.Count())
+                        ii = SystemUserCodeList.Count - 1;
+
+                    SelectedSystemUserCode = SystemUserCodeList[ii];
+                    //we will only enable committ for dirty validated records...
+                    if (Dirty == true)
+                        AllowCommit = CommitIsAllowed();
+                    else
+                        AllowCommit = false;
+                }
+                else//only one record, deleting will result in no records...
+                    SetAsEmptySelection();
+            }//we try catch company delete as it may be used in another table as a key...
+            //As well we will force a refresh to sqare up the UI after the botched delete...
+            catch
+            {
+                NotifyMessage("SystemUserCode/s Can Not Be Deleted.  Contact XERP Admin For More Details.");
+                Refresh();
             }
         }
+
 
         public void NewSystemUserCodeCommand()
         {
@@ -770,40 +785,29 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             AllowCommit = false;
         }
 
-        public void NewSystemUserCodeCommand(string systemUserCodeID)
+        public void NewSystemUserCodeCommand(string itemCodeID)
         {
-            NewSystemUserCode(systemUserCodeID);
-            if (string.IsNullOrEmpty(systemUserCodeID))
-            {//don't allow a save until a securityGroupCodeID is provided...
+            NewSystemUserCode(itemCodeID);
+            if (string.IsNullOrEmpty(itemCodeID)) //don't allow a save until a itemCodeID is provided...
                 AllowCommit = false;
-            }
-            {
+            else
                 AllowCommit = CommitIsAllowed();
-            }
         }
 
         public void ClearCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
-            }
             else
-            {
                 ClearLogic();
-            }
         }
 
         public void SearchCommand()
         {
             if (Dirty && AllowCommit)
-            {
                 NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
-            }
             else
-            {
                 SearchLogic();
-            }
         }
 
         private void SearchLogic()
@@ -833,32 +837,24 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #endregion Completion Callbacks
 
         #region Helpers
-        //notify the view that a new record was created...
-        //allows us to set focus to key field...
-        //private void NotifyNewRecordCreated()
-        //{
-        //    Notify(NewRecordCreatedNotice, new NotificationEventArgs());
-        //}
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
         private void NotifyMessage(string message)
-        {
-            // Notify view of an error message w/o throwing an error...
+        {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
         }
-        //Notify view to launch search...
+        
         private void NotifySearch(string message)
-        {
+        {//Notify view to launch search...
             Notify(SearchNotice, new NotificationEventArgs(message));
         }
 
-        //Notify view new record may be required...
+        
         private void NotifyNewRecordNeeded(string message)
-        {
+        {//Notify view new record may be required...
             Notify(NewRecordNeededNotice, new NotificationEventArgs<bool, MessageBoxResult>
             (message, true, result => { OnNewRecordNeededResult(result); }));
         }
@@ -929,45 +925,31 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
 namespace ExtensionMethods
 {
-
     public static partial class XERPExtensions
     {
         public static object GetPropertyValue(this SystemUserCode myObj, string propertyName)
         {
             var propInfo = typeof(SystemUserCode).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.GetValue(myObj, null);
-            }
             else
-            {
                 return string.Empty;
-            }
         }
 
         public static string GetPropertyCode(this SystemUserCode myObj, string propertyName)
         {
             var propInfo = typeof(SystemUserCode).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.PropertyType.Name.ToString();
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static void SetPropertyValue(this SystemUserCode myObj, object propertyName, object propertyValue)
         {
             var propInfo = typeof(SystemUserCode).GetProperty((string)propertyName);
-
             if (propInfo != null)
-            {
                 propInfo.SetValue(myObj, propertyValue, null);
-            }
         }
     }
 }

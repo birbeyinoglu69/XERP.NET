@@ -74,6 +74,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XERP.Server.DAL\XERP.Server.DAL.AddressDAL\XERP.Server.DAL.AddressDAL.csproj">
+      <Project>{68A785F9-805A-42C2-8085-3B545E3CD0D0}</Project>
+      <Name>XERP.Server.DAL.AddressDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
