@@ -24,7 +24,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         #endregion Notifications   
 
         #region Properties
-        #region GeneralProperties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private int _newUdListItemAutoId;
         private bool _udListItemDataGridIsActive;
@@ -92,7 +92,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.AllowEditUdListItem);
             }
         }
-        #endregion GeneralProperties
+        #endregion General Form Function/State Properties
 
         #region UdListItem Properties
         private UdListItem _selectedUdListItemMirror;
@@ -160,7 +160,9 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 }
             }
         }
+        #endregion UdListItem Properties
 
+        #region Validation Properties
         private List<ColumnMetaData> _udListItemColumnMetaDataList;
         public List<ColumnMetaData> UdListItemColumnMetaDataList
         {
@@ -171,9 +173,6 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.UdListItemColumnMetaDataList);
             }
         }
-        #endregion UdListItem Properties
-
-        #region Validation Properties
         //we use this dictionary to bind all textbox maxLenght properties in the View...
         private Dictionary<string, int> _udListItemMaxFieldValueDictionary;
         public Dictionary<string, int> UdListItemMaxFieldValueDictionary //= new Dictionary<string, int>();
@@ -324,7 +323,6 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                         return false;
                     }
 
-                    //if (UdListItemExists(udListItem.UdListItemID.ToString(), udListItem.AutoID))
                     if (UdListItemExists(udListItem.UdListID, udListItem.UdListItemID.ToString(), (int)udListItem.AutoID))
                     {
                         errorMessage = "UdListItem ID " + udListItem.UdListItemID + " Allready Exists...";

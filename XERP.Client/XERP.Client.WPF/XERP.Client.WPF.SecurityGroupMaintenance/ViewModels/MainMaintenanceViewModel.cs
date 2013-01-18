@@ -102,6 +102,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #endregion Notifications    
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -202,7 +203,31 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.SecurityGroupListCount);
             }
         }
-        
+        #endregion General Form Function/State Properties
+
+        #region DropDown Collections
+        private ObservableCollection<SecurityGroupType> _securityGroupTypeList;
+        public ObservableCollection<SecurityGroupType> SecurityGroupTypeList
+        {
+            get { return _securityGroupTypeList; }
+            set
+            {
+                _securityGroupTypeList = value;
+                NotifyPropertyChanged(m => m.SecurityGroupTypeList);
+            }
+        }
+
+        private ObservableCollection<SecurityGroupCode> _securityGroupCodeList;
+        public ObservableCollection<SecurityGroupCode> SecurityGroupCodeList
+        {
+            get { return _securityGroupCodeList; }
+            set
+            {
+                _securityGroupCodeList = value;
+                NotifyPropertyChanged(m => m.SecurityGroupCodeList);
+            }
+        }
+
         private BindingList<SecurityGroup> _securityGroupList;
         public BindingList<SecurityGroup> SecurityGroupList
         {
@@ -231,29 +256,44 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.SecurityGroupList);
             }
         }
+        #endregion DropDown Collections
 
-        private ObservableCollection<SecurityGroupType> _securityGroupTypeList;
-        public ObservableCollection<SecurityGroupType> SecurityGroupTypeList
+        #region Validation Properties
+        //meta data of the object is used to set max length...
+        private List<ColumnMetaData> _securityGroupColumnMetaDataList;
+        public List<ColumnMetaData> SecurityGroupColumnMetaDataList
         {
-            get { return _securityGroupTypeList; }
+            get { return _securityGroupColumnMetaDataList; }
             set
             {
-                _securityGroupTypeList = value;
-                NotifyPropertyChanged(m => m.SecurityGroupTypeList);
+                _securityGroupColumnMetaDataList = value;
+                NotifyPropertyChanged(m => m.SecurityGroupColumnMetaDataList);
             }
         }
 
-        private ObservableCollection<SecurityGroupCode> _securityGroupCodeList;
-        public ObservableCollection<SecurityGroupCode> SecurityGroupCodeList
+        //we use this dictionary to bind all textbox maxLenght properties in the View...
+        private Dictionary<string, int> _securityGroupMaxFieldValueDictionary;
+        public Dictionary<string, int> SecurityGroupMaxFieldValueDictionary //= new Dictionary<string, int>();
         {
-            get { return _securityGroupCodeList; }
-            set
+            get
             {
-                _securityGroupCodeList = value;
-                NotifyPropertyChanged(m => m.SecurityGroupCodeList);
+                if (_securityGroupMaxFieldValueDictionary != null)
+                    return _securityGroupMaxFieldValueDictionary;
+
+                _securityGroupMaxFieldValueDictionary = new Dictionary<string, int>();
+                var metaData = _serviceAgent.GetMetaData("SecurityGroups");
+
+                foreach (var data in metaData)
+                {
+                    if (data.ShortChar_1 == "String")
+                        _securityGroupMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
+                }
+                return _securityGroupMaxFieldValueDictionary;
             }
         }
+        #endregion Validation Properties
 
+        #region CRUD Object Properties
         //this is used to collect previous values as to compare the changed values...
         private SecurityGroup _selectedSecurityGroupMirror;
         public SecurityGroup SelectedSecurityGroupMirror
@@ -305,43 +345,10 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 }
             }
         }
-
-        private List<ColumnMetaData> _securityGroupColumnMetaDataList;
-        public List<ColumnMetaData> SecurityGroupColumnMetaDataList
-        {
-            get { return _securityGroupColumnMetaDataList; }
-            set 
-            { 
-                _securityGroupColumnMetaDataList = value;
-                NotifyPropertyChanged(m => m.SecurityGroupColumnMetaDataList);
-            }
-        }
-
-        #region Validation Properties
-        //we use this dictionary to bind all textbox maxLenght properties in the View...
-        private Dictionary<string, int> _securityGroupMaxFieldValueDictionary;
-        public Dictionary<string, int> SecurityGroupMaxFieldValueDictionary //= new Dictionary<string, int>();
-        {
-            get
-            {
-                if (_securityGroupMaxFieldValueDictionary != null)
-                    return _securityGroupMaxFieldValueDictionary;
-
-                _securityGroupMaxFieldValueDictionary = new Dictionary<string, int>();
-                var metaData = _serviceAgent.GetMetaData("SecurityGroups");
-
-                foreach (var data in metaData)
-                {
-                    if (data.ShortChar_1 == "String")
-                        _securityGroupMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                }
-                return _securityGroupMaxFieldValueDictionary;
-            }
-        }
-        #endregion Validation Properties
+        #endregion CRUD Object Properties
         #endregion Properties
 
-        #region ViewModel Propertie's Events
+        #region ViewModel Property Events
         private void SelectedSecurityGroup_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {//these properties are not to be persisted we will igore them...
             if (e.PropertyName == "IsSelected" ||
@@ -353,7 +360,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             {
                 return;
             }
-   //Key ID Logic...
+            //Key ID Logic...
             if (e.PropertyName == "SecurityGroupID")
             {//make sure it is has changed...
                 if (SelectedSecurityGroupMirror.SecurityGroupID != SelectedSecurityGroup.SecurityGroupID)
@@ -424,7 +431,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 }
             }
         }
-        #endregion ViewModel Propertie's Events
+        #endregion ViewModel Property Events
 
         #region Methods
         #region ViewModel Logic Methods
@@ -541,7 +548,14 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                     EntityStates entityState = GetSecurityGroupState(item);
                     if (entityState == EntityStates.Added && SecurityGroupExists(item.SecurityGroupID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = SecurityGroupList.Count(q => q.SecurityGroupID == item.SecurityGroupID);
+                    if(count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
@@ -568,10 +582,16 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             EntityStates entityState = GetSecurityGroupState(item);
             if (entityState == EntityStates.Added && SecurityGroupExists(item.SecurityGroupID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = SecurityGroupList.Count(q => q.SecurityGroupID == item.SecurityGroupID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists...";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Name))
             {
@@ -587,10 +607,11 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
+        #region DropDown Methods
         private ObservableCollection<SecurityGroupType> BuildSecurityGroupTypeDropDown()
         {
             List<SecurityGroupType> list = new List<SecurityGroupType>();
-            list = _serviceAgent.GetSecurityGroupTypes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list = _serviceAgent.GetSecurityGroupTypesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
             list.Add(new SecurityGroupType());
             list.Sort((x, y) => string.Compare(x.Type, y.Type));
 
@@ -600,12 +621,13 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         private ObservableCollection<SecurityGroupCode> BuildSecurityGroupCodeDropDown()
         {
             List<SecurityGroupCode> list = new List<SecurityGroupCode>();
-            list = _serviceAgent.GetSecurityGroupCodes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list = _serviceAgent.GetSecurityGroupCodesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
             list.Add(new SecurityGroupCode());
             list.Sort((x, y) => string.Compare(x.Code, y.Code));
 
             return new ObservableCollection<SecurityGroupCode>(list);
         }
+        #endregion DropDown Methods
 
         private EntityStates GetSecurityGroupState(SecurityGroup item)
         {
@@ -669,8 +691,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         {
             return _serviceAgent.SecurityGroupExists(itemID, ClientSessionSingleton.Instance.CompanyID);
         }
-        //udpate merely updates the repository a commit is required 
-        //to commit it to the db...
+        //udpate merely updates the repository a commit is required to commit it to the db...
         private bool Update(SecurityGroup item)
         {
             _serviceAgent.UpdateSecurityGroupRepository(item);
@@ -696,7 +717,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             AllowCommit = false;
             return true;
         }
-
 
         private bool Delete(SecurityGroup item)
         {//deletes are done indenpendently of the repository as a delete will not commit 
@@ -728,8 +748,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             Dirty = false;
             return true;
         }
-
-
         #endregion SecurityGroup CRUD
         #endregion ServiceAgent Call Methods
         #endregion Methods
@@ -779,10 +797,12 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
             }
         }
+
         public void RefreshCommand()
         {
             Refresh();
         }
+
         public void DeleteSecurityGroupCommand()
         {
             try
@@ -880,6 +900,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             UnregisterToReceiveMessages<BindingList<SecurityGroup>>(MessageTokens.SecurityGroupSearchToken.ToString(), OnSearchResult);
         }
 
+        #region Right Click FK searches
         public void TypeSearchCommand()
         {
             RegisterToReceiveMessages<BindingList<SecurityGroupType>>(MessageTokens.SecurityGroupTypeSearchToken.ToString(), OnTypeSearchResult);
@@ -907,7 +928,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
 
             UnregisterToReceiveMessages<BindingList<SecurityGroupType>>(MessageTokens.SecurityGroupTypeSearchToken.ToString(), OnTypeSearchResult);
         }
-        
+        #endregion Right Click FK searches
         #endregion Commands
 
         #region Helpers
@@ -919,21 +940,6 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
         private void NotifyMessage(string message)
         {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
-        }
-        
-        private void NotifySearch(string message)
-        {//Notify view to launch search...
-            Notify(SearchNotice, new NotificationEventArgs(message));
-        }
-
-        private void NotifyTypeSearch(string message)
-        {
-            Notify(TypeSearchNotice, new NotificationEventArgs(message));
-        }
-
-        private void NotifyCodeSearch(string message)
-        {
-            Notify(CodeSearchNotice, new NotificationEventArgs(message));
         }
 
         private void NotifyNewRecordNeeded(string message)
@@ -1002,6 +1008,23 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                     break;
             }
         }
+
+        private void NotifySearch(string message)
+        {//Notify view to launch search...
+            Notify(SearchNotice, new NotificationEventArgs(message));
+        }
+
+        #region Right Click FK Helpers
+        private void NotifyTypeSearch(string message)
+        {
+            Notify(TypeSearchNotice, new NotificationEventArgs(message));
+        }
+
+        private void NotifyCodeSearch(string message)
+        {
+            Notify(CodeSearchNotice, new NotificationEventArgs(message));
+        }
+        #endregion Right Click FK Notifies
         #endregion Helpers
     }
 }

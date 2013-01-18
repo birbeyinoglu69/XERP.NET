@@ -80,19 +80,19 @@ namespace XERP.Client.WPF.MainMenu
                 case _executableProgramEnum.AddressMaintenance:
                     window = new AddressMaintenance.MainWindow();
                     window.Show();
-                    break;                  
-                //case _executableProgramEnum.MenuItemMaintenance:
-                //    window = new MenuItemMaintenance.MainWindow();
-                //    window.Show();
-                //    break;
-                //case _executableProgramEnum.MenuItemTypeMaintenance:
-                //    window = new MenuItemMaintenance.TypeMaintenanceWindow();
-                //    window.Show();
-                //    break;
-                //case _executableProgramEnum.MenuItemCodeMaintenance:
-                //    window = new MenuItemMaintenance.CodeMaintenanceWindow();
-                //    window.Show();
-                //    break;
+                    break;
+                case _executableProgramEnum.MenuItemMaintenance:
+                    window = new MenuItemMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.MenuItemTypeMaintenance:
+                    window = new MenuItemMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.MenuItemCodeMaintenance:
+                    window = new MenuItemMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
                 case _executableProgramEnum.ExecutableProgramMaintenance:
                     window = new ExecutableProgramMaintenance.MainWindow();
                     window.Show();

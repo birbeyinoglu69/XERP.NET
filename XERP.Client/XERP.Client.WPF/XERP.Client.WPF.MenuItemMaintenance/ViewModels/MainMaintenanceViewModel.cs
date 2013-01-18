@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Windows;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Data.Services.Client;
-using System.ComponentModel;
 using System.Collections.Generic;
-// Toolkit namespace
-using SimpleMvvmToolkit;
-//XERP Namespaces
-using XERP.Domain.MenuSecurityDomain.Services;
-using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
-//required for extension methods...
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data.Services.Client;
+using System.Linq;
+using System.Windows;
 using ExtensionMethods;
+using SimpleMvvmToolkit;
 using XERP.Client.Models;
+using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
+using XERP.Domain.MenuSecurityDomain.Services;
+using XERP.Domain.MenuSecurityDomain.ClientModels;
 
 namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
 {
@@ -21,7 +19,8 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #region Initialization and Cleanup
         //GlobalProperties Class allows us to share properties amonst multiple classes...
         private GlobalProperties _globalProperties = new GlobalProperties();
-        
+        private int _newMenuItemAutoId;
+
         private IMenuItemServiceAgent _serviceAgent;
         private enum _saveRequiredResultActions
         {
@@ -30,56 +29,51 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             ClearLogic
         }
         //required else it generates debug view designer issues 
-        public MainMaintenanceViewModel()
-        { }
+        public MainMaintenanceViewModel(){}
 
         public void BuildDropDowns()
         {
             MenuItemTypeList = BuildMenuItemTypeDropDown();
             MenuItemCodeList = BuildMenuItemCodeDropDown();
+            DBStroredImageList = BuildDBStoredImageDropDown();
+            ExecutableProgramList = BuildExecutableProgramDropDown(); 
         }
 
         public MainMaintenanceViewModel(IMenuItemServiceAgent serviceAgent)
         {
             this._serviceAgent = serviceAgent;
-            BuildDropDowns();
 
-            SetAsEmptySelection();
 
-            MenuItemList = new BindingList<MenuItem>();
-            //disable new row feature...
-            MenuItemList.AllowNew = false;
-            
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI... 
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
                 FormIsEnabled = false;
             }
+            InitializeViewModel();
+        }
+
+        private void InitializeViewModel()
+        {
+            BuildDropDowns();
+
+            MenuItemList = new BindingList<MenuItem>();
 
             AllowNew = true;
-            AllowRowPaste = true;
+
+            BuildMenuTree();
         }
         #endregion Initialization and Cleanup
 
         #region Authentication Logic
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if(ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -91,9 +85,8 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
         
@@ -106,41 +99,15 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #region Notifications
         public event EventHandler<NotificationEventArgs<Exception>> ErrorNotice;
         public event EventHandler<NotificationEventArgs> MessageNotice;
-        public event EventHandler<NotificationEventArgs> SearchNotice;
         public event EventHandler<NotificationEventArgs> TypeSearchNotice;
         public event EventHandler<NotificationEventArgs> CodeSearchNotice;
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> SaveRequiredNotice;
         public event EventHandler<NotificationEventArgs<bool, MessageBoxResult>> NewRecordNeededNotice;
         public event EventHandler<NotificationEventArgs> AuthenticatedNotice;
-        public event EventHandler<NotificationEventArgs> NewRecordCreatedNotice;
         #endregion Notifications    
 
         #region Properties
-        //used to enable/disable rowcopy feature for main datagrid...
-        private bool _allowRowCopy;
-        public bool AllowRowCopy
-        {
-            get { return _allowRowCopy; }
-            set
-            {
-                _allowRowCopy = value;
-                NotifyPropertyChanged(m => m.AllowRowCopy);
-            }
-        }
-
-        private bool _allowRowPaste;
-
-        public bool AllowRowPaste
-        {
-            get { return _allowRowPaste; }
-            set 
-            { 
-                _allowRowPaste = value;
-                NotifyPropertyChanged(m => m.AllowRowPaste);
-            }
-        }
-
-
+        #region General Form Function/State Properties
         private bool _allowNew;
         public bool AllowNew
         {
@@ -196,7 +163,6 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             }
         }
         
-
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
         {
@@ -218,36 +184,9 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.MenuItemListCount);
             }
         }
-        
-        private BindingList<MenuItem> _menuItemList;
-        public BindingList<MenuItem> MenuItemList
-        {
-            get
-            {
-                MenuItemListCount = _menuItemList.Count.ToString();
-                if (_menuItemList.Count > 0)
-                {
-                    AllowEdit = true;
-                    AllowDelete = true;
-                    AllowRowCopy = true;
-                }
-                else
-                {//no records to edit delete or be dirty...
-                    AllowEdit = false;
-                    AllowDelete = false;
-                    Dirty = false;
-                    AllowCommit = false;
-                    AllowRowCopy = false;
-                }
-                return _menuItemList;
-            }
-            set
-            {
-                _menuItemList = value;
-                NotifyPropertyChanged(m => m.MenuItemList);
-            }
-        }
+        #endregion General Form Function/State Properties
 
+        #region DropDown Collections
         private ObservableCollection<MenuItemType> _menuItemTypeList;
         public ObservableCollection<MenuItemType> MenuItemTypeList
         {
@@ -270,30 +209,67 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             }
         }
 
+        private ObservableCollection<ExecutableProgram> _executableProgramList;
+        public ObservableCollection<ExecutableProgram> ExecutableProgramList
+        {
+            get { return _executableProgramList; }
+            set
+            {
+                _executableProgramList = value;
+                NotifyPropertyChanged(m => m.ExecutableProgramList);
+            }
+        }
+
+        private ObservableCollection<DBStoredImage> _dBStoredImageList;
+        public ObservableCollection<DBStoredImage> DBStroredImageList
+        {
+            get { return _dBStoredImageList; }
+            set
+            {
+                _dBStoredImageList = value;
+                NotifyPropertyChanged(m => m.DBStroredImageList);
+            }
+        }
+        #endregion DropDown Collections
+
+        #region CRUD Properties
+        private BindingList<MenuItem> _menuItemList;
+        public BindingList<MenuItem> MenuItemList
+        {
+            get
+            {
+                MenuItemListCount = _menuItemList.Count.ToString();
+                if (_menuItemList.Count > 0)
+                {
+                    AllowEdit = true;
+                    AllowDelete = true;
+                }
+                else
+                {//no records to edit delete or be dirty...
+                    AllowEdit = false;
+                    AllowDelete = false;
+                    Dirty = false;
+                    AllowCommit = false;
+                }
+                return _menuItemList;
+            }
+            set
+            {
+                _menuItemList = value;
+                NotifyPropertyChanged(m => m.MenuItemList);
+            }
+        }
+
         //this is used to collect previous values as to compare the changed values...
-        private MenuItem _selectedMenuItemMirror;
-        public MenuItem SelectedMenuItemMirror
+        private NestedMenuItem _selectedMenuItemMirror;
+        public NestedMenuItem SelectedMenuItemMirror
         {
             get { return _selectedMenuItemMirror; }
             set { _selectedMenuItemMirror = value; }
         }
 
-        private System.Collections.IList _selectedMenuItemList;
-        public System.Collections.IList SelectedMenuItemList
-        {
-            get { return _selectedMenuItemList; }
-            set
-            {
-                if (_selectedMenuItem != value)
-                {
-                    _selectedMenuItemList = value;
-                    NotifyPropertyChanged(m => m.SelectedMenuItemList);
-                }  
-            }
-        }
-
-        private MenuItem _selectedMenuItem;
-        public MenuItem SelectedMenuItem
+        private NestedMenuItem _selectedMenuItem;
+        public NestedMenuItem SelectedMenuItem
         {
             get 
             {
@@ -304,9 +280,10 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 if (_selectedMenuItem != value)
                 {
                     _selectedMenuItem = value;
-                    //set the mirrored SelectedMenuItem to allow to track property changes w/o
-                    //explicitly providing a property for each field...
-                    SelectedMenuItemMirror = new MenuItem();
+                    //default UdListItem properties...
+                    Dirty = false;
+                    MenuItem menuItem = new MenuItem();
+                    SelectedMenuItemMirror = new NestedMenuItem();
                     if (value != null)
                     {//default the PreviousKeyID... 
                         foreach (var prop in SelectedMenuItem.GetType().GetProperties())
@@ -321,19 +298,36 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 }
             }
         }
+        #endregion CRUD Properties
 
+        #region Nested Item Properties
+        //menuitems are converted to this list then they are nested...
+        private ObservableCollection<NestedMenuItem> _flatNestedMenuItemList;
+
+        private ObservableCollection<NestedMenuItem> _treeNestedMenuItemList;
+        public ObservableCollection<NestedMenuItem> TreeNestedMenuItemList
+        {
+            get { return _treeNestedMenuItemList; }
+            set
+            {
+                _treeNestedMenuItemList = value;
+                NotifyPropertyChanged(m => m.TreeNestedMenuItemList);
+            }
+        }
+        #endregion Nested Item Properties
+
+        #region Validation Properties
         private List<ColumnMetaData> _menuItemColumnMetaDataList;
         public List<ColumnMetaData> MenuItemColumnMetaDataList
         {
             get { return _menuItemColumnMetaDataList; }
-            set 
-            { 
+            set
+            {
                 _menuItemColumnMetaDataList = value;
                 NotifyPropertyChanged(m => m.MenuItemColumnMetaDataList);
             }
         }
 
-        #region Validation Properties
         //we use this dictionary to bind all textbox maxLenght properties in the View...
         private Dictionary<string, int> _menuItemMaxFieldValueDictionary;
         public Dictionary<string, int> MenuItemMaxFieldValueDictionary //= new Dictionary<string, int>();
@@ -341,18 +335,15 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             get
             {
                 if (_menuItemMaxFieldValueDictionary != null)
-                {
                     return _menuItemMaxFieldValueDictionary;
-                }
+
                 _menuItemMaxFieldValueDictionary = new Dictionary<string, int>();
                 var metaData = _serviceAgent.GetMetaData("MenuItems");
 
                 foreach (var data in metaData)
                 {
                     if (data.ShortChar_1 == "String")
-                    {
                         _menuItemMaxFieldValueDictionary.Add(data.Name.ToString(), (int)data.Int_1);
-                    }
                 }
                 return _menuItemMaxFieldValueDictionary;
             }
@@ -362,32 +353,28 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
 
         #region ViewModel Propertie's Events
         private void SelectedMenuItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {   //Key ID Logic...
+        {//these properties are not to be persisted we will igore them...
+            if (e.PropertyName == "IsSelected" ||
+                e.PropertyName == "IsExpanded" ||
+                e.PropertyName == "IsValid" ||
+                e.PropertyName == "NotValidMessage" ||
+                e.PropertyName == "LastModifiedBy" ||
+                e.PropertyName == "LastModifiedByDate")
+            {
+                return;
+            }
+            //Key ID Logic...
             if (e.PropertyName == "MenuItemID")
             {//make sure it is has changed...
                 if (SelectedMenuItemMirror.MenuItemID != SelectedMenuItem.MenuItemID)
-                {
-                    //if their are no records it is a key change
-                    if (MenuItemList != null && MenuItemList.Count == 0
-                        && SelectedMenuItem != null && !string.IsNullOrEmpty(SelectedMenuItem.MenuItemID))
-                    {
-                        ChangeKeyLogic();
-                        return;
-                    }
-
-                    EntityStates entityState = GetMenuItemState(SelectedMenuItem);
+                {//convert to the Entity MenuItem...
+                    MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == SelectedMenuItem.AutoID);
+                    EntityStates entityState = GetMenuItemState(menuItem);
 
                     if (entityState == EntityStates.Unchanged ||
                         entityState == EntityStates.Modified)
                     {//once a key is added it can not be modified...
-                        if (Dirty  && AllowCommit)
-                        {//dirty record exists ask if save is required...
-                            NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ChangeKeyLogic);
-                        }
-                        else
-                        {
-                            ChangeKeyLogic();
-                        }
+                        MessageBox.Show("Once A Key Is Added It Can Not Be Modified.");
                         return;
                     }
                 }
@@ -402,40 +389,38 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             bool objectsAreEqual;
             if (propertyChangedValue == null)
             {
-                if (prevPropertyValue == null)
-                {//both values are null
+                if (prevPropertyValue == null)//both values are null
                     objectsAreEqual = true;
-                }
-                else
-                {//only one value is null
+                else//only one value is null
                     objectsAreEqual = false;
-                }
             }
             else 
             {
-                if (prevPropertyValue == null)
-                {//only one value is null
+                if (prevPropertyValue == null)//only one value is null
                     objectsAreEqual = false;
-                }
                 else //both values are not null use .Equals...
-                {
                     objectsAreEqual = propertyChangedValue.Equals(prevPropertyValue);
-                }
             }
             if (!objectsAreEqual)
             {
                 //Here we do property change validation if false is returned we will reset the value
                 //Back to its mirrored value and return out of the property change w/o updating the repository...
-                if (PropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
-                {
-                    Update(SelectedMenuItem);
+                if (MenuItemPropertyChangeIsValid(e.PropertyName, propertyChangedValue, prevPropertyValue, propertyType))
+                {//pass in the propertyname and value as we will update the CRUD MenuItem and pass the 
+                    //change to the repository...
+                    Update(SelectedMenuItem, e.PropertyName, propertyChangedValue);
                     //set the mirrored objects field...
                     SelectedMenuItemMirror.SetPropertyValue(e.PropertyName, propertyChangedValue);
+                    SelectedMenuItemMirror.IsValid = SelectedMenuItem.IsValid;
+                    SelectedMenuItemMirror.IsExpanded = SelectedMenuItem.IsExpanded;
+                    SelectedMenuItemMirror.NotValidMessage = SelectedMenuItem.NotValidMessage;
                 }
                 else
-                {//revert back to its previous value... 
+                {
                     SelectedMenuItem.SetPropertyValue(e.PropertyName, prevPropertyValue);
-                    return;
+                    SelectedMenuItem.IsValid = SelectedMenuItemMirror.IsValid;
+                    SelectedMenuItem.IsExpanded = SelectedMenuItemMirror.IsExpanded;
+                    SelectedMenuItem.NotValidMessage = SelectedMenuItemMirror.NotValidMessage;
                 }
             }
         }
@@ -443,145 +428,157 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
 
         #region Methods
         #region ViewModel Logic Methods
-
-        private void ChangeKeyLogic()
-        {
-            string errorMessage = "";
-            if (KeyChangeIsValid(SelectedMenuItem.MenuItemID, out errorMessage))
-            {
-                //check to see if key is part of the current menuItemlist...
-                MenuItem query = MenuItemList.Where(menuItem => menuItem.MenuItemID == SelectedMenuItem.MenuItemID &&
-                                                        menuItem.AutoID != SelectedMenuItem.AutoID).FirstOrDefault();
-                if (query != null)
-                {//change to the newly selected menuItem...
-                    SelectedMenuItem = query;
-                    return;
-                }
-                //it is not part of the existing list try to fetch it from the db...
-                MenuItemList = GetMenuItemByID(SelectedMenuItem.MenuItemID, ClientSessionSingleton.Instance.CompanyID);
-                if (MenuItemList.Count == 0)
-                {//it was not found do new record required logic...
-                    NotifyNewRecordNeeded("Record " + SelectedMenuItem.MenuItemID + " Does Not Exist.  Create A New Record?");
-                }
-                else
-                {
-                    SelectedMenuItem = MenuItemList.FirstOrDefault();
-                }
-            }
-            else
-            {
-                NotifyMessage(errorMessage);
-                //revert back to the value it was before it was changed...
-                if (SelectedMenuItem.MenuItemID != SelectedMenuItemMirror.MenuItemID)
-                {
-                    SelectedMenuItem.MenuItemID = SelectedMenuItemMirror.MenuItemID;
-                }
-            }
-        }
-        //XERP allows for bulk updates we only allow save
+        //XERP allows for bulk updates. We only allow save
         //if all bulk update requirements are met...
         private bool CommitIsAllowed()
-        {
-            string errorMessage = "";
-            bool rBool = true;
-            Dirty = false;
-            foreach (MenuItem menuItem in MenuItemList)
-            {
-                EntityStates entityState = GetMenuItemState(menuItem);
-                if (entityState == EntityStates.Modified || 
-                    entityState == EntityStates.Detached)
-                {
-                    Dirty = true;
-                }
-                if (entityState == EntityStates.Added)
-                {
-                    Dirty = true;
-                    //only one record can be added at a time...
-                    if (NewKeyIsValid(menuItem, out errorMessage) == false)
-                    {
-                        rBool = false;
-                    }
-                }
-                if (NameIsValid(menuItem.Name, out errorMessage) == false)
-                {
-                    rBool = false;
-                }
-            }
-            //more bulk validation as required...
-            //note bulk validation should coincide with property validation...
-            //as we will not allow a commit until all data is valid...
-            return rBool;
+        {//Check for any repository changes that are not yet committed to the db...
+            Dirty = RepositoryIsDirty();
+            //recurse and check for any invalid rows...
+            _rowsValid = true;//initialize to true...
+            //recurse tree passing in the root node of the list...
+            CheckForInvalidRows(TreeNestedMenuItemList.FirstOrDefault());
+            return _rowsValid;
         }
 
-        private bool PropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        private bool _rowsValid;
+        private void CheckForInvalidRows(NestedMenuItem parent)
         {
-            string errorMessage;
+            if (_rowsValid)
+            {
+                foreach (NestedMenuItem child in parent.Children)
+                {
+                    if (child.IsValid == 1)
+                    {
+                        _rowsValid = false;
+                        return;
+                    }
+                    if(_rowsValid)    
+                        CheckForInvalidRows(child);
+                }
+            }
+        }
+
+        private bool MenuItemPropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
+        {
+            string errorMessage = "";
             bool rBool = true;
             switch (propertyName)
             {
                 case "MenuItemID":
-                    rBool = NewKeyIsValid(SelectedMenuItem, out errorMessage);
-                    if (rBool == false)
-                    {
-                        NotifyMessage(errorMessage);
-                        return rBool;
-                    }
+                    rBool = MenuItemIsValid(SelectedMenuItem, _menuItemValidationProperties.MenuItemID, out errorMessage);
                     break;
                 case "Name":
-                    rBool = NameIsValid(changedValue, out errorMessage);
-                    if (rBool == false)
+                    rBool = MenuItemIsValid(SelectedMenuItem, _menuItemValidationProperties.Name, out errorMessage);
+                    break;
+            }
+            if (rBool == false)
+            {//here we give a specific error to the specific change
+                NotifyMessage(errorMessage);
+                SelectedMenuItem.IsValid = 1;
+            }
+            else //check the enire rows validity...
+            {//here we check the entire row for validity the property change may be valid
+                //but we still do not know if the entire row is valid...
+                //if the row is valid we will set it to 2 (pending changes...)
+                //on the commit we will set it to 0 and it will be valid and saved to the db...
+                SelectedMenuItem.IsValid = MenuItemIsValid(SelectedMenuItem, out errorMessage);
+                if (SelectedMenuItem.IsValid == 2)
+                    errorMessage = "Pending Changes...";
+            }
+            SelectedMenuItem.NotValidMessage = errorMessage;
+            return rBool;
+        }
+
+        #region Validation Methods
+        //XERP Validation is done by the entire object or by Object property...
+        //So we must be sure to add the validation in both places...
+        private enum _menuItemValidationProperties
+        {//we list all fields that require validation...
+            MenuItemID,
+            Name
+        }
+
+        //Object.Property Scope Validation...
+        private bool MenuItemIsValid(NestedMenuItem item, _menuItemValidationProperties validationProperties, out string errorMessage)
+        {
+            errorMessage = "";
+            switch (validationProperties)
+            {
+                case _menuItemValidationProperties.MenuItemID:
+                    //validate key
+                    if (string.IsNullOrEmpty(item.MenuItemID))
                     {
-                        NotifyMessage(errorMessage);
-                        return rBool;
+                        errorMessage = "ID Is Required.";
+                        return false;
+                    }
+                    MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
+                    EntityStates entityState = GetMenuItemState(menuItem);
+                    if (entityState == EntityStates.Added && MenuItemExists(item.MenuItemID))
+                    {
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = MenuItemList.Count(q => q.MenuItemID == item.MenuItemID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    break;
+                case _menuItemValidationProperties.Name:
+                    //validate Description
+                    if (string.IsNullOrEmpty(item.Name))
+                    {
+                        errorMessage = "Description Is Required.";
+                        return false;
                     }
                     break;
             }
             return true;
         }
-
-        private bool NewKeyIsValid(MenuItem menuItem, out string errorMessage)
-        {
+        //MenuItem Object Scope Validation check the entire object for validity...
+        private byte MenuItemIsValid(NestedMenuItem item, out string errorMessage)
+        {   //validate key
             errorMessage = "";
-            if (KeyChangeIsValid(menuItem.MenuItemID, out errorMessage) == false)
+            if (string.IsNullOrEmpty(item.MenuItemID))
             {
-                return false;
+                errorMessage = "ID Is Required.";
+                return 1;
             }
-            if (MenuItemExists(menuItem.MenuItemID.ToString()))
+            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
+            EntityStates entityState = GetMenuItemState(menuItem);
+            if (entityState == EntityStates.Added && MenuItemExists(item.MenuItemID))
             {
-                errorMessage = "MenuItemID " + menuItem.MenuItemID + " Allready Exists...";
-                return false;
+                errorMessage = "Item All Ready Exists.";
+                return 1;
             }
-            return true;
+            //check cached list for duplicates...
+            int count = MenuItemList.Count(q => q.MenuItemID == item.MenuItemID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
+            //validate Description
+            if (string.IsNullOrEmpty(item.Name))
+            {
+                errorMessage = "Name Is Required.";
+                return 1;
+            }
+            //a value of 2 is pending changes...
+            //On Commit we will give it a value of 0...
+            return 2;
         }
-
-        private bool KeyChangeIsValid(object menuItemID, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)menuItemID))
-            {
-                errorMessage = "MenuItemID Is Required...";
-                return false;
-            }
-            return true;
-        }
-
-        private bool NameIsValid(object value, out string errorMessage)
-        {
-            errorMessage = "";
-            if (string.IsNullOrEmpty((string)value))
-            {
-                errorMessage = "Name Is Required...";
-                return false;
-            }
-            return true;
-        }
+        #endregion Validation Methods
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
+        #region DropDown Methods
         private ObservableCollection<MenuItemType> BuildMenuItemTypeDropDown()
         {
             List<MenuItemType> list = new List<MenuItemType>();
-            list = _serviceAgent.GetMenuItemTypes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list = _serviceAgent.GetMenuItemTypesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
             list.Add(new MenuItemType());
             list.Sort((x, y) => string.Compare(x.Type, y.Type));
 
@@ -591,227 +588,268 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         private ObservableCollection<MenuItemCode> BuildMenuItemCodeDropDown()
         {
             List<MenuItemCode> list = new List<MenuItemCode>();
-            list = _serviceAgent.GetMenuItemCodes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list = _serviceAgent.GetMenuItemCodesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
             list.Add(new MenuItemCode());
             list.Sort((x, y) => string.Compare(x.Code, y.Code));
 
             return new ObservableCollection<MenuItemCode>(list);
         }
 
-        private EntityStates GetMenuItemState(MenuItem menuItem)
+        private ObservableCollection<DBStoredImage> BuildDBStoredImageDropDown()
         {
-            return _serviceAgent.GetMenuItemEntityState(menuItem);
+            List<DBStoredImage> list = new List<DBStoredImage>();
+            list = _serviceAgent.GetDBStoredImagesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list.Add(new DBStoredImage());
+            list.Sort((x, y) => string.Compare(x.ImageID, y.ImageID));
+
+            return new ObservableCollection<DBStoredImage>(list);
         }
 
-        #region MenuItem CRUD
-        private void Refresh()
+        private ObservableCollection<ExecutableProgram> BuildExecutableProgramDropDown()
         {
+            List<ExecutableProgram> list = new List<ExecutableProgram>();
+            list = _serviceAgent.GetExecutableProgramsReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list.Add(new ExecutableProgram());
+            list.Sort((x, y) => string.Compare(x.Name, y.Name));
 
-            //refetch current records...
-            long selectedAutoID = SelectedMenuItem.AutoID;
-            string autoIDs = "";
-            //bool isFirstItem = true;
-            foreach (MenuItem menuItem in MenuItemList)
-            {//auto seeded starts at 1 any records at 0 or less or not valid records...
-                if (menuItem.AutoID > 0)
-                {
-                    autoIDs = autoIDs + menuItem.AutoID.ToString() + ",";
-                }
-            }
-            if(autoIDs.Length > 0)
-            {
-                //ditch the extra comma...
-                autoIDs = autoIDs.Remove(autoIDs.Length - 1, 1);
-                MenuItemList = new BindingList<MenuItem>(_serviceAgent.RefreshMenuItem(autoIDs).ToList());
-                SelectedMenuItem = (from q in MenuItemList
-                                   where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+            return new ObservableCollection<ExecutableProgram>(list);
+        }
+        #endregion DropDown Methods
+        private EntityStates GetMenuItemState(MenuItem item)
+        {
+            return _serviceAgent.GetMenuItemEntityState(item);
+        }
 
-                Dirty = false;
-                AllowCommit = false;
-            }
+        private bool RepositoryIsDirty()
+        {
+            return _serviceAgent.MenuItemRepositoryIsDirty();
+        }
+
+        #region MenuItem CRUD Methods
+        private void Refresh()
+        {//refetch records...
+            InitializeViewModel();
+            Dirty = false;
+            AllowCommit = false;
         }
 
         private BindingList<MenuItem> GetMenuItems(string companyID)
         {
-            BindingList<MenuItem> menuItemList = new BindingList<MenuItem>(_serviceAgent.GetMenuItems(companyID).ToList());
+            BindingList<MenuItem> itemList = new BindingList<MenuItem>(_serviceAgent.GetMenuItems(companyID).ToList());
             Dirty = false;
             AllowCommit = false;
-            return menuItemList; 
+            return itemList; 
         }
 
-        private BindingList<MenuItem> GetMenuItems(MenuItem menuItem, string companyID)
+        private BindingList<MenuItem> GetMenuItems(MenuItem item, string companyID)
         {
-            BindingList<MenuItem> menuItemList = new BindingList<MenuItem>(_serviceAgent.GetMenuItems(menuItem, companyID).ToList());
+            BindingList<MenuItem> itemList = new BindingList<MenuItem>(_serviceAgent.GetMenuItems(item, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
-            return menuItemList;
+            return itemList;
         }
 
-        private BindingList<MenuItem> GetMenuItemByID(string menuItemID, string companyID)
+        private BindingList<MenuItem> GetMenuItemByID(string itemID, string companyID)
         {
-            BindingList<MenuItem> menuItemList = new BindingList<MenuItem>(_serviceAgent.GetMenuItemByID(menuItemID, companyID).ToList());
+            BindingList<MenuItem> itemList = new BindingList<MenuItem>(_serviceAgent.GetMenuItemByID(itemID, companyID).ToList());
             Dirty = false;
             AllowCommit = false;
-            return menuItemList; 
+            return itemList; 
         }
 
-        private bool MenuItemExists(string menuItemID)
+        private bool MenuItemExists(string itemID)
         {
-            return _serviceAgent.MenuItemExists(menuItemID, ClientSessionSingleton.Instance.CompanyID);
+            return _serviceAgent.MenuItemExists(itemID, ClientSessionSingleton.Instance.CompanyID);
         }
         //udpate merely updates the repository a commit is required 
         //to commit it to the db...
-        private bool Update(MenuItem menuItem)
-        {
+        private bool Update(NestedMenuItem item, string propertyName, object propertyValue)
+        {//get the menuItem from the Repository List...
+            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
+            //Set the edited field when present...
+            if(! string.IsNullOrEmpty(propertyName))
+                menuItem.SetPropertyValue(propertyName, propertyValue);
+            //update the repository with the field change...
             _serviceAgent.UpdateMenuItemRepository(menuItem);
             Dirty = true;
             if (CommitIsAllowed())
-            {
                 AllowCommit = true;
-                return true;
-            }
             else
-            {
                 AllowCommit = false;
-                return false;
-            }
+            return AllowCommit;
         }
+
         //commits repository to the db...
         private bool Commit()
-        {
+        {   //reset UI state manage fields...
+            NestedMenuItem root = TreeNestedMenuItemList.SingleOrDefault(q => (q.ParentMenuID == null || q.ParentMenuID.Equals(string.Empty))
+                                                               && q.CompanyID == ClientSessionSingleton.Instance.CompanyID);
+
             _serviceAgent.CommitMenuItemRepository();
+            //recurse tree clear and set seed autoids
+            ResetTreeTempFields(root);
             Dirty = false;
             AllowCommit = false;
             return true;
         }
 
-        private bool Delete(MenuItem menuItem)
+        private void ResetTreeTempFields(NestedMenuItem parent)
+        {
+            foreach (NestedMenuItem child in parent.Children)
+            {
+                child.IsValid = 0;
+                child.NotValidMessage = "";
+                //autoID is set a negative value until it is seeded from the db...
+                if (child.AutoID < 0)
+                {
+                    //locate the record to fetch the seeded autoid value...
+                    MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.MenuItemID == child.MenuItemID
+                                                            && q.CompanyID == ClientSessionSingleton.Instance.CompanyID);
+                    child.AutoID = menuItem.AutoID;
+                }
+                //if it is selected we need to modify SelectedMenuItem as well...
+                if (child.IsSelected == true)
+                {
+                    SelectedMenuItem.IsValid = 0;
+                    SelectedMenuItem.NotValidMessage = "";
+                }
+                ResetTreeTempFields(child);
+            }
+        }
+
+        private bool Delete(NestedMenuItem item)
         {//deletes are done indenpendently of the repository as a delete will not commit 
             //dirty records it will simply just delete the record...
+            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
             _serviceAgent.DeleteFromMenuItemRepository(menuItem);
+            //remove it from the cache repository list
+            MenuItemList.Remove(menuItem);
             return true;
         }
 
-        private bool NewMenuItem(string menuItemID)
-        {
-            MenuItem menuItem = new MenuItem();
-            menuItem.MenuItemID = menuItemID;
-            menuItem.CompanyID = ClientSessionSingleton.Instance.CompanyID;
-            MenuItemList.Add(menuItem);
-            _serviceAgent.AddToMenuItemRepository(menuItem);
-            SelectedMenuItem = MenuItemList.LastOrDefault();
+        private bool NewMenuItem(string itemID)
+        {//need to fix this...
+            MenuItem newItem = new MenuItem();
+            //all new records will be give a negative int autoid...
+            //when they are updated then sql will generate one for them overiding this set value...
+            //it will allow us to give uniqueness to the tempory new records...
+            //Before they are updated to the entity and given an autoid...
+            //we use a negative number and keep subtracting by 1 for each new item added...
+            //This will allow it to alwasy be unique and never interfere with SQL's positive autoid...
+            _newMenuItemAutoId = _newMenuItemAutoId - 1;
+            newItem.AutoID = _newMenuItemAutoId;
+            newItem.MenuItemID = itemID;
+            newItem.CompanyID = ClientSessionSingleton.Instance.CompanyID;
+            //new items will be added to selected item
+            newItem.ParentMenuID = SelectedMenuItem.MenuItemID;
+            //add it to the repository list
+            MenuItemList.Add(newItem);
+            _serviceAgent.AddToMenuItemRepository(newItem);
+
+            //add it to the treeviewList
+            NestedMenuItem newNestedItem = new NestedMenuItem(newItem);
+            newNestedItem.IsValid = 1;
+            newNestedItem.NotValidMessage = "New Record Key Field/s Are Required.";
+            SelectedMenuItem.Children.Add(newNestedItem);
 
             AllowEdit = true;
             Dirty = false;
             return true;
         }
 
-        #endregion MenuItem CRUD
+        #endregion MenuItem CRUD Methods
         #endregion ServiceAgent Call Methods
 
-        private void SetAsEmptySelection()
+        #region NestedMenu Methods
+        private void BuildMenuTree()
         {
-            SelectedMenuItem = new MenuItem();
-            AllowEdit = false;
-            AllowDelete = false;
-            Dirty = false;
-            AllowCommit = false;
-            AllowRowCopy = false;
+            TreeNestedMenuItemList = new ObservableCollection<NestedMenuItem>();
+
+            MenuItemList = GetMenuItems(ClientSessionSingleton.Instance.CompanyID);
+           
+            _flatNestedMenuItemList = new ObservableCollection<NestedMenuItem>();
+            foreach (MenuItem menuItem in MenuItemList)
+            {
+                _flatNestedMenuItemList.Add(new NestedMenuItem(menuItem));
+            }
+            //Their may be mulitple root nodes...
+            List<NestedMenuItem> roots = new List<NestedMenuItem>();
+            roots = _flatNestedMenuItemList.
+                Where(x => x.ParentMenuID == "")
+                .OrderBy(a => a.DisplayOrder)
+                .ToList();
+            foreach (NestedMenuItem root in roots)
+            {
+                getNestedChidlren(root);
+                TreeNestedMenuItemList.Add(root);
+            }
+            //SelectedNestedMenuItem = TreeNestedMenuItemList.FirstOrDefault();
+            SelectedMenuItem = TreeNestedMenuItemList.FirstOrDefault();
         }
 
-        public void ClearLogic()
+        private void getNestedChidlren(NestedMenuItem parent)
         {
-            MenuItemList.Clear();
-            SetAsEmptySelection();
+            foreach (NestedMenuItem child in _flatNestedMenuItemList
+                .Where(nmi => nmi.ParentMenuID == parent.MenuItemID)
+                .OrderBy(a => a.DisplayOrder)
+                .ToList())
+            {
+                parent.Children.Add(child);
+                getNestedChidlren(child);
+            }
         }
-
+        #endregion NestedMenu Methods
         #endregion Methods
 
         #region Commands
-        public void PasteRowCommand()
-        {
-            try
-            {
-                MenuItemColumnMetaDataList.Sort(delegate(ColumnMetaData c1, ColumnMetaData c2)
-                { return c1.Order.CompareTo(c2.Order); });
-
-                char[] rowSplitter = { '\r', '\n' };
-                char[] columnSplitter = { '\t' };
-                //get the text from clipboard
-                IDataObject dataInClipboard = Clipboard.GetDataObject();
-                string stringInClipboard = (string)dataInClipboard.GetData(DataFormats.Text);
-                //split it into rows...
-                string[] rowsInClipboard = stringInClipboard.Split(rowSplitter, StringSplitOptions.RemoveEmptyEntries);
-
-                foreach (string row in rowsInClipboard)
-                {
-                    NewMenuItemCommand(""); //this will generate a new menuItem and set it as the selected menuItem...
-                    //split row into cell values
-                    string[] valuesInRow = row.Split(columnSplitter);
-                    int i = 0;
-                    foreach (string columnValue in valuesInRow)
-                    {
-                        SelectedMenuItem.SetPropertyValue(MenuItemColumnMetaDataList[i].Name, columnValue);
-                        i++;
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                NotifyMessage(ex.InnerException.ToString());
-            }
-        }
-
         public void SaveCommand()
         {
-            if (GetMenuItemState(SelectedMenuItem) != EntityStates.Detached)
+            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == SelectedMenuItem.AutoID);
+            if (GetMenuItemState(menuItem) != EntityStates.Detached)
             {
-                if (Update(SelectedMenuItem))
-                {
+                if (Update(SelectedMenuItem, "", ""))
                     Commit();
-                }
-                else
-                {//this should not be hit but just in case we will catch it and then see 
-                    //if and where we have a hole in our allowcommit logic...
+                else//if and where we have a hole in our allowcommit logic...
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
-                }
             }
         }
+
         public void RefreshCommand()
         {
             Refresh();
         }
-        public void DeleteCommand()
-        {
-            int i = 0;
-            bool isFirstDelete = true;
-            for (int j = SelectedMenuItemList.Count - 1; j >= 0; j--)
-            {
-                MenuItem menuItem = (MenuItem)SelectedMenuItemList[j];
-                if (isFirstDelete)
-                {//the result of this will be the record directly before the selected records...
-                    i = MenuItemList.IndexOf(menuItem) - SelectedMenuItemList.Count;
-                }
-                
-                Delete(menuItem);
-                MenuItemList.Remove(menuItem);
-            }
 
-            if (MenuItemList != null && MenuItemList.Count > 0)
+        public void DeleteMenuItemCommand()
+        {//ToDo fix delete logic
+            try
+            {//delete in repository
+                Delete(SelectedMenuItem);
+
+                //remove it from the tree nested list
+                NestedMenuItem root = TreeNestedMenuItemList.SingleOrDefault(q => (q.ParentMenuID == null || q.ParentMenuID.Equals(string.Empty))
+                                                                               && q.CompanyID == ClientSessionSingleton.Instance.CompanyID);
+                //need to itterate tree and find the item and remove it from the tree list...
+                RemoveNestedItem(root, SelectedMenuItem.AutoID);  
+            }//we try catch company delete as it may be used in another table as a key...
+            ////As well we will force a refresh to sqare up the UI after the botched delete...
+            catch
             {
-                //if they delete the first row...
-                if (i < 0)
-                {
-                    i = 0;
-                }
-                SelectedMenuItem = MenuItemList[i];
-                AllowCommit = CommitIsAllowed();
+               NotifyMessage("MenuItem/s Can Not Be Deleted.  Contact XERP Admin For More Details.");
+            //    Refresh();
             }
-            else
-            {//only one record, deleting will result in no records...
-                SetAsEmptySelection();
-            }  
+        }
+
+        public void RemoveNestedItem(NestedMenuItem parent, long autoID)
+        {
+            foreach (NestedMenuItem child in parent.Children)
+            {
+                if (child.AutoID == autoID)
+                {
+                    parent.Children.Remove(child);
+                    return;
+                }
+                RemoveNestedItem(child, autoID);
+            }
         }
 
         public void NewMenuItemCommand()
@@ -820,60 +858,16 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             AllowCommit = false;
         }
 
-        public void NewMenuItemCommand(string menuItemID)
+        public void NewMenuItemCommand(string itemID)
         {
-            NewMenuItem(menuItemID);
-            if (string.IsNullOrEmpty(menuItemID))
-            {//don't allow a save until a menuItemID is provided...
+            NewMenuItem(itemID);
+            if (string.IsNullOrEmpty(itemID))//don't allow a save until a itemID is provided...
                 AllowCommit = false;
-            }
-            {
+            else
                 AllowCommit = CommitIsAllowed();
-            }
         }
 
-        public void ClearCommand()
-        {
-            if (Dirty && AllowCommit)
-            {
-                NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.ClearLogic);
-            }
-            else
-            {
-                ClearLogic();
-            }  
-        }
-
-        public void SearchCommand()
-        {
-            if (Dirty && AllowCommit)
-            {
-                NotifySaveRequired("Do you want to save changes?", _saveRequiredResultActions.SearchLogic);
-            }
-            else
-            {
-                SearchLogic(); 
-            }   
-        }
-
-        private void SearchLogic()
-        {
-            RegisterToReceiveMessages<BindingList<MenuItem>>(MessageTokens.MenuItemSearchToken.ToString(), OnSearchResult);
-            NotifySearch("");       
-        }
-
-        private void OnSearchResult(object sender, NotificationEventArgs<BindingList<MenuItem>> e)
-        {
-            if (e.Data != null && e.Data.Count > 0)
-            {
-                MenuItemList = e.Data;
-                SelectedMenuItem = MenuItemList.FirstOrDefault();
-                Dirty = false;
-                AllowCommit = false;
-            }
-            UnregisterToReceiveMessages<BindingList<MenuItem>>(MessageTokens.MenuItemSearchToken.ToString(), OnSearchResult);
-        }
-
+        #region Right Click FK Searches
         public void TypeSearchCommand()
         {
             RegisterToReceiveMessages<BindingList<MenuItemType>>(MessageTokens.MenuItemTypeSearchToken.ToString(), OnTypeSearchResult);
@@ -883,9 +877,8 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         private void OnTypeSearchResult(object sender, NotificationEventArgs<BindingList<MenuItemType>> e)
         {
             if (e.Data != null && e.Data.Count > 0)
-            {
                 SelectedMenuItem.MenuItemTypeID = e.Data.FirstOrDefault().MenuItemTypeID;
-            }
+
             UnregisterToReceiveMessages<BindingList<MenuItemType>>(MessageTokens.MenuItemTypeSearchToken.ToString(), OnTypeSearchResult);
         }
 
@@ -898,57 +891,22 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         private void OnCodeSearchResult(object sender, NotificationEventArgs<BindingList<MenuItemCode>> e)
         {
             if (e.Data != null && e.Data.Count > 0)
-            {
                 SelectedMenuItem.MenuItemCodeID = e.Data.FirstOrDefault().MenuItemCodeID;
-            }
+
             UnregisterToReceiveMessages<BindingList<MenuItemType>>(MessageTokens.MenuItemTypeSearchToken.ToString(), OnTypeSearchResult);
         }
-        
+        #endregion Right Click FK Searches
         #endregion Commands
 
-        #region Completion Callbacks
-
-        // TODO: Optionally add callback methods for async calls to the service agent
-
-        #endregion Completion Callbacks
-
         #region Helpers
-        //notify the view that a new record was created...
-        //allows us to set focus to key field...
-        //private void NotifyNewRecordCreated()
-        //{
-        //    Notify(NewRecordCreatedNotice, new NotificationEventArgs());
-        //}
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
-        private void NotifyMessage(string message)
-        {
-            // Notify view of an error message w/o throwing an error...
-            Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
-        }
-        //Notify view to launch search...
-        private void NotifySearch(string message)
-        {
-            Notify(SearchNotice, new NotificationEventArgs(message));
-        }
 
-        private void NotifyTypeSearch(string message)
-        {
-            Notify(TypeSearchNotice, new NotificationEventArgs(message));
-        }
-
-        private void NotifyCodeSearch(string message)
-        {
-            Notify(CodeSearchNotice, new NotificationEventArgs(message));
-        }
-
-        //Notify view new record may be required...
         private void NotifyNewRecordNeeded(string message)
-        {
+        {//Notify view new record may be required...
             Notify(NewRecordNeededNotice, new NotificationEventArgs<bool, MessageBoxResult>
             (message, true, result => { OnNewRecordNeededResult(result); }));
         }
@@ -972,24 +930,15 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             }
         }
 
-        //Notify view save may be required...
-        private void NotifySaveRequired(string message, _saveRequiredResultActions resultAction)
-        {
-            Notify(SaveRequiredNotice, new NotificationEventArgs<bool, MessageBoxResult>
-            (message, true, result => { OnSaveResult(result, resultAction); }));           
-        }
-
         private void OnSaveResult(MessageBoxResult result, _saveRequiredResultActions resultAction)
         {
             switch (result)
             {
                 case MessageBoxResult.No:
-                    CaseSaveResultActions(resultAction);
                     break;
                 case MessageBoxResult.Yes:
                     //note a commit validation was allready done...
                     _serviceAgent.CommitMenuItemRepository();
-                    CaseSaveResultActions(resultAction);
                     break;
                 case MessageBoxResult.Cancel:
                     //revert back...
@@ -997,67 +946,79 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                     break;
             }
         }
-        
-        private void CaseSaveResultActions(_saveRequiredResultActions resultAction)
-        {
-            switch ( resultAction)
-            {
-                case _saveRequiredResultActions.ChangeKeyLogic:
-                    ChangeKeyLogic();
-                    break;
-                case _saveRequiredResultActions.SearchLogic:
-                    SearchLogic();
-                    break;
-                case _saveRequiredResultActions.ClearLogic:
-                    ClearLogic();
-                    break;
-            }
+
+        private void NotifyMessage(string message)
+        {// Notify view of an error message w/o throwing an error...
+            Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
         }
+
+        #region Right Click FK Helpers
+        private void NotifyTypeSearch(string message)
+        {
+            Notify(TypeSearchNotice, new NotificationEventArgs(message));
+        }
+
+        private void NotifyCodeSearch(string message)
+        {
+            Notify(CodeSearchNotice, new NotificationEventArgs(message));
+        }
+        #endregion Right Click FK Helpers
         #endregion Helpers
     }
 }
 
 namespace ExtensionMethods
 {
-
     public static partial class XERPExtensions
     {
+        public static object GetPropertyValue(this NestedMenuItem myObj, string propertyName)
+        {
+            var propInfo = typeof(NestedMenuItem).GetProperty(propertyName);
+            if (propInfo != null)
+                return propInfo.GetValue(myObj, null);
+            else
+                return string.Empty;
+        }
+
+        public static string GetPropertyType(this NestedMenuItem myObj, string propertyName)
+        {
+            var propInfo = typeof(NestedMenuItem).GetProperty(propertyName);
+            if (propInfo != null)
+                return propInfo.PropertyType.Name.ToString();
+            else
+                return null;
+        }
+
+        public static void SetPropertyValue(this NestedMenuItem myObj, object propertyName, object propertyValue)
+        {
+            var propInfo = typeof(NestedMenuItem).GetProperty((string)propertyName);
+            if (propInfo != null)
+                propInfo.SetValue(myObj, propertyValue, null);
+        }
+
         public static object GetPropertyValue(this MenuItem myObj, string propertyName)
         {
             var propInfo = typeof(MenuItem).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.GetValue(myObj, null);
-            }
             else
-            {
                 return string.Empty;
-            }
         }
 
         public static string GetPropertyType(this MenuItem myObj, string propertyName)
         {
             var propInfo = typeof(MenuItem).GetProperty(propertyName);
-
             if (propInfo != null)
-            {
                 return propInfo.PropertyType.Name.ToString();
-            }
             else
-            {
                 return null;
-            }
         }
 
         public static void SetPropertyValue(this MenuItem myObj, object propertyName, object propertyValue)
         {
             var propInfo = typeof(MenuItem).GetProperty((string)propertyName);
-
             if (propInfo != null)
-            {
                 propInfo.SetValue(myObj, propertyValue, null);
-            }
         }
     }
 }

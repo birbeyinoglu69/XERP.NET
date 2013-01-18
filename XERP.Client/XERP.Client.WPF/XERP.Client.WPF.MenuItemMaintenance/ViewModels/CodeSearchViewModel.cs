@@ -19,8 +19,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         private GlobalProperties _globalProperties = new GlobalProperties();
         private IMenuItemServiceAgent _serviceAgent;
 
-        public CodeSearchViewModel()
-        { }
+        public CodeSearchViewModel(){}
 
         public CodeSearchViewModel(IMenuItemServiceAgent serviceAgent)
         {
@@ -30,11 +29,8 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             ResultList = new BindingList<MenuItemCode>();
             SelectedList = new BindingList<MenuItemCode>();
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
@@ -45,17 +41,11 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #endregion Initialization and Cleanup
 
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -67,12 +57,10 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
-
 
         #region Notifications
         public event EventHandler<NotificationEventArgs<Exception>> ErrorNotice;
@@ -137,9 +125,9 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             return new BindingList<MenuItemCode>(_serviceAgent.GetMenuItemCodes(companyID).ToList());
         }
 
-        private BindingList<MenuItemCode> GetMenuItemCodes(MenuItemCode menuItemQueryObject, string companyID)
+        private BindingList<MenuItemCode> GetMenuItemCodes(MenuItemCode itemQueryObject, string companyID)
         {
-            return new BindingList<MenuItemCode>(_serviceAgent.GetMenuItemCodes(menuItemQueryObject, companyID).ToList());
+            return new BindingList<MenuItemCode>(_serviceAgent.GetMenuItemCodes(itemQueryObject, companyID).ToList());
         }
         #endregion Methods
 
@@ -167,8 +155,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #region Helpers
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
 

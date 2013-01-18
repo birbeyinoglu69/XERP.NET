@@ -226,7 +226,7 @@
         <GridSplitter Style="{StaticResource BaseVerticalGridSplitter}" Grid.Row="1" Grid.Column="0"/>
         <helper:ExtendedTreeView Name="tvMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"
             ItemsSource="{Binding UdListList}" Grid.Row="1"
-            SelectedItem_="{Binding Path=SelectedTreeItem, Mode=TwoWay}" SelectedItemChanged="tvMain_SelectedItemChanged">
+            SelectedItem_="{Binding Path=SelectedTreeItem, Mode=TwoWay, NotifyOnSourceUpdated=True}" SelectedItemChanged="tvMain_SelectedItemChanged">
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsSelected"                     

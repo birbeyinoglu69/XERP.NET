@@ -40,6 +40,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         }
         #endregion Initialization and Cleanup
 
+        #region Authentication Logic
         private void DoFormsAuthentication()
         {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
@@ -61,7 +62,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
-
+        #endregion Authentication Logic
 
         #region Notifications
         public event EventHandler<NotificationEventArgs<Exception>> ErrorNotice;
@@ -75,6 +76,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         }
 
         #region Properties
+
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
         {

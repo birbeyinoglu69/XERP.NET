@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.ComponentModel;
-
-// Toolkit namespace
+using System.Linq;
 using SimpleMvvmToolkit;
-
-// Toolkit extension methods
-//XERP namespace
 using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
 using XERP.Domain.MenuSecurityDomain.Services;
 
@@ -19,8 +14,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         private GlobalProperties _globalProperties = new GlobalProperties();
         private IMenuItemServiceAgent _serviceAgent;
 
-        public TypeSearchViewModel()
-        { }
+        public TypeSearchViewModel(){}
 
         public TypeSearchViewModel(IMenuItemServiceAgent serviceAgent)
         {
@@ -30,32 +24,22 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             ResultList = new BindingList<MenuItemType>();
             SelectedList = new BindingList<MenuItemType>();
             //make sure of session authentication...
-            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
                 FormIsEnabled = false;
-                //we will do forms authentication once the log in returns a valid System User...
             }
         }
         #endregion Initialization and Cleanup
 
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -67,9 +51,8 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
 
@@ -137,9 +120,9 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             return new BindingList<MenuItemType>(_serviceAgent.GetMenuItemTypes(companyID).ToList());
         }
 
-        private BindingList<MenuItemType> GetMenuItemTypes(MenuItemType menuItemQueryObject, string companyID)
+        private BindingList<MenuItemType> GetMenuItemTypes(MenuItemType itemQueryObject, string companyID)
         {
-            return new BindingList<MenuItemType>(_serviceAgent.GetMenuItemTypes(menuItemQueryObject, companyID).ToList());
+            return new BindingList<MenuItemType>(_serviceAgent.GetMenuItemTypes(itemQueryObject, companyID).ToList());
         }
         #endregion Methods
 
@@ -167,8 +150,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #region Helpers
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
 

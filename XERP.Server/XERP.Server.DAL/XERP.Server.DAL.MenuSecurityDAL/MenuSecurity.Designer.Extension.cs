@@ -7,7 +7,7 @@ using System.Data.Metadata.Edm;
 namespace ExtensionMethods
 {
     public static class MyExtensions
-    {
+    {   
         public static List<Temp> GetMetaData(this MenuItem entityObject)
         {
             XERP.Server.DAL.MenuSecurityDAL.DALUtility dalUtility = new DALUtility();

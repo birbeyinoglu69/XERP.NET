@@ -101,6 +101,7 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
         #endregion Notifications    
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -201,7 +202,9 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.AddressListCount);
             }
         }
-        
+        #endregion General Form Function/State Properties
+
+        #region CRUD Properties
         private BindingList<Address> _addressList;
         public BindingList<Address> AddressList
         {
@@ -282,7 +285,9 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
                 }
             }
         }
+        #endregion CRUD Properties
 
+        #region Validation Properties
         private List<ColumnMetaData> _addressColumnMetaDataList;
         public List<ColumnMetaData> AddressColumnMetaDataList
         {
@@ -294,7 +299,6 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
             }
         }
 
-        #region Validation Properties
         //we use this dictionary to bind all textbox maxLenght properties in the View...
         private Dictionary<string, int> _addressMaxFieldValueDictionary;
         public Dictionary<string, int> AddressMaxFieldValueDictionary //= new Dictionary<string, int>();
@@ -518,10 +522,18 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
                     EntityStates entityState = GetAddressState(item);
                     if (entityState == EntityStates.Added && AddressExists(item.AddressID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = AddressList.Count(q => q.AddressID == item.AddressID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
+
                 case _addressValidationProperties.Name:
                     //validate Description
                     if (string.IsNullOrEmpty(item.Name))
@@ -548,7 +560,13 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
                 errorMessage = "Item AllReady Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = AddressList.Count(q => q.AddressID == item.AddressID);
+            if (count > 1)
+            {
+                errorMessage = "Item AllReady Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Name))
             {
@@ -737,10 +755,12 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
             }
         }
+
         public void RefreshCommand()
         {
             Refresh();
         }
+
         public void DeleteAddressCommand()
         {
             try
@@ -837,9 +857,6 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
             }
             UnregisterToReceiveMessages<BindingList<Address>>(MessageTokens.AddressSearchToken.ToString(), OnSearchResult);
         }
-
-        
-        
         #endregion Commands
 
         #region Helpers
@@ -848,6 +865,7 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
         {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
+
         private void NotifyMessage(string message)
         {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));

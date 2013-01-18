@@ -98,6 +98,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
         #region Properties
         //used to enable/disable rowcopy feature for main datagrid...
+        #region General Form Function/State Properties
         private bool _allowRowCopy;
         public bool AllowRowCopy
         {
@@ -197,7 +198,33 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.CompanyListCount);
             }
         }
+        #endregion General Form Function/State Properties
 
+        #region DropDown Collections
+        private ObservableCollection<CompanyType> _companyTypeList;
+        public ObservableCollection<CompanyType> CompanyTypeList
+        {
+            get { return _companyTypeList; }
+            set
+            {
+                _companyTypeList = value;
+                NotifyPropertyChanged(m => m.CompanyTypeList);
+            }
+        }
+
+        private ObservableCollection<CompanyCode> _companyCodeList;
+        public ObservableCollection<CompanyCode> CompanyCodeList
+        {
+            get { return _companyCodeList; }
+            set
+            {
+                _companyCodeList = value;
+                NotifyPropertyChanged(m => m.CompanyCodeList);
+            }
+        }
+        #endregion DropDown Collections
+
+        #region CRUD Properties
         private BindingList<Company> _companyList;
         public BindingList<Company> CompanyList
         {
@@ -224,28 +251,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             {
                 _companyList = value;
                 NotifyPropertyChanged(m => m.CompanyList);
-            }
-        }
-
-        private ObservableCollection<CompanyType> _companyTypeList;
-        public ObservableCollection<CompanyType> CompanyTypeList
-        {
-            get { return _companyTypeList; }
-            set
-            {
-                _companyTypeList = value;
-                NotifyPropertyChanged(m => m.CompanyTypeList);
-            }
-        }
-
-        private ObservableCollection<CompanyCode> _companyCodeList;
-        public ObservableCollection<CompanyCode> CompanyCodeList
-        {
-            get { return _companyCodeList; }
-            set
-            {
-                _companyCodeList = value;
-                NotifyPropertyChanged(m => m.CompanyCodeList);
             }
         }
 
@@ -300,7 +305,9 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 }
             }
         }
-
+        #endregion CRUD Properties
+        
+        #region Validation Properties
         private List<ColumnMetaData> _companyColumnMetaDataList;
         public List<ColumnMetaData> CompanyColumnMetaDataList
         {
@@ -311,8 +318,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.CompanyColumnMetaDataList);
             }
         }
-
-        #region Validation Properties
         //we use this dictionary to bind all textbox maxLenght properties in the View...
         private Dictionary<string, int> _companyMaxFieldValueDictionary;
         public Dictionary<string, int> CompanyMaxFieldValueDictionary //= new Dictionary<string, int>();
@@ -421,7 +426,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
         #region Methods
         #region ViewModel Logic Methods
-
         private void ChangeKeyLogic()
         {
             if (!string.IsNullOrEmpty(SelectedCompany.CompanyID))
@@ -479,6 +483,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             CompanyList.Clear();
             SetAsEmptySelection();
         }
+
         private bool CompanyPropertyChangeIsValid(string propertyName, object changedValue, object previousValue, string type)
         {
             string errorMessage = "";
@@ -535,7 +540,14 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                     EntityStates entityState = GetCompanyState(item);
                     if (entityState == EntityStates.Added && CompanyExists(item.CompanyID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = CompanyList.Count(q => q.CompanyID == item.CompanyID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
@@ -562,10 +574,16 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             EntityStates entityState = GetCompanyState(item);
             if (entityState == EntityStates.Added && CompanyExists(item.CompanyID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = CompanyList.Count(q => q.CompanyID == item.CompanyID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Name))
             {
@@ -580,6 +598,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
+        #region DropDown Methods
         private ObservableCollection<CompanyType> GetCompanyTypes()
         {
             return new ObservableCollection<CompanyType>(_serviceAgent.GetCompanyTypesReadOnly().ToList());
@@ -589,6 +608,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         {
             return new ObservableCollection<CompanyCode>(_serviceAgent.GetCompanyCodesReadOnly().ToList());
         }
+        #endregion DropDown Methods
 
         private EntityStates GetCompanyState(Company item)
         {
@@ -756,10 +776,12 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
             }
         }
+
         public void RefreshCommand()
         {
             Refresh();
         }
+
         public void DeleteCompanyCommand()
         {
             try
@@ -857,6 +879,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             UnregisterToReceiveMessages<BindingList<Company>>(MessageTokens.CompanySearchToken.ToString(), OnSearchResult);
         }
 
+        #region Right Click FK Search Commands
         public void TypeSearchCommand()
         {
             RegisterToReceiveMessages<BindingList<CompanyType>>(MessageTokens.CompanyTypeSearchToken.ToString(), OnTypeSearchResult);
@@ -884,6 +907,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
 
             UnregisterToReceiveMessages<BindingList<CompanyType>>(MessageTokens.CompanyTypeSearchToken.ToString(), OnTypeSearchResult);
         }
+        #endregion Right Click FK Search Commands
         #endregion Commands
 
         #region Helpers
@@ -892,26 +916,12 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
+
         private void NotifyMessage(string message)
         {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
         }
         
-        private void NotifySearch(string message)
-        {
-            Notify(SearchNotice, new NotificationEventArgs(message));
-        }
-
-        private void NotifyTypeSearch(string message)
-        {
-            Notify(TypeSearchNotice, new NotificationEventArgs(message));
-        }
-
-        private void NotifyCodeSearch(string message)
-        {
-            Notify(CodeSearchNotice, new NotificationEventArgs(message));
-        }
-
         private void NotifyNewRecordNeeded(string message)
         {//Notify view new record may be required...
             Notify(NewRecordNeededNotice, new NotificationEventArgs<bool, MessageBoxResult>
@@ -978,6 +988,23 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                     break;
             }
         }
+
+        private void NotifySearch(string message)
+        {
+            Notify(SearchNotice, new NotificationEventArgs(message));
+        }
+
+        #region Right Click FK Search Notifies
+        private void NotifyTypeSearch(string message)
+        {
+            Notify(TypeSearchNotice, new NotificationEventArgs(message));
+        }
+
+        private void NotifyCodeSearch(string message)
+        {
+            Notify(CodeSearchNotice, new NotificationEventArgs(message));
+        }
+        #endregion Right Click FK Search Notifies
         #endregion Helpers
     }
 }

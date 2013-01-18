@@ -8,6 +8,7 @@ using SimpleMvvmToolkit;
 using System.Collections.Generic;
 using XERP.Client.Models;
 using XERP.Client.WPF;
+using XERP.Domain.MenuSecurityDomain.ClientModels;
 namespace XERP.Client.WPF.MenuItemMaintenance.Views
 {
     /// <summary>
@@ -28,7 +29,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
                 DataContext = _viewModel;
                 _viewModel.ErrorNotice += OnErrorNotice;
                 _viewModel.MessageNotice += OnMessageNotice;
-                _viewModel.SearchNotice += OnSearchNotice;
+                //_viewModel.SearchNotice += OnSearchNotice;
                 _viewModel.TypeSearchNotice += OnTypeSearchNotice;
                 _viewModel.CodeSearchNotice += OnCodeSearchNotice;
                 _viewModel.SaveRequiredNotice += OnSaveRequiredNotice;
@@ -59,24 +60,6 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
 
-        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        //{
-        //    if (tabctrlMain.SelectedItem == tabDetail)
-        //    {
-        //        txtKey.Focus();
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabList)
-        //    {
-        //        dgMain.Focus();
-        //        if (dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-        //        {//set the last records first column to have focus...
-        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1],
-        //                dgMain.Columns[0]);
-        //            dgMain.BeginEdit();
-        //        }
-        //    }
-        //}
-
         private void OpenTypeMaintenance_Click(object sender, RoutedEventArgs e)
         {
             TypeMaintenanceWindow maintenanceWindow = new TypeMaintenanceWindow();
@@ -99,15 +82,10 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
             //so we have a ghost control on each tab and will wiggle focus to it and back to commit data on saves...
             UIElement elem = Keyboard.FocusedElement as UIElement;
             Keyboard.Focus(ghost);
-            Keyboard.Focus(ghost2);
+            //Keyboard.Focus(ghost2);
             Keyboard.Focus(elem);
         }
 
-        private void OnSearchNotice(Object sender, NotificationEventArgs e)
-        {
-            MainSearchWindow searchWindow = new MainSearchWindow();
-            searchWindow.Show(); 
-        }
 
         private void OnTypeSearchNotice(Object sender, NotificationEventArgs e)
         {
@@ -173,52 +151,12 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
                     break;
             }
         }
-        
-        private void dgMain_PreviewKeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                if (_viewModel.AllowNew)
-                {
-                    _viewModel.NewMenuItemCommand("");
-                    //set the first visible column to allow for edit w/o requireing a click to select it...
-                    dgMain.CurrentCell = new DataGridCellInfo(
-                    dgMain.Items[dgMain.Items.Count - 1], dgMain.Columns[0]);
-                    dgMain.BeginEdit();
-
-                }
-                else
-                {
-                    MessageBox.Show("New MenuItem Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-
-            
-        }
-        //set data grid max length properties...
-        private void DataGrid_Initialized(object sender, EventArgs e)
-        {
-            DataGrid datagrid = sender as DataGrid;
-            if (datagrid == null) return;
-            foreach (DataGridColumn dataGridColumn in datagrid.Columns)
-            {
-                if (dataGridColumn is DataGridTextColumn)
-                {
-                    DataGridTextColumn dataGridTextColumn = ((DataGridTextColumn)dataGridColumn);
-                    Binding binding = (Binding)dataGridTextColumn.Binding;
-                    
-                    int maxColumnLength = (int)_viewModel.MenuItemMaxFieldValueDictionary[binding.Path.Path.ToString()];
-                    Style newStyle = new Style(typeof(TextBox), dataGridTextColumn.EditingElementStyle);
-                    newStyle.Setters.Add(new Setter(TextBox.MaxLengthProperty, maxColumnLength));
-                    dataGridTextColumn.EditingElementStyle = newStyle;
-                }
-            }
-        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {//set the focus as the control is loaded...
-            txtKey.Focus();
+            //txtKey.Focus();
         }
+
         //Hot keys Control S--Save Control N--New, Delete Key--Delete
         private void UserControl_PreviewKeyUp(object sender, KeyEventArgs e)
         {
@@ -252,42 +190,9 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
             }
         }
 
-        //private void dgMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    _viewModel.SelectedMenuItemList = dgMain.SelectedItems;
-        //    foreach (var item in dgMain.SelectedItems)
-        //    {
-               
-        //    }
-        //}
-
-        private void dgMainPasteRow_Click(object sender, RoutedEventArgs e)
-        {//The columns may get moved so we need to predicate the column order before
-            //dealing with the paste in the viewmodel...
-            _viewModel.MenuItemColumnMetaDataList = new List<ColumnMetaData>();
-            foreach (DataGridColumn column in dgMain.Columns)
-            {
-                string s = column.SortMemberPath.ToString();
-                int i = column.DisplayIndex;
-                ColumnMetaData columnMetaData = new ColumnMetaData();
-                columnMetaData.Name = column.SortMemberPath.ToString();
-                columnMetaData.Order = column.DisplayIndex;
-                _viewModel.MenuItemColumnMetaDataList.Add(columnMetaData);
-            }
-            _viewModel.PasteRowCommand();
-        }
-
-        private void dgMain_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void tv_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (e.Key == Key.Delete)
-            {
-                if (_viewModel.AllowDelete)
-                {
-                    _viewModel.DeleteCommand();
-                    return;
-                }
-                //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            //_viewModel.TreeNestedMenuItemChanged(e.NewValue);   
         }
     }  
 }

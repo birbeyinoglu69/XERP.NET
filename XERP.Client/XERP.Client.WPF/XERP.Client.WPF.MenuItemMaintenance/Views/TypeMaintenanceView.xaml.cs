@@ -259,7 +259,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
             {
                 if (_viewModel.AllowDelete)
                 {
-                    _viewModel.DeleteCommand();
+                    _viewModel.DeleteMenuItemTypeCommand();
                     return;
                 }
                 //MessageBox.Show("Delete Is Not Enabled...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

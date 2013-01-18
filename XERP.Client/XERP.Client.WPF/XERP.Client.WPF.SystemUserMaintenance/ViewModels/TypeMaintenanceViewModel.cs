@@ -95,6 +95,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #endregion Notifications
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -198,6 +199,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.SystemUserTypeListCount);
             }
         }
+        #endregion General Form Function/State Properties
 
         private BindingList<SystemUserType> _systemUserTypeList;
         public BindingList<SystemUserType> SystemUserTypeList
@@ -519,6 +521,13 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                         errorMessage = "Item AllReady Exists...";
                         return false;
                     }
+                    //check cached list for duplicates...
+                    int count = SystemUserTypeList.Count(q => q.SystemUserTypeID == item.SystemUserTypeID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
                     break;
                 case _companyValidationProperties.Name:
                     //validate Description
@@ -543,10 +552,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             EntityStates entityState = GetSystemUserTypeState(item);
             if (entityState == EntityStates.Added && SystemUserTypeExists(item.SystemUserTypeID, ClientSessionSingleton.Instance.CompanyID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = SystemUserTypeList.Count(q => q.SystemUserTypeID == item.SystemUserTypeID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Description))
             {

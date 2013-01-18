@@ -93,6 +93,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #endregion Notifications
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -192,6 +193,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.SystemUserCodeListCount);
             }
         }
+        #endregion General Form Function/State Properties
 
         private BindingList<SystemUserCode> _systemUserCodeList;
         public BindingList<SystemUserCode> SystemUserCodeList
@@ -497,28 +499,36 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         }
 
         //Object.Property Scope Validation...
-        private bool SystemUserCodeIsValid(SystemUserCode company, _companyValidationProperties validationProperties, out string errorMessage)
+        private bool SystemUserCodeIsValid(SystemUserCode item, _companyValidationProperties validationProperties, out string errorMessage)
         {
             errorMessage = "";
             switch (validationProperties)
             {
                 case _companyValidationProperties.SystemUserCodeID:
                     //validate key
-                    if (string.IsNullOrEmpty(company.SystemUserCodeID))
+                    if (string.IsNullOrEmpty(item.SystemUserCodeID))
                     {
                         errorMessage = "ID Is Required.";
                         return false;
                     }
-                    EntityStates entityState = GetSystemUserCodeState(company);
-                    if (entityState == EntityStates.Added && SystemUserCodeExists(company.SystemUserCodeID, ClientSessionSingleton.Instance.CompanyID))
+                    EntityStates entityState = GetSystemUserCodeState(item);
+                    if (entityState == EntityStates.Added && SystemUserCodeExists(item.SystemUserCodeID, ClientSessionSingleton.Instance.CompanyID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
+                    //check cached list for duplicates...
+                    int count = SystemUserCodeList.Count(q => q.SystemUserCodeID == item.SystemUserCodeID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+
                     break;
                 case _companyValidationProperties.Name:
                     //validate Description
-                    if (string.IsNullOrEmpty(company.Description))
+                    if (string.IsNullOrEmpty(item.Description))
                     {
                         errorMessage = "Description Is Required.";
                         return false;
@@ -539,10 +549,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             EntityStates entityState = GetSystemUserCodeState(item);
             if (entityState == EntityStates.Added && SystemUserCodeExists(item.SystemUserCodeID, ClientSessionSingleton.Instance.CompanyID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = SystemUserCodeList.Count(q => q.SystemUserCodeID == item.SystemUserCodeID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Description))
             {

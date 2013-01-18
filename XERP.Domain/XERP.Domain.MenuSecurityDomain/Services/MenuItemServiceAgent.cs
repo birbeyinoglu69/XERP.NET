@@ -59,6 +59,26 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             return queryResult;
         }
 
+        public IEnumerable<DBStoredImage> GetDBStoredImagesReadOnly(string companyID)
+        {
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from q in _context.DBStoredImages
+                               where q.CompanyID == companyID
+                               select q);
+            return queryResult;
+        }
+
+        public IEnumerable<ExecutableProgram> GetExecutableProgramsReadOnly(string companyID)
+        {
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from q in _context.ExecutablePrograms
+                               where q.CompanyID == companyID
+                               select q);
+            return queryResult;
+        }
+
         public bool MenuItemExists(string menuItemID, string companyID)
         {
             _context.MergeOption = MergeOption.NoTracking;

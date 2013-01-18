@@ -93,6 +93,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         #endregion Notifications
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -192,6 +193,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.ExecutableProgramCodeListCount);
             }
         }
+        #endregion General Form Function/State Properties
 
         private BindingList<ExecutableProgramCode> _executableProgramCodeList;
         public BindingList<ExecutableProgramCode> ExecutableProgramCodeList
@@ -497,28 +499,36 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         }
 
         //Object.Property Scope Validation...
-        private bool ExecutableProgramCodeIsValid(ExecutableProgramCode company, _companyValidationProperties validationProperties, out string errorMessage)
+        private bool ExecutableProgramCodeIsValid(ExecutableProgramCode item, _companyValidationProperties validationProperties, out string errorMessage)
         {
             errorMessage = "";
             switch (validationProperties)
             {
                 case _companyValidationProperties.ExecutableProgramCodeID:
                     //validate key
-                    if (string.IsNullOrEmpty(company.ExecutableProgramCodeID))
+                    if (string.IsNullOrEmpty(item.ExecutableProgramCodeID))
                     {
                         errorMessage = "ID Is Required.";
                         return false;
                     }
-                    EntityStates entityState = GetExecutableProgramCodeState(company);
-                    if (entityState == EntityStates.Added && ExecutableProgramCodeExists(company.ExecutableProgramCodeID, ClientSessionSingleton.Instance.CompanyID))
+                    EntityStates entityState = GetExecutableProgramCodeState(item);
+                    if (entityState == EntityStates.Added && ExecutableProgramCodeExists(item.ExecutableProgramCodeID, ClientSessionSingleton.Instance.CompanyID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
+                    //check cached list for duplicates...
+                    int count = ExecutableProgramCodeList.Count(q => q.ExecutableProgramCodeID == item.ExecutableProgramCodeID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+
                     break;
                 case _companyValidationProperties.Name:
                     //validate Description
-                    if (string.IsNullOrEmpty(company.Description))
+                    if (string.IsNullOrEmpty(item.Description))
                     {
                         errorMessage = "Description Is Required.";
                         return false;
@@ -539,10 +549,16 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             EntityStates entityState = GetExecutableProgramCodeState(item);
             if (entityState == EntityStates.Added && ExecutableProgramCodeExists(item.ExecutableProgramCodeID, ClientSessionSingleton.Instance.CompanyID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = ExecutableProgramCodeList.Count(q => q.ExecutableProgramCodeID == item.ExecutableProgramCodeID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Description))
             {

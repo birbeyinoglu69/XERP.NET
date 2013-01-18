@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.ComponentModel;
-
-// Toolkit namespace
+using System.Linq;
 using SimpleMvvmToolkit;
-
-// Toolkit extension methods
-//XERP namespace
 using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
 using XERP.Domain.MenuSecurityDomain.Services;
 
@@ -21,8 +16,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         private GlobalProperties _globalProperties = new GlobalProperties();
         private IMenuItemServiceAgent _serviceAgent;
 
-        public MainSearchViewModel()
-        { }
+        public MainSearchViewModel(){}
 
         public MainSearchViewModel(IMenuItemServiceAgent serviceAgent)
         {
@@ -34,33 +28,23 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             ResultList = new BindingList<MenuItem>();
             SelectedList = new BindingList<MenuItem>();
             //make sure of session authentication...
-            if (ClientSessionSingleton.Instance.SessionIsAuthentic)
-            {
-                //make sure user has rights to UI...
+            if (ClientSessionSingleton.Instance.SessionIsAuthentic) //make sure user has rights to UI...
                 DoFormsAuthentication();
-            }
             else
             {//User is not authenticated...
                 RegisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
                 FormIsEnabled = false;
-                //we will do forms authentication once the log in returns a valid System User...
             }
         }
         #endregion Initialization and Cleanup
 
         #region Authentication
         private void DoFormsAuthentication()
-        {
-            //on log in session information is collected about the system user...
-            //we need to make the system user is allowed access to this UI...
+        {//we need to make the system user is allowed access to this UI...
             if (ClientSessionSingleton.Instance.ExecutableProgramIDList.Contains(_globalProperties.ExecutableProgramName))
-            {
                 FormIsEnabled = true;
-            }
             else
-            {
                 FormIsEnabled = false;
-            }
         }
 
         private void OnStartUpLogIn(object sender, NotificationEventArgs<bool> e)
@@ -72,9 +56,8 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 NotifyAuthenticated();
             }
             else
-            {
                 FormIsEnabled = false;
-            }
+
             UnregisterToReceiveMessages<bool>(MessageTokens.StartUpLogInToken.ToString(), OnStartUpLogIn);
         }
         #endregion Authentication
@@ -91,10 +74,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             Notify(AuthenticatedNotice, new NotificationEventArgs());
         }
 
-
         #region Properties
-        
-
         private bool? _formIsEnabled;
         public bool? FormIsEnabled
         {
@@ -178,9 +158,9 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             return new BindingList<MenuItem>(_serviceAgent.GetMenuItems(companyID).ToList());
         }
 
-        private BindingList<MenuItem> GetMenuItems(MenuItem menuItemQueryObject, string companyID)
+        private BindingList<MenuItem> GetMenuItems(MenuItem itemQueryObject, string companyID)
         {//note this get is to the singleton repository...
-            return new BindingList<MenuItem>(_serviceAgent.GetMenuItems(menuItemQueryObject, companyID).ToList());
+            return new BindingList<MenuItem>(_serviceAgent.GetMenuItems(itemQueryObject, companyID).ToList());
         }
         #endregion Methods
 
@@ -208,8 +188,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #region Helpers
         // Helper method to notify View of an error
         private void NotifyError(string message, Exception error)
-        {
-            // Notify view of an error
+        {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
 

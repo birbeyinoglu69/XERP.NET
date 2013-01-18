@@ -95,6 +95,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         #endregion Notifications
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -198,7 +199,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.ExecutableProgramTypeListCount);
             }
         }
-
+        #endregion General Form Function/State Properties
         private BindingList<ExecutableProgramType> _executableProgramTypeList;
         public BindingList<ExecutableProgramType> ExecutableProgramTypeList
         {
@@ -516,7 +517,14 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                     EntityStates entityState = GetExecutableProgramTypeState(item);
                     if (entityState == EntityStates.Added && ExecutableProgramTypeExists(item.ExecutableProgramTypeID, ClientSessionSingleton.Instance.CompanyID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = ExecutableProgramTypeList.Count(q => q.ExecutableProgramTypeID == item.ExecutableProgramTypeID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
@@ -543,10 +551,16 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             EntityStates entityState = GetExecutableProgramTypeState(item);
             if (entityState == EntityStates.Added && ExecutableProgramTypeExists(item.ExecutableProgramTypeID, ClientSessionSingleton.Instance.CompanyID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = ExecutableProgramTypeList.Count(q => q.ExecutableProgramTypeID == item.ExecutableProgramTypeID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Description))
             {

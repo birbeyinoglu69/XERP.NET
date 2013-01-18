@@ -92,6 +92,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
         #endregion Notifications
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -193,6 +194,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.CompanyCodeListCount);
             }
         }
+        #endregion General Form Function/State Properties
 
         private BindingList<CompanyCode> _companyCodeList;
         public BindingList<CompanyCode> CompanyCodeList
@@ -506,7 +508,14 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                     EntityStates entityState = GetCompanyCodeState(item);
                     if (entityState == EntityStates.Added && CompanyCodeExists(item.CompanyCodeID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = CompanyCodeList.Count(q => q.CompanyCodeID == item.CompanyCodeID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
@@ -533,10 +542,16 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             EntityStates entityState = GetCompanyCodeState(item);
             if (entityState == EntityStates.Added && CompanyCodeExists(item.CompanyCodeID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = CompanyCodeList.Count(q => q.CompanyCodeID == item.CompanyCodeID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Description))
             {

@@ -7,7 +7,6 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
 
-
 namespace XERP.Domain.MenuSecurityDomain.Services
 {
     public class MenuSecurityServiceAgent : XERP.Domain.MenuSecurityDomain.Services.IMenuSecurityServiceAgent
@@ -86,22 +85,26 @@ namespace XERP.Domain.MenuSecurityDomain.Services
 
         public BitmapImage  GetMenuItemImage(string imageID, string companyID)
         {
-            DBStoredImage dbStoredImage = _context.DBStoredImages.First();
-            _context.IgnoreResourceNotFoundException = true;
-            _context.MergeOption = MergeOption.NoTracking;
-            dbStoredImage = (from q in _context.DBStoredImages
-                             where q.ImageID == imageID &&
-                               q.CompanyID == companyID
-                             select q).SingleOrDefault();
-            
-            MemoryStream stream = new MemoryStream();
-            stream.Write(dbStoredImage.StoredImage, 0, dbStoredImage.StoredImage.Length);
-
             System.Windows.Media.Imaging.BitmapImage wpfImg = new System.Windows.Media.Imaging.BitmapImage();
-            wpfImg.BeginInit();             
-            wpfImg.StreamSource = stream;             
-            wpfImg.EndInit();
+            try
+            {
+                DBStoredImage dbStoredImage = _context.DBStoredImages.First();
+                _context.IgnoreResourceNotFoundException = true;
+                _context.MergeOption = MergeOption.NoTracking;
+                dbStoredImage = (from q in _context.DBStoredImages
+                                 where q.ImageID == imageID &&
+                                   q.CompanyID == companyID
+                                 select q).SingleOrDefault();
 
+                MemoryStream stream = new MemoryStream();
+                stream.Write(dbStoredImage.StoredImage, 0, dbStoredImage.StoredImage.Length);
+
+                //System.Windows.Media.Imaging.BitmapImage wpfImg = new System.Windows.Media.Imaging.BitmapImage();
+                wpfImg.BeginInit();
+                wpfImg.StreamSource = stream;
+                wpfImg.EndInit();
+            }//if image fails we will return the empty bitmapimage object
+            catch { }
             return wpfImg;
         }
 

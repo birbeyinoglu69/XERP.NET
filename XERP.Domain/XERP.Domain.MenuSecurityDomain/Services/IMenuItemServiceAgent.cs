@@ -18,6 +18,8 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItemCode> GetMenuItemCodes(string companyID);
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItemCode> GetMenuItemCodes(XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItemCode menuItemCodeQuerryObject, string companyID);
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItemCode> GetMenuItemCodesReadOnly(string companyID);
+        System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.DBStoredImage> GetDBStoredImagesReadOnly(string companyID);
+        System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.ExecutableProgram> GetExecutableProgramsReadOnly(string companyID);
         System.Data.Services.Client.EntityStates GetMenuItemEntityState(XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItem menuItem);
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItem> GetMenuItems(string companyID);
         System.Collections.Generic.IEnumerable<XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItem> GetMenuItems(XERP.Domain.MenuSecurityDomain.MenuSecurityDataService.MenuItem menuItemQuerryObject, string companyID);

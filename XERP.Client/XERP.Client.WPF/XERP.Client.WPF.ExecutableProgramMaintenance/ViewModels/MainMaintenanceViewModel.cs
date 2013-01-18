@@ -103,6 +103,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         #endregion Notifications    
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -203,7 +204,33 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.ExecutableProgramListCount);
             }
         }
-        
+        #endregion General Form Function/State Properties
+
+        #region DropDown Collections
+        private ObservableCollection<ExecutableProgramType> _executableProgramTypeList;
+        public ObservableCollection<ExecutableProgramType> ExecutableProgramTypeList
+        {
+            get { return _executableProgramTypeList; }
+            set
+            {
+                _executableProgramTypeList = value;
+                NotifyPropertyChanged(m => m.ExecutableProgramTypeList);
+            }
+        }
+
+        private ObservableCollection<ExecutableProgramCode> _executableProgramCodeList;
+        public ObservableCollection<ExecutableProgramCode> ExecutableProgramCodeList
+        {
+            get { return _executableProgramCodeList; }
+            set
+            {
+                _executableProgramCodeList = value;
+                NotifyPropertyChanged(m => m.ExecutableProgramCodeList);
+            }
+        }
+        #endregion DropDown Collections
+
+        #region CRUD Properties
         private BindingList<ExecutableProgram> _executableProgramList;
         public BindingList<ExecutableProgram> ExecutableProgramList
         {
@@ -230,28 +257,6 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             {
                 _executableProgramList = value;
                 NotifyPropertyChanged(m => m.ExecutableProgramList);
-            }
-        }
-
-        private ObservableCollection<ExecutableProgramType> _executableProgramTypeList;
-        public ObservableCollection<ExecutableProgramType> ExecutableProgramTypeList
-        {
-            get { return _executableProgramTypeList; }
-            set
-            {
-                _executableProgramTypeList = value;
-                NotifyPropertyChanged(m => m.ExecutableProgramTypeList);
-            }
-        }
-
-        private ObservableCollection<ExecutableProgramCode> _executableProgramCodeList;
-        public ObservableCollection<ExecutableProgramCode> ExecutableProgramCodeList
-        {
-            get { return _executableProgramCodeList; }
-            set
-            {
-                _executableProgramCodeList = value;
-                NotifyPropertyChanged(m => m.ExecutableProgramCodeList);
             }
         }
 
@@ -306,7 +311,9 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 }
             }
         }
+        #endregion CRUD Propeties
 
+        #region Validation Properties
         private List<ColumnMetaData> _executableProgramColumnMetaDataList;
         public List<ColumnMetaData> ExecutableProgramColumnMetaDataList
         {
@@ -318,7 +325,6 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             }
         }
 
-        #region Validation Properties
         //we use this dictionary to bind all textbox maxLenght properties in the View...
         private Dictionary<string, int> _executableProgramMaxFieldValueDictionary;
         public Dictionary<string, int> ExecutableProgramMaxFieldValueDictionary //= new Dictionary<string, int>();
@@ -542,7 +548,14 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                     EntityStates entityState = GetExecutableProgramState(item);
                     if (entityState == EntityStates.Added && ExecutableProgramExists(item.ExecutableProgramID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = ExecutableProgramList.Count(q => q.ExecutableProgramID == item.ExecutableProgramID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
@@ -569,10 +582,16 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             EntityStates entityState = GetExecutableProgramState(item);
             if (entityState == EntityStates.Added && ExecutableProgramExists(item.ExecutableProgramID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = ExecutableProgramList.Count(q => q.ExecutableProgramID == item.ExecutableProgramID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Name))
             {
@@ -588,10 +607,11 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
+        #region DropDown Methods
         private ObservableCollection<ExecutableProgramType> BuildExecutableProgramTypeDropDown()
         {
             List<ExecutableProgramType> list = new List<ExecutableProgramType>();
-            list = _serviceAgent.GetExecutableProgramTypes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list = _serviceAgent.GetExecutableProgramTypesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
             list.Add(new ExecutableProgramType());
             list.Sort((x, y) => string.Compare(x.Type, y.Type));
 
@@ -601,12 +621,13 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         private ObservableCollection<ExecutableProgramCode> BuildExecutableProgramCodeDropDown()
         {
             List<ExecutableProgramCode> list = new List<ExecutableProgramCode>();
-            list = _serviceAgent.GetExecutableProgramCodes(ClientSessionSingleton.Instance.CompanyID).ToList();
+            list = _serviceAgent.GetExecutableProgramCodesReadOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
             list.Add(new ExecutableProgramCode());
             list.Sort((x, y) => string.Compare(x.Code, y.Code));
 
             return new ObservableCollection<ExecutableProgramCode>(list);
         }
+        #endregion DropDown Methods
 
         private EntityStates GetExecutableProgramState(ExecutableProgram item)
         {
@@ -780,10 +801,12 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
             }
         }
+
         public void RefreshCommand()
         {
             Refresh();
         }
+
         public void DeleteExecutableProgramCommand()
         {
             try
@@ -880,7 +903,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             }
             UnregisterToReceiveMessages<BindingList<ExecutableProgram>>(MessageTokens.ExecutableProgramSearchToken.ToString(), OnSearchResult);
         }
-
+        #region Right Click FK Searces
         public void TypeSearchCommand()
         {
             RegisterToReceiveMessages<BindingList<ExecutableProgramType>>(MessageTokens.ExecutableProgramTypeSearchToken.ToString(), OnTypeSearchResult);
@@ -908,7 +931,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
 
             UnregisterToReceiveMessages<BindingList<ExecutableProgramType>>(MessageTokens.ExecutableProgramTypeSearchToken.ToString(), OnTypeSearchResult);
         }
-        
+        #endregion Right Click FK Searches
         #endregion Commands
 
         #region Helpers
@@ -917,20 +940,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
         {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
-        private void NotifyMessage(string message)
-        {// Notify view of an error message w/o throwing an error...
-            Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
-        }
-        
-        private void NotifySearch(string message)
-        {//Notify view to launch search...
-            Notify(SearchNotice, new NotificationEventArgs(message));
-        }
 
-        private void NotifyTypeSearch(string message)
-        {
-            Notify(TypeSearchNotice, new NotificationEventArgs(message));
-        }
 
         private void NotifyCodeSearch(string message)
         {
@@ -1003,6 +1013,23 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                     break;
             }
         }
+        
+        #region Right Click FK Helpers
+        private void NotifyMessage(string message)
+        {// Notify view of an error message w/o throwing an error...
+            Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
+        }
+        
+        private void NotifySearch(string message)
+        {//Notify view to launch search...
+            Notify(SearchNotice, new NotificationEventArgs(message));
+        }
+
+        private void NotifyTypeSearch(string message)
+        {
+            Notify(TypeSearchNotice, new NotificationEventArgs(message));
+        }
+        #endregion Right Click FK Helpers
         #endregion Helpers
     }
 }

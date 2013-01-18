@@ -92,8 +92,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         #endregion Notifications    
 
         #region Properties
-        #region GeneralProperties
-
+        #region General Form Function/State Properties
         private bool _allowRowCopy;
         public bool AllowRowCopy
         {
@@ -181,9 +180,9 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.FormIsEnabled);
             }
         }
-        #endregion GeneralProcedures
+        #endregion General Form Function/State Properties
 
-        #region UDList Properties
+        #region UDList CRUD Properties
         private string _udListListCount;
         public string UdListListCount
         {
@@ -316,17 +315,6 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 }
             } //if (_selectedUdList != value)
         }
-
-        private List<ColumnMetaData> _udListColumnMetaDataList;
-        public List<ColumnMetaData> UdListColumnMetaDataList
-        {
-            get { return _udListColumnMetaDataList; }
-            set
-            {
-                _udListColumnMetaDataList = value;
-                NotifyPropertyChanged(m => m.UdListColumnMetaDataList);
-            }
-        }
         #endregion UDList Properties
 
         #region Nested List Properties
@@ -387,7 +375,18 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             }
         }
         #endregion Nested List Properties
+
         #region Validation Properties
+        private List<ColumnMetaData> _udListColumnMetaDataList;
+        public List<ColumnMetaData> UdListColumnMetaDataList
+        {
+            get { return _udListColumnMetaDataList; }
+            set
+            {
+                _udListColumnMetaDataList = value;
+                NotifyPropertyChanged(m => m.UdListColumnMetaDataList);
+            }
+        }
         //we use this dictionary to bind all textbox maxLenght properties in the View...
         private Dictionary<string, int> _udListMaxFieldValueDictionary;
         public Dictionary<string, int> UdListMaxFieldValueDictionary //= new Dictionary<string, int>();
@@ -498,7 +497,6 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
         #endregion ViewModel Propertie's Events
 
         #region Methods
-
         private void ChangeKeyLogic()
         {
             if (! string.IsNullOrEmpty(SelectedUdList.UdListID))
@@ -549,6 +547,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
            
             return true;
         }
+
         private void SetAsEmptySelection()
         {
             SelectedUdList = new UdList();
@@ -617,7 +616,14 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                     EntityStates entityState = GetUdListState(udList);
                     if (entityState == EntityStates.Added && UdListExists(udList.UdListID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = UdListList.Count(q => q.UdListID == udList.UdListID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
@@ -646,10 +652,16 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             EntityStates entityState = GetUdListState(udList);
             if (entityState == EntityStates.Added && UdListExists(udList.UdListID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-            
+            //check cached list for duplicates...
+            int count = UdListList.Count(q => q.UdListID == udList.UdListID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(udList.Name))
             {

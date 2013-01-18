@@ -102,6 +102,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #endregion Notifications    
 
         #region Properties
+        #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
         private bool _allowRowCopy;
         public bool AllowRowCopy
@@ -202,7 +203,33 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.SystemUserListCount);
             }
         }
-        
+        #endregion General Form Function/State Properties
+
+        #region DropDown Collections
+        private ObservableCollection<SystemUserType> _systemUserTypeList;
+        public ObservableCollection<SystemUserType> SystemUserTypeList
+        {
+            get { return _systemUserTypeList; }
+            set
+            {
+                _systemUserTypeList = value;
+                NotifyPropertyChanged(m => m.SystemUserTypeList);
+            }
+        }
+
+        private ObservableCollection<SystemUserCode> _systemUserCodeList;
+        public ObservableCollection<SystemUserCode> SystemUserCodeList
+        {
+            get { return _systemUserCodeList; }
+            set
+            {
+                _systemUserCodeList = value;
+                NotifyPropertyChanged(m => m.SystemUserCodeList);
+            }
+        }
+        #endregion DropDown Collections
+
+        #region CRUD Properties
         private BindingList<SystemUser> _systemUserList;
         public BindingList<SystemUser> SystemUserList
         {
@@ -229,28 +256,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             {
                 _systemUserList = value;
                 NotifyPropertyChanged(m => m.SystemUserList);
-            }
-        }
-
-        private ObservableCollection<SystemUserType> _systemUserTypeList;
-        public ObservableCollection<SystemUserType> SystemUserTypeList
-        {
-            get { return _systemUserTypeList; }
-            set
-            {
-                _systemUserTypeList = value;
-                NotifyPropertyChanged(m => m.SystemUserTypeList);
-            }
-        }
-
-        private ObservableCollection<SystemUserCode> _systemUserCodeList;
-        public ObservableCollection<SystemUserCode> SystemUserCodeList
-        {
-            get { return _systemUserCodeList; }
-            set
-            {
-                _systemUserCodeList = value;
-                NotifyPropertyChanged(m => m.SystemUserCodeList);
             }
         }
 
@@ -305,7 +310,9 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 }
             }
         }
+        #endregion CRUD Propeties
 
+        #region Validation Properties
         private List<ColumnMetaData> _systemUserColumnMetaDataList;
         public List<ColumnMetaData> SystemUserColumnMetaDataList
         {
@@ -317,7 +324,6 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             }
         }
 
-        #region Validation Properties
         //we use this dictionary to bind all textbox maxLenght properties in the View...
         private Dictionary<string, int> _systemUserMaxFieldValueDictionary;
         public Dictionary<string, int> SystemUserMaxFieldValueDictionary //= new Dictionary<string, int>();
@@ -541,7 +547,14 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                     EntityStates entityState = GetSystemUserState(item);
                     if (entityState == EntityStates.Added && SystemUserExists(item.SystemUserID))
                     {
-                        errorMessage = "Item AllReady Exists...";
+                        errorMessage = "Item All Ready Exists...";
+                        return false;
+                    }
+                    //check cached list for duplicates...
+                    int count = SystemUserList.Count(q => q.SystemUserID == item.SystemUserID);
+                    if (count > 1)
+                    {
+                        errorMessage = "Item All Ready Exists...";
                         return false;
                     }
                     break;
@@ -568,10 +581,16 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             EntityStates entityState = GetSystemUserState(item);
             if (entityState == EntityStates.Added && SystemUserExists(item.SystemUserID))
             {
-                errorMessage = "Item AllReady Exists.";
+                errorMessage = "Item All Ready Exists.";
                 return 1;
             }
-
+            //check cached list for duplicates...
+            int count = SystemUserList.Count(q => q.SystemUserID == item.SystemUserID);
+            if (count > 1)
+            {
+                errorMessage = "Item All Ready Exists.";
+                return 1;
+            }
             //validate Description
             if (string.IsNullOrEmpty(item.Name))
             {
@@ -587,10 +606,11 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #endregion ViewModel Logic Methods
 
         #region ServiceAgent Call Methods
+        #region DropDown Methods
         private ObservableCollection<SystemUserType> BuildSystemUserTypeDropDown()
         {
             List<SystemUserType> list = new List<SystemUserType>();
-            list = _serviceAgent.GetSystemUserTypes().ToList();
+            list = _serviceAgent.GetSystemUserTypesReadOnly().ToList();
             list.Add(new SystemUserType());
             list.Sort((x, y) => string.Compare(x.Type, y.Type));
 
@@ -600,12 +620,13 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         private ObservableCollection<SystemUserCode> BuildSystemUserCodeDropDown()
         {
             List<SystemUserCode> list = new List<SystemUserCode>();
-            list = _serviceAgent.GetSystemUserCodes().ToList();
+            list = _serviceAgent.GetSystemUserCodesReadOnly().ToList();
             list.Add(new SystemUserCode());
             list.Sort((x, y) => string.Compare(x.Code, y.Code));
 
             return new ObservableCollection<SystemUserCode>(list);
         }
+        #endregion DropDown Methods
 
         private EntityStates GetSystemUserState(SystemUser item)
         {
@@ -779,10 +800,12 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                     NotifyMessage("Save Failed Check Your Work And Try Again...");
             }
         }
+
         public void RefreshCommand()
         {
             Refresh();
         }
+
         public void DeleteSystemUserCommand()
         {
             try
@@ -880,6 +903,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             UnregisterToReceiveMessages<BindingList<SystemUser>>(MessageTokens.SystemUserSearchToken.ToString(), OnSearchResult);
         }
 
+        #region Right Click FK Searches
         public void TypeSearchCommand()
         {
             RegisterToReceiveMessages<BindingList<SystemUserType>>(MessageTokens.SystemUserTypeSearchToken.ToString(), OnTypeSearchResult);
@@ -907,7 +931,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
             UnregisterToReceiveMessages<BindingList<SystemUserType>>(MessageTokens.SystemUserTypeSearchToken.ToString(), OnTypeSearchResult);
         }
-        
+        #endregion Right Click FK Searches
         #endregion Commands
 
         #region Helpers
@@ -916,26 +940,12 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         {// Notify view of an error
             Notify(ErrorNotice, new NotificationEventArgs<Exception>(message, error));
         }
+
         private void NotifyMessage(string message)
         {// Notify view of an error message w/o throwing an error...
             Notify(MessageNotice, new NotificationEventArgs<Exception>(message));
         }
         
-        private void NotifySearch(string message)
-        {//Notify view to launch search...
-            Notify(SearchNotice, new NotificationEventArgs(message));
-        }
-
-        private void NotifyTypeSearch(string message)
-        {
-            Notify(TypeSearchNotice, new NotificationEventArgs(message));
-        }
-
-        private void NotifyCodeSearch(string message)
-        {
-            Notify(CodeSearchNotice, new NotificationEventArgs(message));
-        }
-
         private void NotifyNewRecordNeeded(string message)
         {//Notify view new record may be required...
             Notify(NewRecordNeededNotice, new NotificationEventArgs<bool, MessageBoxResult>
@@ -1002,6 +1012,23 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                     break;
             }
         }
+
+        private void NotifySearch(string message)
+        {//Notify view to launch search...
+            Notify(SearchNotice, new NotificationEventArgs(message));
+        }
+
+        #region Right Click FK Helpers
+        private void NotifyTypeSearch(string message)
+        {
+            Notify(TypeSearchNotice, new NotificationEventArgs(message));
+        }
+
+        private void NotifyCodeSearch(string message)
+        {
+            Notify(CodeSearchNotice, new NotificationEventArgs(message));
+        }
+        #endregion Right Click FK Helpers
         #endregion Helpers
     }
 }
