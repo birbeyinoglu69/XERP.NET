@@ -421,7 +421,79 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            
+            <TabItem  Style="{StaticResource BaseTabItem}" Name="tabSecurityRole" Header="Menu Security">
+                <Grid Style="{StaticResource BaseGrid}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="657*"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                        <ColumnDefinition Width="200*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" 
+                                VerticalAlignment="Center" Text="Available Security Groups" FontWeight="Bold" />
+                    <ListBox Grid.Row="1" Grid.Column="0" Name="lbxAvailableSecurityGroups"
+                                ItemsSource="{Binding AvailableSecurityGroupList}"
+                                SelectionMode="Multiple">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Path=Name}" >
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBlock Grid.Row="0" Grid.Column="2" 
+                                VerticalAlignment="Center" Text="Assigned Security Groups" FontWeight="Bold" />
+                    <ListBox Grid.Row="1" Grid.Column="2" Name="lbxAssignedSecurityGroups"
+                                ItemsSource="{Binding AssignedSecurityGroupList}"
+                                SelectionMode="Multiple" FontWeight="Normal">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Path=Name}" >
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+                    
+                    <StackPanel Orientation="Vertical"  Grid.Row="1" Grid.Column="1" 
+                                VerticalAlignment="Center">
+                        <Button FontFamily="Wingdings 3" Content="uu" Name="btnAssignAllSecurityGroups"
+                                Margin="5,10,5,10" Height="30" Foreground="#FF003C74" FontWeight="Bold" FontSize="15">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="AssignAllSecurityGroupsCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </Button>
+                        <Button FontFamily="Wingdings 3" Content="u" Name="btnAssignSelectedSecurityGroups"
+                                Margin="5,10,5,10" Height="30" Foreground="#FF003C74" FontWeight="Bold" FontSize="15" Click="btnAssignSelectedSecurityGroups_Click"></Button>
+                        <Button FontFamily="Wingdings 3" Content="t" Name="btnRemoveSelectedSecurityGroups"
+                                Margin="5,10,5,10" Height="30" Foreground="#FF003C74" FontWeight="Bold" FontSize="15" Click="btnRemoveSelectedSecurityGroups_Click"></Button>
+                        <Button FontFamily="Wingdings 3" Content="tt" Name="btnRemoveAllSecurityGroups"
+                                Margin="5,10,5,10" Height="30" Foreground="#FF003C74" FontWeight="Bold" FontSize="15">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="RemoveAllSecurityGroupsCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        
+                    </StackPanel>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </UserControl>

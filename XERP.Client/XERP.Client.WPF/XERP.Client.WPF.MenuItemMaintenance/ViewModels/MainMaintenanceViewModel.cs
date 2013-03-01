@@ -42,8 +42,6 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         public MainMaintenanceViewModel(IMenuItemServiceAgent serviceAgent)
         {
             this._serviceAgent = serviceAgent;
-
-
             //make sure of session authentication...
             if (XERP.Client.ClientSessionSingleton.Instance.SessionIsAuthentic)//make sure user has rights to UI... 
                 DoFormsAuthentication();
@@ -280,7 +278,9 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 if (_selectedMenuItem != value)
                 {
                     _selectedMenuItem = value;
-                    //default UdListItem properties...
+                    //set MenuSecurity Selections
+                    SetSecurityGroupLists(value.MenuItemID);
+                    //default properties...
                     Dirty = false;
                     MenuItem menuItem = new MenuItem();
                     SelectedMenuItemMirror = new NestedMenuItem();
@@ -315,6 +315,52 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             }
         }
         #endregion Nested Item Properties
+
+        #region MenuSecurity Properties
+        private ObservableCollection<SecurityGroup> _availableSecurityGroupList;
+        public ObservableCollection<SecurityGroup> AvailableSecurityGroupList
+        {
+            get { return _availableSecurityGroupList; }
+            set
+            {
+                _availableSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.AvailableSecurityGroupList);
+            }
+        }
+
+        private ObservableCollection<SecurityGroup> _assignedSecurityGroupList;
+        public ObservableCollection<SecurityGroup> AssignedSecurityGroupList
+        {
+            get { return _assignedSecurityGroupList; }
+            set
+            {
+                _assignedSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.AssignedSecurityGroupList);
+            }
+        }
+
+        private System.Collections.IList _selectedAvailableSecurityGroupList;
+        public System.Collections.IList SelectedAvailableSecurityGroupList
+        {
+            get { return _selectedAvailableSecurityGroupList; }
+            set
+            {
+                _selectedAvailableSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.SelectedAvailableSecurityGroupList);
+            }
+        }
+
+        private System.Collections.IList _selectedAssignedSecurityGroupList;
+        public System.Collections.IList SelectedAssignedSecurityGroupList
+        {
+            get { return _selectedAssignedSecurityGroupList; }
+            set
+            {
+                _selectedAssignedSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.SelectedAssignedSecurityGroupList);
+            }
+        }
+        #endregion MenuSecurity Properties
 
         #region Validation Properties
         private List<ColumnMetaData> _menuItemColumnMetaDataList;
@@ -615,6 +661,76 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             return new ObservableCollection<ExecutableProgram>(list);
         }
         #endregion DropDown Methods
+
+        #region MenuSecurity CRUD
+
+
+        private void SetSecurityGroupLists(string menuItemID)
+        {//used within method as to not fire a property change of the public object...
+            //eventually we will set the public objects from these objects...
+            List<SecurityGroup> availableSecurityGroupList = new List<SecurityGroup>();
+            List<SecurityGroup> assignedSecurityGroupList = new List<SecurityGroup>();
+
+            //used to house the MenuSecurities for selected menu
+            List<MenuSecurity> menuSecurities = new List<MenuSecurity>();
+
+            //get all the Security Groups to allow us to omit them if they belong to the Menu Item allready...
+            List<SecurityGroup> allSecurityGroups = new List<SecurityGroup>();
+            //get all security groups
+            allSecurityGroups = _serviceAgent.GetSecurityGroupsReadyOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
+            //set it to all we will remove the selected ones...
+            availableSecurityGroupList = allSecurityGroups;
+
+            //get menuSecurities for selected item...
+            menuSecurities = _serviceAgent.GetMenuSecuritiesByMenuItemIDReadOnly(menuItemID, ClientSessionSingleton.Instance.CompanyID).ToList();
+            
+            //loop MenuSecurity and add it's Security Group to assignedSecurityGroups...
+            //then loop AllSecurityGroups and omit the Assigned one from the AvailableSecurityGroups
+            foreach (MenuSecurity item in menuSecurities)
+            {
+                assignedSecurityGroupList.Add(item.SecurityGroup);
+                foreach (SecurityGroup omitItem in allSecurityGroups)
+                {
+                    if (omitItem.SecurityGroupID == item.SecurityGroupID)
+                    {
+                        availableSecurityGroupList.Remove(omitItem);
+                        break;
+                    }
+                }
+
+            }
+
+            //set the public objects from method objects...
+            AvailableSecurityGroupList = new ObservableCollection<SecurityGroup>(availableSecurityGroupList);
+            AssignedSecurityGroupList = new ObservableCollection<SecurityGroup>(assignedSecurityGroupList);
+        }
+
+        private void RemoveAllMenuSecurities(string menuItemID)
+        {
+            _serviceAgent.RemoveAllMenuSecurities(menuItemID,
+                ClientSessionSingleton.Instance.CompanyID);
+        }
+
+        private void AddAllMenuSecurities(string menuItemID)
+        {
+            _serviceAgent.AddAllMenuSecurities(menuItemID,
+                ClientSessionSingleton.Instance.CompanyID);
+        }
+
+        private void RemoveMenuSecurity(string menuItemID, string securityGroupID)
+        {
+            _serviceAgent.RemoveMenuSecurity(menuItemID, securityGroupID, 
+                ClientSessionSingleton.Instance.CompanyID);                                                          
+        }
+
+        private void AddMenuSecurity(string menuItemId, string securityGroupID)
+        {
+            _serviceAgent.AddMenuSecurity(menuItemId, securityGroupID, 
+                ClientSessionSingleton.Instance.CompanyID);        
+        }
+
+        #endregion MenuSecurity CRUD
+
         private EntityStates GetMenuItemState(MenuItem item)
         {
             return _serviceAgent.GetMenuItemEntityState(item);
@@ -802,6 +918,36 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #endregion Methods
 
         #region Commands
+        public void AssignSelectedSecurityGroupsCommand()
+        {
+            foreach (var item in SelectedAvailableSecurityGroupList)
+            {
+                SecurityGroup securityGroup = (SecurityGroup)item;
+                AddMenuSecurity(SelectedMenuItem.MenuItemID, securityGroup.SecurityGroupID);
+            }
+        }
+        public void RemoveSelectedSecurityGroupsCommand()
+        {
+            foreach (var item in SelectedAssignedSecurityGroupList)
+            {
+                SecurityGroup securityGroup = (SecurityGroup)item;
+                RemoveMenuSecurity(SelectedMenuItem.MenuItemID, securityGroup.SecurityGroupID);
+            }
+        }
+        public void AssignAllSecurityGroupsCommand()
+        {
+            AddAllMenuSecurities(SelectedMenuItem.MenuItemID);
+            AvailableSecurityGroupList.Clear();
+            AssignedSecurityGroupList = new ObservableCollection<SecurityGroup>
+                (_serviceAgent.GetSecurityGroupsReadyOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
+        }
+        public void RemoveAllSecurityGroupsCommand()
+        {
+            RemoveAllMenuSecurities(SelectedMenuItem.MenuItemID);
+            AssignedSecurityGroupList.Clear();
+            AvailableSecurityGroupList = new ObservableCollection<SecurityGroup>
+                (_serviceAgent.GetSecurityGroupsReadyOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
+        }
         public void SaveCommand()
         {
             MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == SelectedMenuItem.AutoID);

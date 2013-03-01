@@ -64,7 +64,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
             return queryRelult;
         }
 
-        public IEnumerable<ExecutableProgram> GetExecutablePrograms(string companyID)
+        public IEnumerable<ExecutableProgram> GetExecutableProgramsReadOnly(string companyID)
         {
             _context.IgnoreResourceNotFoundException = true;
             _context.MergeOption = MergeOption.NoTracking;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.Services.Client;
 
 using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
+
 namespace XERP.Domain.MenuSecurityDomain.Services
 {
     public class MenuItemServiceAgent : XERP.Domain.MenuSecurityDomain.Services.IMenuItemServiceAgent
@@ -136,6 +137,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         {
             return MenuItemSingletonRepository.Instance.Refresh(autoIDs);
         }
+
         public IEnumerable<MenuItem> GetMenuItems(string companyID)
         {
             return MenuItemSingletonRepository.Instance.GetMenuItems(companyID);
@@ -175,7 +177,121 @@ namespace XERP.Domain.MenuSecurityDomain.Services
         {
             return MenuItemSingletonRepository.Instance.GetMenuItemEntityState(menuItem);
         }
+        
         #endregion MenuItem Repository CRUD
+
+        #region MenuItemSecurity CRUD        
+        ////MenuSecurity Items can be asigned to a menu
+        ////We will mangage the display and Create and Delete of these items through the controlled procedures below...
+        ////Note they will be displayed as SecurityGroups through the UI but created and deleted as MenuItemSecurities
+
+        public IEnumerable<SecurityGroup> GetSecurityGroupsReadyOnly(string companyID)
+        {//this will represent all Security Groups
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from q in _context.SecurityGroups
+                               where q.CompanyID == companyID
+                               select q);
+            return queryResult;
+        }
+
+        public IEnumerable<MenuSecurity> GetMenuSecuritiesByMenuItemIDReadOnly(string menuItemID, string companyID)
+        {
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from q in _context.MenuSecurities.Expand("SecurityGroup")
+                               where 
+                               q.MenuItemID == menuItemID &&
+                               q.CompanyID == companyID
+                               select q);
+            return queryResult;
+        }
+
+        //Upsert(Add and Update) SecurityGroup to the MenuSecurity table...
+        public void AddMenuSecurity(string menuItemID, string securityGroupID, string companyID)
+        {//declare a different context as to not disturb the repostitory context that is tracking MenuItems
+            MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
+            //make sure it does not exist all ready...
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var queryResult = from q in context.MenuSecurities
+                               where q.CompanyID == companyID &&
+                                     q.MenuItemID == menuItemID &&
+                                     q.SecurityGroupID == securityGroupID
+                               select q;
+            if (queryResult.ToList().Count() == 0)
+            {//it does not exist add it...
+                MenuSecurity menuSecurity = new MenuSecurity();
+                menuSecurity.CompanyID = companyID;
+                menuSecurity.MenuItemID = menuItemID;
+                menuSecurity.SecurityGroupID = securityGroupID;
+                context.MergeOption = MergeOption.NoTracking;
+                context.AddToMenuSecurities(menuSecurity);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+        //delete SecurityGroup from the MenuSecurity table...
+        public void RemoveMenuSecurity(string menuItemID, string securityGroupID, string companyID)
+        {//declare a different context as to not disturb the repostitory context that is tracking MenuItems
+            MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var deleteItem = (from q in context.MenuSecurities
+                             where q.CompanyID == companyID &&
+                                   q.MenuItemID == menuItemID &&
+                                   q.SecurityGroupID == securityGroupID
+                             select q).SingleOrDefault();
+            if (deleteItem != null)
+            {
+                context.DeleteObject(deleteItem);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+       
+        //Upsert(Add and Update) SecurityGroup to the MenuSecurity table...
+        public void AddAllMenuSecurities(string menuItemID, string companyID)
+        {   //remove them all then we will add them all...
+            RemoveAllMenuSecurities(menuItemID, companyID);
+            //declare a different context as to not disturb the repostitory context that is tracking MenuItems
+            MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
+            //get Security Groups...
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var queryResult = from q in context.SecurityGroups
+                              where q.CompanyID == companyID 
+                              select q;
+            foreach (SecurityGroup item in queryResult.ToList())
+            {
+                MenuSecurity menuSecurity = new MenuSecurity();
+                menuSecurity.CompanyID = companyID;
+                menuSecurity.MenuItemID = menuItemID;
+                menuSecurity.SecurityGroupID = item.SecurityGroupID;
+                context.MergeOption = MergeOption.NoTracking;
+                context.AddToMenuSecurities(menuSecurity);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+        //delete SecurityGroup from the MenuSecurity table...
+        public void RemoveAllMenuSecurities(string menuItemID, string companyID)
+        {//declare a different context as to not disturb the repostitory context that is tracking MenuItems
+            MenuSecurityEntities context = new MenuSecurityEntities(_rootUri);
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var deleteItems = from q in context.MenuSecurities
+                             where q.CompanyID == companyID &&
+                                   q.MenuItemID == menuItemID
+                             select q;
+            foreach (MenuSecurity item in deleteItems.ToList())
+            {
+                context.DeleteObject(item);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+        #endregion MenuItemSecurity CRUD
 
         #region MenuItemType Repository CRUD
         public IEnumerable<MenuItemType> RefreshMenuItemType(string autoIDs)

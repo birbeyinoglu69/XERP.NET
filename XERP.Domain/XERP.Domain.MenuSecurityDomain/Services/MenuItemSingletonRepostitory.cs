@@ -41,7 +41,7 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext = new MenuSecurityEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
-            var queryResult = (from q in _repositoryContext.MenuItems
+            var queryResult = (from q in _repositoryContext.MenuItems.Expand("MenuSecurities/SecurityGroup")
                                where q.CompanyID == companyID
                              select q);
             return queryResult;
@@ -52,7 +52,7 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext = new MenuSecurityEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
-            var queryResult = from q in _repositoryContext.MenuItems
+            var queryResult = from q in _repositoryContext.MenuItems.Expand("MenuSecurities/SecurityGroup")
                               where q.CompanyID == companyID
                              select q;
             
@@ -75,7 +75,7 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext = new MenuSecurityEntities(_rootUri);
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
-            var queryResult = (from q in _repositoryContext.MenuItems
+            var queryResult = (from q in _repositoryContext.MenuItems.Expand("MenuSecurities/SecurityGroup")
                           where q.MenuItemID == menuItemID &&
                           q.CompanyID == companyID
                           select q);
@@ -88,7 +88,9 @@ namespace XERP.Domain.MenuSecurityDomain
             _repositoryContext.MergeOption = MergeOption.AppendOnly;
             _repositoryContext.IgnoreResourceNotFoundException = true;
 
-            var queryResult = _repositoryContext.CreateQuery<MenuItem>("RefreshMenuItem").AddQueryOption("autoIDs", "'" + autoIDs + "'");
+            var queryResult = _repositoryContext.CreateQuery<MenuItem>("RefreshMenuItem").
+                Expand("MenuSecurities/SecurityGroup").
+                AddQueryOption("autoIDs", "'" + autoIDs + "'");
                 
             return queryResult;
         }

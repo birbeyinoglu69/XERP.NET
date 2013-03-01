@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using XERP.Client.Models;
 using XERP.Client.WPF;
 using XERP.Domain.MenuSecurityDomain.ClientModels;
+using XERP.Domain.MenuSecurityDomain.MenuSecurityDataService;
 namespace XERP.Client.WPF.MenuItemMaintenance.Views
 {
     /// <summary>
@@ -193,6 +194,38 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
         private void tv_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             //_viewModel.TreeNestedMenuItemChanged(e.NewValue);   
+        }
+
+        private void btnAssignSelectedSecurityGroups_Click(object sender, RoutedEventArgs e)
+        {//set the selected items for the _viewModel
+            _viewModel.SelectedAvailableSecurityGroupList = lbxAvailableSecurityGroups.SelectedItems;
+            //do the required MenuSecurity CRUD
+            _viewModel.AssignSelectedSecurityGroupsCommand();
+            //need to remove from list and add to the other list...
+
+            for (int j = lbxAvailableSecurityGroups.SelectedItems.Count - 1; j >= 0; j--)
+            {//move item from one list to the other...
+                SecurityGroup item = (SecurityGroup)lbxAvailableSecurityGroups.SelectedItems[j];
+                _viewModel.AvailableSecurityGroupList.Remove((SecurityGroup)item);
+                _viewModel.AssignedSecurityGroupList.Add((SecurityGroup)item);
+            }
+            lbxAvailableSecurityGroups.SelectedItems.Clear();
+        }
+
+        private void btnRemoveSelectedSecurityGroups_Click(object sender, RoutedEventArgs e)
+        {//set the selected items for the _viewModel
+            _viewModel.SelectedAssignedSecurityGroupList = lbxAssignedSecurityGroups.SelectedItems;
+            //do the required MenuSecurity CRUD
+            _viewModel.RemoveSelectedSecurityGroupsCommand();
+
+            for (int j = lbxAssignedSecurityGroups.SelectedItems.Count - 1; j >= 0; j--)
+            {//move item from one list to the other...
+                SecurityGroup item = (SecurityGroup)lbxAssignedSecurityGroups.SelectedItems[j];
+                _viewModel.AssignedSecurityGroupList.Remove((SecurityGroup)item);
+                _viewModel.AvailableSecurityGroupList.Add((SecurityGroup)item); 
+            }
+            //need to remove from list and add to the other list...
+            lbxAssignedSecurityGroups.SelectedItems.Clear();
         }
     }  
 }
