@@ -663,8 +663,6 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         #endregion DropDown Methods
 
         #region MenuSecurity CRUD
-
-
         private void SetSecurityGroupLists(string menuItemID)
         {//used within method as to not fire a property change of the public object...
             //eventually we will set the public objects from these objects...

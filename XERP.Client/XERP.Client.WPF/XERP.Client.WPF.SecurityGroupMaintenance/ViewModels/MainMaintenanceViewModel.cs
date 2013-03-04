@@ -346,6 +346,52 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             }
         }
         #endregion CRUD Object Properties
+
+        #region UserSecurity Properties
+        private ObservableCollection<SecurityGroup> _availableSecurityGroupList;
+        public ObservableCollection<SecurityGroup> AvailableSecurityGroupList
+        {
+            get { return _availableSecurityGroupList; }
+            set
+            {
+                _availableSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.AvailableSecurityGroupList);
+            }
+        }
+
+        private ObservableCollection<SecurityGroup> _assignedSecurityGroupList;
+        public ObservableCollection<SecurityGroup> AssignedSecurityGroupList
+        {
+            get { return _assignedSecurityGroupList; }
+            set
+            {
+                _assignedSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.AssignedSecurityGroupList);
+            }
+        }
+
+        private System.Collections.IList _selectedAvailableSecurityGroupList;
+        public System.Collections.IList SelectedAvailableSecurityGroupList
+        {
+            get { return _selectedAvailableSecurityGroupList; }
+            set
+            {
+                _selectedAvailableSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.SelectedAvailableSecurityGroupList);
+            }
+        }
+
+        private System.Collections.IList _selectedAssignedSecurityGroupList;
+        public System.Collections.IList SelectedAssignedSecurityGroupList
+        {
+            get { return _selectedAssignedSecurityGroupList; }
+            set
+            {
+                _selectedAssignedSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.SelectedAssignedSecurityGroupList);
+            }
+        }
+        #endregion UserSecurity Properties
         #endregion Properties
 
         #region ViewModel Property Events

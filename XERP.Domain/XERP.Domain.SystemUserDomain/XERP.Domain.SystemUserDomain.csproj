@@ -46,11 +46,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\ISystemUserServiceAgent.cs" />
     <Compile Include="Services\SystemUserCodeSingletonRepository.cs" />
     <Compile Include="Services\SystemUserServiceAgent.cs" />
     <Compile Include="Services\SystemUserSingletonRepostitory.cs" />
     <Compile Include="Services\SystemUserTypeSingletonRepostitory.cs" />
-    <Compile Include="Services\ISystemUserServiceAgent.cs" />
     <Compile Include="Services\ServiceUtility.cs" />
   </ItemGroup>
   <ItemGroup>

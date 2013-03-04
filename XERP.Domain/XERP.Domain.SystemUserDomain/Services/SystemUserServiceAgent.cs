@@ -6,7 +6,7 @@ using XERP.Domain.SystemUserDomain.SystemUserDataService;
 
 namespace XERP.Domain.SystemUserDomain.Services
 {
-    public class SystemUserServiceAgent : XERP.Domain.SystemUserDomain.Services.ISystemUserServiceAgent 
+    public class SystemUserServiceAgent : XERP.Domain.SystemUserDomain.Services.ISystemUserServiceAgent
     {
         #region Initialize Service
         public SystemUserServiceAgent()
@@ -244,5 +244,118 @@ namespace XERP.Domain.SystemUserDomain.Services
             return SystemUserCodeSingletonRepository.Instance.GetSystemUserCodeEntityState(itemCode);
         }
         #endregion SystemUserCode Repository CRUD
+
+        #region SystemUserSecurity CRUD
+        ////SystemUserSecurity Items can be asigned to a systemUser
+        ////We will mangage the display and Create and Delete of these items through the controlled procedures below...
+        ////Note they will be displayed as SecurityGroups through the UI but created and deleted as SystemUserSecurities
+
+        public IEnumerable<SecurityGroup> GetSecurityGroupsReadyOnly(string companyID)
+        {//this will represent all Security Groups
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from q in _context.SecurityGroups
+                               where q.CompanyID == companyID
+                               select q);
+            return queryResult;
+        }
+
+        public IEnumerable<SystemUserSecurity> GetSystemUserSecuritiesBySystemUserIDReadOnly(string systemUserID, string companyID)
+        {
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from q in _context.SystemUserSecurities.Expand("SecurityGroup")
+                               where
+                               q.SystemUserID == systemUserID &&
+                               q.CompanyID == companyID
+                               select q);
+            return queryResult;
+        }
+
+        //Upsert(Add and Update) SecurityGroup to the UserSecurity table...
+        public void AddSystemUserSecurity(string systemUserID, string securityGroupID, string companyID)
+        {//declare a different context as to not disturb the repostitory context that is tracking SystemUsers
+            SystemUserEntities context = new SystemUserEntities(_rootUri);
+            //make sure it does not exist all ready...
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var queryResult = from q in context.SystemUserSecurities
+                              where q.CompanyID == companyID &&
+                                    q.SystemUserID == systemUserID &&
+                                    q.SecurityGroupID == securityGroupID
+                              select q;
+            if (queryResult.ToList().Count() == 0)
+            {//it does not exist add it...
+                SystemUserSecurity systemUserSecurity = new SystemUserSecurity();
+                systemUserSecurity.CompanyID = companyID;
+                systemUserSecurity.SystemUserID = systemUserID;
+                systemUserSecurity.SecurityGroupID = securityGroupID;
+                context.MergeOption = MergeOption.NoTracking;
+                context.AddToSystemUserSecurities(systemUserSecurity);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+        //delete SecurityGroup from the SystemUserSecurity table...
+        public void RemoveSystemUserSecurity(string systemUserID, string securityGroupID, string companyID)
+        {//declare a different context as to not disturb the repostitory context that is tracking SystemUsers
+            SystemUserEntities context = new SystemUserEntities(_rootUri);
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var deleteItem = (from q in context.SystemUserSecurities
+                              where q.CompanyID == companyID &&
+                                    q.SystemUserID == systemUserID &&
+                                    q.SecurityGroupID == securityGroupID
+                              select q).SingleOrDefault();
+            if (deleteItem != null)
+            {
+                context.DeleteObject(deleteItem);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+
+        //Upsert(Add and Update) SecurityGroup to the SystemUserSecurity table...
+        public void AddAllSystemUserSecurities(string systemUserID, string companyID)
+        {   //remove them all then we will add them all...
+            RemoveAllSystemUserSecurities(systemUserID, companyID);
+            //declare a different context as to not disturb the repostitory context that is tracking SystemUsers
+            SystemUserEntities context = new SystemUserEntities(_rootUri);
+            //get Security Groups...
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var queryResult = from q in context.SecurityGroups
+                              where q.CompanyID == companyID
+                              select q;
+            foreach (SecurityGroup item in queryResult.ToList())
+            {
+                SystemUserSecurity systemUserSecurity = new SystemUserSecurity();
+                systemUserSecurity.CompanyID = companyID;
+                systemUserSecurity.SystemUserID = systemUserID;
+                systemUserSecurity.SecurityGroupID = item.SecurityGroupID;
+                context.MergeOption = MergeOption.NoTracking;
+                context.AddToSystemUserSecurities(systemUserSecurity);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+        //delete SecurityGroup from the SystemUserSecurity table...
+        public void RemoveAllSystemUserSecurities(string systemUserID, string companyID)
+        {//declare a different context as to not disturb the repostitory context that is tracking SystemUsers
+            SystemUserEntities context = new SystemUserEntities(_rootUri);
+            context.MergeOption = MergeOption.AppendOnly;
+            context.IgnoreResourceNotFoundException = true;
+            var deleteItems = from q in context.SystemUserSecurities
+                              where q.CompanyID == companyID &&
+                                    q.SystemUserID == systemUserID
+                              select q;
+            foreach (SystemUserSecurity item in deleteItems.ToList())
+            {
+                context.DeleteObject(item);
+                context.SaveChanges();
+            }
+            context = null;
+        }
+        #endregion SystemUserSecurity CRUD
     }
 }

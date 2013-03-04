@@ -104,6 +104,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         #region Properties
         #region General Form Function/State Properties
         //used to enable/disable rowcopy feature for main datagrid...
+
         private bool _allowRowCopy;
         public bool AllowRowCopy
         {
@@ -293,6 +294,8 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 if (_selectedSystemUser != value)
                 {
                     _selectedSystemUser = value;
+                    //set Security Selections
+                    SetSecurityGroupLists(value.SystemUserID);
                     //set the mirrored SelectedSystemUser to allow to track property changes w/o
                     //explicitly providing a property for each field...
                     SelectedSystemUserMirror = new SystemUser();
@@ -345,6 +348,52 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             }
         }
         #endregion Validation Properties
+
+        #region UserSecurity Properties
+        private ObservableCollection<SecurityGroup> _availableSecurityGroupList;
+        public ObservableCollection<SecurityGroup> AvailableSecurityGroupList
+        {
+            get { return _availableSecurityGroupList; }
+            set
+            {
+                _availableSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.AvailableSecurityGroupList);
+            }
+        }
+
+        private ObservableCollection<SecurityGroup> _assignedSecurityGroupList;
+        public ObservableCollection<SecurityGroup> AssignedSecurityGroupList
+        {
+            get { return _assignedSecurityGroupList; }
+            set
+            {
+                _assignedSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.AssignedSecurityGroupList);
+            }
+        }
+
+        private System.Collections.IList _selectedAvailableSecurityGroupList;
+        public System.Collections.IList SelectedAvailableSecurityGroupList
+        {
+            get { return _selectedAvailableSecurityGroupList; }
+            set
+            {
+                _selectedAvailableSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.SelectedAvailableSecurityGroupList);
+            }
+        }
+
+        private System.Collections.IList _selectedAssignedSecurityGroupList;
+        public System.Collections.IList SelectedAssignedSecurityGroupList
+        {
+            get { return _selectedAssignedSecurityGroupList; }
+            set
+            {
+                _selectedAssignedSecurityGroupList = value;
+                NotifyPropertyChanged(m => m.SelectedAssignedSecurityGroupList);
+            }
+        }
+        #endregion UserSecurity Properties
         #endregion Properties
 
         #region ViewModel Propertie's Events
@@ -752,10 +801,107 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
 
 
         #endregion SystemUser CRUD
+
+        #region SystemUserSecurity CRUD
+        private void SetSecurityGroupLists(string menuItemID)
+        {//used within method as to not fire a property change of the public object...
+            //eventually we will set the public objects from these objects...
+            List<SecurityGroup> availableSecurityGroupList = new List<SecurityGroup>();
+            List<SecurityGroup> assignedSecurityGroupList = new List<SecurityGroup>();
+
+            //used to house the SystemUserSecurities for selected menu
+            List<SystemUserSecurity> menuSecurities = new List<SystemUserSecurity>();
+
+            //get all the Security Groups to allow us to omit them if they belong to the SystemUser Item allready...
+            List<SecurityGroup> allSecurityGroups = new List<SecurityGroup>();
+            //get all security groups
+            allSecurityGroups = _serviceAgent.GetSecurityGroupsReadyOnly(ClientSessionSingleton.Instance.CompanyID).ToList();
+            //set it to all we will remove the selected ones...
+            availableSecurityGroupList = allSecurityGroups;
+
+            //get menuSecurities for selected item...
+            menuSecurities = _serviceAgent.GetSystemUserSecuritiesBySystemUserIDReadOnly(menuItemID, ClientSessionSingleton.Instance.CompanyID).ToList();
+
+            //loop SystemUserSecurity and add it's Security Group to assignedSecurityGroups...
+            //then loop AllSecurityGroups and omit the Assigned one from the AvailableSecurityGroups
+            foreach (SystemUserSecurity item in menuSecurities)
+            {
+                assignedSecurityGroupList.Add(item.SecurityGroup);
+                foreach (SecurityGroup omitItem in allSecurityGroups)
+                {
+                    if (omitItem.SecurityGroupID == item.SecurityGroupID)
+                    {
+                        availableSecurityGroupList.Remove(omitItem);
+                        break;
+                    }
+                }
+
+            }
+
+            //set the public objects from method objects...
+            AvailableSecurityGroupList = new ObservableCollection<SecurityGroup>(availableSecurityGroupList);
+            AssignedSecurityGroupList = new ObservableCollection<SecurityGroup>(assignedSecurityGroupList);
+        }
+
+        private void RemoveAllSystemUserSecurities(string menuItemID)
+        {
+            _serviceAgent.RemoveAllSystemUserSecurities(menuItemID,
+                ClientSessionSingleton.Instance.CompanyID);
+        }
+
+        private void AddAllSystemUserSecurities(string menuItemID)
+        {
+            _serviceAgent.AddAllSystemUserSecurities(menuItemID,
+                ClientSessionSingleton.Instance.CompanyID);
+        }
+
+        private void RemoveSystemUserSecurity(string menuItemID, string securityGroupID)
+        {
+            _serviceAgent.RemoveSystemUserSecurity(menuItemID, securityGroupID,
+                ClientSessionSingleton.Instance.CompanyID);
+        }
+
+        private void AddSystemUserSecurity(string menuItemId, string securityGroupID)
+        {
+            _serviceAgent.AddSystemUserSecurity(menuItemId, securityGroupID,
+                ClientSessionSingleton.Instance.CompanyID);
+        }
+
+        #endregion SystemUserSecurity CRUD
         #endregion ServiceAgent Call Methods
         #endregion Methods
 
         #region Commands
+        public void AssignSelectedSecurityGroupsCommand()
+        {
+            foreach (var item in SelectedAvailableSecurityGroupList)
+            {
+                SecurityGroup securityGroup = (SecurityGroup)item;
+                AddSystemUserSecurity(SelectedSystemUser.SystemUserID, securityGroup.SecurityGroupID);
+            }
+        }
+        public void RemoveSelectedSecurityGroupsCommand()
+        {
+            foreach (var item in SelectedAssignedSecurityGroupList)
+            {
+                SecurityGroup securityGroup = (SecurityGroup)item;
+                RemoveSystemUserSecurity(SelectedSystemUser.SystemUserID, securityGroup.SecurityGroupID);
+            }
+        }
+        public void AssignAllSecurityGroupsCommand()
+        {
+            AddAllSystemUserSecurities(SelectedSystemUser.SystemUserID);
+            AvailableSecurityGroupList.Clear();
+            AssignedSecurityGroupList = new ObservableCollection<SecurityGroup>
+                (_serviceAgent.GetSecurityGroupsReadyOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
+        }
+        public void RemoveAllSecurityGroupsCommand()
+        {
+            RemoveAllSystemUserSecurities(SelectedSystemUser.SystemUserID);
+            AssignedSecurityGroupList.Clear();
+            AvailableSecurityGroupList = new ObservableCollection<SecurityGroup>
+                (_serviceAgent.GetSecurityGroupsReadyOnly(ClientSessionSingleton.Instance.CompanyID).ToList());
+        }
         public void PasteRowCommand()
         {
             try
