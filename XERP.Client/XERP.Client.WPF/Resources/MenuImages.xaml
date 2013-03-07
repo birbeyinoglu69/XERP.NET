@@ -335,21 +335,15 @@
         <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
         <Setter Property="Width" Value="28"/>
         <Setter Property="Height" Value="28"/>
-        <Setter Property="Icon">
-            <Setter.Value>
-                <Image Source="/XERP.Client;component/Resources/AddNew.png"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="MenuItem.Icon" Value="{DynamicResource AddNewIcon}"/>
     </Style>
+    <Image x:Key="AddNewIcon" Source="/XERP.Client;component/Resources/AddNew.png" x:Shared="false"/>
     <Style TargetType="{x:Type MenuItem}" x:Key="DeleteMenuItem">
         <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
         <Setter Property="Width" Value="28"/>
         <Setter Property="Height" Value="28"/>
-        <Setter Property="Icon">
-            <Setter.Value>
-                <Image Source="/XERP.Client;component/Resources/Delete.png"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="MenuItem.Icon" Value="{DynamicResource DeleteIcon}"/>
     </Style>
+    <Image x:Key="DeleteIcon" Source="/XERP.Client;component/Resources/Delete.png" x:Shared="false"/>
 
 </ResourceDictionary>

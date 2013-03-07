@@ -54,24 +54,6 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
 
-        //private void OnNewRecordCreatedNotice(object sender, NotificationEventArgs e)
-        //{
-        //    if (tabctrlMain.SelectedItem == tabDetail)
-        //    {
-        //        txtKey.Focus();
-        //    }
-        //    if (tabctrlMain.SelectedItem == tabList)
-        //    {
-        //        dgMain.Focus();
-        //        if (dgMain.Items.Count > 0 && dgMain.Columns.Count > 0)
-        //        {//set the last records first column to have focus...
-        //            dgMain.CurrentCell = new DataGridCellInfo(dgMain.Items[dgMain.Items.Count - 1],
-        //                dgMain.Columns[0]);
-        //            dgMain.BeginEdit();
-        //        }
-        //    }
-        //}
-
         private void OpenCodeMaintenance_Click(object sender, RoutedEventArgs e)
         {
             CodeMaintenanceWindow maintenanceWindow = new CodeMaintenanceWindow();
@@ -81,6 +63,10 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
         {
             WiggleToGhostField();
+            if (_viewModel.AllowCommit == true)
+            {
+                _viewModel.SaveCommand();
+            }
         }
 
         private void WiggleToGhostField()
@@ -232,10 +218,10 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         private void dgMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _viewModel.SelectedCompanyCodeList = dgMain.SelectedItems;
-            foreach (var item in dgMain.SelectedItems)
-            {
+            //foreach (var item in dgMain.SelectedItems)
+            //{
 
-            }
+            //}
         }
 
         private void dgMainPasteRow_Click(object sender, RoutedEventArgs e)

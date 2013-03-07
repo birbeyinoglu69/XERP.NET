@@ -42,14 +42,8 @@
                         </MenuItem>
                     </MenuItem>
                     <MenuItem Style="{StaticResource BaseMenuItem}"  Header="_Save" Name="mnuSave"
-                              Click="SaveMenuItem_Click" IsEnabled="{Binding AllowCommit}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
-                                TargetObject="{Binding}"
-                                MethodName="SaveCommand"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                              Click="SaveMenuItem_Click" >
+                        
                     </MenuItem>
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete" >
                         <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete Address" 
@@ -111,17 +105,10 @@
                     </i:Interaction.Triggers>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Style="{StaticResource BaseMenuItem}"
-                Click="SaveMenuItem_Click" IsEnabled="{Binding AllowCommit}">
+            <MenuItem Style="{StaticResource BaseMenuItem}" Click="SaveMenuItem_Click" >
                 <MenuItem.Header>
                     <Button Style="{StaticResource SaveButton}" Click="SaveMenuItem_Click">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
-                                TargetObject="{Binding}"
-                                MethodName="SaveCommand"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                        
                     </Button>
                 </MenuItem.Header>
             </MenuItem>

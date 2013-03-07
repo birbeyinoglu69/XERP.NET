@@ -72,7 +72,6 @@
                 <DataTemplate  >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{Binding DBImageAsImage}"></Image>
-                        <TextBlock Text="{Binding Path=Name, Mode=TwoWay}" Margin="5"/>
                         <TextBlock Text="{Binding Path=Description, Mode=TwoWay}" Margin="5"/>
                     </StackPanel>
                 </DataTemplate>

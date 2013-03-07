@@ -56,7 +56,7 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
             MessageBox.Show(e.Message, "Error", MessageBoxButton.OK);
         }
 
-        private void WiggleToGhostField(object sender, RoutedEventArgs e)
+        private void WiggleToGhostField()
         {//textboxex by default set bindings on lost focus
             //so we have a ghost control on each tab and will wiggle focus to it and back to commit data on saves...
             UIElement elem = Keyboard.FocusedElement as UIElement;
@@ -264,6 +264,15 @@ namespace XERP.Client.WPF.UdListMaintenance.Views
             if (tabctrlMain.SelectedItem != tabItems)
             {
                 tabctrlMain.SelectedItem = tabItems;
+            }
+        }
+
+        private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            WiggleToGhostField();
+            if (_viewModel.AllowCommit == true)
+            {
+                _viewModel.SaveCommand();
             }
         } 
     }  

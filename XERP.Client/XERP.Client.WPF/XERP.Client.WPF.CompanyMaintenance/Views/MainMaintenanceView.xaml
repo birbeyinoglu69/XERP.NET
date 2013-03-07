@@ -27,7 +27,7 @@
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <Menu Style="{StaticResource BaseMenu}"
                 IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
-                VerticalAlignment="Top" HorizontalAlignment="Left">
+                VerticalAlignment="Top" HorizontalAlignment="Left" >
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
                         <MenuItem Style="{StaticResource BaseMenuItem}" Name="mnuNewCompany" 
@@ -42,14 +42,7 @@
                         </MenuItem>
                     </MenuItem>
                     <MenuItem Style="{StaticResource BaseMenuItem}"  Header="_Save" Name="mnuSave"
-                              Click="SaveMenuItem_Click" IsEnabled="{Binding AllowCommit}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
-                                TargetObject="{Binding}"
-                                MethodName="SaveCommand"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                              Click="SaveMenuItem_Click">
                     </MenuItem>
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete" >
                         <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete Company" 
@@ -96,10 +89,10 @@
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Actions"/>
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Help"/>        
             </Menu>
-            <Menu  Style="{StaticResource BaseMenu}"
+            <Menu  Style="{StaticResource BaseMenu}" 
                 IsMainMenu="True"  Width="270" Height="30" KeyboardNavigation.IsTabStop="False" 
-                VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}">
-            <MenuItem Style="{StaticResource AddNewMenuItem}" Padding="0">
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}" >
+            <MenuItem Style="{StaticResource AddNewMenuItem}" Padding="0" >
                 <MenuItem Header="_New Company" 
                           IsEnabled="{Binding AllowNew}">
                     <i:Interaction.Triggers>
@@ -111,17 +104,11 @@
                     </i:Interaction.Triggers>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Style="{StaticResource BaseMenuItem}"
-                Click="SaveMenuItem_Click" IsEnabled="{Binding AllowCommit}">
+            <MenuItem Style="{StaticResource BaseMenuItem}" 
+                Click="SaveMenuItem_Click"  >
                 <MenuItem.Header>
-                    <Button Style="{StaticResource SaveButton}" Click="SaveMenuItem_Click">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
-                                TargetObject="{Binding}"
-                                MethodName="SaveCommand"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                    <Button Style="{StaticResource SaveButton}" Click="SaveMenuItem_Click" >
+                        
                     </Button>
                 </MenuItem.Header>
             </MenuItem>

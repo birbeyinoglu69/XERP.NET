@@ -54,14 +54,8 @@
                         </MenuItem>
                     </MenuItem>
                     <MenuItem Style="{StaticResource BaseMenuItem}"  Header="_Save" Name="mnuSave"
-                              Click="WiggleToGhostField" IsEnabled="{Binding AllowCommit}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
-                                TargetObject="{Binding}"
-                                MethodName="SaveCommand"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                              Click="SaveMenuItem_Click" >
+                        
                     </MenuItem>
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete" >
                         <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete UdList" 
@@ -144,17 +138,10 @@
                         </i:Interaction.Triggers>
                     </MenuItem>
                 </MenuItem>
-            <MenuItem Style="{StaticResource BaseMenuItem}"
-                Click="WiggleToGhostField" IsEnabled="{Binding AllowCommit}">
+            <MenuItem Style="{StaticResource BaseMenuItem}">
                 <MenuItem.Header>
-                        <Button Style="{StaticResource SaveButton}" Click="WiggleToGhostField">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <ei:CallMethodAction
-                                TargetObject="{Binding}"
-                                MethodName="SaveCommand"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                        <Button Style="{StaticResource SaveButton}" Click="SaveMenuItem_Click">
+                        
                     </Button>
                 </MenuItem.Header>
             </MenuItem>

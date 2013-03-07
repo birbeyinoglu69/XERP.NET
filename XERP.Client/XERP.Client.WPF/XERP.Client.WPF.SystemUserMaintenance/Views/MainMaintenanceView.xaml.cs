@@ -75,6 +75,10 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
         {
             WiggleToGhostField();
+            if (_viewModel.AllowCommit == true)
+            {
+                _viewModel.SaveCommand();
+            }
         }
 
         private void WiggleToGhostField()
