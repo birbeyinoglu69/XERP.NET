@@ -7,6 +7,7 @@ using System.Windows.Input;
 using SimpleMvvmToolkit;
 using XERP.Client.Models;
 using XERP.Client.WPF.CompanyMaintenance.ViewModels;
+
 namespace XERP.Client.WPF.CompanyMaintenance.Views
 {
     /// <summary>
@@ -68,7 +69,9 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         {
             CodeMaintenanceWindow maintenanceWindow = new CodeMaintenanceWindow();
             maintenanceWindow.Show();
+
         }
+
 
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -92,6 +95,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
         {
             MainSearchWindow searchWindow = new MainSearchWindow();
             searchWindow.Show(); 
+            
         }
 
         private void OnTypeSearchNotice(Object sender, NotificationEventArgs e)

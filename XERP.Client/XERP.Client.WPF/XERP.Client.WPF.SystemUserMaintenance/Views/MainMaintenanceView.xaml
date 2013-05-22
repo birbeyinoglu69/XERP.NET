@@ -251,6 +251,34 @@
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Code:
                         </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Active:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Password:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Password Expired:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Password Expires On:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">System Manager:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Email Address:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Default Company:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Default Plant:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Address:
+                        </TextBlock>
+                        
                         <TextBox Style="{StaticResource BaseTextBox}" 
                             Width="0" Height="0"  Name="ghost"  KeyboardNavigation.IsTabStop="False"/>
                     </StackPanel>
@@ -295,6 +323,109 @@
                             DisplayMemberPath="Code"
                             SelectedValue="{Binding Path=SelectedSystemUser.SystemUserCodeID, Mode=TwoWay}"
                             SelectedValuePath="SystemUserCodeID" KeyboardNavigation.TabIndex="50" BorderBrush="DimGray">
+                            <ComboBox.ContextMenu>
+                                <ContextMenu Style="{StaticResource BaseContextMenu}">
+                                    <ContextMenu.Items>
+                                        <MenuItem Style="{StaticResource BaseMenuItem}" 
+                                            Header="Open Code Maintenance" 
+                                            Click="OpenCodeMaintenance_Click" />
+                                        <MenuItem Style="{StaticResource BaseMenuItem}"
+                                            Header="Search Code">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <ei:CallMethodAction
+                                                        TargetObject="{Binding}"
+                                                        MethodName="CodeSearchCommand"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </MenuItem>
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ComboBox.ContextMenu>
+                        </ComboBox>
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                                  IsChecked="{Binding SelectedSystemUser.Active}"
+                                  KeyboardNavigation.TabIndex="60">
+                        </CheckBox>
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedSystemUser.Password, Mode=TwoWay, TargetNullValue=''}"
+                            IsEnabled="{Binding AllowEdit}"
+                            MaxLength= "{Binding SystemUserMaxFieldValueDictionary[Password]}" 
+                            KeyboardNavigation.TabIndex="80" Background="White" BorderBrush="DimGray"/>
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                                  IsChecked="{Binding SelectedSystemUser.PasswordExpired}"
+                                  KeyboardNavigation.TabIndex="100">
+                        </CheckBox>
+                        <DatePicker HorizontalAlignment="Left" 
+                                    SelectedDate="{Binding Path=SelectedSystemUser.PasswordExpiresOn}"
+                                      Width="200" Margin="5,2,2,2" KeyboardNavigation.TabIndex="120" Height="25" />
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                                  IsChecked="{Binding SelectedSystemUser.SystemManager}"
+                                  KeyboardNavigation.TabIndex="140">
+                        </CheckBox>
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedSystemUser.EmailAddress, Mode=TwoWay, TargetNullValue=''}"
+                            IsEnabled="{Binding AllowEdit}"
+                            MaxLength= "{Binding SystemUserMaxFieldValueDictionary[EmailAddress]}" 
+                            KeyboardNavigation.TabIndex="150" Background="White" BorderBrush="DimGray"/>
+                        <ComboBox Style="{StaticResource BaseComboBox}" 
+                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            ItemsSource="{Binding Path=CompanyList, Mode=TwoWay}"
+                            DisplayMemberPath="Name"
+                            SelectedValue="{Binding Path=SelectedSystemUser.DefaultCompanyID, Mode=TwoWay}"
+                            SelectedValuePath="CompanyID" KeyboardNavigation.TabIndex="160" BorderBrush="DimGray">
+                            <ComboBox.ContextMenu>
+                                <ContextMenu Style="{StaticResource BaseContextMenu}">
+                                    <ContextMenu.Items>
+                                        <MenuItem Style="{StaticResource BaseMenuItem}" 
+                                            Header="Open Code Maintenance" 
+                                            Click="OpenCodeMaintenance_Click" />
+                                        <MenuItem Style="{StaticResource BaseMenuItem}"
+                                            Header="Search Code">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <ei:CallMethodAction
+                                                        TargetObject="{Binding}"
+                                                        MethodName="CodeSearchCommand"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </MenuItem>
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ComboBox.ContextMenu>
+                        </ComboBox>
+                        <ComboBox Style="{StaticResource BaseComboBox}" 
+                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            ItemsSource="{Binding Path=PlantList, Mode=TwoWay}"
+                            DisplayMemberPath="Name"
+                            SelectedValue="{Binding Path=SelectedSystemUser.DefaultPlantID, Mode=TwoWay}"
+                            SelectedValuePath="PlantID" KeyboardNavigation.TabIndex="180" BorderBrush="DimGray">
+                            <ComboBox.ContextMenu>
+                                <ContextMenu Style="{StaticResource BaseContextMenu}">
+                                    <ContextMenu.Items>
+                                        <MenuItem Style="{StaticResource BaseMenuItem}" 
+                                            Header="Open Code Maintenance" 
+                                            Click="OpenCodeMaintenance_Click" />
+                                        <MenuItem Style="{StaticResource BaseMenuItem}"
+                                            Header="Search Code">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <ei:CallMethodAction
+                                                        TargetObject="{Binding}"
+                                                        MethodName="CodeSearchCommand"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </MenuItem>
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ComboBox.ContextMenu>
+                        </ComboBox>
+                        <ComboBox Style="{StaticResource BaseComboBox}" 
+                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            ItemsSource="{Binding Path=AddressList, Mode=TwoWay}"
+                            DisplayMemberPath="Name"
+                            SelectedValue="{Binding Path=SelectedSystemUser.AddressID, Mode=TwoWay}"
+                            SelectedValuePath="AddressID" KeyboardNavigation.TabIndex="180" BorderBrush="DimGray">
                             <ComboBox.ContextMenu>
                                 <ContextMenu Style="{StaticResource BaseContextMenu}">
                                     <ContextMenu.Items>

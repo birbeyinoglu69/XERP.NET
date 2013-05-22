@@ -34,6 +34,9 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
         {
             SystemUserTypeList = BuildSystemUserTypeDropDown();
             SystemUserCodeList = BuildSystemUserCodeDropDown();
+            CompanyList = BuildCompanyDropDown();
+            PlantList = BuildPlantDropDown();
+            AddressList = BuildAddressDropDown();
         }
 
         public MainMaintenanceViewModel(ISystemUserServiceAgent serviceAgent)
@@ -226,6 +229,39 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             {
                 _systemUserCodeList = value;
                 NotifyPropertyChanged(m => m.SystemUserCodeList);
+            }
+        }
+
+        private ObservableCollection<Company> _companyList;
+        public ObservableCollection<Company> CompanyList
+        {
+            get { return _companyList; }
+            set
+            {
+                _companyList = value;
+                NotifyPropertyChanged(m => m.CompanyList);
+            }
+        }
+
+        private ObservableCollection<Plant> _plantList;
+        public ObservableCollection<Plant> PlantList
+        {
+            get { return _plantList; }
+            set
+            {
+                _plantList = value;
+                NotifyPropertyChanged(m => m.PlantList);
+            }
+        }
+
+        private ObservableCollection<Address> _addressList;
+        public ObservableCollection<Address> AddressList
+        {
+            get { return _addressList; }
+            set
+            {
+                _addressList = value;
+                NotifyPropertyChanged(m => m.AddressList);
             }
         }
         #endregion DropDown Collections
@@ -674,6 +710,36 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             list.Sort((x, y) => string.Compare(x.Code, y.Code));
 
             return new ObservableCollection<SystemUserCode>(list);
+        }
+
+        private ObservableCollection<Company> BuildCompanyDropDown()
+        {
+            List<Company> list = new List<Company>();
+            list = _serviceAgent.GetCompaniesReadOnly().ToList();
+            list.Add(new Company());
+            list.Sort((x, y) => string.Compare(x.Name, y.Name));
+
+            return new ObservableCollection<Company>(list);
+        }
+
+        private ObservableCollection<Plant> BuildPlantDropDown()
+        {
+            List<Plant> list = new List<Plant>();
+            list = _serviceAgent.GetPlantsReadOnly().ToList();
+            list.Add(new Plant());
+            list.Sort((x, y) => string.Compare(x.Name, y.Name));
+
+            return new ObservableCollection<Plant>(list);
+        }
+
+        private ObservableCollection<Address> BuildAddressDropDown()
+        {
+            List<Address> list = new List<Address>();
+            list = _serviceAgent.GetAddressesReadOnly().ToList();
+            list.Add(new Address());
+            list.Sort((x, y) => string.Compare(x.Name, y.Name));
+
+            return new ObservableCollection<Address>(list);
         }
         #endregion DropDown Methods
 

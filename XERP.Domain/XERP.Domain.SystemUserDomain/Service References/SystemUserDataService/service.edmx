@@ -43,6 +43,7 @@
         <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
         <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Address" ToRole="Company" />
         <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="Address" ToRole="SystemUser" />
+        <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Address" ToRole="Plant" />
       </EntityType>
       <EntityType Name="Company">
         <Key>
@@ -83,6 +84,7 @@
         <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Company" ToRole="UdList" />
         <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
         <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
+        <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Companies" FromRole="Company" ToRole="Plant" />
       </EntityType>
       <EntityType Name="SecurityGroup">
         <Key>
@@ -228,6 +230,31 @@
         <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdList" ToRole="Company" />
         <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdList" ToRole="UdListItem" />
       </EntityType>
+      <EntityType Name="Plant">
+        <Key>
+          <PropertyRef Name="CompanyID" />
+          <PropertyRef Name="PlantID" />
+        </Key>
+        <Property Name="CompanyID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="PlantID" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="Notes" Type="Edm.String" Nullable="true" MaxLength="200" Unicode="true" FixedLength="false" />
+        <Property Name="Active" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="DefaultPlant" Type="Edm.Boolean" Nullable="true" />
+        <Property Name="PlantTypeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="PlantCodeID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="AddressID" Type="Edm.String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+        <Property Name="AutoID" Type="Edm.Int64" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IsExpanded" Type="Edm.Byte" Nullable="true" />
+        <Property Name="IsValid" Type="Edm.Byte" Nullable="true" />
+        <Property Name="NotValidMessage" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedBy" Type="Edm.String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+        <Property Name="LastModifiedByDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="IsSelected" Type="Edm.Boolean" Nullable="true" />
+        <NavigationProperty Name="Address" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Plant" ToRole="Address" />
+        <NavigationProperty Name="Company" Relationship="XERPModel.FK_Plants_Companies" FromRole="Plant" ToRole="Company" />
+      </EntityType>
       <Association Name="FK_Addresses_Companies">
         <End Role="Company" Type="XERPModel.Company" Multiplicity="1" />
         <End Role="Address" Type="XERPModel.Address" Multiplicity="*" />
@@ -366,6 +393,32 @@
           </Dependent>
         </ReferentialConstraint>
       </Association>
+      <Association Name="FK_Plants_Addresses">
+        <End Role="Address" Type="XERPModel.Address" Multiplicity="0..1" />
+        <End Role="Plant" Type="XERPModel.Plant" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Address">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="AddressID" />
+          </Principal>
+          <Dependent Role="Plant">
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="AddressID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Plants_Companies">
+        <End Role="Company" Type="XERPModel.Company" Multiplicity="1" />
+        <End Role="Plant" Type="XERPModel.Plant" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Company">
+            <PropertyRef Name="CompanyID" />
+          </Principal>
+          <Dependent Role="Plant">
+            <PropertyRef Name="CompanyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
     </Schema>
     <Schema Namespace="XERP.Server.DAL.SystemUserDAL" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
       <EntityContainer Name="SystemUserEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
@@ -391,6 +444,7 @@
         <EntitySet Name="SystemUserTypes" EntityType="XERPModel.SystemUserType" />
         <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
         <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+        <EntitySet Name="Plants" EntityType="XERPModel.Plant" />
         <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
           <End Role="Company" EntitySet="Companies" />
           <End Role="Address" EntitySet="Addresses" />
@@ -434,6 +488,14 @@
         <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
           <End Role="UdList" EntitySet="UdLists" />
           <End Role="UdListItem" EntitySet="UdListItems" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.FK_Plants_Addresses">
+          <End Role="Address" EntitySet="Addresses" />
+          <End Role="Plant" EntitySet="Plants" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.FK_Plants_Companies">
+          <End Role="Company" EntitySet="Companies" />
+          <End Role="Plant" EntitySet="Plants" />
         </AssociationSet>
       </EntityContainer>
     </Schema>

@@ -1,13 +1,12 @@
 ﻿<UserControl x:Class="XERP.Client.WPF.CompanyMaintenance.Views.MainMaintenanceView"
+             xmlns:helper="clr-namespace:XERP.Client.WPF.Helpers;assembly=XERP.Client.WPF"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             d:DesignHeight="600" d:DesignWidth="600"
-             IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
-             PreviewKeyUp="UserControl_PreviewKeyUp">
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
+             PreviewKeyUp="UserControl_PreviewKeyUp" d:DesignHeight="800" d:DesignWidth="600">
 
     <Grid Style="{StaticResource BaseGrid}">
         <Grid.RowDefinitions>
@@ -210,6 +209,7 @@
         </ListBox>
         <TabControl Style="{StaticResource BaseTabControl}" Name="tabctrlMain" Grid.Column="1" Grid.Row="1">
             <TabItem  Style="{StaticResource BaseTabItem}" Name="tabDetail" Header="Detail">
+                <ScrollViewer>
                 <Grid Style="{StaticResource BaseGrid}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="46"></RowDefinition>
@@ -237,6 +237,7 @@
                             MaxLength= "{Binding CompanyMaxFieldValueDictionary[CompanyID]}" 
                             KeyboardNavigation.TabIndex="10" Name="txtKey"></TextBox>
                     </StackPanel>
+
                     <StackPanel Style="{StaticResource BaseStackPanel}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
@@ -251,6 +252,60 @@
                         </TextBlock>
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Code:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">StateTaxCode:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">TaxRegionCode:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">CurrentFiscalYear:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">DefaultExecutablePath:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Address1:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Address2:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Address3:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">City:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">State:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Zip:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Country:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">PhoneNum:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">PhoneNum2:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">FaxNum:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Email:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Email2:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Active:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Notes:
                         </TextBlock>
                         <TextBox Style="{StaticResource BaseTextBox}" 
                             Width="0" Height="0"  Name="ghost"  KeyboardNavigation.IsTabStop="False"/>
@@ -321,8 +376,99 @@
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
                         </ComboBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.StateTaxCode, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[StateTaxCode]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.TaxRegionCode, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[TaxRegionCode]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}" helper:NumericTextBoxHelper.IsNumericOnly="True"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.CurrentFiscalYear, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[CurrentFiscalYear]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.DefaultExecutablePath, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[DefaultExecutablePath]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Address1, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Address1]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Address2, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Address2]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Address3, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Address3]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.City, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[City]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.State, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[State]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Zip, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Zip]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Country, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Country]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.PhoneNum, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[PhoneNum]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.PhoneNum2, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[PhoneNum2]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.FaxNum, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[FaxNum]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Email, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Email]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Email2, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Email2]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                                  IsChecked="{Binding SelectedCompany.Active}"
+                                  KeyboardNavigation.TabIndex="60">
+                        </CheckBox>
+                        <TextBox Style="{StaticResource BaseTextBox}" AcceptsReturn="True" TextWrapping="Wrap"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedCompany.Notes, Mode=TwoWay}"
+                            MaxLength= "{Binding CompanyMaxFieldValueDictionary[Notes]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Height="41"></TextBox>
                     </StackPanel>
+
                 </Grid>
+                </ScrollViewer>
             </TabItem>
             <TabItem Style="{StaticResource BaseTabItem}" Name="tabList" Header="List" 
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"

@@ -254,6 +254,12 @@
                         <TextBlock Style="{StaticResource BaseTextBlock}"
                             HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Code:
                         </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Active:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Notes:
+                        </TextBlock>
                         <TextBox Style="{StaticResource BaseTextBox}" 
                             Width="0" Height="0"  Name="ghost"  KeyboardNavigation.IsTabStop="False"/>
                     </StackPanel>
@@ -323,6 +329,15 @@
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
                         </ComboBox>
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                                  IsChecked="{Binding SelectedSecurityGroup.Active}"
+                                  KeyboardNavigation.TabIndex="40">
+                        </CheckBox>
+                        <TextBox Style="{StaticResource BaseTextBox}" AcceptsReturn="True" TextWrapping="Wrap"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            Text="{Binding Path=SelectedSecurityGroup.Notes, Mode=TwoWay}"
+                            MaxLength= "{Binding SecurityGroupMaxFieldValueDictionary[Notes]}" 
+                            KeyboardNavigation.TabIndex="50" BorderBrush="DimGray" Height="41"></TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>

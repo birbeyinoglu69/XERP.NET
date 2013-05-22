@@ -73,6 +73,20 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
             maintenanceWindow.Show();
         }
 
+        private void OpenMenuIconMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            //CodeMaintenanceWindow maintenanceWindow = new CodeMaintenanceWindow();
+            //maintenanceWindow.Show();
+            MessageBox.Show("Not Implemented Yet");
+        }
+
+        private void OpenExecutableCodeMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            //CodeMaintenanceWindow maintenanceWindow = new CodeMaintenanceWindow();
+            //maintenanceWindow.Show();
+            MessageBox.Show("Not Implemented Yet");
+        }
+
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
         {
             WiggleToGhostField();
@@ -231,5 +245,6 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
             //need to remove from list and add to the other list...
             lbxAssignedSecurityGroups.SelectedItems.Clear();
         }
+
     }  
 }

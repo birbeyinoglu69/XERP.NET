@@ -58,6 +58,33 @@ namespace XERP.Domain.SystemUserDomain.Services
             return queryResult;
         }
 
+        public IEnumerable<Company> GetCompaniesReadOnly()
+        {
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from companies in _context.Companies
+                               select companies);
+            return queryResult;
+        }
+
+        public IEnumerable<Plant> GetPlantsReadOnly()
+        {
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from plants in _context.Plants
+                               select plants);
+            return queryResult;
+        }
+
+        public IEnumerable<Address> GetAddressesReadOnly()
+        {
+            _context.MergeOption = MergeOption.NoTracking;
+            _context.IgnoreResourceNotFoundException = true;
+            var queryResult = (from addresses in _context.Addresses
+                               select addresses);
+            return queryResult;
+        }
+
         public bool SystemUserExists(string itemID)
         {
             _context.MergeOption = MergeOption.NoTracking;

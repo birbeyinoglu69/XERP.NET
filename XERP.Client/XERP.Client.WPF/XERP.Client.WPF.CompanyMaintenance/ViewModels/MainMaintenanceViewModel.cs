@@ -222,6 +222,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 NotifyPropertyChanged(m => m.CompanyCodeList);
             }
         }
+
         #endregion DropDown Collections
 
         #region CRUD Properties

@@ -347,18 +347,8 @@
                                 <ContextMenu Style="{StaticResource BaseContextMenu}">
                                     <ContextMenu.Items>
                                         <MenuItem Style="{StaticResource BaseMenuItem}" 
-                                            Header="Open Code Maintenance" 
-                                            Click="OpenCodeMaintenance_Click" />
-                                        <MenuItem Style="{StaticResource BaseMenuItem}"
-                                            Header="Search Code">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <ei:CallMethodAction
-                                                        TargetObject="{Binding}"
-                                                        MethodName="CodeSearchCommand"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </MenuItem>
+                                            Header="Open Menu Icon Maintenance" 
+                                            Click="OpenMenuIconMaintenance_Click" />
                                     </ContextMenu.Items>
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
@@ -377,23 +367,13 @@
                             ItemsSource="{Binding Path=ExecutableProgramList, Mode=TwoWay}"
                             DisplayMemberPath="Name"
                             SelectedValue="{Binding Path=SelectedMenuItem.ExecutableProgramID, Mode=TwoWay}"
-                            SelectedValuePath="ExecutableProgramID" KeyboardNavigation.TabIndex="100" BorderBrush="DimGray">
+                            SelectedValuePath="ExecutableProgramID" KeyboardNavigation.TabIndex="100" BorderBrush="DimGray" >
                             <ComboBox.ContextMenu>
                                 <ContextMenu Style="{StaticResource BaseContextMenu}">
                                     <ContextMenu.Items>
                                         <MenuItem Style="{StaticResource BaseMenuItem}" 
-                                            Header="Open Code Maintenance" 
-                                            Click="OpenCodeMaintenance_Click" />
-                                        <MenuItem Style="{StaticResource BaseMenuItem}"
-                                            Header="Search Code">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <ei:CallMethodAction
-                                                        TargetObject="{Binding}"
-                                                        MethodName="CodeSearchCommand"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </MenuItem>
+                                            Header="Open Executable Program Maintenance" 
+                                            Click="OpenExecutableCodeMaintenance_Click" />
                                     </ContextMenu.Items>
                                 </ContextMenu>
                             </ComboBox.ContextMenu>

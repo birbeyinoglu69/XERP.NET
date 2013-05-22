@@ -8,6 +8,7 @@
         <EntityContainer Name="XERPModelStoreContainer">
           <EntitySet Name="Addresses" EntityType="XERPModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Companies" EntityType="XERPModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Plants" EntityType="XERPModel.Store.Plants" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SecurityGroups" EntityType="XERPModel.Store.SecurityGroups" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SystemUserCodes" EntityType="XERPModel.Store.SystemUserCodes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SystemUsers" EntityType="XERPModel.Store.SystemUsers" store:Type="Tables" Schema="dbo" />
@@ -19,6 +20,14 @@
           <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.Store.FK_Addresses_Companies">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.Store.FK_Plants_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.Store.FK_Plants_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Plants" EntitySet="Plants" />
           </AssociationSet>
           <AssociationSet Name="FK_SecurityGroup_Company" Association="XERPModel.Store.FK_SecurityGroup_Company">
             <End Role="Companies" EntitySet="Companies" />
@@ -118,6 +127,29 @@
           <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Plants">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultPlant" Type="bit" />
+          <Property Name="PlantTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="PlantCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
           <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IsExpanded" Type="tinyint" />
           <Property Name="IsValid" Type="tinyint" />
@@ -274,6 +306,32 @@
               <PropertyRef Name="CompanyID" />
             </Principal>
             <Dependent Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Addresses">
+          <End Role="Addresses" Type="XERPModel.Store.Addresses" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Plants">
               <PropertyRef Name="CompanyID" />
             </Dependent>
           </ReferentialConstraint>
@@ -469,6 +527,15 @@
             <End Role="UdList" EntitySet="UdLists" />
             <End Role="UdListItem" EntitySet="UdListItems" />
           </AssociationSet>
+          <EntitySet Name="Plants" EntityType="XERPModel.Plant" />
+          <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.FK_Plants_Addresses">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Plant" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.FK_Plants_Companies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Plant" EntitySet="Plants" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Temp">
           <Key>
@@ -512,6 +579,7 @@
           <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Address" ToRole="Company" />
           <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="Address" ToRole="SystemUser" />
           <Property Type="Boolean" Name="IsSelected" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Address" ToRole="Plant" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -552,6 +620,7 @@
           <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
           <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
           <Property Type="Boolean" Name="IsSelected" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Companies" FromRole="Company" ToRole="Plant" />
         </EntityType>
         <EntityType Name="SecurityGroup">
           <Key>
@@ -835,6 +904,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+          </Key>
+          <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PlantID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Notes" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <Property Type="Boolean" Name="DefaultPlant" />
+          <Property Type="String" Name="PlantTypeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PlantCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="IsExpanded" />
+          <Property Type="Byte" Name="IsValid" />
+          <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedByDate" />
+          <Property Type="Boolean" Name="IsSelected" />
+          <NavigationProperty Name="Address" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Plant" ToRole="Address" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Plants_Companies" FromRole="Plant" ToRole="Company" />
+        </EntityType>
+        <Association Name="FK_Plants_Addresses">
+          <End Type="XERPModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="XERPModel.Plant" Role="Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Plant">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Companies">
+          <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="XERPModel.Plant" Role="Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Plant">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1045,6 +1165,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Plants">
+            <EntityTypeMapping TypeName="XERPModel.Plant">
+              <MappingFragment StoreEntitySet="Plants">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="PlantCodeID" ColumnName="PlantCodeID" />
+                <ScalarProperty Name="PlantTypeID" ColumnName="PlantTypeID" />
+                <ScalarProperty Name="DefaultPlant" ColumnName="DefaultPlant" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1077,54 +1220,55 @@
         <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="5.25" PointY="11.25" Height="3.0714322916666674" />
         <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="3" PointY="14.625" Height="3.0714322916666674" />
         <AssociationConnector Association="XERPModel.FK_Addresses_Companies" >
-          <ConnectorPoint PointX="2.25" PointY="8.6468001302083337" />
-          <ConnectorPoint PointX="3" PointY="8.6468001302083337" />
+          <ConnectorPoint PointX="2.25" PointY="9.5586555989583335" />
+          <ConnectorPoint PointX="3" PointY="9.5586555989583335" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_SystemUsers_Addresses" >
-          <ConnectorPoint PointX="4.5" PointY="7.0646264648437516" />
-          <ConnectorPoint PointX="5.25" PointY="7.0646264648437516" />
+          <ConnectorPoint PointX="4.5" PointY="6.297816838550248" />
+          <ConnectorPoint PointX="5.25" PointY="6.297816838550248" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_SecurityGroup_Company" >
-          <ConnectorPoint PointX="2.25" PointY="12.032237141927084" />
-          <ConnectorPoint PointX="3" PointY="12.032237141927084" />
+          <ConnectorPoint PointX="2.25" PointY="12.114410807291666" />
+          <ConnectorPoint PointX="3" PointY="12.114410807291666" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UdList_Company" >
-          <ConnectorPoint PointX="1.5" PointY="14.272726236979167" />
+          <ConnectorPoint PointX="1.5" PointY="14.6014208984375" />
           <ConnectorPoint PointX="1.5" PointY="16.160716145833334" />
           <ConnectorPoint PointX="3" PointY="16.160716145833334" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UdListItem_Company" >
-          <ConnectorPoint PointX="2.25" PointY="14.074850260416667" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="14.074850260416667" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="14.074850260416667" />
-          <ConnectorPoint PointX="5.25" PointY="14.074850260416667" />
+          <ConnectorPoint PointX="2.25" PointY="14.181376953125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.181376953125" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="14.181376953125" />
+          <ConnectorPoint PointX="5.25" PointY="14.181376953125" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UserSecurity_Company" >
-          <ConnectorPoint PointX="2.25" PointY="9.8968001302083337" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.8968001302083337" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.8968001302083337" />
-          <ConnectorPoint PointX="7.5" PointY="9.8968001302083337" />
+          <ConnectorPoint PointX="2.25" PointY="10.0611474609375" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="10.0611474609375" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="10.0611474609375" />
+          <ConnectorPoint PointX="7.5" PointY="10.0611474609375" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UserSecurity_SecurityGroup" >
-          <ConnectorPoint PointX="4.5" PointY="10.578542480468752" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="10.578542480468752" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="10.578542480468752" />
-          <ConnectorPoint PointX="7.5" PointY="10.578542480468752" />
+          <ConnectorPoint PointX="4.5" PointY="10.660716145833334" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="10.660716145833334" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="10.660716145833334" />
+          <ConnectorPoint PointX="7.5" PointY="10.660716145833334" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_SystemUser_SystemUserCode" >
-          <ConnectorPoint PointX="4.5" PointY="2.2891951497395837" />
-          <ConnectorPoint PointX="6" PointY="2.2891951497395837" />
+          <ConnectorPoint PointX="4.5" PointY="2.3713688151041667" />
+          <ConnectorPoint PointX="6" PointY="2.3713688151041667" />
           <ConnectorPoint PointX="6" PointY="4.625" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_SystemUser_SystemUserType" >
           <ConnectorPoint PointX="4.5" PointY="19.376152846153843" />
           <ConnectorPoint PointX="4.875" PointY="19.001152846153843" />
-          <ConnectorPoint PointX="4.875" PointY="8.31569169726562" />
-          <ConnectorPoint PointX="5.25" PointY="8.31569169726562" />
+          <ConnectorPoint PointX="4.875" PointY="8.095633677100496" />
+          <ConnectorPoint PointX="5.25" PointY="8.095633677100496" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UserSecurity_SystemUser" >
-          <ConnectorPoint PointX="6.75" PointY="8.7521264648437516" />
-          <ConnectorPoint PointX="7.5" PointY="8.7521264648437516" />
+          <ConnectorPoint PointX="6.75" PointY="5.21875" />
+          <ConnectorPoint PointX="8.46875" PointY="5.21875" />
+          <ConnectorPoint PointX="8.46875" PointY="8" />
         </AssociationConnector>
         <AssociationConnector Association="XERPModel.FK_UdListItem_UdList" >
           <ConnectorPoint PointX="4.5" PointY="16.160716145833334" />
@@ -1132,6 +1276,15 @@
           <ConnectorPoint PointX="4.958333333333333" PointY="16.160716145833334" />
           <ConnectorPoint PointX="6" PointY="16.160716145833334" />
           <ConnectorPoint PointX="6" PointY="14.321432291666667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="XERPModel.Plant" Width="1.5" PointX="0.75" PointY="3" Height="4.0575162760416674" />
+        <AssociationConnector Association="XERPModel.FK_Plants_Addresses" >
+          <ConnectorPoint PointX="3" PointY="5.7787581380208337" />
+          <ConnectorPoint PointX="2.25" PointY="5.7787581380208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Plants_Companies" >
+          <ConnectorPoint PointX="1.5" PointY="7.75" />
+          <ConnectorPoint PointX="1.5" PointY="7.0575162760416674" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

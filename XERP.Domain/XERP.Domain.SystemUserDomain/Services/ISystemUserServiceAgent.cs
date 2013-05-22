@@ -14,7 +14,10 @@ namespace XERP.Domain.SystemUserDomain.Services
         void DeleteFromSystemUserCodeRepository(XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUserCode itemCode);
         void DeleteFromSystemUserRepository(XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUser item);
         void DeleteFromSystemUserTypeRepository(XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUserType itemType);
+        System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.Address> GetAddressesReadOnly();
+        System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.Company> GetCompaniesReadOnly();
         System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.Temp> GetMetaData(string tableName);
+        System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.Plant> GetPlantsReadOnly();
         System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.SecurityGroup> GetSecurityGroupsReadyOnly(string companyID);
         System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUser> GetSystemUserByID(string itemID);
         System.Collections.Generic.IEnumerable<XERP.Domain.SystemUserDomain.SystemUserDataService.SystemUserCode> GetSystemUserCodeByID(string itemCodeID);

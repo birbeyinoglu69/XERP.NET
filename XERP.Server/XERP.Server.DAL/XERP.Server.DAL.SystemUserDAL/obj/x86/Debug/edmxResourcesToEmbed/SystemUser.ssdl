@@ -3,6 +3,7 @@
   <EntityContainer Name="XERPModelStoreContainer">
     <EntitySet Name="Addresses" EntityType="XERPModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Companies" EntityType="XERPModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Plants" EntityType="XERPModel.Store.Plants" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SecurityGroups" EntityType="XERPModel.Store.SecurityGroups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemUserCodes" EntityType="XERPModel.Store.SystemUserCodes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemUsers" EntityType="XERPModel.Store.SystemUsers" store:Type="Tables" Schema="dbo" />
@@ -14,6 +15,14 @@
     <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.Store.FK_Addresses_Companies">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.Store.FK_Plants_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Plants" EntitySet="Plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.Store.FK_Plants_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Plants" EntitySet="Plants" />
     </AssociationSet>
     <AssociationSet Name="FK_SecurityGroup_Company" Association="XERPModel.Store.FK_SecurityGroup_Company">
       <End Role="Companies" EntitySet="Companies" />
@@ -113,6 +122,29 @@
     <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
     <Property Name="Email" Type="nvarchar" MaxLength="100" />
     <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+    <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IsExpanded" Type="tinyint" />
+    <Property Name="IsValid" Type="tinyint" />
+    <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastModifiedByDate" Type="datetime" />
+    <Property Name="IsSelected" Type="bit" />
+  </EntityType>
+  <EntityType Name="Plants">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="PlantID" />
+    </Key>
+    <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="PlantID" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="DefaultPlant" Type="bit" />
+    <Property Name="PlantTypeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="PlantCodeID" Type="nvarchar" MaxLength="20" />
+    <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
     <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="IsExpanded" Type="tinyint" />
     <Property Name="IsValid" Type="tinyint" />
@@ -269,6 +301,32 @@
         <PropertyRef Name="CompanyID" />
       </Principal>
       <Dependent Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plants_Addresses">
+    <End Role="Addresses" Type="XERPModel.Store.Addresses" Multiplicity="0..1" />
+    <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Plants">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plants_Companies">
+    <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+    <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Plants">
         <PropertyRef Name="CompanyID" />
       </Dependent>
     </ReferentialConstraint>
