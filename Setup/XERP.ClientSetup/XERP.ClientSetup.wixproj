@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EnableProjectHarvesting>true</EnableProjectHarvesting>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.7</ProductVersion>
+    <ProjectGuid>{f27b7d57-b8bb-4a63-8c3b-e2866aa12233}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>XERP.ClientSetup</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+    <SuppressIces>ICE57</SuppressIces>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SuppressIces>ICE57</SuppressIces>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+    <Compile Include="WixUI_XERPClient.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\SimpleMvvmToolkit-WPF.csproj">
+      <Name>SimpleMvvmToolkit-WPF</Name>
+      <Project>{6a6dd3ab-484b-48fd-8be7-107728a26341}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.csproj">
+      <Name>XERP.Client</Name>
+      <Project>{00d7a8a5-dc13-4d16-bb53-96b2f23cd5d0}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\XERP.Client.WPF.AddressMaintenance.csproj">
+      <Name>XERP.Client.WPF.AddressMaintenance</Name>
+      <Project>{bddc0122-946b-4a4c-8502-a3dfe2397d55}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\XERP.Client.WPF.CompanyMaintenance.csproj">
+      <Name>XERP.Client.WPF.CompanyMaintenance</Name>
+      <Project>{13f89664-a2a4-4e1a-9566-f8bcfd49da24}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.csproj">
+      <Name>XERP.Client.WPF</Name>
+      <Project>{7f99a10a-2a68-48da-b7f4-e09c14790be0}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.ExecutableProgramMaintenance\XERP.Client.WPF.ExecutableProgramMaintenance.csproj">
+      <Name>XERP.Client.WPF.ExecutableProgramMaintenance</Name>
+      <Project>{62ffc372-7274-4698-a4c5-746a335d40fd}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.LogIn\XERP.Client.WPF.LogIn.csproj">
+      <Name>XERP.Client.WPF.LogIn</Name>
+      <Project>{6201296d-4907-46e1-a57e-a2357b0af04c}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\XERP.Client.WPF.MainMenu.csproj">
+      <Name>XERP.Client.WPF.MainMenu</Name>
+      <Project>{5b2bb1a0-f2fe-4d88-9a67-52c578bfe98d}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\XERP.Client.WPF.MenuItemMaintenance.csproj">
+      <Name>XERP.Client.WPF.MenuItemMaintenance</Name>
+      <Project>{33b25fe5-045e-4747-b06d-608fe08b9aba}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\XERP.Client.WPF.SecurityGroupMaintenance.csproj">
+      <Name>XERP.Client.WPF.SecurityGroupMaintenance</Name>
+      <Project>{b49bf76d-c8bd-4c20-b3c1-23648b73f603}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\XERP.Client.WPF.StartUp.csproj">
+      <Name>XERP.Client.WPF.StartUp</Name>
+      <Project>{97d530a1-73be-4658-b7b0-bbbd8959b7b2}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\XERP.Client.WPF.SystemUserMaintenance.csproj">
+      <Name>XERP.Client.WPF.SystemUserMaintenance</Name>
+      <Project>{8c08e523-6d1d-440e-8f6a-719b25e9899c}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\XERP.Client.WPF.UdListMaintenance.csproj">
+      <Name>XERP.Client.WPF.UdListMaintenance</Name>
+      <Project>{02b6109a-f0ee-4d36-a0aa-795d1e112dde}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.AddressDomain\XERP.Domain.AddressDomain.csproj">
+      <Name>XERP.Domain.AddressDomain</Name>
+      <Project>{edeff0b3-fd25-4a61-b90f-b0ff54f88f48}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.CompanyDomain\XERP.Domain.CompanyDomain.csproj">
+      <Name>XERP.Domain.CompanyDomain</Name>
+      <Project>{0875bf6d-613c-4399-8ece-99e582f5fae8}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.csproj">
+      <Name>XERP.Domain</Name>
+      <Project>{37a9326d-e256-4081-a7c8-d8ce855cfd4f}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.LogInDomain\XERP.Domain.LogInDomain.csproj">
+      <Name>XERP.Domain.LogInDomain</Name>
+      <Project>{1455c552-84da-4fe3-a607-2440cab5c4ff}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.MenuSecurityDomain\XERP.Domain.MenuSecurityDomain.csproj">
+      <Name>XERP.Domain.MenuSecurityDomain</Name>
+      <Project>{7f4421eb-3901-404c-bde4-bb8b74a71f29}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.SecurityGroupDomain\XERP.Domain.SecurityGroupDomain.csproj">
+      <Name>XERP.Domain.SecurityGroupDomain</Name>
+      <Project>{358d379c-aced-4824-9274-68e72b70c3a4}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.SystemUserDomain\XERP.Domain.SystemUserDomain.csproj">
+      <Name>XERP.Domain.SystemUserDomain</Name>
+      <Project>{7139617b-fd8c-4d94-bd9f-08fdc3b785bd}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.UdListDomain\XERP.Domain.UdListDomain.csproj">
+      <Name>XERP.Domain.UdListDomain</Name>
+      <Project>{9fdc1859-ef90-468d-a780-1dd9b6a96465}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>
+      </DoNotHarvest>
+      <RefProjectOutputGroups>Binaries</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libraries" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\Microsoft.Expression.Interactions.dll" />
+    <Content Include="Libraries\System.Windows.Interactivity.dll" />
+    <Content Include="Libraries\WixCommonUiExtension.dll" />
+    <Content Include="License.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixCommonUiExtension">
+      <HintPath>Libraries\WixCommonUiExtension.dll</HintPath>
+      <Name>WixCommonUiExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="en-us.wxl" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

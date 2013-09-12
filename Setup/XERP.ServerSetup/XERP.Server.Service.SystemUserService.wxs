@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <DirectoryRef Id="XERP.Server.Service.SystemUserService">
+            <Component Id="cmp8A417B496061C1ED6A064BB626136C05" Guid="*">
+                <File Id="fil01AF3C6063C631D4B76C9DD2196FD7C7" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\SystemUserDataService.svc" />
+                <iis:WebSite Id="XERP.Server.Service.SystemUserService" Description="XERP.Server.Service.SystemUserService" Directory="XERP.Server.Service.SystemUserService">
+                    <iis:WebAddress Id="XERP.Server.Service.SystemUserService" Port="[XERP.Server.Service.SystemUserService.Port]" />
+                    <iis:WebApplication Id="XERP.Server.Service.SystemUserService" Name="XERP.Server.Service.SystemUserService" WebAppPool="AppPool" />
+                    <iis:WebDirProperties Id="XERP.Server.Service.SystemUserService" AnonymousAccess="yes" Read="yes" Execute="yes" Script="yes" />
+                </iis:WebSite>
+            </Component>
+            <Component Id="cmp131980AAD1837D0EF241D912293E411E" Guid="*">
+                <File Id="filC66FB947F1F3064E480D02EBF41A21BC" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\Web.config" />
+                <util:XmlConfig Id="filC66FB947F1F3064E480D02EBF41A21BC_cfg1" Action="create" File="[#filC66FB947F1F3064E480D02EBF41A21BC]" ElementPath="/configuration" VerifyPath="/configuration/appSettings" Name="appSettings" Node="element" On="install" Sequence="1" />
+                <util:XmlConfig Id="filC66FB947F1F3064E480D02EBF41A21BC_cfg2" Action="delete" File="[#filC66FB947F1F3064E480D02EBF41A21BC]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Node="element" On="install" Sequence="2" />
+                <util:XmlConfig Id="filC66FB947F1F3064E480D02EBF41A21BC_cfg3" Action="create" File="[#filC66FB947F1F3064E480D02EBF41A21BC]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Name="add" Node="element" On="install" Sequence="3" />
+                <util:XmlConfig Id="filC66FB947F1F3064E480D02EBF41A21BC_cfg4" File="[#filC66FB947F1F3064E480D02EBF41A21BC]" ElementId="filC66FB947F1F3064E480D02EBF41A21BC_cfg3" Name="key" Value="XERPConfigPath" Sequence="4" />
+                <util:XmlConfig Id="filC66FB947F1F3064E480D02EBF41A21BC_cfg5" File="[#filC66FB947F1F3064E480D02EBF41A21BC]" ElementId="filC66FB947F1F3064E480D02EBF41A21BC_cfg3" Name="value" Value="[INSTALLFOLDER]Config\XERPServerConfig.xml" Sequence="5" />
+            </Component>
+            <Directory Id="dirF3C1C74AE855E1A8BA3695F8062177DD" Name="bin">
+                <Component Id="cmpDAA59A732A27C4D758F8A0472979AFA3" Guid="*">
+                    <File Id="fil5D2A8E593AEB40B24CACAC7CD1857D46" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.dll" />
+                </Component>
+                <Component Id="cmp0E89C528776D0E6B4D87574884230C68" Guid="*">
+                    <File Id="filD0E647C880231BF6F1C7E99F63DD948B" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.pdb" />
+                </Component>
+                <Component Id="cmp7CA54565AC66370E4C785E8F10A338FE" Guid="*">
+                    <File Id="filC1D9DEC6F0DE95F0222575F64E359606" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.SystemUserDAL.dll" />
+                </Component>
+                <Component Id="cmpBAD781B9277CFD899D5B43E1BAE2CFA9" Guid="*">
+                    <File Id="fil2905833A38C12746D298B38EB8F3D9D0" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.SystemUserDAL.pdb" />
+                </Component>
+                <Component Id="cmp6FDF3BF30D20E91C07C9727C1AFF6BD5" Guid="*">
+                    <File Id="fil0CC712EEC52AB7680032FDF7B249D06F" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.dll" />
+                </Component>
+                <Component Id="cmp9BFAD089D61989411BD38C8DCDAEC2EA" Guid="*">
+                    <File Id="fil7D0D2AC36DB3420E2AF67424AF1D9651" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.pdb" />
+                </Component>
+                <Component Id="cmpFD14B7091CD5B39CC494379FA4B4809C" Guid="*">
+                    <File Id="fil7EF34C3A552180FDF1F7F6D7A376435E" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.Service.SystemUserService.dll" />
+                </Component>
+                <Component Id="cmp95C907A3DD679093D4B02425BA09820C" Guid="*">
+                    <File Id="filE21F0DF51FD1FC0062D2191FFCEA9D1A" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.Service.SystemUserService.pdb" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="XERP.Server.Service.SystemUserService">
+            <ComponentRef Id="cmp8A417B496061C1ED6A064BB626136C05" />
+            <ComponentRef Id="cmp131980AAD1837D0EF241D912293E411E" />
+            <ComponentRef Id="cmpDAA59A732A27C4D758F8A0472979AFA3" />
+            <ComponentRef Id="cmp0E89C528776D0E6B4D87574884230C68" />
+            <ComponentRef Id="cmp7CA54565AC66370E4C785E8F10A338FE" />
+            <ComponentRef Id="cmpBAD781B9277CFD899D5B43E1BAE2CFA9" />
+            <ComponentRef Id="cmp6FDF3BF30D20E91C07C9727C1AFF6BD5" />
+            <ComponentRef Id="cmp9BFAD089D61989411BD38C8DCDAEC2EA" />
+            <ComponentRef Id="cmpFD14B7091CD5B39CC494379FA4B4809C" />
+            <ComponentRef Id="cmp95C907A3DD679093D4B02425BA09820C" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

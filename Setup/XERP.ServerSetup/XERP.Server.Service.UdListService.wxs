@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <DirectoryRef Id="XERP.Server.Service.UdListService">
+            <Component Id="cmp70F06D972BF6CE32933E09740165B394" Guid="*">
+                <File Id="fil60E1E845D520B4029D8E9F2819E128E5" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\UdListDataService.svc" />
+                <iis:WebSite Id="XERP.Server.Service.UdListService" Description="XERP.Server.Service.UdListService" Directory="XERP.Server.Service.UdListService">
+                    <iis:WebAddress Id="XERP.Server.Service.UdListService" Port="[XERP.Server.Service.UdListService.Port]" />
+                    <iis:WebApplication Id="XERP.Server.Service.UdListService" Name="XERP.Server.Service.UdListService" WebAppPool="AppPool" />
+                    <iis:WebDirProperties Id="XERP.Server.Service.UdListService" AnonymousAccess="yes" Read="yes" Execute="yes" Script="yes" />
+                </iis:WebSite>
+            </Component>
+            <Component Id="cmpC6137206A951BB3A0E52C47FFB690A14" Guid="*">
+                <File Id="filC2E9E5401D3BBF4D66007867523A29EA" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\Web.config" />
+                <util:XmlConfig Id="filC2E9E5401D3BBF4D66007867523A29EA_cfg1" Action="create" File="[#filC2E9E5401D3BBF4D66007867523A29EA]" ElementPath="/configuration" VerifyPath="/configuration/appSettings" Name="appSettings" Node="element" On="install" Sequence="1" />
+                <util:XmlConfig Id="filC2E9E5401D3BBF4D66007867523A29EA_cfg2" Action="delete" File="[#filC2E9E5401D3BBF4D66007867523A29EA]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Node="element" On="install" Sequence="2" />
+                <util:XmlConfig Id="filC2E9E5401D3BBF4D66007867523A29EA_cfg3" Action="create" File="[#filC2E9E5401D3BBF4D66007867523A29EA]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Name="add" Node="element" On="install" Sequence="3" />
+                <util:XmlConfig Id="filC2E9E5401D3BBF4D66007867523A29EA_cfg4" File="[#filC2E9E5401D3BBF4D66007867523A29EA]" ElementId="filC2E9E5401D3BBF4D66007867523A29EA_cfg3" Name="key" Value="XERPConfigPath" Sequence="4" />
+                <util:XmlConfig Id="filC2E9E5401D3BBF4D66007867523A29EA_cfg5" File="[#filC2E9E5401D3BBF4D66007867523A29EA]" ElementId="filC2E9E5401D3BBF4D66007867523A29EA_cfg3" Name="value" Value="[INSTALLFOLDER]Config\XERPServerConfig.xml" Sequence="5" />
+            </Component>
+            <Directory Id="dir3C9D8B5D85699CDA4F6B090B5DF15A57" Name="bin">
+                <Component Id="cmp10034990B1D5DCFAECB8E17F0788D99A" Guid="*">
+                    <File Id="fil22C4512A0930E89D0D4D9077D1932AA7" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.DAL.dll" />
+                </Component>
+                <Component Id="cmpD1AE3A4703B2EEFBF2BAE2E70FA4DB21" Guid="*">
+                    <File Id="fil98D8CC2FFE78C99914183A9FA586B8A9" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.DAL.pdb" />
+                </Component>
+                <Component Id="cmp23DDC1F51FEA48A48D57FAC47D3C49E8" Guid="*">
+                    <File Id="fil5940DC6D85CC6BEBE414E49E89515083" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.DAL.UdListDAL.dll" />
+                </Component>
+                <Component Id="cmp5DF5420481B0E05C4115CF119CFD3985" Guid="*">
+                    <File Id="fil7617A3A17E29F278A23207921170F383" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.DAL.UdListDAL.pdb" />
+                </Component>
+                <Component Id="cmpD9ED579958D8B5914FEC9CFC5703AEC2" Guid="*">
+                    <File Id="fil4205550E3DD3C12339F4E90AFD100868" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.dll" />
+                </Component>
+                <Component Id="cmpF60B1337E3A99D9C7679BB23ABF2F2E2" Guid="*">
+                    <File Id="fil9FF9C0DFFF941B8C65AEAE99E7CC317C" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.pdb" />
+                </Component>
+                <Component Id="cmp648CDAD96F7ABAA618C42CADBE2E6395" Guid="*">
+                    <File Id="fil0BA9AEBDEEC428C2809E6621092924A1" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.Service.UdListService.dll" />
+                </Component>
+                <Component Id="cmp7239910AE6777C08E396F9C03AC46CE1" Guid="*">
+                    <File Id="filCBFF4370CC0338F90E80A22AB47DBD96" KeyPath="yes" Source="$(var.XERP.Server.Service.UdListService.BuildPath)\bin\XERP.Server.Service.UdListService.pdb" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="XERP.Server.Service.UdListService">
+            <ComponentRef Id="cmp70F06D972BF6CE32933E09740165B394" />
+            <ComponentRef Id="cmpC6137206A951BB3A0E52C47FFB690A14" />
+            <ComponentRef Id="cmp10034990B1D5DCFAECB8E17F0788D99A" />
+            <ComponentRef Id="cmpD1AE3A4703B2EEFBF2BAE2E70FA4DB21" />
+            <ComponentRef Id="cmp23DDC1F51FEA48A48D57FAC47D3C49E8" />
+            <ComponentRef Id="cmp5DF5420481B0E05C4115CF119CFD3985" />
+            <ComponentRef Id="cmpD9ED579958D8B5914FEC9CFC5703AEC2" />
+            <ComponentRef Id="cmpF60B1337E3A99D9C7679BB23ABF2F2E2" />
+            <ComponentRef Id="cmp648CDAD96F7ABAA618C42CADBE2E6395" />
+            <ComponentRef Id="cmp7239910AE6777C08E396F9C03AC46CE1" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

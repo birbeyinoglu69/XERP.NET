@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+
+  <!-- Id and Version must change for each new version of the product 
+  UpgradeCode must remain the same for all versions -->
+  <Product Id="584E61C8-5AD6-4003-85AF-931AC221B003"
+           Name="XERP Server"
+           Language="1033"
+           Version="1.1.1.1"
+           Manufacturer="XERP Services"
+           UpgradeCode="92d9ddec-c60c-4b56-b4b3-05c93ac37d2a">
+
+    <Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
+             InstallPrivileges="elevated"/>
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="XERP.Database" Title="XERP Database" Level="1">
+      <ComponentRef Id="DatabaseWinAuth" />
+      <ComponentRef Id="DatabaseSqlAuth" />
+    </Feature>
+    
+    <UIRef Id="WixUI_XERPServer"/>
+
+    <PropertyRef Id="NETFRAMEWORK40FULL"/>
+
+    <Condition Message="This application requires .NET Framework 4.0 Full. Please install the .NET Framework, then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+    </Condition>
+
+    <PropertyRef Id="IISMAJORVERSION"/>
+
+    <Condition Message="This application requires IIS 7 or later. Please install IIS then run this installer again.">
+      <![CDATA[Installed OR IISMAJORVERSION >= "#7"]]>
+    </Condition>
+
+    <Feature Id="XERP.Server.Service" Title="XERP Web Services" Level="1" ConfigurableDirectory="INSTALLFOLDER">
+      <ComponentRef Id="AppPoolUser"/>
+      <ComponentRef Id="AppPool"/>
+      <ComponentRef Id="ServerConfig"/>
+      <ComponentGroupRef Id="XERP.Server.Service.AddressService" />
+      <ComponentGroupRef Id="XERP.Server.Service.CompanyService" />
+      <ComponentGroupRef Id="XERP.Server.Service.LogInService" />
+      <ComponentGroupRef Id="XERP.Server.Service.MenuSecurityService" />
+      <ComponentGroupRef Id="XERP.Server.Service.SecurityGroupService" />
+      <ComponentGroupRef Id="XERP.Server.Service.SystemUserService" />
+      <ComponentGroupRef Id="XERP.Server.Service.UdListService" />
+    </Feature>
+    
+  </Product>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER" >
+      <Directory Id="XERP.Server.Service.AddressService" Name="Service.AddressService"/>
+      <Directory Id="XERP.Server.Service.CompanyService" Name="Service.CompanyService"/>
+      <Directory Id="XERP.Server.Service.LogInService" Name="Service.LogInService"/>
+      <Directory Id="XERP.Server.Service.MenuSecurityService" Name="Service.MenuSecurityService"/>
+      <Directory Id="XERP.Server.Service.SecurityGroupService" Name="Service.SecurityGroupService"/>
+      <Directory Id="XERP.Server.Service.SystemUserService" Name="Service.SystemUserService"/>
+      <Directory Id="XERP.Server.Service.UdListService" Name="Service.UdListService"/>
+    </DirectoryRef>
+
+
+    <Property Id="XERP.Server.Service.AddressService.Port"          Value="1215"/>
+    <Property Id="XERP.Server.Service.CompanyService.Port"          Value="1201"/>
+    <Property Id="XERP.Server.Service.LogInService.Port"            Value="1200"/>
+    <Property Id="XERP.Server.Service.MenuSecurityService.Port"     Value="1202"/>
+    <Property Id="XERP.Server.Service.SecurityGroupService.Port"    Value="1210"/>
+    <Property Id="XERP.Server.Service.SystemUserService.Port"       Value="1205"/>
+    <Property Id="XERP.Server.Service.UdListService.Port"           Value="1220"/>
+    
+    
+    <util:User Id="SqlUser" Name="[CREATE_DATABASE_USERNAME]" Password="[CREATE_DATABASE_PASSWORD]"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="XERPFOLDER" Name="XERP">
+        <Directory Id="INSTALLFOLDER" Name="Server" ComponentGuidGenerationSeed="5FADD116-FA85-4B7A-988A-2BCA3958A148">
+
+          <Component Id="AppPoolUser" Guid="49A58CF9-3760-4B77-A476-79DECE279152" KeyPath="yes">
+            <util:User Id="AppPoolUser"
+                       Domain="[WEB_APP_POOL_IDENTITY_DOMAIN]"
+                       Name="[WEB_APP_POOL_IDENTITY_NAME]"
+                       Password="[WEB_APP_POOL_IDENTITY_PWD]"
+                       PasswordNeverExpires="yes"
+                       LogonAsService="yes"
+                       FailIfExists="no"
+                       RemoveOnUninstall="no"
+                       CreateUser="yes"
+                       UpdateIfExists="yes"/>
+          </Component>
+          
+          <Component Id="AppPool" Guid="A01A2599-8EEE-4091-8E30-3D4EF63479E3" KeyPath="yes" >
+            <iis:WebAppPool Id="AppPool"
+                            Name="XERP.Server.Service"
+                            ManagedRuntimeVersion="v4.0"
+                            ManagedPipelineMode="Integrated"
+                            Identity="other"
+                            User="AppPoolUser"/>
+          </Component>
+
+          <Component Id="DatabaseWinAuth" Guid="9914AB98-0CD7-4D0F-8BEF-791A964296A2" KeyPath="yes">
+            <Condition>CREATE_DATABASE_LOGON_TYPE = "WinAuthCurrentUser"</Condition>
+            <sql:SqlDatabase Id="DatabaseWinAuth"
+                             Server="[DATABASE_SERVER]"
+                             Database="[DATABASE_NAME]"
+                             ConfirmOverwrite="yes"
+                             ContinueOnError="yes"
+                             CreateOnInstall="yes"
+                             CreateOnReinstall="no"
+                             CreateOnUninstall="no"
+                             DropOnUninstall="no"
+                             DropOnInstall="no"
+                             DropOnReinstall="no">
+              <sql:SqlScript Id="DbScriptWinAuth" BinaryKey="DbScript" ContinueOnError="yes" ExecuteOnInstall="yes" Sequence="1"/>
+              <sql:SqlString Id="CreateLoginWinAuth" ContinueOnError="yes" ExecuteOnInstall="yes" Sequence="2"
+                             SQL="if not exists (select name from sys.server_principals where name='[WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME]') create login [\[][WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME][\]] from windows; 
+                                  if not exists (select name from sys.database_principals where name='[WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME]') exec sp_adduser '[WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME]', null, 'db_owner';"/>
+            </sql:SqlDatabase>
+          </Component>
+
+          <Component Id="DatabaseSqlAuth" Guid="53B663A9-F221-4743-BA58-C7BC953A3C07" KeyPath="yes">
+            <Condition>CREATE_DATABASE_LOGON_TYPE = "SqlAuth"</Condition>
+            <sql:SqlDatabase Id="DatabaseSqlAuth"
+                             Server="[DATABASE_SERVER]"
+                             Database="[DATABASE_NAME]"
+                             ConfirmOverwrite="yes"
+                             ContinueOnError="yes"
+                             CreateOnInstall="yes"
+                             CreateOnReinstall="no"
+                             CreateOnUninstall="no"
+                             DropOnUninstall="no"
+                             DropOnInstall="no"
+                             DropOnReinstall="no"
+                             User="SqlUser">
+              <sql:SqlScript Id="DbScriptSqlAuth" BinaryKey="DbScript" ContinueOnError="yes" ExecuteOnInstall="yes" Sequence="1"/>
+              <sql:SqlString Id="CreateLoginSqlAuth" ContinueOnError="yes" ExecuteOnInstall="yes" Sequence="2"
+                              SQL="if not exists (select 1 from sys.server_principals where name='[WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME]') create login [\[][WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME][\]] from windows; 
+                                   if not exists (select name from sys.database_principals where name='[WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME]') exec sp_adduser '[WEB_APP_POOL_IDENTITY_DOMAIN][\\][WEB_APP_POOL_IDENTITY_NAME]', null, 'db_owner';"/>
+            </sql:SqlDatabase>
+          </Component>
+
+          <Directory Id="Config" Name="Config">
+            <Component Id="ServerConfig" Guid="25481DA3-6664-4143-ABFE-2E49B4084BB3">
+              <File Id="ServerConfig" Source="..\..\XERP.Server\XERPServerBuild\XERPServerConfig\XERPServerConfig.xml" KeyPath="yes"/>
+              <util:XmlFile Id="SetConnectionString"
+                            File="[#ServerConfig]"
+                            Action="setValue"
+                            ElementPath="/Config/ConnectionStrings/ConnectionString[\[]@ID='BaseSQL'[\]]"
+                            Name="Value"
+                            Value="Data Source=[DATABASE_SERVER];Initial Catalog=[DATABASE_NAME];Integrated Security=True"/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    
+    <Property Id="DATABASE_SERVER" Value="(local)" Secure="yes"/>
+    <Property Id="DATABASE_NAME" Value="XERP" Secure="yes"/>
+    <Property Id="CREATE_DATABASE_LOGON_TYPE" Value="WinAuthCurrentUser" Secure="yes"/>
+    <Property Id="CHECK_CREATE_DATABASE_PERMS" Value="yes" Secure="yes"/>
+    <Property Id="CREATE_DATABASE_USERNAME" Secure="yes"/>
+    <Property Id="CREATE_DATABASE_PASSWORD" Hidden="yes" Secure="yes"/>
+    <Property Id="WEB_APP_POOL_IDENTITY_DOMAIN" Secure="yes"/>
+    <Property Id="WEB_APP_POOL_IDENTITY_NAME" Value="xerp" Secure="yes"/>
+    <Property Id="WEB_APP_POOL_IDENTITY_PWD" Hidden="yes" Secure="yes"/>
+    <Property Id="ARPNOREPAIR" Value="yes" Secure="yes" />
+    <Property Id="ARPNOMODIFY" Value="yes" Secure="yes" />
+    
+    <Binary Id="DbScript" SourceFile="..\..\Documentation\XERP DataBase Setup\AllTablesUpToThisPoint.sql"/>
+
+    <SetProperty Id="WEB_APP_POOL_IDENTITY_DOMAIN" Value="[%USERDOMAIN]" Sequence="ui" After="FindRelatedProducts"/>
+
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+  </Fragment>
+
+</Wix>

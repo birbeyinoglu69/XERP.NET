@@ -1,4 +1,3 @@
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\Views\CodeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\Views\CodeMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\Views\MainMaintenanceSearchView.baml
@@ -32,7 +31,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x8
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\TypeSearchWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\XERP.Client.WPF.SystemUserMaintenance.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\XERP.Client.WPF.SystemUserMaintenance.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\XERP.Client.WPF.SystemUserMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\XERP.Client.WPF.SystemUserMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\XERP.Client.WPF.SystemUserMaintenance.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SystemUserMaintenance\obj\x86\Debug\XERP.Client.WPF.SystemUserMaintenance.csproj.GenerateResource.Cache

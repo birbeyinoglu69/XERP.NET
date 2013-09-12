@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <DirectoryRef Id="XERP.Server.Service.AddressService">
+            <Component Id="cmp535CCAD86A174FCBF31FB0408BCA59F9" Guid="*">
+                <File Id="fil4821817EC9B92BF6DEC0AB299E71E00C" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\AddressDataService.svc" />
+                <iis:WebSite Id="XERP.Server.Service.AddressService" Description="XERP.Server.Service.AddressService" Directory="XERP.Server.Service.AddressService">
+                    <iis:WebAddress Id="XERP.Server.Service.AddressService" Port="[XERP.Server.Service.AddressService.Port]" />
+                    <iis:WebApplication Id="XERP.Server.Service.AddressService" Name="XERP.Server.Service.AddressService" WebAppPool="AppPool" />
+                    <iis:WebDirProperties Id="XERP.Server.Service.AddressService" AnonymousAccess="yes" Read="yes" Execute="yes" Script="yes" />
+                </iis:WebSite>
+            </Component>
+            <Component Id="cmp3283B7A7BEA95BD831F6764471D8DB5B" Guid="*">
+                <File Id="filED43135F389E0F0A4D1055B0D12C241A" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\Web.config" />
+                <util:XmlConfig Id="filED43135F389E0F0A4D1055B0D12C241A_cfg1" Action="create" File="[#filED43135F389E0F0A4D1055B0D12C241A]" ElementPath="/configuration" VerifyPath="/configuration/appSettings" Name="appSettings" Node="element" On="install" Sequence="1" />
+                <util:XmlConfig Id="filED43135F389E0F0A4D1055B0D12C241A_cfg2" Action="delete" File="[#filED43135F389E0F0A4D1055B0D12C241A]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Node="element" On="install" Sequence="2" />
+                <util:XmlConfig Id="filED43135F389E0F0A4D1055B0D12C241A_cfg3" Action="create" File="[#filED43135F389E0F0A4D1055B0D12C241A]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Name="add" Node="element" On="install" Sequence="3" />
+                <util:XmlConfig Id="filED43135F389E0F0A4D1055B0D12C241A_cfg4" File="[#filED43135F389E0F0A4D1055B0D12C241A]" ElementId="filED43135F389E0F0A4D1055B0D12C241A_cfg3" Name="key" Value="XERPConfigPath" Sequence="4" />
+                <util:XmlConfig Id="filED43135F389E0F0A4D1055B0D12C241A_cfg5" File="[#filED43135F389E0F0A4D1055B0D12C241A]" ElementId="filED43135F389E0F0A4D1055B0D12C241A_cfg3" Name="value" Value="[INSTALLFOLDER]Config\XERPServerConfig.xml" Sequence="5" />
+            </Component>
+            <Directory Id="dirC2EF6B1A9B5F541248F09380B37D829D" Name="bin">
+                <Component Id="cmpD1C8E343BDA1E848772223D25232F907" Guid="*">
+                    <File Id="fil64B639F04A45415E97D2FA800387C33E" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.DAL.AddressDAL.dll" />
+                </Component>
+                <Component Id="cmp1697CF5ABF10B6C6CC1BFE30043779F1" Guid="*">
+                    <File Id="fil79E1DB1CDB290AF2CA454B1AA8026F9D" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.DAL.AddressDAL.pdb" />
+                </Component>
+                <Component Id="cmp45E33DA548A386D352A9B55C24D84B5E" Guid="*">
+                    <File Id="filB5ADB13ED1FC8AEBD665FBC07C3FEEF7" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.DAL.dll" />
+                </Component>
+                <Component Id="cmpA67C8FC1E481FC3860616D59E436619C" Guid="*">
+                    <File Id="fil8BF09ADCAD8F7B359C72C5D17F10915C" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.DAL.pdb" />
+                </Component>
+                <Component Id="cmpE7E3A221025700161D6F7D7BE4476B23" Guid="*">
+                    <File Id="fil8159AF6B2DAA7A2B01F1F8FD1F6ECF73" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.dll" />
+                </Component>
+                <Component Id="cmpE37BF100BECFE1B6EAC56FD73B26DC60" Guid="*">
+                    <File Id="filE916A36737CFA7771A3BE3125C566993" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.pdb" />
+                </Component>
+                <Component Id="cmp5AE3255C16B68A1149D998482CDABADD" Guid="*">
+                    <File Id="filF1B1751932742041B9B8D731BA1684C1" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.Service.AddressService.dll" />
+                </Component>
+                <Component Id="cmpF15BE508A11C71E10F7A76CAED0F7929" Guid="*">
+                    <File Id="fil2C0F4537A1D6B7D9137F7F9DAB2E6B6F" KeyPath="yes" Source="$(var.XERP.Server.Service.AddressService.BuildPath)\bin\XERP.Server.Service.AddressService.pdb" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="XERP.Server.Service.AddressService">
+            <ComponentRef Id="cmp535CCAD86A174FCBF31FB0408BCA59F9" />
+            <ComponentRef Id="cmp3283B7A7BEA95BD831F6764471D8DB5B" />
+            <ComponentRef Id="cmpD1C8E343BDA1E848772223D25232F907" />
+            <ComponentRef Id="cmp1697CF5ABF10B6C6CC1BFE30043779F1" />
+            <ComponentRef Id="cmp45E33DA548A386D352A9B55C24D84B5E" />
+            <ComponentRef Id="cmpA67C8FC1E481FC3860616D59E436619C" />
+            <ComponentRef Id="cmpE7E3A221025700161D6F7D7BE4476B23" />
+            <ComponentRef Id="cmpE37BF100BECFE1B6EAC56FD73B26DC60" />
+            <ComponentRef Id="cmp5AE3255C16B68A1149D998482CDABADD" />
+            <ComponentRef Id="cmpF15BE508A11C71E10F7A76CAED0F7929" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

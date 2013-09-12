@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EnableProjectHarvesting>true</EnableProjectHarvesting>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.7</ProductVersion>
+    <ProjectGuid>{39d53105-13dd-4eb3-b94e-01a9a7d4fe6d}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>XERP.ServerSetup</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+    <CompilerAdditionalOptions>XERP.Server.Service.%2a.wxs</CompilerAdditionalOptions>
+    <LinkerAdditionalOptions>$(IntermediateOutputPath)XERP.Server.Service.%2a.wixobj</LinkerAdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <CompilerAdditionalOptions>XERP.Server.Service.%2a.wxs</CompilerAdditionalOptions>
+    <LinkerAdditionalOptions>$(IntermediateOutputPath)XERP.Server.Service.%2a.wixobj</LinkerAdditionalOptions>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+    <Compile Include="WixUI_XERPServer.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\XERP.Server.Service.AddressService.csproj">
+      <Name>XERP.Server.Service.AddressService</Name>
+      <Project>{c5086d72-e30e-422b-a6db-017bc4f5a0b3}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\XERP.Server.Service.CompanyService.csproj">
+      <Name>XERP.Server.Service.CompanyService</Name>
+      <Project>{91d63550-91be-43ad-9663-2117b7d2e92a}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Server\XERP.Server.Service\XERP.Server.Service.LogInService\XERP.Server.Service.LogInService.csproj">
+      <Name>XERP.Server.Service.LogInService</Name>
+      <Project>{0a0f1033-3a63-4e0a-b7c3-48a410643d90}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Server\XERP.Server.Service\XERP.Server.Service.MenuSecurityService\XERP.Server.Service.MenuSecurityService.csproj">
+      <Name>XERP.Server.Service.MenuSecurityService</Name>
+      <Project>{31a85926-dac1-4023-bddd-dde878c396a5}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\XERP.Server.Service.SecurityGroupService.csproj">
+      <Name>XERP.Server.Service.SecurityGroupService</Name>
+      <Project>{eb43acb3-73aa-45f5-a9ff-7dfbae779b86}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Server\XERP.Server.Service\XERP.Server.Service.SystemUserService\XERP.Server.Service.SystemUserService.csproj">
+      <Name>XERP.Server.Service.SystemUserService</Name>
+      <Project>{e32fda26-5b99-485c-9b05-4eb325f84133}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Server\XERP.Server.Service\XERP.Server.Service.UdListService\XERP.Server.Service.UdListService.csproj">
+      <Name>XERP.Server.Service.UdListService</Name>
+      <Project>{1ec4a928-85b5-483e-b5c7-5f655d664506}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixCommonUiExtension">
+      <HintPath>Libraries\WixCommonUiExtension.dll</HintPath>
+      <Name>WixCommonUiExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixSqlExtension">
+      <HintPath>$(WixExtDir)\WixSqlExtension.dll</HintPath>
+      <Name>WixSqlExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>$(WixExtDir)\WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HeatTransform.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libraries" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\WixCommonUiExtension.dll" />
+    <Content Include="License.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="en-us.wxl" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+  -->
+  <Target Name="BeforeBuild">
+    <MSBuild Projects="%(ProjectReference.FullPath)" Targets="Package" Properties="Configuration=$(Configuration);Platform=AnyCPU" />
+    <ItemGroup>
+      <BuildPathList Include="%(ProjectReference.Filename).BuildPath=%(ProjectReference.RootDir)%(ProjectReference.Directory)obj\$(Configuration)\Package\PackageTmp;" />
+    </ItemGroup>
+    <PropertyGroup>
+      <DefineConstants>@(BuildPathList)</DefineConstants>
+    </PropertyGroup>
+    <HeatDirectory OutputFile="%(ProjectReference.Filename).wxs" Directory="%(ProjectReference.RootDir)%(ProjectReference.Directory)obj\$(Configuration)\Package\PackageTmp\" DirectoryRefId="%(ProjectReference.Filename)" ComponentGroupName="%(ProjectReference.Filename)" AutogenerateGuids="true" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" Transforms="HeatTransform.xslt" PreprocessorVariable="var.%(ProjectReference.Filename).BuildPath" />
+  </Target>
+  <!--
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

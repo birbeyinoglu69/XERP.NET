@@ -1,4 +1,3 @@
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\Views\StartUpView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\MainWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\Views\StartUpView.g.cs
@@ -12,7 +11,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\App.ba
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\MainWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.StartUp\obj\x86\Debug\XERP.Client.WPF.StartUp.csproj.GenerateResource.Cache

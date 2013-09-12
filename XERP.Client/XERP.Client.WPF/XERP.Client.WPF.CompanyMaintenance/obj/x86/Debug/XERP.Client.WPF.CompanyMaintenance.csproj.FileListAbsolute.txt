@@ -33,7 +33,6 @@ C:\Copy of XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\o
 C:\Copy of XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.pdb
 C:\XERPNewest\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.exe
 C:\XERPNewest\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.pdb
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\CodeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\CodeMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\Views\MainMaintenanceView.baml
@@ -67,7 +66,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\D
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\MainWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.CompanyMaintenance\obj\x86\Debug\XERP.Client.WPF.CompanyMaintenance.csproj.GenerateResource.Cache

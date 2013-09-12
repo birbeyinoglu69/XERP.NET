@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <DirectoryRef Id="XERP.Server.Service.SecurityGroupService">
+            <Component Id="cmpC96E7056D706EEE2F20565D5D2D2F433" Guid="*">
+                <File Id="fil99E14B55DCA66AA8648123F22BC80589" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\SecurityGroupDataService.svc" />
+                <iis:WebSite Id="XERP.Server.Service.SecurityGroupService" Description="XERP.Server.Service.SecurityGroupService" Directory="XERP.Server.Service.SecurityGroupService">
+                    <iis:WebAddress Id="XERP.Server.Service.SecurityGroupService" Port="[XERP.Server.Service.SecurityGroupService.Port]" />
+                    <iis:WebApplication Id="XERP.Server.Service.SecurityGroupService" Name="XERP.Server.Service.SecurityGroupService" WebAppPool="AppPool" />
+                    <iis:WebDirProperties Id="XERP.Server.Service.SecurityGroupService" AnonymousAccess="yes" Read="yes" Execute="yes" Script="yes" />
+                </iis:WebSite>
+            </Component>
+            <Component Id="cmpEFAA5810E954B1B833034EFC1FBA1DEE" Guid="*">
+                <File Id="filAFA27277A449999F42EC2CF592D0E488" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\Web.config" />
+                <util:XmlConfig Id="filAFA27277A449999F42EC2CF592D0E488_cfg1" Action="create" File="[#filAFA27277A449999F42EC2CF592D0E488]" ElementPath="/configuration" VerifyPath="/configuration/appSettings" Name="appSettings" Node="element" On="install" Sequence="1" />
+                <util:XmlConfig Id="filAFA27277A449999F42EC2CF592D0E488_cfg2" Action="delete" File="[#filAFA27277A449999F42EC2CF592D0E488]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Node="element" On="install" Sequence="2" />
+                <util:XmlConfig Id="filAFA27277A449999F42EC2CF592D0E488_cfg3" Action="create" File="[#filAFA27277A449999F42EC2CF592D0E488]" ElementPath="/configuration/appSettings" VerifyPath="/configuration/appSettings/add[\[]@key='XERPConfigPath'[\]]" Name="add" Node="element" On="install" Sequence="3" />
+                <util:XmlConfig Id="filAFA27277A449999F42EC2CF592D0E488_cfg4" File="[#filAFA27277A449999F42EC2CF592D0E488]" ElementId="filAFA27277A449999F42EC2CF592D0E488_cfg3" Name="key" Value="XERPConfigPath" Sequence="4" />
+                <util:XmlConfig Id="filAFA27277A449999F42EC2CF592D0E488_cfg5" File="[#filAFA27277A449999F42EC2CF592D0E488]" ElementId="filAFA27277A449999F42EC2CF592D0E488_cfg3" Name="value" Value="[INSTALLFOLDER]Config\XERPServerConfig.xml" Sequence="5" />
+            </Component>
+            <Directory Id="dirE60935E9B0FD455455BEE7A42AF32AF3" Name="bin">
+                <Component Id="cmp53E5C3C76646F824190F362BFF57E94E" Guid="*">
+                    <File Id="filC17C5A28F14CCB66B651651B23F4C164" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.dll" />
+                </Component>
+                <Component Id="cmp51715B9F650F5E2650763478E3630523" Guid="*">
+                    <File Id="fil18BFC95FC4B1D7BCB50894138360C006" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.pdb" />
+                </Component>
+                <Component Id="cmpFEEFB7E97279D08EC2BC77FE553BB419" Guid="*">
+                    <File Id="filCE6019036A052975DF73948A340E0489" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.SecurityGroupDAL.dll" />
+                </Component>
+                <Component Id="cmp051B7073A203FF6988DF245987BCDC9F" Guid="*">
+                    <File Id="filFB72BFD26726C6711D5C620EB8BF5CEA" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.SecurityGroupDAL.pdb" />
+                </Component>
+                <Component Id="cmpA4B49B69946A9731EA0BDCF90D160DDE" Guid="*">
+                    <File Id="filD144765BF42FF9DAB3FC9583AA1B4F87" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.dll" />
+                </Component>
+                <Component Id="cmp7FF26A883ADCB056C68934096B196721" Guid="*">
+                    <File Id="fil8147509A119D45033C1EC0B27D69B196" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.pdb" />
+                </Component>
+                <Component Id="cmp638D100FF38726788A11EACB36FE8362" Guid="*">
+                    <File Id="fil387EA7E555D4807F5DFCBE9011752A3E" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.Service.SecurityGroupService.dll" />
+                </Component>
+                <Component Id="cmpBA93E95DFB60987EB77BC67CDFB237B5" Guid="*">
+                    <File Id="fil5076E7399D672023A4E8B8A91650C80B" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.Service.SecurityGroupService.pdb" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="XERP.Server.Service.SecurityGroupService">
+            <ComponentRef Id="cmpC96E7056D706EEE2F20565D5D2D2F433" />
+            <ComponentRef Id="cmpEFAA5810E954B1B833034EFC1FBA1DEE" />
+            <ComponentRef Id="cmp53E5C3C76646F824190F362BFF57E94E" />
+            <ComponentRef Id="cmp51715B9F650F5E2650763478E3630523" />
+            <ComponentRef Id="cmpFEEFB7E97279D08EC2BC77FE553BB419" />
+            <ComponentRef Id="cmp051B7073A203FF6988DF245987BCDC9F" />
+            <ComponentRef Id="cmpA4B49B69946A9731EA0BDCF90D160DDE" />
+            <ComponentRef Id="cmp7FF26A883ADCB056C68934096B196721" />
+            <ComponentRef Id="cmp638D100FF38726788A11EACB36FE8362" />
+            <ComponentRef Id="cmpBA93E95DFB60987EB77BC67CDFB237B5" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

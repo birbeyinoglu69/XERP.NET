@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" 
+                 Codepage="1252"
+                 xmlns="http://schemas.microsoft.com/wix/2006/localization">
+
+  <String Id="SelectDbDlg_Title">{\WixUI_Font_Title}XERP database</String>
+  <String Id="EnterDbName_Subtitle">Enter database name.</String>
+  <String Id="EnterDbName_Description">Please enter the name of the database to create.</String>
+  <String Id="EnterDbName_DbNameLabel">Database:</String>
+  <String Id="EnterDbName_EmptyDbName">Please enter a database name.</String>
+  <String Id="DbCreateCredDlg_Description1">The user supplied here will be used to create a database for [ProductName] on [DATABASE_SERVER].</String>
+  <String Id="DbCreateCredDlg_Description"></String>
+  <String Id="PoolSettingsDlg_Title">{\WixUI_Font_Title}XERP IIS Application Pool Identity</String>
+  <String Id="PoolSettingsDlg_Subtitle">Enter credentials for the IIS application pool identity.</String>
+  <String Id="PoolSettingsDlg_EmptyDomain">Please enter a domain for the IIS AppPool identity.</String>
+  <String Id="PoolSettingsDlg_EmptyUsername">Please enter a username for the IIS AppPool identity.</String>
+  <String Id="PoolSettingsDlg_EmptyPassword">Please enter a password for the IIS AppPool identity.</String>
+</WixLocalization>

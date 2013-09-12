@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="C455838A-AEDB-495B-9F6D-C308604B2DEC"
+           Name="XERP Client"
+           Language="1033"
+           Version="1.1.1.1"
+           Manufacturer="XERP Services"
+           UpgradeCode="539dad05-6ab1-40ff-9a3c-fda8c41e2742">
+
+    <Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
+             InstallPrivileges="elevated"/>
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="XERP.Client" Title="XERP Client" Level="1" ConfigurableDirectory="INSTALLFOLDER">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="Product.Generated"/>
+      <ComponentRef Id="XERP.Client.Shortcut"/>
+    </Feature>
+
+    <PropertyRef Id="NETFRAMEWORK40CLIENT"/>
+
+    <Condition Message="This application requires .NET Framework 4.0 Client Profile. Please install the .NET Framework, then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK40CLIENT]]>
+    </Condition>
+
+    <UIRef Id="WixUI_XERPClient"/>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="XERPFOLDER" Name="XERP">
+          <Directory Id="INSTALLFOLDER" Name="Client" />
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ShortcutsDir"  Name="XERP">
+          <Component Id="XERP.Client.Shortcut" Guid="27964A09-4C7D-453F-B547-2469DB010DC1" >
+            <Shortcut Id="XERP.Client.Shortcut" Name="XERP Client" Target="[INSTALLFOLDER]XERP.Client.WPF.StartUp.exe" WorkingDirectory="INSTALLFOLDER"/>
+            <Shortcut Id="XERP.Client.DesktopShortcut" Name="XERP Client" Target="[INSTALLFOLDER]XERP.Client.WPF.StartUp.exe" WorkingDirectory="INSTALLFOLDER" Directory="DesktopFolder"/>
+            <RemoveFolder Id="RemoveShortcutsDir" On="uninstall"/>
+            <RegistryValue Root="HKMU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder"/>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="System.Windows.Interactivity.dll">
+        <File Id="System.Windows.Interactivity.dll" Source="Libraries\System.Windows.Interactivity.dll"/>
+      </Component>
+      <Component Id="Microsoft.Expression.Interactions.dll">
+        <File Id="Microsoft.Expression.Interactions.dll" Source="Libraries\Microsoft.Expression.Interactions.dll"/>
+      </Component>
+      <Component Id="XERPClientConfig">
+        <File Id="XERPClientConfig" Source="..\..\XERP.Client\XERPClientBuild\bin\XERPClientConfig.xml"/>
+        <util:XmlFile Id="SetBaseURI"
+                            File="[#XERPClientConfig]"
+                            Action="setValue"
+                            ElementPath="/Config/URIS/URI[\[]@ID='BaseURI'[\]]"
+                            Name="Value"
+                            Value="[BASE_URI]"/>
+      </Component>
+    </ComponentGroup>
+
+    <Property Id="BASE_URI" Secure="yes"/>
+    <Property Id="ARPNOREPAIR" Value="yes" Secure="yes" />
+    <Property Id="ARPNOMODIFY" Value="yes" Secure="yes" />
+
+    <SetProperty Id="BASE_URI" Value="http://[ComputerName]" Sequence="ui" After="FindRelatedProducts"/>
+
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+  </Fragment>
+</Wix>

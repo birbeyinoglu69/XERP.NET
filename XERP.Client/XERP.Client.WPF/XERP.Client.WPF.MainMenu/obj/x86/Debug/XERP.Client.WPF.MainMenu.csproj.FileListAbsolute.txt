@@ -1,4 +1,3 @@
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\UINotImplemented.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\Views\MainMenuView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\MainWindow.g.cs
@@ -11,7 +10,6 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\Simpl
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\SimpleMvvm-Wpf.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\SimpleMvvm-Wpf.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\Microsoft.Expression.Interactions.dll
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\SimpleMvvmToolkit-WPF.dll
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\System.Windows.Interactivity.dll
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.dll
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.CompanyMaintenance.exe
@@ -61,8 +59,6 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\App.b
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\MainWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\SimpleMvvm-Wpf.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\XERP.Client.WPF.MainMenu.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\SimpleMvvm-Wpf.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\SimpleMvvm-Wpf.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.SystemUserMaintenance.exe
@@ -77,3 +73,5 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Clie
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.ExecutableProgramMaintenance.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.MenuItemMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\bin\Debug\XERP.Client.WPF.MenuItemMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\XERP.Client.WPF.MainMenu.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MainMenu\obj\x86\Debug\XERP.Client.WPF.MainMenu.csproj.GenerateResource.Cache

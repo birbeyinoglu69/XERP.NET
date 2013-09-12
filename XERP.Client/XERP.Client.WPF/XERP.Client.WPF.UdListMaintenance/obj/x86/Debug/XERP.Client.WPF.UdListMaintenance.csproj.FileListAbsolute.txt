@@ -1,4 +1,3 @@
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\Views\MainMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\Views\UdListItemView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\App.baml
@@ -18,7 +17,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\De
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\Views\MainMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\XERP.Client.WPF.UdListMaintenance.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\XERP.Client.WPF.UdListMaintenance.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\XERP.Client.WPF.UdListMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\XERP.Client.WPF.UdListMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\XERP.Client.WPF.UdListMaintenance.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.UdListMaintenance\obj\x86\Debug\XERP.Client.WPF.UdListMaintenance.csproj.GenerateResource.Cache

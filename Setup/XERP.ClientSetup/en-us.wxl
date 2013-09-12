@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" 
+                 Codepage="1252"
+                 xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <String Id="BaseURIDlg_Title">{\WixUI_Font_Title}XERP Server Base URI</String>
+  <String Id="BaseURIDlg_Subtitle">Enter the base URI of XERP server</String>
+  <String Id="BaseURIDlg_Description">Please enter the base URI of the XERP server. This should point to the computer where XERP server is installed.</String>
+  <String Id="BaseURIDlg_BaseURILabel">Base URI:</String>
+  <String Id="BaseURIDlg_EmptyBaseURI">Please enter the base URI.</String>
+</WixLocalization>

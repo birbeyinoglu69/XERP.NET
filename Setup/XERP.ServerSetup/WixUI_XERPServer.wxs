@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  <copyright file="WixUI_Mondo.wxs" company="Outercurve Foundation">
+    Copyright (c) 2004, Outercurve Foundation.
+    This software is released under Microsoft Reciprocal License (MS-RL).
+    The license and further copyright text can be found in the file
+    LICENSE.TXT at the root directory of the distribution.
+  </copyright>
+-->
+
+<!--
+First-time install dialog sequence:
+- WixUI_WelcomeDlg
+- WixUI_LicenseAgreementDlg
+- WixUI_SetupTypeDlg
+- WixUI_VerifyReadyDlg
+- WixUI_CustomizeDlg
+- WixUI_DiskCostDlg
+- WixUI_BrowseDlg
+
+Maintenance dialog sequence:
+- WixUI_MaintenanceWelcomeDlg
+- WixUI_MaintenanceTypeDlg
+- WixUI_CustomizeDlg
+- WixUI_VerifyReadyDlg
+
+Patch dialog sequence:
+ - WixUI_WelcomeDlg
+ - WixUI_VerifyReadyDlg
+-->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+
+    <UI Id="WixUI_XERPServer">
+
+      <Property Id="WixUI_Mode" Value="Mondo" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+
+      <Dialog Id="DatabaseNameDlg" Width="370" Height="270" Title="[ProductName] Setup">
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.SelectDbDlg_BannerBitmap)" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.SelectDbDlg_Title)" />
+        <Control Id="SubTitle" Type="Text" X="25" Y="21" Width="200" Height="20" Transparent="yes" NoPrefix="yes" Text="!(loc.EnterDbName_Subtitle)" />
+
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+
+        <Control Id="Description" Type="Text" X="20" Y="55" Width="340" Height="30" Text="!(loc.EnterDbName_Description)" />
+        <Control Id="DbNameLabel" Type="Text" X="50" Y="90" Width="90" Height="10" Text="!(loc.EnterDbName_DbNameLabel)" />
+        <Control Id="DbName" Type="Edit" X="140" Y="90" Width="140" Height="15" Property="DATABASE_NAME"/>
+
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
+          <Publish Property="ERROR_MESSAGE">1</Publish>
+          <Publish Property="ERROR_MESSAGE" Value="!(loc.EnterDbName_EmptyDbName)">NOT DATABASE_NAME</Publish>
+          <Publish Event="SpawnDialog" Value="GenericErrorDlg">ERROR_MESSAGE</Publish>
+        </Control>
+      </Dialog>
+
+      <Dialog Id="PoolSettingsDlg" Width="370" Height="270" Title="[ProductName] Setup">
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.PoolSettingsDlg_Title)" />
+        <Control Id="SubTitle" Type="Text" X="25" Y="21" Width="200" Height="20" Transparent="yes" NoPrefix="yes" Text="!(loc.PoolSettingsDlg_Subtitle)" />
+
+        <!-- domain -->
+        <Control Id="DomainPoolLabel" Type="Text" X="45" Y="105"
+            Width="100" Height="15" TabSkip="no" Text="&amp;Domain for AppPool:" />
+        <Control Id="DomainPoolEdit" Type="Edit" X="45" Y="117"
+            Width="220" Height="18"
+            Property="WEB_APP_POOL_IDENTITY_DOMAIN" />
+        <!-- Login -->
+        <Control Id="LoginPoolLabel" Type="Text" X="45" Y="137"
+          Width="100" Height="15" TabSkip="no" Text="&amp;Username for AppPool:" />
+        <Control Id="LoginPoolEdit" Type="Edit" X="45" Y="149"
+          Width="220" Height="18" Property="WEB_APP_POOL_IDENTITY_NAME" />
+        <!-- Password -->
+        <Control Id="PasswordPoolLabel" Type="Text" X="45" Y="169"
+          Width="100" Height="15" TabSkip="no" Text="&amp;Password for AppPool:" />
+        <Control Id="PasswordPoolEdit" Type="Edit" X="45" Y="181"
+          Width="220" Height="18" Property="WEB_APP_POOL_IDENTITY_PWD" Password="yes" />
+
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
+          <Publish Property="ERROR_MESSAGE">1</Publish>
+          <Publish Property="ERROR_MESSAGE" Order="3" Value="!(loc.PoolSettingsDlg_EmptyDomain)">NOT WEB_APP_POOL_IDENTITY_DOMAIN</Publish>
+          <Publish Property="ERROR_MESSAGE" Order="2" Value="!(loc.PoolSettingsDlg_EmptyUsername)">NOT WEB_APP_POOL_IDENTITY_NAME</Publish>
+          <Publish Property="ERROR_MESSAGE" Order="1" Value="!(loc.PoolSettingsDlg_EmptyPassword)">NOT WEB_APP_POOL_IDENTITY_PWD</Publish>
+          <Publish Event="SpawnDialog" Value="GenericErrorDlg">ERROR_MESSAGE</Publish>
+        </Control>
+      </Dialog>
+      
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">NOT Installed AND NOT PATCH</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
+
+      <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+      <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="CustomizeDlg" Order="2">LicenseAccepted = "1"</Publish>
+      <Publish Dialog="LicenseAgreementDlg" Control="Next" Property="WixUI_InstallMode" Value="InstallCustom" Order="3">LicenseAccepted = "1"</Publish>
+
+      <!--
+            <Publish Dialog="SetupTypeDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+            <Publish Dialog="SetupTypeDlg" Control="TypicalButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="SetupTypeDlg" Control="CustomButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+            <Publish Dialog="SetupTypeDlg" Control="CompleteButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      -->
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="1">WixUI_InstallMode = "Change"</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg" Order="2">WixUI_InstallMode = "InstallCustom"</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="SelectDbDlg" Order="1"><![CDATA[(&XERP.Database = 3) AND NOT (!XERP.Database = 3)]]></Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="PoolSettingsDlg" Order="2"><![CDATA[NOT ((&XERP.Database = 3) AND NOT (!XERP.Database = 3))]]></Publish>
+
+      <Publish Dialog="SelectDbDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+      <Publish Dialog="SelectDbDlg" Control="Next" Event="NewDialog" Value="DatabaseNameDlg">1</Publish>
+
+      <Publish Dialog="DatabaseNameDlg" Control="Back" Event="NewDialog" Value="SelectDbDlg">1</Publish>
+      <Publish Dialog="DatabaseNameDlg" Control="Next" Event="NewDialog" Value="DbCreateCredDlg">1</Publish>
+
+      <Publish Dialog="DbCreateCredDlg" Control="Back" Event="NewDialog" Value="DatabaseNameDlg">1</Publish>
+      <Publish Dialog="DbCreateCredDlg" Control="Next" Event="NewDialog" Value="PoolSettingsDlg">1</Publish>
+
+      <Publish Dialog="PoolSettingsDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="1"><![CDATA[WixUI_InstallMode = "InstallCustom" AND NOT ((&XERP.Database = 3) AND NOT (!XERP.Database = 3))]]></Publish>
+      <Publish Dialog="PoolSettingsDlg" Control="Back" Event="NewDialog" Value="DbCreateCredDlg" Order="2"><![CDATA[WixUI_InstallMode = "InstallCustom" AND ((&XERP.Database = 3) AND NOT (!XERP.Database = 3))]]></Publish>
+      <Publish Dialog="PoolSettingsDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="PoolSettingsDlg" Order="1">WixUI_InstallMode = "InstallCustom"</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">WixUI_InstallMode = "Remove"</Publish>
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <!--
+      <Publish Dialog="MaintenanceTypeDlg" Control="ChangeButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      -->
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+
+    </UI>
+
+  </Fragment>
+</Wix>

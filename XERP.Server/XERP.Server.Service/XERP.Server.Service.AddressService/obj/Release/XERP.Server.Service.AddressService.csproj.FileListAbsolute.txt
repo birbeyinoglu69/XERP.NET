@@ -1,5 +1,5 @@
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.AddressService.dll
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.AddressService.pdb
-C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\obj\Release\ResolveAssemblyReference.cache
 C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\obj\Release\XERP.Server.Service.AddressService.dll
 C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\obj\Release\XERP.Server.Service.AddressService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.AddressService\obj\Release\XERP.Server.Service.AddressService.csprojResolveAssemblyReference.cache

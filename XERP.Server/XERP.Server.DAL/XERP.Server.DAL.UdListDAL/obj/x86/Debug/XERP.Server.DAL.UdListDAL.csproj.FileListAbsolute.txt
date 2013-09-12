@@ -1,5 +1,5 @@
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.UdListDAL.dll
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.UdListDAL.pdb
-C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.UdListDAL\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.UdListDAL\obj\x86\Debug\XERP.Server.DAL.UdListDAL.dll
 C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.UdListDAL\obj\x86\Debug\XERP.Server.DAL.UdListDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.UdListDAL\obj\x86\Debug\XERP.Server.DAL.UdListDAL.csprojResolveAssemblyReference.cache
