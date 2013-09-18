@@ -1,0 +1,11 @@
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.Service.PlantService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.Service.PlantService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.DAL.PlantDAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.DAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.DAL.PlantDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.DAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\obj\Debug\XERP.Server.Service.PlantService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\obj\Debug\XERP.Server.Service.PlantService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.PlantService\obj\Debug\XERP.Server.Service.PlantService.csprojResolveAssemblyReference.cache

@@ -1,0 +1,16 @@
+﻿
+namespace XERP.Client.WPF.DBStoredImageMaintenance
+{//use this class to share properties amonst views, viewmodels etc...
+    public class GlobalProperties
+    {//DBStoredImageMaintenace is the exutable program that this Maintenance UI is tied to...
+        //All UI's used within this project will inherit this executableprogram's security privelages...
+        //this program name coencides with db table ExecutablPrograms...
+        //DBStoredImages are then applied to the ExecutablePrograms allotting for custom form athentication...
+        private const string _executableProgramName = "MenuIconMaintenance";
+        public string ExecutableProgramName
+        {
+            get { return _executableProgramName; }
+        } 
+
+    }
+}

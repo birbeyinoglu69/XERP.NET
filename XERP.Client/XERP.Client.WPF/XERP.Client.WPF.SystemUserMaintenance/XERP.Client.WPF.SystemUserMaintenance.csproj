@@ -15,6 +15,10 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -185,9 +189,21 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.AddressDomain\XERP.Domain.AddressDomain.csproj">
+      <Project>{EDEFF0B3-FD25-4A61-B90F-B0FF54F88F48}</Project>
+      <Name>XERP.Domain.AddressDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.CompanyDomain\XERP.Domain.CompanyDomain.csproj">
+      <Project>{0875BF6D-613C-4399-8ECE-99E582F5FAE8}</Project>
+      <Name>XERP.Domain.CompanyDomain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.csproj">
       <Project>{37A9326D-E256-4081-A7C8-D8CE855CFD4F}</Project>
       <Name>XERP.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.PlantDomain\XERP.Domain.PlantDomain.csproj">
+      <Project>{0824CE4D-2DE2-4DEE-B548-04C0DB37FADA}</Project>
+      <Name>XERP.Domain.PlantDomain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.SystemUserDomain\XERP.Domain.SystemUserDomain.csproj">
       <Project>{7139617B-FD8C-4D94-BD9F-08FDC3B785BD}</Project>
@@ -201,6 +217,14 @@
       <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
       <Name>XERP.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.AddressMaintenance\XERP.Client.WPF.AddressMaintenance.csproj">
+      <Project>{BDDC0122-946B-4A4C-8502-A3DFE2397D55}</Project>
+      <Name>XERP.Client.WPF.AddressMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.CompanyMaintenance\XERP.Client.WPF.CompanyMaintenance.csproj">
+      <Project>{13F89664-A2A4-4E1A-9566-F8BCFD49DA24}</Project>
+      <Name>XERP.Client.WPF.CompanyMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.csproj">
       <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
       <Name>XERP.Client.WPF</Name>
@@ -208,6 +232,10 @@
     <ProjectReference Include="..\XERP.Client.WPF.LogIn\XERP.Client.WPF.LogIn.csproj">
       <Project>{6201296D-4907-46E1-A57E-A2357B0AF04C}</Project>
       <Name>XERP.Client.WPF.LogIn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.PlantMaintenance\XERP.Client.WPF.PlantMaintenance.csproj">
+      <Project>{0D34ECF1-C423-453D-8FC3-65797F62812C}</Project>
+      <Name>XERP.Client.WPF.PlantMaintenance</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -123,7 +123,7 @@ namespace XERP.Domain.MenuSecurityDomain
                 context.IgnoreResourceNotFoundException = true;
                 ExecutableProgramType deletedExecutableProgramType = (from q in context.ExecutableProgramTypes
                                           where q.ExecutableProgramTypeID == executableProgramType.ExecutableProgramTypeID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedExecutableProgramType != null)
                 {
                     context.DeleteObject(deletedExecutableProgramType);

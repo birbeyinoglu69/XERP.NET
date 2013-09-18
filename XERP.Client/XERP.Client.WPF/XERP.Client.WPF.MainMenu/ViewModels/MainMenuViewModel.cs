@@ -138,12 +138,12 @@ namespace XERP.Client.WPF.MainMenu.ViewModels
 
         private MenuItem GetMenuItemByID(string menuItemID, string companyID)
         {
-            return _serviceAgent.GetMenuItemByID(menuItemID, companyID).SingleOrDefault();
+            return _serviceAgent.GetMenuItemByID(menuItemID, companyID).FirstOrDefault();
         }
 
         private MenuItem GetMenuItemByAutoID(Int64 autoID)
         {
-            return _serviceAgent.GetMenuItemByAutoID(autoID).SingleOrDefault();
+            return _serviceAgent.GetMenuItemByAutoID(autoID).FirstOrDefault();
         }
 
         public void TreeNestedMenuItemChanged(object SelectedItem)

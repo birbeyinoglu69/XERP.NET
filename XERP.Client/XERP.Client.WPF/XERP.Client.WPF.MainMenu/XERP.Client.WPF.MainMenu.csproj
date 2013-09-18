@@ -15,6 +15,10 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -36,13 +40,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="SimpleMvvmToolkit-WPF, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=0.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\XERPClientBuild\Bin\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleMvvmToolkit-WPF, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\XERPClientBuild\bin\SimpleMvvmToolkit-WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\XERPClientBuild\Bin\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -126,6 +138,10 @@
       <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
       <Name>XERP.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\XERP.Client.WPF.WarehouseLocationBinMaintenance\XERP.Client.WPF.WarehouseLocationBinMaintenance.csproj">
+      <Project>{15B7CF57-9423-4753-A5AF-043DE63F51C6}</Project>
+      <Name>XERP.Client.WPF.WarehouseLocationBinMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.AddressMaintenance\XERP.Client.WPF.AddressMaintenance.csproj">
       <Project>{BDDC0122-946B-4A4C-8502-A3DFE2397D55}</Project>
       <Name>XERP.Client.WPF.AddressMaintenance</Name>
@@ -138,6 +154,10 @@
       <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
       <Name>XERP.Client.WPF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.DBStoredImageMaintenance\XERP.Client.WPF.DBStoredImageMaintenance.csproj">
+      <Project>{5184D2A5-D479-41D0-B44B-6737C1CD7D84}</Project>
+      <Name>XERP.Client.WPF.DBStoredImageMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.ExecutableProgramMaintenance\XERP.Client.WPF.ExecutableProgramMaintenance.csproj">
       <Project>{62FFC372-7274-4698-A4C5-746A335D40FD}</Project>
       <Name>XERP.Client.WPF.ExecutableProgramMaintenance</Name>
@@ -145,6 +165,10 @@
     <ProjectReference Include="..\XERP.Client.WPF.MenuItemMaintenance\XERP.Client.WPF.MenuItemMaintenance.csproj">
       <Project>{33B25FE5-045E-4747-B06D-608FE08B9ABA}</Project>
       <Name>XERP.Client.WPF.MenuItemMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.PlantMaintenance\XERP.Client.WPF.PlantMaintenance.csproj">
+      <Project>{0D34ECF1-C423-453D-8FC3-65797F62812C}</Project>
+      <Name>XERP.Client.WPF.PlantMaintenance</Name>
     </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.SecurityGroupMaintenance\XERP.Client.WPF.SecurityGroupMaintenance.csproj">
       <Project>{B49BF76D-C8BD-4C20-B3C1-23648B73F603}</Project>
@@ -157,6 +181,14 @@
     <ProjectReference Include="..\XERP.Client.WPF.UdListMaintenance\XERP.Client.WPF.UdListMaintenance.csproj">
       <Project>{02B6109A-F0EE-4D36-A0AA-795D1E112DDE}</Project>
       <Name>XERP.Client.WPF.UdListMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.WarehouseLocationMaintenance\XERP.Client.WPF.WarehouseLocationMaintenance.csproj">
+      <Project>{AA1E77C6-28E1-4565-BE91-7B77DCB60406}</Project>
+      <Name>XERP.Client.WPF.WarehouseLocationMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.WarehouseMaintenance\XERP.Client.WPF.WarehouseMaintenance.csproj">
+      <Project>{CB867003-A9C0-49F5-97A2-228415C76ADB}</Project>
+      <Name>XERP.Client.WPF.WarehouseMaintenance</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

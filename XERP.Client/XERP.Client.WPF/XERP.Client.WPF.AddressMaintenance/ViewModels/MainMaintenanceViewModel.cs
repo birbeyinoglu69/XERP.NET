@@ -414,7 +414,7 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedAddress.AddressID))
             {//check to see if key is part of the current companylist...
                 Address query = AddressList.Where(company => company.AddressID == SelectedAddress.AddressID &&
-                                                        company.AutoID != SelectedAddress.AutoID).SingleOrDefault();
+                                                        company.AutoID != SelectedAddress.AutoID).FirstOrDefault();
                 if (query != null)
                 {//revert it back
                     SelectedAddress.AddressID = SelectedAddressMirror.AddressID;
@@ -611,7 +611,7 @@ namespace XERP.Client.WPF.AddressMaintenance.ViewModels
                 AddressList = new BindingList<Address>(_serviceAgent.RefreshAddress(autoIDs).ToList());
                 SelectedAddress = (from q in AddressList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

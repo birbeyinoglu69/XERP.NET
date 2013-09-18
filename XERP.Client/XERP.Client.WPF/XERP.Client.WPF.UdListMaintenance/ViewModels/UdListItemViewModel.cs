@@ -133,8 +133,8 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                     {
                         if( SelectedUdList != null && SelectedUdList.UdListItems != null && SelectedUdList.UdListItems.Count > 0)
                         {//set the tree selection property that is bound by the list...
-                            var udListItem = UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).SingleOrDefault().UdListItems.
-                                Where(q => q.AutoID == value.AutoID).SingleOrDefault();
+                            var udListItem = UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).FirstOrDefault().UdListItems.
+                                Where(q => q.AutoID == value.AutoID).FirstOrDefault();
                             //if the selection came from the UdListItem Datagrid we need to cordinate
                             //it to the same selected child in the treeview...
                             if(UdListItemIsSelected)
@@ -425,7 +425,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             udListItem.IsValid = 1;
             udListItem.NotValidMessage = "New Record Key Field/s Required.";
             udListItem.CompanyID = ClientSessionSingleton.Instance.CompanyID;
-            UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).SingleOrDefault().UdListItems.Add(udListItem);
+            UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).FirstOrDefault().UdListItems.Add(udListItem);
             _serviceAgent.AddToUdListRepository(udListItem);
             SelectedUdListItem = SelectedUdList.UdListItems.LastOrDefault();
             AllowEditUdListItem = true;
@@ -483,7 +483,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 if (i > ii)
                     ii = i;
                 Delete(udListItem);
-                UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).SingleOrDefault().UdListItems.Remove(udListItem);
+                UdListList.Where(q => q.AutoID == SelectedUdList.AutoID).FirstOrDefault().UdListItems.Remove(udListItem);
             }
 
             if (UdListList != null && SelectedUdList != null && SelectedUdList.UdListItems.Count > 0)

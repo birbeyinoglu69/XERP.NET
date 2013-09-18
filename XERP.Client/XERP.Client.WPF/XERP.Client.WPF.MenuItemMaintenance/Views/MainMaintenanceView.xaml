@@ -7,7 +7,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             d:DesignHeight="600" d:DesignWidth="600"
+             d:DesignHeight="600" d:DesignWidth="650"
              IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
              PreviewKeyUp="UserControl_PreviewKeyUp">
     <UserControl.Resources>
@@ -61,7 +61,7 @@
             Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <Menu Style="{StaticResource BaseMenu}"
-                IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="250" Height="20" 
                 VerticalAlignment="Top" HorizontalAlignment="Left">
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
@@ -263,26 +263,26 @@
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedMenuItem.MenuItemID, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding MenuItemMaxFieldValueDictionary[MenuItemID]}" 
                             KeyboardNavigation.TabIndex="10" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedMenuItem.Name, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding MenuItemMaxFieldValueDictionary[Name]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedMenuItem.Description, Mode=TwoWay}"
                             MaxLength= "{Binding MenuItemMaxFieldValueDictionary[Description]}" 
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
                             
                         </TextBox>
                         <ComboBox  Style="{StaticResource BaseComboBox}"
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=MenuItemTypeList, Mode=TwoWay}"
                             DisplayMemberPath="Type"
                             SelectedValue="{Binding Path=SelectedMenuItem.MenuItemTypeID, Mode=TwoWay}"
@@ -308,7 +308,7 @@
                             </ComboBox.ContextMenu>
                         </ComboBox>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=MenuItemCodeList, Mode=TwoWay}"
                             DisplayMemberPath="Code"
                             SelectedValue="{Binding Path=SelectedMenuItem.MenuItemCodeID, Mode=TwoWay}"
@@ -338,7 +338,7 @@
                                   KeyboardNavigation.TabIndex="60">
                         </CheckBox>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=DBStroredImageList, Mode=TwoWay}"
                             DisplayMemberPath="Description"
                             SelectedValue="{Binding Path=SelectedMenuItem.ImageID, Mode=TwoWay}"
@@ -354,7 +354,7 @@
                             </ComboBox.ContextMenu>
                         </ComboBox>
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedMenuItem.DisplayOrder, Mode=TwoWay}"
                             MaxLength= "20" 
                             KeyboardNavigation.TabIndex="80" BorderBrush="DimGray"/>
@@ -363,7 +363,7 @@
                                   KeyboardNavigation.TabIndex="90">
                         </CheckBox>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=ExecutableProgramList, Mode=TwoWay}"
                             DisplayMemberPath="Name"
                             SelectedValue="{Binding Path=SelectedMenuItem.ExecutableProgramID, Mode=TwoWay}"
@@ -397,7 +397,7 @@
                         <RowDefinition Height="20"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition Width="250"></ColumnDefinition>
                         <ColumnDefinition Width="50"></ColumnDefinition>
                         <ColumnDefinition Width="200*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>

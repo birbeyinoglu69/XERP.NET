@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="XERPModelStoreContainer" CdmEntityContainer="WarehouseEntities">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="XERPModel.Address">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+          <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="XERPModel.Company">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+          <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+          <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+          <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+          <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+          <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+          <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plants">
+      <EntityTypeMapping TypeName="XERPModel.Plant">
+        <MappingFragment StoreEntitySet="Plants">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DefaultPlant" ColumnName="DefaultPlant" />
+          <ScalarProperty Name="PlantTypeID" ColumnName="PlantTypeID" />
+          <ScalarProperty Name="PlantCodeID" ColumnName="PlantCodeID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UdListItems">
+      <EntityTypeMapping TypeName="XERPModel.UdListItem">
+        <MappingFragment StoreEntitySet="UdListItems">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+          <ScalarProperty Name="UdListItemID" ColumnName="UdListItemID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UdLists">
+      <EntityTypeMapping TypeName="XERPModel.UdList">
+        <MappingFragment StoreEntitySet="UdLists">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseCodes">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseCode">
+        <MappingFragment StoreEntitySet="WarehouseCodes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="WarehouseCodeID" ColumnName="WarehouseCodeID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseLocationBinCodes">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseLocationBinCode">
+        <MappingFragment StoreEntitySet="WarehouseLocationBinCodes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="WarehouseLocationBinCodeID" ColumnName="WarehouseLocationBinCodeID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseLocationBins">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseLocationBin">
+        <MappingFragment StoreEntitySet="WarehouseLocationBins">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="WarehouseLocationID" ColumnName="WarehouseLocationID" />
+          <ScalarProperty Name="WarehouseLocationBinID" ColumnName="WarehouseLocationBinID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DefaultBin" ColumnName="DefaultBin" />
+          <ScalarProperty Name="WarehouseLocationBinTypeID" ColumnName="WarehouseLocationBinTypeID" />
+          <ScalarProperty Name="WarehouseLocationBinCodeID" ColumnName="WarehouseLocationBinCodeID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseLocationBinTypes">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseLocationBinType">
+        <MappingFragment StoreEntitySet="WarehouseLocationBinTypes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="WarehouseLocationBinTypeID" ColumnName="WarehouseLocationBinTypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseLocationCodes">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseLocationCode">
+        <MappingFragment StoreEntitySet="WarehouseLocationCodes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="WarehouseLocationCodeID" ColumnName="WarehouseLocationCodeID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseLocations">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseLocation">
+        <MappingFragment StoreEntitySet="WarehouseLocations">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="WarehouseLocationID" ColumnName="WarehouseLocationID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DefaultLocation" ColumnName="DefaultLocation" />
+          <ScalarProperty Name="WarehouseLocationTypeID" ColumnName="WarehouseLocationTypeID" />
+          <ScalarProperty Name="WarehouseLocationCodeID" ColumnName="WarehouseLocationCodeID" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseLocationTypes">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseLocationType">
+        <MappingFragment StoreEntitySet="WarehouseLocationTypes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="WarehouseLocationTypeID" ColumnName="WarehouseLocationTypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warehouses">
+      <EntityTypeMapping TypeName="XERPModel.Warehouse">
+        <MappingFragment StoreEntitySet="Warehouses">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DefaultWarehouse" ColumnName="DefaultWarehouse" />
+          <ScalarProperty Name="WarehouseTypeID" ColumnName="WarehouseTypeID" />
+          <ScalarProperty Name="WarehouseCodeID" ColumnName="WarehouseCodeID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseTypes">
+      <EntityTypeMapping TypeName="XERPModel.WarehouseType">
+        <MappingFragment StoreEntitySet="WarehouseTypes">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="WarehouseTypeID" ColumnName="WarehouseTypeID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+          <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temps">
+      <EntityTypeMapping TypeName="XERPModel.Temp">
+        <MappingFragment StoreEntitySet="Temp">
+          <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
+          <ScalarProperty Name="Int_1" ColumnName="Int_1" />
+          <ScalarProperty Name="ShortChar_1" ColumnName="ShortChar_1" />
+          <ScalarProperty Name="Bool_1" ColumnName="Bool_1" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

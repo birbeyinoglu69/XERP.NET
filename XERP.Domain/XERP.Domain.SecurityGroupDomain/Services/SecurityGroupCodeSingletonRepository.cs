@@ -125,7 +125,7 @@ namespace XERP.Domain.SecurityGroupDomain.Services
                 context.IgnoreResourceNotFoundException = true;
                 SecurityGroupCode deletedSecurityGroupCode = (from q in context.SecurityGroupCodes
                                           where q.SecurityGroupCodeID == itemCode.SecurityGroupCodeID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedSecurityGroupCode != null)
                 {
                     context.DeleteObject(deletedSecurityGroupCode);

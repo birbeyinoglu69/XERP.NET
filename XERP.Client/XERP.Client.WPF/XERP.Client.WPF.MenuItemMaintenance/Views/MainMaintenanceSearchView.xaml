@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-            d:DesignHeight="600" d:DesignWidth="600"
+            d:DesignHeight="600" d:DesignWidth="650"
              IsEnabled="{Binding Path=FormIsEnabled}">
     <Grid Style="{StaticResource BaseGrid}">
         <Grid.RowDefinitions>
@@ -36,16 +36,16 @@
         </StackPanel>
         <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="1" Grid.Column="1" 
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
-            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="200"
+            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="250"
                                  Text="{Binding Path=SearchObject.Name}"/>
-            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="200"
+            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="250"
                                  Text="{Binding Path=SearchObject.Description}"/>
-            <ComboBox Style="{StaticResource BaseComboBox}" Width="200" Margin="5"
+            <ComboBox Style="{StaticResource BaseComboBox}" Width="250" Margin="5"
                               ItemsSource="{Binding Path=MenuItemTypeList, Mode=TwoWay}"
                               DisplayMemberPath="Type"
                               SelectedValue="{Binding Path=SearchObject.MenuItemTypeID, Mode=TwoWay}"
                               SelectedValuePath="MenuItemTypeID"/>
-            <ComboBox Style="{StaticResource BaseComboBox}" Width="200" Margin="5"
+            <ComboBox Style="{StaticResource BaseComboBox}" Width="250" Margin="5"
                               ItemsSource="{Binding Path=MenuItemCodeList, Mode=TwoWay}"
                               DisplayMemberPath="Code"
                               SelectedValue="{Binding Path=SearchObject.MenuItemCodeID, Mode=TwoWay}"

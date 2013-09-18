@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             d:DesignHeight="600" d:DesignWidth="600"
+             d:DesignHeight="600" d:DesignWidth="800"
              IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
              PreviewKeyUp="UserControl_PreviewKeyUp">
 
@@ -26,7 +26,7 @@
             Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <Menu Style="{StaticResource BaseMenu}"
-                IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="250" Height="20" 
                 VerticalAlignment="Top" HorizontalAlignment="Left">
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
@@ -225,7 +225,7 @@
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
                             <Button Style="{StaticResource BaseButton}" Content="Address..." Width="108" Height="25" Margin="10" 
-                            KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
+                            KeyboardNavigation.IsTabStop="False" >
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <ei:CallMethodAction
@@ -294,93 +294,93 @@
                             Grid.Row="1" Grid.Column="1"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                             Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
-                            <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Name, Mode=TwoWay, TargetNullValue=''}"
                                 IsEnabled="{Binding AllowEdit}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Name]}" 
                                 KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Description, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Description]}" 
                                 KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Address1, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Address1]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="40" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Address2, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Address2]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="50" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Address3, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Address3]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="60" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.City, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[City]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="70" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.State, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[State]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="80" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Zip, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Zip]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="90" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Country, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Country]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="100" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.PhoneNum, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[PhoneNum]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="110" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.PhoneNum2, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[PhoneNum2]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="120" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.FaxNum, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[FaxNum]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="130" BorderBrush="DimGray">
                            </TextBox>
                            <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Email, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Email]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray">
+                                KeyboardNavigation.TabIndex="140" BorderBrush="DimGray">
                             </TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Email2, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Email2]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                                KeyboardNavigation.TabIndex="150" BorderBrush="DimGray"></TextBox>
                             <TextBox Style="{StaticResource BaseTextBox}" AcceptsReturn="True" TextWrapping="Wrap"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedAddress.Notes, Mode=TwoWay}"
                                 MaxLength= "{Binding AddressMaxFieldValueDictionary[Notes]}" 
-                                KeyboardNavigation.TabIndex="30" BorderBrush="DimGray" Height="41">
+                                KeyboardNavigation.TabIndex="160" BorderBrush="DimGray" Height="41">
                             </TextBox>
                         </StackPanel>
                     </Grid>
@@ -412,13 +412,39 @@
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding AddressID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                    Header="ID" Width="*">
+                                    Header="ID" Width="80">
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                    Header="Name" Width="*">
+                                    Header="Name" Width="80">
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                Header="Description" Width="*"/>
+                                Header="Description" Width="100"/>
+                            <DataGridTextColumn Binding="{Binding Address1, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Address1" Width="100"/>
+                            <DataGridTextColumn Binding="{Binding Address2, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Address2" Width="100"/>
+                            <DataGridTextColumn Binding="{Binding Address3, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Address3" Width="100"/>
+                            <DataGridTextColumn Binding="{Binding City, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="City" Width="100"/>
+                            <DataGridTextColumn Binding="{Binding State, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="State" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding Zip, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Zip" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Country" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding PhoneNum, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="PhoneNum" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding PhoneNum2, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="PhoneNum2" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding FaxNum, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="FaxNum" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Email" Width="100"/>
+                            <DataGridTextColumn Binding="{Binding Email2, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Email2" Width="100"/>
+                            <DataGridTextColumn Binding="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Notes" Width="100"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox Style="{StaticResource BaseTextBox}" Name="ghost2" Grid.Column="2" 

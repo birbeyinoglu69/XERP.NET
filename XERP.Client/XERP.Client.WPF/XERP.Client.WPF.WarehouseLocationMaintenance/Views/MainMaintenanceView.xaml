@@ -1,0 +1,481 @@
+﻿<UserControl x:Class="XERP.Client.WPF.WarehouseLocationMaintenance.Views.MainMaintenanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             d:DesignHeight="600" d:DesignWidth="650"
+             IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
+             PreviewKeyUp="UserControl_PreviewKeyUp">
+
+    <Grid Style="{StaticResource BaseGrid}">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="50"></RowDefinition>
+          <RowDefinition Height="550*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="156"></ColumnDefinition>
+          <ColumnDefinition Width="422*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource BaseHeader}"
+            HorizontalAlignment="Left" Grid.Column="1" Text="Warehouse Location Maintenance Form"
+            FontSize="13" Margin="138,10,0,5" >
+        </TextBlock>
+        <StackPanel Style="{StaticResource BaseStackPanel}"
+            Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
+            HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Menu Style="{StaticResource BaseMenu}"
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="250" Height="20" 
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
+                        <MenuItem Style="{StaticResource BaseMenuItem}" Name="mnuNewWarehouseLocation" 
+                                  Header="_New WarehouseLocation" IsEnabled="{Binding AllowNew}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="NewWarehouseLocationCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}"  Header="_Save" Name="mnuSave"
+                              Click="SaveMenuItem_Click" >
+                        
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete" >
+                        <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete WarehouseLocation" 
+                                  IsEnabled="{Binding AllowDelete}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="DeleteWarehouseLocationCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Exit" 
+                              Command="Close"/>
+                </MenuItem>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Edit">
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Clear">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="ClearCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Refresh">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="RefreshCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Cut" 
+                              Command="Cut"/>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Copy" 
+                              Command="Copy"/>
+                    <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Paste" 
+                              Command="Paste"/>
+                </MenuItem>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Tools"/>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Actions"/>
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Help"/>        
+            </Menu>
+            <Menu  Style="{StaticResource BaseMenu}"
+                IsMainMenu="True"  Width="270" Height="30" KeyboardNavigation.IsTabStop="False" 
+                VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}">
+            <MenuItem Style="{StaticResource AddNewMenuItem}" Padding="0">
+                <MenuItem Header="_New WarehouseLocation" 
+                          IsEnabled="{Binding AllowNew}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction
+                        TargetObject="{Binding}"
+                        MethodName="NewWarehouseLocationCommand"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}"
+                Click="SaveMenuItem_Click" >
+                <MenuItem.Header>
+                    <Button Style="{StaticResource SaveButton}" Click="SaveMenuItem_Click">
+                        
+                    </Button>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource DeleteMenuItem}" Padding="0">
+                <MenuItem Style="{StaticResource BaseMenuItem}" Header="_Delete WarehouseLocation" 
+                          IsEnabled="{Binding AllowDelete}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction
+                            TargetObject="{Binding}"
+                            MethodName="DeleteWarehouseLocationCommand"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+            </MenuItem>
+                <MenuItem Style="{StaticResource BaseMenuItem}">
+                    <MenuItem.Header>
+                        <Button Style="{StaticResource ClearButton}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction
+                                    TargetObject="{Binding}"
+                                    MethodName="ClearCommand"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}">
+                <MenuItem.Header>
+                    <Button Style="{StaticResource RefreshButton}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:CallMethodAction
+                                TargetObject="{Binding}"
+                                MethodName="RefreshCommand"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}" >
+                <MenuItem.Header>
+                    <Button Style="{StaticResource CutButton}" Command="Cut"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Style="{StaticResource BaseMenuItem}">
+                <MenuItem.Header>
+                    <Button Style="{StaticResource CopyButton}" Command="Copy"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem  Style="{StaticResource BaseMenuItem}">
+                <MenuItem.Header>
+                    <Button Style="{StaticResource PasteButton}" Command="Paste"/>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        </StackPanel>
+        <GridSplitter Style="{StaticResource BaseVerticalGridSplitter}" Grid.Row="1" Grid.Column="0"/>
+        <ListBox Style="{StaticResource BaseListBox}" Grid.Row="1" Grid.Column="0" 
+            ItemsSource="{Binding WarehouseLocationList}"
+            SelectedItem="{Binding SelectedWarehouseLocation}"
+            SelectionMode="Single">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="16" Width="16">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="{x:Null}">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="0">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/valid.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="1">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/error.ico" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=IsValid}" Value="2">
+                                                <Setter Property="Image.Source" Value="/XERP.Client;component/Resources/flag2.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Text="{Binding Path=WarehouseLocationID}" >
+                            </TextBlock>
+                            <TextBlock Width="0"
+                                Text="{Binding Path=IsValid}" Visibility="Hidden">
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource BaseErrorBlock}" Height="Auto"
+                                       Text="{Binding Path = NotValidMessage}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+        <TabControl Style="{StaticResource BaseTabControl}" Name="tabctrlMain" Grid.Column="1" Grid.Row="1">
+            <TabItem  Style="{StaticResource BaseTabItem}" Name="tabDetail" Header="Detail">
+                <Grid Style="{StaticResource BaseGrid}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="46"></RowDefinition>
+                        <RowDefinition Height="657*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="171"></ColumnDefinition>
+                        <ColumnDefinition Width="246*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="0" 
+                        Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" Orientation="Horizontal" >
+                        <Button Style="{StaticResource BaseButton}" Content="Warehouse Location..." Width="145" Height="25" Margin="10" 
+                            KeyboardNavigation.IsTabStop="False">
+                          <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                              <ei:CallMethodAction
+                                      TargetObject="{Binding}"
+                                      MethodName="SearchCommand"/>
+                            </i:EventTrigger>
+                          </i:Interaction.Triggers>
+                        </Button>
+                        <TextBox Style="{StaticResource BaseTextBox}"  Width="251" Height="20" 
+                            Text="{Binding Path=SelectedWarehouseLocation.WarehouseLocationID, Mode=TwoWay}"
+                            MaxLength= "{Binding WarehouseLocationMaxFieldValueDictionary[WarehouseLocationID]}" 
+                            KeyboardNavigation.TabIndex="10" Name="txtKey"></TextBox>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource BaseStackPanel}"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Plant:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Warehouse:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Name:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Description:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Type:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Code:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Default Location:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Active:
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource BaseTextBlock}"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">Notes:
+                        </TextBlock>
+                        <TextBox Style="{StaticResource BaseTextBox}" 
+                            Width="0" Height="0"  Name="ghost"  KeyboardNavigation.IsTabStop="False"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource BaseStackPanel}"
+                        Grid.Row="1" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
+                            Text="{Binding Path=SelectedWarehouseLocation.Warehouse.Plant.Name, Mode=TwoWay, TargetNullValue=''}"
+                            IsEnabled='false' Background="White" BorderBrush="DimGray" IsTabStop="False"/>
+                        <ComboBox  Style="{StaticResource BaseComboBox}"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
+                            ItemsSource="{Binding Path=WarehouseList, Mode=TwoWay}"
+                            DisplayMemberPath="Name"
+                            SelectedValue="{Binding Path=SelectedWarehouseLocation.WarehouseID, Mode=TwoWay}"
+                            SelectedValuePath="WarehouseID" KeyboardNavigation.TabIndex="40" BorderBrush="DimGray">
+                            <ComboBox.ContextMenu>
+                                <ContextMenu Style="{StaticResource BaseContextMenu}">
+                                    <ContextMenu.Items>
+                                        <MenuItem Style="{StaticResource BaseMenuItem}" 
+                                            Header="Open Warehouse Maintenance" 
+                                            Click="OpenWarehouseMaintenance_Click" />
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ComboBox.ContextMenu>
+                        </ComboBox>
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
+                            Text="{Binding Path=SelectedWarehouseLocation.Name, Mode=TwoWay, TargetNullValue=''}"
+                            IsEnabled="{Binding AllowEdit}"
+                            MaxLength= "{Binding WarehouseLocationMaxFieldValueDictionary[Name]}" 
+                            KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
+                        <TextBox Style="{StaticResource BaseTextBox}"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
+                            Text="{Binding Path=SelectedWarehouseLocation.Description, Mode=TwoWay}"
+                            MaxLength= "{Binding WarehouseLocationMaxFieldValueDictionary[Description]}" 
+                            KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
+                        <ComboBox  Style="{StaticResource BaseComboBox}"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
+                            ItemsSource="{Binding Path=WarehouseLocationTypeList, Mode=TwoWay}"
+                            DisplayMemberPath="Type"
+                            SelectedValue="{Binding Path=SelectedWarehouseLocation.WarehouseLocationTypeID, Mode=TwoWay}"
+                            SelectedValuePath="WarehouseLocationTypeID" KeyboardNavigation.TabIndex="40" BorderBrush="DimGray">
+                            <ComboBox.ContextMenu>
+                                <ContextMenu Style="{StaticResource BaseContextMenu}">
+                                    <ContextMenu.Items>
+                                        <MenuItem Style="{StaticResource BaseMenuItem}" 
+                                            Header="Open Type Maintenance" 
+                                            Click="OpenTypeMaintenance_Click" />
+                                        <MenuItem Style="{StaticResource BaseMenuItem}"
+                                            Header="Search Type">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <ei:CallMethodAction
+                                                        TargetObject="{Binding}"
+                                                        MethodName="TypeSearchCommand"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </MenuItem>
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ComboBox.ContextMenu>
+                        </ComboBox>
+                        <ComboBox Style="{StaticResource BaseComboBox}" 
+                            HorizontalAlignment="Left" Width="250" Margin="5"
+                            ItemsSource="{Binding Path=WarehouseLocationCodeList, Mode=TwoWay}"
+                            DisplayMemberPath="Code"
+                            SelectedValue="{Binding Path=SelectedWarehouseLocation.WarehouseLocationCodeID, Mode=TwoWay}"
+                            SelectedValuePath="WarehouseLocationCodeID" KeyboardNavigation.TabIndex="50" BorderBrush="DimGray">
+                            <ComboBox.ContextMenu>
+                                <ContextMenu Style="{StaticResource BaseContextMenu}">
+                                    <ContextMenu.Items>
+                                        <MenuItem Style="{StaticResource BaseMenuItem}" 
+                                            Header="Open Code Maintenance" 
+                                            Click="OpenCodeMaintenance_Click" />
+                                        <MenuItem Style="{StaticResource BaseMenuItem}"
+                                            Header="Search Code">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <ei:CallMethodAction
+                                                        TargetObject="{Binding}"
+                                                        MethodName="CodeSearchCommand"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </MenuItem>
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ComboBox.ContextMenu>
+                        </ComboBox>
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="10" 
+                                  IsChecked="{Binding SelectedWarehouseLocation.DefaultLocation}"
+                                  KeyboardNavigation.TabIndex="60">
+                        </CheckBox>
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="9" 
+                                  IsChecked="{Binding SelectedWarehouseLocation.Active}"
+                                  KeyboardNavigation.TabIndex="60">
+                        </CheckBox>
+                        <TextBox Style="{StaticResource BaseTextBox}" AcceptsReturn="True" TextWrapping="Wrap"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
+                            Text="{Binding Path=SelectedWarehouseLocation.Notes, Mode=TwoWay}"
+                            MaxLength= "{Binding WarehouseLocationMaxFieldValueDictionary[Notes]}" 
+                            KeyboardNavigation.TabIndex="70" BorderBrush="DimGray" Height="41"></TextBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Style="{StaticResource BaseTabItem}" Name="tabList" Header="List" 
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                KeyboardNavigation.IsTabStop="False">
+                <Grid Style="{StaticResource BaseGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="37*" />
+                        <ColumnDefinition Width="354*" />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Style="{StaticResource BaseDataGrid}" Name="dgMain" Grid.ColumnSpan="2" Grid.Column="1"
+                        ItemsSource="{Binding WarehouseLocationList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedWarehouseLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectionMode="Extended" Initialized="DataGrid_Initialized" 
+                        PreviewKeyUp="dgMain_PreviewKeyUp" SelectionChanged="dgMain_SelectionChanged" 
+                        PreviewKeyDown="dgMain_PreviewKeyDown" AutoGenerateColumns="False">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu >
+                                <MenuItem Header="Copy Row/s" IsEnabled="{Binding AllowRowCopy}"
+                                      Command="Copy">
+                                </MenuItem>
+                                <MenuItem Name="dgMainPasteRow" Header="Paste Row/s" IsEnabled="{Binding AllowRowPaste}" Click="dgMainPasteRow_Click">
+                                </MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding WarehouseLocationID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="ID" Width="*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="Name" Width="*">
+                            </DataGridTextColumn>
+                            <DataGridComboBoxColumn Header="Warehouse" Width="*"
+                                SelectedValueBinding ="{Binding WarehouseID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                DisplayMemberPath="Name"  
+                                SelectedValuePath="WarehouseID">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                        AncestorType={x:Type UserControl}}, Path=DataContext.WarehouseList, Mode=TwoWay, 
+                                        UpdateSourceTrigger=LostFocus}"/>
+                                        <Setter Property="IsEnabled" Value="{Binding AllowKeyEntry}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                            AncestorType={x:Type UserControl}}, Path=DataContext.WarehouseList, Mode=TwoWay, 
+                                            UpdateSourceTrigger=LostFocus}"/>
+                                        <Setter Property="IsEnabled" Value="{Binding AllowKeyEntry}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Description" Width="*"/>
+
+                            <DataGridComboBoxColumn Header="Type" Width="*"
+                                SelectedValueBinding ="{Binding WarehouseLocationTypeID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                DisplayMemberPath="Type"  
+                                SelectedValuePath="WarehouseLocationTypeID">
+                            <DataGridComboBoxColumn.ElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                        AncestorType={x:Type UserControl}}, Path=DataContext.WarehouseLocationTypeList, Mode=TwoWay, 
+                                        UpdateSourceTrigger=LostFocus}"/>
+                                </Style>
+                            </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                            AncestorType={x:Type UserControl}}, Path=DataContext.WarehouseLocationTypeList, Mode=TwoWay, 
+                                            UpdateSourceTrigger=LostFocus}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            <DataGridComboBoxColumn Header="Code" Width="*"
+                                SelectedValueBinding ="{Binding WarehouseLocationCodeID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                DisplayMemberPath="Code"  
+                                SelectedValuePath="WarehouseLocationCodeID">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                        AncestorType={x:Type UserControl}}, Path=DataContext.WarehouseLocationCodeList, Mode=TwoWay}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                            AncestorType={x:Type UserControl}}, Path=DataContext.WarehouseLocationCodeList, Mode=TwoWay}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding DefaultLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Header="Default" Width="50"/>
+                            <DataGridCheckBoxColumn Binding="{Binding Active, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Header="Active" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                Header="Notes" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox Style="{StaticResource BaseTextBox}" Name="ghost2" Grid.Column="2" 
+                        Height="0" Width="0" KeyboardNavigation.IsTabStop="False"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

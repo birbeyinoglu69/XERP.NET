@@ -13,6 +13,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -47,6 +51,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\DBStoredImageServiceAgent.cs" />
+    <Compile Include="Services\DBStoredImageSingletonRepostitory.cs" />
+    <Compile Include="Services\IDBStoredImageServiceAgent.cs" />
     <Compile Include="Services\IExecutableProgramServiceAgent.cs" />
     <Compile Include="Services\IMenuItemServiceAgent.cs" />
     <Compile Include="Services\IMenuSecurityServiceAgent.cs" />

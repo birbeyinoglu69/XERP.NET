@@ -119,7 +119,7 @@ namespace XERP.Domain.CompanyDomain.Services
                 context.IgnoreResourceNotFoundException = true;
                 CompanyCode deletedCompanyCode = (from q in context.CompanyCodes
                                           where q.CompanyCodeID == itemCode.CompanyCodeID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedCompanyCode != null)
                 {
                     context.DeleteObject(deletedCompanyCode);

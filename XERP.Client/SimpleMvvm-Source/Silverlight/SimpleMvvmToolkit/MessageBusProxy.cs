@@ -98,7 +98,7 @@ namespace SimpleMvvmToolkit
                     // Get handler with the same type
                     Handler handler = subscriptions[token]
                         .Where(h => h.EventArgsType == eventArgsType)
-                        .SingleOrDefault();
+                        .FirstOrDefault();
 
                     // If registered, remove callback from the list
                     if (handler != null) subscriptions[token].Remove(handler);

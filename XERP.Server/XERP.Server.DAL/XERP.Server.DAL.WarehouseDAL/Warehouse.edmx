@@ -1,0 +1,2078 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="XERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="XERPModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="XERPModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Companies" EntityType="XERPModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Plants" EntityType="XERPModel.Store.Plants" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Temp" EntityType="XERPModel.Store.Temp" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UdListItems" EntityType="XERPModel.Store.UdListItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UdLists" EntityType="XERPModel.Store.UdLists" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseCodes" EntityType="XERPModel.Store.WarehouseCodes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseLocationBinCodes" EntityType="XERPModel.Store.WarehouseLocationBinCodes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseLocationBins" EntityType="XERPModel.Store.WarehouseLocationBins" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseLocationBinTypes" EntityType="XERPModel.Store.WarehouseLocationBinTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseLocationCodes" EntityType="XERPModel.Store.WarehouseLocationCodes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseLocations" EntityType="XERPModel.Store.WarehouseLocations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseLocationTypes" EntityType="XERPModel.Store.WarehouseLocationTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Warehouses" EntityType="XERPModel.Store.Warehouses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WarehouseTypes" EntityType="XERPModel.Store.WarehouseTypes" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.Store.FK_Addresses_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.Store.FK_Plants_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.Store.FK_Plants_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.Store.FK_UdList_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdLists" EntitySet="UdLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.Store.FK_UdListItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.Store.FK_UdListItem_UdList">
+            <End Role="UdLists" EntitySet="UdLists" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseCode_Company" Association="XERPModel.Store.FK_WarehouseCode_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseCodes" EntitySet="WarehouseCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBinCode_Company" Association="XERPModel.Store.FK_WarehouseLocationBinCode_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationBinCodes" EntitySet="WarehouseLocationBinCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_Companies" Association="XERPModel.Store.FK_WarehouseLocationBins_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_WarehouseLocationBinCodes" Association="XERPModel.Store.FK_WarehouseLocationBins_WarehouseLocationBinCodes">
+            <End Role="WarehouseLocationBinCodes" EntitySet="WarehouseLocationBinCodes" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_WarehouseLocationBinTypes" Association="XERPModel.Store.FK_WarehouseLocationBins_WarehouseLocationBinTypes">
+            <End Role="WarehouseLocationBinTypes" EntitySet="WarehouseLocationBinTypes" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_WarehouseLocations" Association="XERPModel.Store.FK_WarehouseLocationBins_WarehouseLocations">
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBinType_Company" Association="XERPModel.Store.FK_WarehouseLocationBinType_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationBinTypes" EntitySet="WarehouseLocationBinTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationCode_Company" Association="XERPModel.Store.FK_WarehouseLocationCode_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationCodes" EntitySet="WarehouseLocationCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_Companies" Association="XERPModel.Store.FK_WarehouseLocations_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_WarehouseLocationCodes" Association="XERPModel.Store.FK_WarehouseLocations_WarehouseLocationCodes">
+            <End Role="WarehouseLocationCodes" EntitySet="WarehouseLocationCodes" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_WarehouseLocationTypes" Association="XERPModel.Store.FK_WarehouseLocations_WarehouseLocationTypes">
+            <End Role="WarehouseLocationTypes" EntitySet="WarehouseLocationTypes" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_Warehouses" Association="XERPModel.Store.FK_WarehouseLocations_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationType_Company" Association="XERPModel.Store.FK_WarehouseLocationType_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationTypes" EntitySet="WarehouseLocationTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_Addresses1" Association="XERPModel.Store.FK_Warehouses_Addresses1">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_Companies1" Association="XERPModel.Store.FK_Warehouses_Companies1">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_Plants" Association="XERPModel.Store.FK_Warehouses_Plants">
+            <End Role="Plants" EntitySet="Plants" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_WarehouseCodes" Association="XERPModel.Store.FK_Warehouses_WarehouseCodes">
+            <End Role="WarehouseCodes" EntitySet="WarehouseCodes" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_WarehouseTypes" Association="XERPModel.Store.FK_Warehouses_WarehouseTypes">
+            <End Role="WarehouseTypes" EntitySet="WarehouseTypes" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseType_Company" Association="XERPModel.Store.FK_WarehouseType_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseTypes" EntitySet="WarehouseTypes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="AddressID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum2" Type="nvarchar" MaxLength="20" />
+          <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CompanyTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="CompanyCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="StateTaxCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="TaxRegionCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="CurrentFiscalYear" Type="int" />
+          <Property Name="DefaultExecutablePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum2" Type="nvarchar" MaxLength="20" />
+          <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Plants">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultPlant" Type="bit" />
+          <Property Name="PlantTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="PlantCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Bool_1" Type="bit" />
+          <Property Name="ShortChar_1" Type="nvarchar" MaxLength="20" />
+          <Property Name="Int_1" Type="int" />
+          <Property Name="Decimal_1" Type="decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <EntityType Name="UdListItems">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+            <PropertyRef Name="UdListItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UdLists">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WarehouseCodes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseCodeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationBinCodes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationBinCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseLocationBinCodeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationBins">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+            <PropertyRef Name="WarehouseID" />
+            <PropertyRef Name="WarehouseLocationID" />
+            <PropertyRef Name="WarehouseLocationBinID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseLocationID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseLocationBinID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultBin" Type="bit" />
+          <Property Name="WarehouseLocationBinTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="WarehouseLocationBinCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationBinTypes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationBinTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseLocationBinTypeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationCodes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseLocationCodeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="WarehouseLocations">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+            <PropertyRef Name="WarehouseID" />
+            <PropertyRef Name="WarehouseLocationID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseLocationID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultLocation" Type="bit" />
+          <Property Name="WarehouseLocationTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="WarehouseLocationCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationTypes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseLocationTypeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultWarehouse" Type="bit" />
+          <Property Name="WarehouseTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="WarehouseCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="WarehouseTypes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="WarehouseTypeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Addresses_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="Addresses" Type="XERPModel.Store.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Addresses">
+          <End Role="Addresses" Type="XERPModel.Store.Addresses" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdList_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_UdList">
+          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseCode_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseCodes" Type="XERPModel.Store.WarehouseCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBinCode_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseLocationBinCodes" Type="XERPModel.Store.WarehouseLocationBinCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBinCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.Store.WarehouseLocationBins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_WarehouseLocationBinCodes">
+          <End Role="WarehouseLocationBinCodes" Type="XERPModel.Store.WarehouseLocationBinCodes" Multiplicity="0..1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.Store.WarehouseLocationBins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationBinCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinCodeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_WarehouseLocationBinTypes">
+          <End Role="WarehouseLocationBinTypes" Type="XERPModel.Store.WarehouseLocationBinTypes" Multiplicity="0..1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.Store.WarehouseLocationBins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationBinTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinTypeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_WarehouseLocations">
+          <End Role="WarehouseLocations" Type="XERPModel.Store.WarehouseLocations" Multiplicity="1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.Store.WarehouseLocationBins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+              <PropertyRef Name="WarehouseLocationID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+              <PropertyRef Name="WarehouseLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBinType_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseLocationBinTypes" Type="XERPModel.Store.WarehouseLocationBinTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBinTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationCode_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseLocationCodes" Type="XERPModel.Store.WarehouseLocationCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseLocations" Type="XERPModel.Store.WarehouseLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_WarehouseLocationCodes">
+          <End Role="WarehouseLocationCodes" Type="XERPModel.Store.WarehouseLocationCodes" Multiplicity="0..1" />
+          <End Role="WarehouseLocations" Type="XERPModel.Store.WarehouseLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationCodeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_WarehouseLocationTypes">
+          <End Role="WarehouseLocationTypes" Type="XERPModel.Store.WarehouseLocationTypes" Multiplicity="0..1" />
+          <End Role="WarehouseLocations" Type="XERPModel.Store.WarehouseLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationTypeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_Warehouses">
+          <End Role="Warehouses" Type="XERPModel.Store.Warehouses" Multiplicity="1" />
+          <End Role="WarehouseLocations" Type="XERPModel.Store.WarehouseLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationType_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseLocationTypes" Type="XERPModel.Store.WarehouseLocationTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_Addresses1">
+          <End Role="Addresses" Type="XERPModel.Store.Addresses" Multiplicity="0..1" />
+          <End Role="Warehouses" Type="XERPModel.Store.Warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_Companies1">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="Warehouses" Type="XERPModel.Store.Warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_Plants">
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="1" />
+          <End Role="Warehouses" Type="XERPModel.Store.Warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_WarehouseCodes">
+          <End Role="WarehouseCodes" Type="XERPModel.Store.WarehouseCodes" Multiplicity="0..1" />
+          <End Role="Warehouses" Type="XERPModel.Store.Warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseCodeID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_WarehouseTypes">
+          <End Role="WarehouseTypes" Type="XERPModel.Store.WarehouseTypes" Multiplicity="0..1" />
+          <End Role="Warehouses" Type="XERPModel.Store.Warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseTypeID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseType_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="WarehouseTypes" Type="XERPModel.Store.WarehouseTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XERPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WarehouseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="XERPModel.Address" />
+          <EntitySet Name="Companies" EntityType="XERPModel.Company" />
+          <EntitySet Name="Plants" EntityType="XERPModel.Plant" />
+          <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
+          <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+          <EntitySet Name="WarehouseCodes" EntityType="XERPModel.WarehouseCode" />
+          <EntitySet Name="WarehouseLocationBinCodes" EntityType="XERPModel.WarehouseLocationBinCode" />
+          <EntitySet Name="WarehouseLocationBins" EntityType="XERPModel.WarehouseLocationBin" />
+          <EntitySet Name="WarehouseLocationBinTypes" EntityType="XERPModel.WarehouseLocationBinType" />
+          <EntitySet Name="WarehouseLocationCodes" EntityType="XERPModel.WarehouseLocationCode" />
+          <EntitySet Name="WarehouseLocations" EntityType="XERPModel.WarehouseLocation" />
+          <EntitySet Name="WarehouseLocationTypes" EntityType="XERPModel.WarehouseLocationType" />
+          <EntitySet Name="Warehouses" EntityType="XERPModel.Warehouse" />
+          <EntitySet Name="WarehouseTypes" EntityType="XERPModel.WarehouseType" />
+          <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.FK_Plants_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_Addresses1" Association="XERPModel.FK_Warehouses_Addresses1">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.FK_Plants_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.FK_UdList_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdLists" EntitySet="UdLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.FK_UdListItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseCode_Company" Association="XERPModel.FK_WarehouseCode_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseCodes" EntitySet="WarehouseCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBinCode_Company" Association="XERPModel.FK_WarehouseLocationBinCode_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationBinCodes" EntitySet="WarehouseLocationBinCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_Companies" Association="XERPModel.FK_WarehouseLocationBins_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBinType_Company" Association="XERPModel.FK_WarehouseLocationBinType_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationBinTypes" EntitySet="WarehouseLocationBinTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationCode_Company" Association="XERPModel.FK_WarehouseLocationCode_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationCodes" EntitySet="WarehouseLocationCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_Companies" Association="XERPModel.FK_WarehouseLocations_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationType_Company" Association="XERPModel.FK_WarehouseLocationType_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseLocationTypes" EntitySet="WarehouseLocationTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_Companies1" Association="XERPModel.FK_Warehouses_Companies1">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseType_Company" Association="XERPModel.FK_WarehouseType_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="WarehouseTypes" EntitySet="WarehouseTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_Plants" Association="XERPModel.FK_Warehouses_Plants">
+            <End Role="Plants" EntitySet="Plants" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
+            <End Role="UdLists" EntitySet="UdLists" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_WarehouseCodes" Association="XERPModel.FK_Warehouses_WarehouseCodes">
+            <End Role="WarehouseCodes" EntitySet="WarehouseCodes" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_WarehouseLocationBinCodes" Association="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinCodes">
+            <End Role="WarehouseLocationBinCodes" EntitySet="WarehouseLocationBinCodes" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_WarehouseLocationBinTypes" Association="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinTypes">
+            <End Role="WarehouseLocationBinTypes" EntitySet="WarehouseLocationBinTypes" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocationBins_WarehouseLocations" Association="XERPModel.FK_WarehouseLocationBins_WarehouseLocations">
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+            <End Role="WarehouseLocationBins" EntitySet="WarehouseLocationBins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_WarehouseLocationCodes" Association="XERPModel.FK_WarehouseLocations_WarehouseLocationCodes">
+            <End Role="WarehouseLocationCodes" EntitySet="WarehouseLocationCodes" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_WarehouseLocationTypes" Association="XERPModel.FK_WarehouseLocations_WarehouseLocationTypes">
+            <End Role="WarehouseLocationTypes" EntitySet="WarehouseLocationTypes" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehouseLocations_Warehouses" Association="XERPModel.FK_WarehouseLocations_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="WarehouseLocations" EntitySet="WarehouseLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouses_WarehouseTypes" Association="XERPModel.FK_Warehouses_WarehouseTypes">
+            <End Role="WarehouseTypes" EntitySet="WarehouseTypes" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
+        </EntityContainer>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AddressID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Addresses" ToRole="Companies" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Addresses" ToRole="Plants" />
+          <NavigationProperty Name="Warehouses" Relationship="XERPModel.FK_Warehouses_Addresses1" FromRole="Addresses" ToRole="Warehouses" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CurrentFiscalYear" Type="Int32" />
+          <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Addresses" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Companies" ToRole="Addresses" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Companies" FromRole="Companies" ToRole="Plants" />
+          <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Companies" ToRole="UdLists" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Companies" ToRole="UdListItems" />
+          <NavigationProperty Name="WarehouseCodes" Relationship="XERPModel.FK_WarehouseCode_Company" FromRole="Companies" ToRole="WarehouseCodes" />
+          <NavigationProperty Name="WarehouseLocationBinCodes" Relationship="XERPModel.FK_WarehouseLocationBinCode_Company" FromRole="Companies" ToRole="WarehouseLocationBinCodes" />
+          <NavigationProperty Name="WarehouseLocationBins" Relationship="XERPModel.FK_WarehouseLocationBins_Companies" FromRole="Companies" ToRole="WarehouseLocationBins" />
+          <NavigationProperty Name="WarehouseLocationBinTypes" Relationship="XERPModel.FK_WarehouseLocationBinType_Company" FromRole="Companies" ToRole="WarehouseLocationBinTypes" />
+          <NavigationProperty Name="WarehouseLocationCodes" Relationship="XERPModel.FK_WarehouseLocationCode_Company" FromRole="Companies" ToRole="WarehouseLocationCodes" />
+          <NavigationProperty Name="WarehouseLocations" Relationship="XERPModel.FK_WarehouseLocations_Companies" FromRole="Companies" ToRole="WarehouseLocations" />
+          <NavigationProperty Name="WarehouseLocationTypes" Relationship="XERPModel.FK_WarehouseLocationType_Company" FromRole="Companies" ToRole="WarehouseLocationTypes" />
+          <NavigationProperty Name="Warehouses" Relationship="XERPModel.FK_Warehouses_Companies1" FromRole="Companies" ToRole="Warehouses" />
+          <NavigationProperty Name="WarehouseTypes" Relationship="XERPModel.FK_WarehouseType_Company" FromRole="Companies" ToRole="WarehouseTypes" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DefaultPlant" Type="Boolean" />
+          <Property Name="PlantTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Address" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Plants" ToRole="Addresses" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Plants_Companies" FromRole="Plants" ToRole="Companies" />
+          <NavigationProperty Name="Warehouses" Relationship="XERPModel.FK_Warehouses_Plants" FromRole="Plants" ToRole="Warehouses" />
+        </EntityType>
+        <EntityType Name="UdListItem">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+            <PropertyRef Name="UdListItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListItemID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItems" ToRole="Companies" />
+          <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItems" ToRole="UdLists" />
+        </EntityType>
+        <EntityType Name="UdList">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdLists" ToRole="Companies" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdLists" ToRole="UdListItems" />
+        </EntityType>
+        <EntityType Name="WarehouseCode">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseCodeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseCode_Company" FromRole="WarehouseCodes" ToRole="Companies" />
+          <NavigationProperty Name="Warehouses" Relationship="XERPModel.FK_Warehouses_WarehouseCodes" FromRole="WarehouseCodes" ToRole="Warehouses" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationBinCode">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationBinCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationBinCodeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseLocationBinCode_Company" FromRole="WarehouseLocationBinCodes" ToRole="Companies" />
+          <NavigationProperty Name="WarehouseLocationBins" Relationship="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinCodes" FromRole="WarehouseLocationBinCodes" ToRole="WarehouseLocationBins" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationBin">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+            <PropertyRef Name="WarehouseID" />
+            <PropertyRef Name="WarehouseLocationID" />
+            <PropertyRef Name="WarehouseLocationBinID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationBinID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DefaultBin" Type="Boolean" />
+          <Property Name="WarehouseLocationBinTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationBinCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseLocationBins_Companies" FromRole="WarehouseLocationBins" ToRole="Companies" />
+          <NavigationProperty Name="WarehouseLocationBinCode" Relationship="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinCodes" FromRole="WarehouseLocationBins" ToRole="WarehouseLocationBinCodes" />
+          <NavigationProperty Name="WarehouseLocationBinType" Relationship="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinTypes" FromRole="WarehouseLocationBins" ToRole="WarehouseLocationBinTypes" />
+          <NavigationProperty Name="WarehouseLocation" Relationship="XERPModel.FK_WarehouseLocationBins_WarehouseLocations" FromRole="WarehouseLocationBins" ToRole="WarehouseLocations" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationBinType">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationBinTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationBinTypeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseLocationBinType_Company" FromRole="WarehouseLocationBinTypes" ToRole="Companies" />
+          <NavigationProperty Name="WarehouseLocationBins" Relationship="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinTypes" FromRole="WarehouseLocationBinTypes" ToRole="WarehouseLocationBins" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationCode">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationCodeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseLocationCode_Company" FromRole="WarehouseLocationCodes" ToRole="Companies" />
+          <NavigationProperty Name="WarehouseLocations" Relationship="XERPModel.FK_WarehouseLocations_WarehouseLocationCodes" FromRole="WarehouseLocationCodes" ToRole="WarehouseLocations" />
+        </EntityType>
+        <EntityType Name="WarehouseLocation">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+            <PropertyRef Name="WarehouseID" />
+            <PropertyRef Name="WarehouseLocationID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DefaultLocation" Type="Boolean" />
+          <Property Name="WarehouseLocationTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseLocations_Companies" FromRole="WarehouseLocations" ToRole="Companies" />
+          <NavigationProperty Name="WarehouseLocationBins" Relationship="XERPModel.FK_WarehouseLocationBins_WarehouseLocations" FromRole="WarehouseLocations" ToRole="WarehouseLocationBins" />
+          <NavigationProperty Name="WarehouseLocationCode" Relationship="XERPModel.FK_WarehouseLocations_WarehouseLocationCodes" FromRole="WarehouseLocations" ToRole="WarehouseLocationCodes" />
+          <NavigationProperty Name="WarehouseLocationType" Relationship="XERPModel.FK_WarehouseLocations_WarehouseLocationTypes" FromRole="WarehouseLocations" ToRole="WarehouseLocationTypes" />
+          <NavigationProperty Name="Warehouse" Relationship="XERPModel.FK_WarehouseLocations_Warehouses" FromRole="WarehouseLocations" ToRole="Warehouses" />
+        </EntityType>
+        <EntityType Name="WarehouseLocationType">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseLocationTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseLocationTypeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseLocationType_Company" FromRole="WarehouseLocationTypes" ToRole="Companies" />
+          <NavigationProperty Name="WarehouseLocations" Relationship="XERPModel.FK_WarehouseLocations_WarehouseLocationTypes" FromRole="WarehouseLocationTypes" ToRole="WarehouseLocations" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DefaultWarehouse" Type="Boolean" />
+          <Property Name="WarehouseTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ManagerName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Address" Relationship="XERPModel.FK_Warehouses_Addresses1" FromRole="Warehouses" ToRole="Addresses" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Warehouses_Companies1" FromRole="Warehouses" ToRole="Companies" />
+          <NavigationProperty Name="Plant" Relationship="XERPModel.FK_Warehouses_Plants" FromRole="Warehouses" ToRole="Plants" />
+          <NavigationProperty Name="WarehouseCode" Relationship="XERPModel.FK_Warehouses_WarehouseCodes" FromRole="Warehouses" ToRole="WarehouseCodes" />
+          <NavigationProperty Name="WarehouseLocations" Relationship="XERPModel.FK_WarehouseLocations_Warehouses" FromRole="Warehouses" ToRole="WarehouseLocations" />
+          <NavigationProperty Name="WarehouseType" Relationship="XERPModel.FK_Warehouses_WarehouseTypes" FromRole="Warehouses" ToRole="WarehouseTypes" />
+        </EntityType>
+        <EntityType Name="WarehouseType">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="WarehouseTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="WarehouseTypeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_WarehouseType_Company" FromRole="WarehouseTypes" ToRole="Companies" />
+          <NavigationProperty Name="Warehouses" Relationship="XERPModel.FK_Warehouses_WarehouseTypes" FromRole="WarehouseTypes" ToRole="Warehouses" />
+        </EntityType>
+        <Association Name="FK_Addresses_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="Addresses" Type="XERPModel.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Addresses">
+          <End Role="Addresses" Type="XERPModel.Address" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_Addresses1">
+          <End Role="Addresses" Type="XERPModel.Address" Multiplicity="0..1" />
+          <End Role="Warehouses" Type="XERPModel.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="Plants" Type="XERPModel.Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdList_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseCode_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseCodes" Type="XERPModel.WarehouseCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBinCode_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseLocationBinCodes" Type="XERPModel.WarehouseLocationBinCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBinCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.WarehouseLocationBin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBinType_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseLocationBinTypes" Type="XERPModel.WarehouseLocationBinType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBinTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationCode_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseLocationCodes" Type="XERPModel.WarehouseLocationCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseLocations" Type="XERPModel.WarehouseLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationType_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseLocationTypes" Type="XERPModel.WarehouseLocationType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_Companies1">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="Warehouses" Type="XERPModel.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseType_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="WarehouseTypes" Type="XERPModel.WarehouseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="WarehouseTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_Plants">
+          <End Role="Plants" Type="XERPModel.Plant" Multiplicity="1" />
+          <End Role="Warehouses" Type="XERPModel.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_UdList">
+          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_WarehouseCodes">
+          <End Role="WarehouseCodes" Type="XERPModel.WarehouseCode" Multiplicity="0..1" />
+          <End Role="Warehouses" Type="XERPModel.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseCodeID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_WarehouseLocationBinCodes">
+          <End Role="WarehouseLocationBinCodes" Type="XERPModel.WarehouseLocationBinCode" Multiplicity="0..1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.WarehouseLocationBin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationBinCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinCodeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_WarehouseLocationBinTypes">
+          <End Role="WarehouseLocationBinTypes" Type="XERPModel.WarehouseLocationBinType" Multiplicity="0..1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.WarehouseLocationBin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationBinTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinTypeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationBinTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocationBins_WarehouseLocations">
+          <End Role="WarehouseLocations" Type="XERPModel.WarehouseLocation" Multiplicity="1" />
+          <End Role="WarehouseLocationBins" Type="XERPModel.WarehouseLocationBin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+              <PropertyRef Name="WarehouseLocationID" />
+            </Principal>
+            <Dependent Role="WarehouseLocationBins">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+              <PropertyRef Name="WarehouseLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_WarehouseLocationCodes">
+          <End Role="WarehouseLocationCodes" Type="XERPModel.WarehouseLocationCode" Multiplicity="0..1" />
+          <End Role="WarehouseLocations" Type="XERPModel.WarehouseLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationCodeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_WarehouseLocationTypes">
+          <End Role="WarehouseLocationTypes" Type="XERPModel.WarehouseLocationType" Multiplicity="0..1" />
+          <End Role="WarehouseLocations" Type="XERPModel.WarehouseLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseLocationTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationTypeID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseLocationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehouseLocations_Warehouses">
+          <End Role="Warehouses" Type="XERPModel.Warehouse" Multiplicity="1" />
+          <End Role="WarehouseLocations" Type="XERPModel.WarehouseLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="WarehouseLocations">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantID" />
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouses_WarehouseTypes">
+          <End Role="WarehouseTypes" Type="XERPModel.WarehouseType" Multiplicity="0..1" />
+          <End Role="Warehouses" Type="XERPModel.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseTypeID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="WarehouseTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Bool_1" />
+          <Property Type="String" Name="ShortChar_1" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Int_1" />
+          <Property Type="Decimal" Name="Decimal_1" Precision="12" Scale="5" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XERPModelStoreContainer" CdmEntityContainer="WarehouseEntities">
+          <EntitySetMapping Name="Addresses"><EntityTypeMapping TypeName="XERPModel.Address"><MappingFragment StoreEntitySet="Addresses">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="Address3" ColumnName="Address3" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Email2" ColumnName="Email2" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="XERPModel.Company"><MappingFragment StoreEntitySet="Companies">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+            <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+            <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+            <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+            <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+            <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="Address3" ColumnName="Address3" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Email2" ColumnName="Email2" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Plants"><EntityTypeMapping TypeName="XERPModel.Plant"><MappingFragment StoreEntitySet="Plants">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="DefaultPlant" ColumnName="DefaultPlant" />
+            <ScalarProperty Name="PlantTypeID" ColumnName="PlantTypeID" />
+            <ScalarProperty Name="PlantCodeID" ColumnName="PlantCodeID" />
+            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UdListItems"><EntityTypeMapping TypeName="XERPModel.UdListItem"><MappingFragment StoreEntitySet="UdListItems">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+            <ScalarProperty Name="UdListItemID" ColumnName="UdListItemID" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UdLists"><EntityTypeMapping TypeName="XERPModel.UdList"><MappingFragment StoreEntitySet="UdLists">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseCodes"><EntityTypeMapping TypeName="XERPModel.WarehouseCode"><MappingFragment StoreEntitySet="WarehouseCodes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="WarehouseCodeID" ColumnName="WarehouseCodeID" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseLocationBinCodes"><EntityTypeMapping TypeName="XERPModel.WarehouseLocationBinCode"><MappingFragment StoreEntitySet="WarehouseLocationBinCodes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="WarehouseLocationBinCodeID" ColumnName="WarehouseLocationBinCodeID" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseLocationBins"><EntityTypeMapping TypeName="XERPModel.WarehouseLocationBin"><MappingFragment StoreEntitySet="WarehouseLocationBins">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+            <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+            <ScalarProperty Name="WarehouseLocationID" ColumnName="WarehouseLocationID" />
+            <ScalarProperty Name="WarehouseLocationBinID" ColumnName="WarehouseLocationBinID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="DefaultBin" ColumnName="DefaultBin" />
+            <ScalarProperty Name="WarehouseLocationBinTypeID" ColumnName="WarehouseLocationBinTypeID" />
+            <ScalarProperty Name="WarehouseLocationBinCodeID" ColumnName="WarehouseLocationBinCodeID" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseLocationBinTypes"><EntityTypeMapping TypeName="XERPModel.WarehouseLocationBinType"><MappingFragment StoreEntitySet="WarehouseLocationBinTypes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="WarehouseLocationBinTypeID" ColumnName="WarehouseLocationBinTypeID" />
+            <ScalarProperty Name="Type" ColumnName="Type" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseLocationCodes"><EntityTypeMapping TypeName="XERPModel.WarehouseLocationCode"><MappingFragment StoreEntitySet="WarehouseLocationCodes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="WarehouseLocationCodeID" ColumnName="WarehouseLocationCodeID" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseLocations"><EntityTypeMapping TypeName="XERPModel.WarehouseLocation"><MappingFragment StoreEntitySet="WarehouseLocations">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+            <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+            <ScalarProperty Name="WarehouseLocationID" ColumnName="WarehouseLocationID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="DefaultLocation" ColumnName="DefaultLocation" />
+            <ScalarProperty Name="WarehouseLocationTypeID" ColumnName="WarehouseLocationTypeID" />
+            <ScalarProperty Name="WarehouseLocationCodeID" ColumnName="WarehouseLocationCodeID" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseLocationTypes"><EntityTypeMapping TypeName="XERPModel.WarehouseLocationType"><MappingFragment StoreEntitySet="WarehouseLocationTypes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="WarehouseLocationTypeID" ColumnName="WarehouseLocationTypeID" />
+            <ScalarProperty Name="Type" ColumnName="Type" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Warehouses"><EntityTypeMapping TypeName="XERPModel.Warehouse"><MappingFragment StoreEntitySet="Warehouses">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+            <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="DefaultWarehouse" ColumnName="DefaultWarehouse" />
+            <ScalarProperty Name="WarehouseTypeID" ColumnName="WarehouseTypeID" />
+            <ScalarProperty Name="WarehouseCodeID" ColumnName="WarehouseCodeID" />
+            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+            <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WarehouseTypes"><EntityTypeMapping TypeName="XERPModel.WarehouseType"><MappingFragment StoreEntitySet="WarehouseTypes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="WarehouseTypeID" ColumnName="WarehouseTypeID" />
+            <ScalarProperty Name="Type" ColumnName="Type" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Temps">
+            <EntityTypeMapping TypeName="XERPModel.Temp">
+              <MappingFragment StoreEntitySet="Temp">
+                <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
+                <ScalarProperty Name="Int_1" ColumnName="Int_1" />
+                <ScalarProperty Name="ShortChar_1" ColumnName="ShortChar_1" />
+                <ScalarProperty Name="Bool_1" ColumnName="Bool_1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Warehouse">
+        <EntityTypeShape EntityType="XERPModel.Address" Width="1.5" PointX="3" PointY="2.375" Height="5.372294921875" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Company" Width="1.5" PointX="0.75" PointY="14.5" Height="8.0018522135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Plant" Width="1.5" PointX="5.25" PointY="10.375" Height="4.2218636067708317" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="5.25" PointY="16" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="3" PointY="8.5" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseCode" Width="1.5" PointX="3" PointY="12.375" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseLocationBinCode" Width="1.5" PointX="3" PointY="16.25" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseLocationBin" Width="1.5" PointX="12" PointY="17.375" Height="4.7149055989583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseLocationBinType" Width="1.5" PointX="3" PointY="20" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseLocationCode" Width="1.5" PointX="3" PointY="23.875" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseLocation" Width="1.5" PointX="9.75" PointY="20.25" Height="4.7149055989583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseLocationType" Width="1.5" PointX="3" PointY="27.625" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Warehouse" Width="1.5" PointX="7.5" PointY="16" Height="5.0436002604166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.WarehouseType" Width="1.5" PointX="3" PointY="31.5" Height="3.0714322916666674" IsExpanded="true" />
+        <AssociationConnector Association="XERPModel.FK_Addresses_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="14.5" />
+          <ConnectorPoint PointX="1.5" PointY="5.0611474609375" />
+          <ConnectorPoint PointX="3" PointY="5.0611474609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Plants_Addresses" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.0611474609375" />
+          <ConnectorPoint PointX="6" PointY="5.0611474609375" />
+          <ConnectorPoint PointX="6" PointY="10.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Warehouses_Addresses1" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.4354736914062505" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="6.43547369140625" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="6.4354736914062505" />
+          <ConnectorPoint PointX="8.25" PointY="6.4354736914062505" />
+          <ConnectorPoint PointX="8.25" PointY="16" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Plants_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="14.5" />
+          <ConnectorPoint PointX="1.9062525" PointY="11.973216145833334" />
+          <ConnectorPoint PointX="5.25" PointY="11.973216145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdList_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.0937475" PointY="14.5" />
+          <ConnectorPoint PointX="1.0937475" PointY="10.035716145833334" />
+          <ConnectorPoint PointX="1.4166666666666667" PointY="10.035716145833334" />
+          <ConnectorPoint PointX="1.5833333333333333" PointY="10.035716145833334" />
+          <ConnectorPoint PointX="3" PointY="10.035716145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="16.09375" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="16.09375" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="16.09375" />
+          <ConnectorPoint PointX="5.25" PointY="16.09375" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseCode_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="14.973216145833334" />
+          <ConnectorPoint PointX="3" PointY="14.973216145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationBinCode_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="17.785716145833334" />
+          <ConnectorPoint PointX="3" PointY="17.785716145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationBins_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="7.7604141666666671" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="7.9270808333333331" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="8.1666666666666661" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="8.3333333333333339" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="8.5729191666666669" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="8.7395858333333347" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="12.75" PointY="15.723216145833334" />
+          <ConnectorPoint PointX="12.75" PointY="17.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationBinType_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="21.250926106770834" />
+          <ConnectorPoint PointX="3" PointY="21.250926106770834" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationCode_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="22.501852213541667" />
+          <ConnectorPoint PointX="1.5" PointY="25.410716145833334" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="25.410716145833334" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="25.410716145833334" />
+          <ConnectorPoint PointX="3" PointY="25.410716145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocations_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="7.7604141666666671" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="7.9270808333333331" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="8.1666666666666661" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="8.3333333333333339" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="8.5729191666666669" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="8.7395858333333347" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="10.5" PointY="15.861610572916668" />
+          <ConnectorPoint PointX="10.5" PointY="20.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationType_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="22.501852213541667" />
+          <ConnectorPoint PointX="1.9062525" PointY="29.160716145833334" />
+          <ConnectorPoint PointX="3" PointY="29.160716145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Warehouses_Companies1" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="19.660716145833334" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="19.660716145833334" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="19.660716145833334" />
+          <ConnectorPoint PointX="4.0416661666666664" PointY="19.660716145833334" />
+          <ConnectorPoint PointX="4.2083328333333325" PointY="19.660716145833334" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="19.660716145833334" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="19.660716145833334" />
+          <ConnectorPoint PointX="7.5" PointY="19.660716145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseType_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.0937475" PointY="22.501852213541667" />
+          <ConnectorPoint PointX="1.0937475" PointY="33.035716145833334" />
+          <ConnectorPoint PointX="3" PointY="33.035716145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Warehouses_Plants" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="12.485931803385416" />
+          <ConnectorPoint PointX="7.8437475" PointY="12.485931803385416" />
+          <ConnectorPoint PointX="7.8437475" PointY="16" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_UdList" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.571432291666667" />
+          <ConnectorPoint PointX="4.875" PointY="11.946432291666667" />
+          <ConnectorPoint PointX="4.875" PointY="17.613843145833336" />
+          <ConnectorPoint PointX="5.25" PointY="17.613843145833336" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Warehouses_WarehouseCodes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="7.7604141666666671" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="7.9270808333333331" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="8.1666666666666661" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="8.3333333333333339" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="8.6562525" PointY="15.05289794921875" />
+          <ConnectorPoint PointX="8.6562525" PointY="16" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinCodes" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="19.321432291666667" />
+          <ConnectorPoint PointX="3.75" PointY="19.857452799479166" />
+          <ConnectorPoint PointX="4.0416661666666664" PointY="19.857452799479166" />
+          <ConnectorPoint PointX="4.2083328333333325" PointY="19.857452799479166" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="19.857452799479166" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="19.857452799479166" />
+          <ConnectorPoint PointX="7.25" PointY="19.857452799479166" />
+          <ConnectorPoint PointX="7.25" PointY="21.293600260416667" />
+          <ConnectorPoint PointX="8.1666666666666661" PointY="21.293600260416667" />
+          <ConnectorPoint PointX="8.3333333333333339" PointY="21.293600260416667" />
+          <ConnectorPoint PointX="9.1666666666666661" PointY="21.293600260416667" />
+          <ConnectorPoint PointX="9.3333333333333339" PointY="21.293600260416667" />
+          <ConnectorPoint PointX="9.5" PointY="21.293600260416667" />
+          <ConnectorPoint PointX="9.5" PointY="18.7812505" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="18.7812505" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="18.7812505" />
+          <ConnectorPoint PointX="12" PointY="18.7812505" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationBins_WarehouseLocationBinTypes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.1249994999999995" PointY="20" />
+          <ConnectorPoint PointX="4.1249994999999995" PointY="19.482452799479166" />
+          <ConnectorPoint PointX="7" PointY="19.482452799479166" />
+          <ConnectorPoint PointX="7" PointY="21.543600260416667" />
+          <ConnectorPoint PointX="8.1666666666666661" PointY="21.543600260416667" />
+          <ConnectorPoint PointX="8.3333333333333339" PointY="21.543600260416667" />
+          <ConnectorPoint PointX="9.25" PointY="21.543600260416667" />
+          <ConnectorPoint PointX="9.25" PointY="19.51562775" />
+          <ConnectorPoint PointX="9.4166666666666661" PointY="19.51562775" />
+          <ConnectorPoint PointX="9.5833333333333339" PointY="19.51562775" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="19.51562775" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="19.51562775" />
+          <ConnectorPoint PointX="12" PointY="19.51562775" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocationBins_WarehouseLocations" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.25" PointY="21.169952799479166" />
+          <ConnectorPoint PointX="12" PointY="21.169952799479166" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocations_WarehouseLocationCodes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="24.419952799479166" />
+          <ConnectorPoint PointX="8.1666666666666661" PointY="24.419952799479166" />
+          <ConnectorPoint PointX="8.3333333333333339" PointY="24.419952799479166" />
+          <ConnectorPoint PointX="9.75" PointY="24.419952799479166" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocations_WarehouseLocationTypes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="29.160716145833334" />
+          <ConnectorPoint PointX="8.1666666666666661" PointY="29.160716145833334" />
+          <ConnectorPoint PointX="8.3333333333333339" PointY="29.160716145833334" />
+          <ConnectorPoint PointX="10.5" PointY="29.160716145833334" />
+          <ConnectorPoint PointX="10.5" PointY="24.964905598958332" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_WarehouseLocations_Warehouses" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="20.646800130208334" />
+          <ConnectorPoint PointX="9.1666666666666661" PointY="20.646800130208334" />
+          <ConnectorPoint PointX="9.3333333333333339" PointY="20.646800130208334" />
+          <ConnectorPoint PointX="9.4166666666666661" PointY="20.646800130208334" />
+          <ConnectorPoint PointX="9.5833333333333339" PointY="20.646800130208334" />
+          <ConnectorPoint PointX="9.75" PointY="20.646800130208334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Warehouses_WarehouseTypes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="33.035716145833334" />
+          <ConnectorPoint PointX="8.25" PointY="33.035716145833334" />
+          <ConnectorPoint PointX="8.25" PointY="21.043600260416667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="XERPModel.Temp" Width="1.5" PointX="5.375" PointY="0.75" Height="1.9210009765625031" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,952 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="XERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="XERPModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="XERPModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Companies" EntityType="XERPModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlantCodes" EntityType="XERPModel.Store.PlantCodes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Plants" EntityType="XERPModel.Store.Plants" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlantTypes" EntityType="XERPModel.Store.PlantTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Temp" EntityType="XERPModel.Store.Temp" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UdListItems" EntityType="XERPModel.Store.UdListItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UdLists" EntityType="XERPModel.Store.UdLists" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.Store.FK_Addresses_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlantCodes_Companies" Association="XERPModel.Store.FK_PlantCodes_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="PlantCodes" EntitySet="PlantCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.Store.FK_Plants_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.Store.FK_Plants_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_PlantCodes" Association="XERPModel.Store.FK_Plants_PlantCodes">
+            <End Role="PlantCodes" EntitySet="PlantCodes" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_PlantTypes" Association="XERPModel.Store.FK_Plants_PlantTypes">
+            <End Role="PlantTypes" EntitySet="PlantTypes" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlantTypes_Companies" Association="XERPModel.Store.FK_PlantTypes_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="PlantTypes" EntitySet="PlantTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.Store.FK_UdList_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdLists" EntitySet="UdLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.Store.FK_UdListItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.Store.FK_UdListItem_UdList">
+            <End Role="UdLists" EntitySet="UdLists" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="AddressID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum2" Type="nvarchar" MaxLength="20" />
+          <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CompanyTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="CompanyCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="StateTaxCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="TaxRegionCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="CurrentFiscalYear" Type="int" />
+          <Property Name="DefaultExecutablePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNum2" Type="nvarchar" MaxLength="20" />
+          <Property Name="FaxNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="PlantCodes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantCodeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Plants">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultPlant" Type="bit" />
+          <Property Name="PlantTypeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="PlantCodeID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddressID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="PlantTypes">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PlantTypeID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+          <Property Name="IsSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Bool_1" Type="bit" />
+          <Property Name="ShortChar_1" Type="nvarchar" MaxLength="20" />
+          <Property Name="Int_1" Type="int" />
+          <Property Name="Decimal_1" Type="decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <EntityType Name="UdListItems">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+            <PropertyRef Name="UdListItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListItemID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UdLists">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Key>
+          <Property Name="CompanyID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="UdListID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="AutoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="IsExpanded" Type="tinyint" />
+          <Property Name="IsValid" Type="tinyint" />
+          <Property Name="NotValidMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedByDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Addresses_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="Addresses" Type="XERPModel.Store.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlantCodes_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="PlantCodes" Type="XERPModel.Store.PlantCodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PlantCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Addresses">
+          <End Role="Addresses" Type="XERPModel.Store.Addresses" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_PlantCodes">
+          <End Role="PlantCodes" Type="XERPModel.Store.PlantCodes" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantCodeID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_PlantTypes">
+          <End Role="PlantTypes" Type="XERPModel.Store.PlantTypes" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Store.Plants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantTypeID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlantTypes_Companies">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="PlantTypes" Type="XERPModel.Store.PlantTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PlantTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdList_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_Company">
+          <End Role="Companies" Type="XERPModel.Store.Companies" Multiplicity="1" />
+          <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_UdList">
+          <End Role="UdLists" Type="XERPModel.Store.UdLists" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UdListItems" Type="XERPModel.Store.UdListItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XERPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PlantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="XERPModel.Address" />
+          <EntitySet Name="Companies" EntityType="XERPModel.Company" />
+          <EntitySet Name="PlantCodes" EntityType="XERPModel.PlantCode" />
+          <EntitySet Name="Plants" EntityType="XERPModel.Plant" />
+          <EntitySet Name="PlantTypes" EntityType="XERPModel.PlantType" />
+          <EntitySet Name="Temps" EntityType="XERPModel.Temp" />
+          <EntitySet Name="UdListItems" EntityType="XERPModel.UdListItem" />
+          <EntitySet Name="UdLists" EntityType="XERPModel.UdList" />
+          <AssociationSet Name="FK_Addresses_Companies" Association="XERPModel.FK_Addresses_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.FK_Plants_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlantCodes_Companies" Association="XERPModel.FK_PlantCodes_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="PlantCodes" EntitySet="PlantCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.FK_Plants_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlantTypes_Companies" Association="XERPModel.FK_PlantTypes_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="PlantTypes" EntitySet="PlantTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdList_Company" Association="XERPModel.FK_UdList_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdLists" EntitySet="UdLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_Company" Association="XERPModel.FK_UdListItem_Company">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_PlantCodes" Association="XERPModel.FK_Plants_PlantCodes">
+            <End Role="PlantCodes" EntitySet="PlantCodes" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plants_PlantTypes" Association="XERPModel.FK_Plants_PlantTypes">
+            <End Role="PlantTypes" EntitySet="PlantTypes" />
+            <End Role="Plants" EntitySet="Plants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UdListItem_UdList" Association="XERPModel.FK_UdListItem_UdList">
+            <End Role="UdLists" EntitySet="UdLists" />
+            <End Role="UdListItems" EntitySet="UdListItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AddressID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Addresses" ToRole="Companies" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Addresses" ToRole="Plants" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CompanyTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="StateTaxCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="TaxRegionCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CurrentFiscalYear" Type="Int32" />
+          <Property Name="DefaultExecutablePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FaxNum" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Addresses" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Companies" ToRole="Addresses" />
+          <NavigationProperty Name="PlantCodes" Relationship="XERPModel.FK_PlantCodes_Companies" FromRole="Companies" ToRole="PlantCodes" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Companies" FromRole="Companies" ToRole="Plants" />
+          <NavigationProperty Name="PlantTypes" Relationship="XERPModel.FK_PlantTypes_Companies" FromRole="Companies" ToRole="PlantTypes" />
+          <NavigationProperty Name="UdLists" Relationship="XERPModel.FK_UdList_Company" FromRole="Companies" ToRole="UdLists" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Companies" ToRole="UdListItems" />
+        </EntityType>
+        <EntityType Name="PlantCode">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantCodeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantCodeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_PlantCodes_Companies" FromRole="PlantCodes" ToRole="Companies" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_PlantCodes" FromRole="PlantCodes" ToRole="Plants" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DefaultPlant" Type="Boolean" />
+          <Property Name="PlantTypeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantCodeID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AddressID" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Address" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Plants" ToRole="Addresses" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_Plants_Companies" FromRole="Plants" ToRole="Companies" />
+          <NavigationProperty Name="PlantCode" Relationship="XERPModel.FK_Plants_PlantCodes" FromRole="Plants" ToRole="PlantCodes" />
+          <NavigationProperty Name="PlantType" Relationship="XERPModel.FK_Plants_PlantTypes" FromRole="Plants" ToRole="PlantTypes" />
+        </EntityType>
+        <EntityType Name="PlantType">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="PlantTypeID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PlantTypeID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_PlantTypes_Companies" FromRole="PlantTypes" ToRole="Companies" />
+          <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_PlantTypes" FromRole="PlantTypes" ToRole="Plants" />
+        </EntityType>
+        <EntityType Name="Temp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Bool_1" Type="Boolean" />
+          <Property Name="ShortChar_1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Int_1" Type="Int32" />
+          <Property Name="Decimal_1" Type="Decimal" Precision="12" Scale="5" />
+        </EntityType>
+        <EntityType Name="UdListItem">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+            <PropertyRef Name="UdListItemID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListItemID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdListItem_Company" FromRole="UdListItems" ToRole="Companies" />
+          <NavigationProperty Name="UdList" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdListItems" ToRole="UdLists" />
+        </EntityType>
+        <EntityType Name="UdList">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+            <PropertyRef Name="UdListID" />
+          </Key>
+          <Property Name="CompanyID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="UdListID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <Property Name="IsExpanded" Type="Byte" />
+          <Property Name="IsValid" Type="Byte" />
+          <Property Name="NotValidMessage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedByDate" Type="DateTime" />
+          <NavigationProperty Name="Company" Relationship="XERPModel.FK_UdList_Company" FromRole="UdLists" ToRole="Companies" />
+          <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_UdList" FromRole="UdLists" ToRole="UdListItems" />
+        </EntityType>
+        <Association Name="FK_Addresses_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="Addresses" Type="XERPModel.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Addresses">
+          <End Role="Addresses" Type="XERPModel.Address" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlantCodes_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="PlantCodes" Type="XERPModel.PlantCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PlantCodes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="Plants" Type="XERPModel.Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlantTypes_Companies">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="PlantTypes" Type="XERPModel.PlantType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PlantTypes">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdList_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_Company">
+          <End Role="Companies" Type="XERPModel.Company" Multiplicity="1" />
+          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_PlantCodes">
+          <End Role="PlantCodes" Type="XERPModel.PlantCode" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantCodes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantCodeID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plants_PlantTypes">
+          <End Role="PlantTypes" Type="XERPModel.PlantType" Multiplicity="0..1" />
+          <End Role="Plants" Type="XERPModel.Plant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantTypes">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantTypeID" />
+            </Principal>
+            <Dependent Role="Plants">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="PlantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UdListItem_UdList">
+          <End Role="UdLists" Type="XERPModel.UdList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UdListItems" Type="XERPModel.UdListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UdLists">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Principal>
+            <Dependent Role="UdListItems">
+              <PropertyRef Name="CompanyID" />
+              <PropertyRef Name="UdListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XERPModelStoreContainer" CdmEntityContainer="PlantEntities">
+          <EntitySetMapping Name="Addresses"><EntityTypeMapping TypeName="XERPModel.Address"><MappingFragment StoreEntitySet="Addresses">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="Address3" ColumnName="Address3" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Email2" ColumnName="Email2" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="XERPModel.Company"><MappingFragment StoreEntitySet="Companies">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+            <ScalarProperty Name="CompanyCodeID" ColumnName="CompanyCodeID" />
+            <ScalarProperty Name="StateTaxCode" ColumnName="StateTaxCode" />
+            <ScalarProperty Name="TaxRegionCode" ColumnName="TaxRegionCode" />
+            <ScalarProperty Name="CurrentFiscalYear" ColumnName="CurrentFiscalYear" />
+            <ScalarProperty Name="DefaultExecutablePath" ColumnName="DefaultExecutablePath" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="Address3" ColumnName="Address3" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="Zip" ColumnName="Zip" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+            <ScalarProperty Name="PhoneNum2" ColumnName="PhoneNum2" />
+            <ScalarProperty Name="FaxNum" ColumnName="FaxNum" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Email2" ColumnName="Email2" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PlantCodes"><EntityTypeMapping TypeName="XERPModel.PlantCode"><MappingFragment StoreEntitySet="PlantCodes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="PlantCodeID" ColumnName="PlantCodeID" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Plants"><EntityTypeMapping TypeName="XERPModel.Plant"><MappingFragment StoreEntitySet="Plants">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="PlantID" ColumnName="PlantID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="DefaultPlant" ColumnName="DefaultPlant" />
+            <ScalarProperty Name="PlantTypeID" ColumnName="PlantTypeID" />
+            <ScalarProperty Name="PlantCodeID" ColumnName="PlantCodeID" />
+            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PlantTypes"><EntityTypeMapping TypeName="XERPModel.PlantType"><MappingFragment StoreEntitySet="PlantTypes">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="PlantTypeID" ColumnName="PlantTypeID" />
+            <ScalarProperty Name="Type" ColumnName="Type" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Temps"><EntityTypeMapping TypeName="XERPModel.Temp"><MappingFragment StoreEntitySet="Temp">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Bool_1" ColumnName="Bool_1" />
+            <ScalarProperty Name="ShortChar_1" ColumnName="ShortChar_1" />
+            <ScalarProperty Name="Int_1" ColumnName="Int_1" />
+            <ScalarProperty Name="Decimal_1" ColumnName="Decimal_1" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UdListItems"><EntityTypeMapping TypeName="XERPModel.UdListItem"><MappingFragment StoreEntitySet="UdListItems">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+            <ScalarProperty Name="UdListItemID" ColumnName="UdListItemID" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UdLists"><EntityTypeMapping TypeName="XERPModel.UdList"><MappingFragment StoreEntitySet="UdLists">
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="UdListID" ColumnName="UdListID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+            <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+            <ScalarProperty Name="IsExpanded" ColumnName="IsExpanded" />
+            <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+            <ScalarProperty Name="NotValidMessage" ColumnName="NotValidMessage" />
+            <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+            <ScalarProperty Name="LastModifiedByDate" ColumnName="LastModifiedByDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Plant">
+        <EntityTypeShape EntityType="XERPModel.Address" Width="1.5" PointX="3" PointY="1.625" Height="5.2079475911458317" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Company" Width="1.5" PointX="0.75" PointY="6.625" Height="6.8514208984375" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.PlantCode" Width="1.5" PointX="3" PointY="7.625" Height="3.0714322916666648" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Plant" Width="1.5" PointX="5.25" PointY="5.875" Height="4.3862109375" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.PlantType" Width="1.5" PointX="3" PointY="11.5" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.Temp" Width="1.5" PointX="5.75" PointY="0.75" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.UdListItem" Width="1.5" PointX="5.25" PointY="11.875" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="XERPModel.UdList" Width="1.5" PointX="3" PointY="15.25" Height="3.0714322916666674" IsExpanded="true" />
+        <AssociationConnector Association="XERPModel.FK_Addresses_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="6.625" />
+          <ConnectorPoint PointX="1.5" PointY="4.1249994999999995" />
+          <ConnectorPoint PointX="3" PointY="4.1249994999999995" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Plants_Addresses" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.3539737955729159" />
+          <ConnectorPoint PointX="5.25" PointY="6.3539737955729159" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_PlantCodes_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.1607161458333319" />
+          <ConnectorPoint PointX="3" PointY="9.1607161458333319" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Plants_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.2289737955729159" />
+          <ConnectorPoint PointX="5.25" PointY="7.2289737955729159" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_PlantTypes_Companies" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="12.48821044921875" />
+          <ConnectorPoint PointX="3" PointY="12.48821044921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdList_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="13.4764208984375" />
+          <ConnectorPoint PointX="1.5" PointY="16.785716145833334" />
+          <ConnectorPoint PointX="3" PointY="16.785716145833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="13.4764208984375" />
+          <ConnectorPoint PointX="1.9062525" PointY="14.790182291666667" />
+          <ConnectorPoint PointX="5.25" PointY="14.790182291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Plants_PlantCodes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.94310546875" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="8.94310546875" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="8.94310546875" />
+          <ConnectorPoint PointX="5.25" PointY="8.94310546875" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_Plants_PlantTypes" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.501152846153847" />
+          <ConnectorPoint PointX="4.875" PointY="11.126152846153847" />
+          <ConnectorPoint PointX="4.875" PointY="8.0860396321614587" />
+          <ConnectorPoint PointX="5.25" PointY="8.0860396321614587" />
+        </AssociationConnector>
+        <AssociationConnector Association="XERPModel.FK_UdListItem_UdList" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="16.785716145833334" />
+          <ConnectorPoint PointX="6" PointY="16.785716145833334" />
+          <ConnectorPoint PointX="6" PointY="14.946432291666667" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -128,7 +128,7 @@ namespace XERP.Domain.MenuSecurityDomain
                 context.IgnoreResourceNotFoundException = true;
                 MenuItem deletedMenuItem = (from q in context.MenuItems
                                           where q.MenuItemID == menuItem.MenuItemID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedMenuItem != null)
                 {
                     context.DeleteObject(deletedMenuItem);

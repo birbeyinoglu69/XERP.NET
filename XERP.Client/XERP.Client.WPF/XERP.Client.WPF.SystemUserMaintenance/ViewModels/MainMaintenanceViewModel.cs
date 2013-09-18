@@ -524,7 +524,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedSystemUser.SystemUserID))
             {//check to see if key is part of the current companylist...
                 SystemUser query = SystemUserList.Where(company => company.SystemUserID == SelectedSystemUser.SystemUserID &&
-                                                        company.AutoID != SelectedSystemUser.AutoID).SingleOrDefault();
+                                                        company.AutoID != SelectedSystemUser.AutoID).FirstOrDefault();
                 if (query != null)
                 {//revert it back
                     SelectedSystemUser.SystemUserID = SelectedSystemUserMirror.SystemUserID;
@@ -771,7 +771,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 SystemUserList = new BindingList<SystemUser>(_serviceAgent.RefreshSystemUser(autoIDs).ToList());
                 SelectedSystemUser = (from q in SystemUserList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

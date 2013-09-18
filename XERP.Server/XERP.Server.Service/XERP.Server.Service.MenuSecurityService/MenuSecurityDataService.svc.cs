@@ -10,8 +10,6 @@ namespace XERP.Server.Service.MenuSecurityService
 {
     public class MenuSecurityDataService : DataService<MenuSecurityEntities>
     {
-        //private MenuSecurityEntities _context;
-
         public static void InitializeService(DataServiceConfiguration config)
         {
             config.SetEntitySetAccessRule("*", EntitySetRights.All);
@@ -236,15 +234,15 @@ namespace XERP.Server.Service.MenuSecurityService
             //test it...
             //IQueryable<MenuSecurity> query = (from q in _context.MenuSecurities
             //                                  select q);
-            //var query = (from mi in _context.MenuItems
-            //             from ms in _context.MenuSecurities
-            //             where mi.MenuItemID == ms.MenuItemID &&
-            //                   mi.AllowAll == true
-            //             select mi).ToList();
-            //foreach (MenuItem mi in query)
-            //{
-            //    string s = mi.MenuItemID.ToString();
-            //}
+            var query = (from mi in context.MenuItems
+                         from ms in context.MenuSecurities
+                         where mi.MenuItemID == ms.MenuItemID &&
+                               mi.AllowAll == true
+                         select mi).ToList();
+            foreach (MenuItem mi in query)
+            {
+                string s = mi.MenuItemID.ToString();
+            }
 
             //ToDo: ADD DAL Securities Logic...
             //DAL Security Should require USERID and DALName

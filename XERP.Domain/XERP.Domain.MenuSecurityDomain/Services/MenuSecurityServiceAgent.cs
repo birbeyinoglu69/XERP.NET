@@ -94,7 +94,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                 dbStoredImage = (from q in _context.DBStoredImages
                                  where q.ImageID == imageID &&
                                    q.CompanyID == companyID
-                                 select q).SingleOrDefault();
+                                 select q).FirstOrDefault();
 
                 MemoryStream stream = new MemoryStream();
                 stream.Write(dbStoredImage.StoredImage, 0, dbStoredImage.StoredImage.Length);

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             d:DesignHeight="600" d:DesignWidth="600"
+             d:DesignHeight="600" d:DesignWidth="650"
              IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
              PreviewKeyUp="UserControl_PreviewKeyUp">
 
@@ -26,7 +26,7 @@
             Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <Menu Style="{StaticResource BaseMenu}"
-                IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="250" Height="20" 
                 VerticalAlignment="Top" HorizontalAlignment="Left">
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
@@ -224,8 +224,8 @@
                     <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="0" 
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
-                        <Button Style="{StaticResource BaseButton}" Content="Executable Program..." Width="108" Height="25" Margin="10" 
-                            KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
+                        <Button Style="{StaticResource BaseButton}" Content="Executable Program..." Width="134" Height="25" Margin="10" 
+                            KeyboardNavigation.IsTabStop="False" >
                           <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                               <ei:CallMethodAction
@@ -270,18 +270,18 @@
                         Grid.Row="1" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
-                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedExecutableProgram.Name, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding ExecutableProgramMaxFieldValueDictionary[Name]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedExecutableProgram.Description, Mode=TwoWay}"
                             MaxLength= "{Binding ExecutableProgramMaxFieldValueDictionary[Description]}" 
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>
                         <ComboBox  Style="{StaticResource BaseComboBox}"
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=ExecutableProgramTypeList, Mode=TwoWay}"
                             DisplayMemberPath="Type"
                             SelectedValue="{Binding Path=SelectedExecutableProgram.ExecutableProgramTypeID, Mode=TwoWay}"
@@ -307,7 +307,7 @@
                             </ComboBox.ContextMenu>
                         </ComboBox>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=ExecutableProgramCodeList, Mode=TwoWay}"
                             DisplayMemberPath="Code"
                             SelectedValue="{Binding Path=SelectedExecutableProgram.ExecutableProgramCodeID, Mode=TwoWay}"
@@ -334,18 +334,18 @@
                         </ComboBox>
                         <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
                                   IsChecked="{Binding SelectedExecutableProgram.InternalProgram}"
-                                  KeyboardNavigation.TabIndex="50">
+                                  KeyboardNavigation.TabIndex="60">
                         </CheckBox>
-                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedExecutableProgram.URLPath, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding ExecutableProgramMaxFieldValueDictionary[URLPath]}" 
-                            KeyboardNavigation.TabIndex="60" Background="White" BorderBrush="DimGray"/>
+                            KeyboardNavigation.TabIndex="70" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}" AcceptsReturn="True" TextWrapping="Wrap"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedExecutableProgram.Notes, Mode=TwoWay}"
                             MaxLength= "{Binding ExecutableProgramMaxFieldValueDictionary[Notes]}" 
-                            KeyboardNavigation.TabIndex="60" BorderBrush="DimGray" Height="41"></TextBox>
+                            KeyboardNavigation.TabIndex="80" BorderBrush="DimGray" Height="41"></TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -418,6 +418,14 @@
                                     </Style>
                                 </DataGridComboBoxColumn.EditingElementStyle>
                             </DataGridComboBoxColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding InternalProgram, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Header="Internal" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding URLPath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="URL" Width="*">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="Notes" Width="*">
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox Style="{StaticResource BaseTextBox}" Name="ghost2" Grid.Column="2" 

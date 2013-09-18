@@ -264,7 +264,7 @@
           <Property Type="String" Name="CompanyCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="StateTaxCode" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TaxRegionCode" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="CurrentFiscalYear" />
+          <Property Type="Int32" Name="CurrentFiscalYear" Nullable="true" />
           <Property Type="String" Name="DefaultExecutablePath" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="true" />

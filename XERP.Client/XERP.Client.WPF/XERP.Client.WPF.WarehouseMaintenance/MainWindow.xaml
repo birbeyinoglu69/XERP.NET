@@ -1,0 +1,9 @@
+﻿<Window x:Class="XERP.Client.WPF.WarehouseMaintenance.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="XERP Warehouse Maintenance" Height="600" Width="650">
+    <Grid x:Name="LayoutRoot" Background="White" >
+        <my:MainMaintenanceView 
+            xmlns:my="clr-namespace:XERP.Client.WPF.WarehouseMaintenance.Views"/>
+    </Grid>
+</Window>

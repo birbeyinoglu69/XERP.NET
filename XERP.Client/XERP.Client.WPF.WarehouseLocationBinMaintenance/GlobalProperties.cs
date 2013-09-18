@@ -1,0 +1,16 @@
+﻿
+namespace XERP.Client.WPF.WarehouseLocationBinMaintenance
+{//use this class to share properties amonst views, viewmodels etc...
+    public class GlobalProperties
+    {//WarehouseLocationBinMaintenace is the exutable program that this Maintenance UI is tied to...
+        //All UI's used within this project will inherit this executableprogram's security privelages...
+        //this program name coencides with db table ExecutablPrograms...
+        //WarehouseLocationBins are then applied to the ExecutablePrograms allotting for custom form athentication...
+        private const string _executableProgramName = "WarehouseLocationBinMaintenance";
+        public string ExecutableProgramName
+        {
+            get { return _executableProgramName; }
+        } 
+
+    }
+}

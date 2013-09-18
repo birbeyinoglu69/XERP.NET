@@ -406,7 +406,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedSystemUserCode.SystemUserCodeID))
             {//check to see if key is part of the current companylist...
                 SystemUserCode query = SystemUserCodeList.Where(company => company.SystemUserCodeID == SelectedSystemUserCode.SystemUserCodeID &&
-                                                        company.AutoID != SelectedSystemUserCode.AutoID).SingleOrDefault();
+                                                        company.AutoID != SelectedSystemUserCode.AutoID).FirstOrDefault();
                 if (query != null)
                 {//revert it back...
                     SelectedSystemUserCode.SystemUserCodeID = SelectedSystemUserCodeMirror.SystemUserCodeID;
@@ -601,7 +601,7 @@ namespace XERP.Client.WPF.SystemUserMaintenance.ViewModels
                 SystemUserCodeList = new BindingList<SystemUserCode>(_serviceAgent.RefreshSystemUserCode(autoIDs).ToList());
                 SelectedSystemUserCode = (from q in SystemUserCodeList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

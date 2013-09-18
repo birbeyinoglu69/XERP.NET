@@ -405,7 +405,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedMenuItemCode.MenuItemCodeID))
             {//check to see if key is part of the current companylist...
                 MenuItemCode query = MenuItemCodeList.Where(company => company.MenuItemCodeID == SelectedMenuItemCode.MenuItemCodeID &&
-                                                        company.AutoID != SelectedMenuItemCode.AutoID).SingleOrDefault();
+                                                        company.AutoID != SelectedMenuItemCode.AutoID).FirstOrDefault();
                 if (query != null)
                 {//revert it back...
                     SelectedMenuItemCode.MenuItemCodeID = SelectedMenuItemCodeMirror.MenuItemCodeID;
@@ -599,7 +599,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 MenuItemCodeList = new BindingList<MenuItemCode>(_serviceAgent.RefreshMenuItemCode(autoIDs).ToList());
                 SelectedMenuItemCode = (from q in MenuItemCodeList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

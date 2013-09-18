@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 11/6/2012 8:31:32 AM
+// Generation date: 6/11/2013 1:07:05 PM
 namespace XERP.Domain.MenuSecurityDomain.MenuSecurityDataService
 {
     

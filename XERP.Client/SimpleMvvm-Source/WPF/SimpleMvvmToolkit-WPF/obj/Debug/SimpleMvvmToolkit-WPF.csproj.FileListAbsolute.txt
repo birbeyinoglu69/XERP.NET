@@ -19,6 +19,6 @@ C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\XerpClientBuild\
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\XERPClientBuild\bin\SimpleMvvmToolkit-WPF.dll
 C:\XERP\XERP.Client\XERPClientBuild\bin\SimpleMvvmToolkit-WPF.dll
 C:\XERP\XERP.Client\XERPClientBuild\bin\SimpleMvvmToolkit-WPF.pdb
-C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Debug\ResolveAssemblyReference.cache
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Debug\SimpleMvvmToolkit-WPF.dll
 C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Debug\SimpleMvvmToolkit-WPF.pdb
+C:\XERP\XERP.Client\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\obj\Debug\SimpleMvvmToolkit-WPF.csprojResolveAssemblyReference.cache

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using XERP.Client.Models;
 using XERP.Client.WPF;
 using XERP.Domain.SystemUserDomain.SystemUserDataService;
+
 namespace XERP.Client.WPF.SystemUserMaintenance.Views
 {
     /// <summary>
@@ -69,6 +70,24 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
         private void OpenCodeMaintenance_Click(object sender, RoutedEventArgs e)
         {
             CodeMaintenanceWindow maintenanceWindow = new CodeMaintenanceWindow();
+            maintenanceWindow.Show();
+        }
+
+        private void OpenAddressMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            XERP.Client.WPF.AddressMaintenance.MainWindow maintenanceWindow = new XERP.Client.WPF.AddressMaintenance.MainWindow();
+            maintenanceWindow.Show();
+        }
+
+        private void OpenCompanyMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            XERP.Client.WPF.CompanyMaintenance.MainWindow maintenanceWindow = new XERP.Client.WPF.CompanyMaintenance.MainWindow();
+            maintenanceWindow.Show();
+        }
+
+        private void OpenPlantMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            XERP.Client.WPF.PlantMaintenance.MainWindow maintenanceWindow = new XERP.Client.WPF.PlantMaintenance.MainWindow();
             maintenanceWindow.Show();
         }
 
@@ -193,8 +212,9 @@ namespace XERP.Client.WPF.SystemUserMaintenance.Views
                 {
                     DataGridTextColumn dataGridTextColumn = ((DataGridTextColumn)dataGridColumn);
                     Binding binding = (Binding)dataGridTextColumn.Binding;
-                    
-                    int maxColumnLength = (int)_viewModel.SystemUserMaxFieldValueDictionary[binding.Path.Path.ToString()];
+                    int maxColumnLength;
+                    if (!_viewModel.SystemUserMaxFieldValueDictionary.TryGetValue(binding.Path.Path.ToString(), out maxColumnLength))
+                        continue;
                     Style newStyle = new Style(typeof(TextBox), dataGridTextColumn.EditingElementStyle);
                     newStyle.Setters.Add(new Setter(TextBox.MaxLengthProperty, maxColumnLength));
                     dataGridTextColumn.EditingElementStyle = newStyle;

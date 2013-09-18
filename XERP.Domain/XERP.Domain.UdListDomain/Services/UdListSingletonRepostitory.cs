@@ -140,7 +140,7 @@ namespace XERP.Domain.UdListDomain
                 UdList deletedUdList = (from q in context.UdLists
                                           where q.UdListID == udList.UdListID &&
                                                 q.CompanyID == udList.CompanyID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedUdList != null)
                 {
                     context.DeleteObject(deletedUdList);
@@ -166,7 +166,7 @@ namespace XERP.Domain.UdListDomain
                 UdListItem deletequery = (from q in context.UdListItems
                                         where q.UdListItemID == udListItem.UdListItemID &&
                                                 q.CompanyID == udListItem.CompanyID
-                                        select q).SingleOrDefault();
+                                        select q).FirstOrDefault();
                 if (deletequery != null)
                 {
                     context.DeleteObject(deletequery);

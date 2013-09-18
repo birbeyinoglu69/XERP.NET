@@ -1,0 +1,11 @@
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.Service.WarehouseService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.Service.WarehouseService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.DAL.WarehouseDAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.DAL.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.DAL.WarehouseDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.DAL.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\bin\XERP.Server.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\obj\Debug\XERP.Server.Service.WarehouseService.dll
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\obj\Debug\XERP.Server.Service.WarehouseService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.WarehouseService\obj\Debug\XERP.Server.Service.WarehouseService.csprojResolveAssemblyReference.cache

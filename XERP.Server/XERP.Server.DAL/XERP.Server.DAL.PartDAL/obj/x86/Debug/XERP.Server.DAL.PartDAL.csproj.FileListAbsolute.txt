@@ -1,0 +1,5 @@
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.PartDAL.dll
+C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.PartDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.PartDAL\obj\x86\Debug\XERP.Server.DAL.PartDAL.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.PartDAL\obj\x86\Debug\XERP.Server.DAL.PartDAL.dll
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.PartDAL\obj\x86\Debug\XERP.Server.DAL.PartDAL.pdb

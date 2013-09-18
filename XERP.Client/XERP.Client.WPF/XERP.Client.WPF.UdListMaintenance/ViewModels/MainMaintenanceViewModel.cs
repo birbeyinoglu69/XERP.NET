@@ -273,7 +273,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                     {
                         if (UdListList != null && UdListList.Count > 0)
                         {
-                            var udList = UdListList.SingleOrDefault(q => q.AutoID == value.AutoID);
+                            var udList = UdListList.FirstOrDefault(q => q.AutoID == value.AutoID);
                             //if the selection came from the child datagrid or the child was selected from the tree
                             //then we will not set the parent to be active nor will we auto select the first child...
                             if (UdListItemIsSelected == false)
@@ -368,7 +368,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                     udListout = (from q in UdListList
                                  where q.UdListID == item.UdListID &&
                                  q.CompanyID == item.CompanyID
-                                 select q).SingleOrDefault();
+                                 select q).FirstOrDefault();
                     break;
                 default:
                     break;
@@ -503,7 +503,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
             {
                 //check to see if key is part of the current udListlist...
                 UdList query = UdListList.Where(udList => udList.UdListID == SelectedUdList.UdListID &&
-                                                        udList.AutoID != SelectedUdList.AutoID).SingleOrDefault();
+                                                        udList.AutoID != SelectedUdList.AutoID).FirstOrDefault();
                 if (query != null)
                 {//change to the newly selected udList...
                     //before navigating to the newly selected client cached record revert the old one back to what it was...
@@ -704,7 +704,7 @@ namespace XERP.Client.WPF.UdListMaintenance.ViewModels
                 UdListList = new BindingList<UdList>(_serviceAgent.RefreshUdList(autoIDs).ToList());
                 SelectedUdList = (from q in UdListList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
 
                 Dirty = false;
                 AllowCommit = false;

@@ -1,4 +1,5 @@
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SecurityGroupMaintenance.exe
+C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SecurityGroupMaintenance.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\Views\CodeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\Views\CodeMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\Views\MainMaintenanceSearchView.baml
@@ -21,8 +22,6 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance_MarkupCompile.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance_MarkupCompile.lref
-C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SecurityGroupMaintenance.exe
-C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.SecurityGroupMaintenance.pdb
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\App.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\CodeMaintenanceWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\CodeSearchWindow.baml
@@ -32,7 +31,7 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\TypeSearchWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.SecurityGroupMaintenance\obj\x86\Debug\XERP.Client.WPF.SecurityGroupMaintenance.csproj.GenerateResource.Cache
