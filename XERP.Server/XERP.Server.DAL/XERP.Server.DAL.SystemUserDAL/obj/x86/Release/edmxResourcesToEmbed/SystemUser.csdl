@@ -55,6 +55,15 @@
       <End Role="UdList" EntitySet="UdLists" />
       <End Role="UdListItem" EntitySet="UdListItems" />
     </AssociationSet>
+    <EntitySet Name="Plants" EntityType="XERPModel.Plant" />
+    <AssociationSet Name="FK_Plants_Addresses" Association="XERPModel.FK_Plants_Addresses">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Plant" EntitySet="Plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plants_Companies" Association="XERPModel.FK_Plants_Companies">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Plant" EntitySet="Plants" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Temp">
     <Key>
@@ -98,6 +107,7 @@
     <NavigationProperty Name="Company" Relationship="XERPModel.FK_Addresses_Companies" FromRole="Address" ToRole="Company" />
     <NavigationProperty Name="SystemUsers" Relationship="XERPModel.FK_SystemUsers_Addresses" FromRole="Address" ToRole="SystemUser" />
     <Property Type="Boolean" Name="IsSelected" />
+    <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Address" ToRole="Plant" />
   </EntityType>
   <EntityType Name="Company">
     <Key>
@@ -138,6 +148,7 @@
     <NavigationProperty Name="UdListItems" Relationship="XERPModel.FK_UdListItem_Company" FromRole="Company" ToRole="UdListItem" />
     <NavigationProperty Name="SystemUserSecurities" Relationship="XERPModel.FK_UserSecurity_Company" FromRole="Company" ToRole="SystemUserSecurity" />
     <Property Type="Boolean" Name="IsSelected" />
+    <NavigationProperty Name="Plants" Relationship="XERPModel.FK_Plants_Companies" FromRole="Company" ToRole="Plant" />
   </EntityType>
   <EntityType Name="SecurityGroup">
     <Key>
@@ -418,6 +429,57 @@
       <Dependent Role="UdListItem">
         <PropertyRef Name="CompanyID" />
         <PropertyRef Name="UdListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Plant">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+      <PropertyRef Name="PlantID" />
+    </Key>
+    <Property Type="String" Name="CompanyID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PlantID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Notes" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Active" />
+    <Property Type="Boolean" Name="DefaultPlant" />
+    <Property Type="String" Name="PlantTypeID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PlantCodeID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AddressID" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AutoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Byte" Name="IsExpanded" />
+    <Property Type="Byte" Name="IsValid" />
+    <Property Type="String" Name="NotValidMessage" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LastModifiedByDate" />
+    <Property Type="Boolean" Name="IsSelected" />
+    <NavigationProperty Name="Address" Relationship="XERPModel.FK_Plants_Addresses" FromRole="Plant" ToRole="Address" />
+    <NavigationProperty Name="Company" Relationship="XERPModel.FK_Plants_Companies" FromRole="Plant" ToRole="Company" />
+  </EntityType>
+  <Association Name="FK_Plants_Addresses">
+    <End Type="XERPModel.Address" Role="Address" Multiplicity="0..1" />
+    <End Type="XERPModel.Plant" Role="Plant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Plant">
+        <PropertyRef Name="CompanyID" />
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plants_Companies">
+    <End Type="XERPModel.Company" Role="Company" Multiplicity="1" />
+    <End Type="XERPModel.Plant" Role="Plant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Plant">
+        <PropertyRef Name="CompanyID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

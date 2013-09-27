@@ -7,7 +7,7 @@
              xmlns:v="clr-namespace:XERP.Client.WPF.UdListMaintenance.Views;assembly=XERP.Client.WPF.UdListMaintenance"
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             d:DesignHeight="600" d:DesignWidth="600"
+             d:DesignHeight="600" d:DesignWidth="650"
              IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
              PreviewKeyUp="UserControl_PreviewKeyUp">
     <Grid Style="{StaticResource BaseGrid}">
@@ -27,7 +27,7 @@
             Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <Menu Style="{StaticResource BaseMenu}"
-                IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="250" Height="20" 
                 VerticalAlignment="Top" HorizontalAlignment="Left">
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
@@ -306,7 +306,7 @@
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
                         <Button Style="{StaticResource BaseButton}" Content="UdList..." Width="108" Height="25" Margin="10" 
-                            KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
+                            KeyboardNavigation.IsTabStop="False">
                           <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                               <ei:CallMethodAction
@@ -337,13 +337,13 @@
                         Grid.Row="1" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
-                            <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                                 Text="{Binding Path=SelectedUdList.Name, Mode=TwoWay, TargetNullValue=''}"
                                 IsEnabled="{Binding AllowEdit}"
                                 MaxLength= "{Binding UdListMaxFieldValueDictionary[Name]}" 
                                 KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedUdList.Description, Mode=TwoWay}"
                             MaxLength= "{Binding UdListMaxFieldValueDictionary[Description]}" 
                             KeyboardNavigation.TabIndex="30" BorderBrush="DimGray"></TextBox>

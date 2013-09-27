@@ -408,7 +408,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedSecurityGroupCode.SecurityGroupCodeID))
             {//check to see if key is part of the current companylist...
                 SecurityGroupCode query = SecurityGroupCodeList.Where(company => company.SecurityGroupCodeID == SelectedSecurityGroupCode.SecurityGroupCodeID &&
-                                                        company.AutoID != SelectedSecurityGroupCode.AutoID).SingleOrDefault();
+                                                        company.AutoID != SelectedSecurityGroupCode.AutoID).FirstOrDefault();
                 if (query != null)
                 {//revert it back...
                     SelectedSecurityGroupCode.SecurityGroupCodeID = SelectedSecurityGroupCodeMirror.SecurityGroupCodeID;
@@ -602,7 +602,7 @@ namespace XERP.Client.WPF.SecurityGroupMaintenance.ViewModels
                 SecurityGroupCodeList = new BindingList<SecurityGroupCode>(_serviceAgent.RefreshSecurityGroupCode(autoIDs).ToList());
                 SelectedSecurityGroupCode = (from q in SecurityGroupCodeList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

@@ -432,7 +432,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedCompany.CompanyID))
             {//check to see if key is part of the current List...
                 Company query = CompanyList.Where(item => item.CompanyID == SelectedCompany.CompanyID &&
-                                                        item.AutoID != SelectedCompany.AutoID).SingleOrDefault();
+                                                        item.AutoID != SelectedCompany.AutoID).FirstOrDefault();
                 if (query != null)
                 {
                     //revert it back...
@@ -638,7 +638,7 @@ namespace XERP.Client.WPF.CompanyMaintenance.ViewModels
                 CompanyList = new BindingList<Company>(_serviceAgent.RefreshCompany(autoIDs).ToList());
                 SelectedCompany = (from q in CompanyList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

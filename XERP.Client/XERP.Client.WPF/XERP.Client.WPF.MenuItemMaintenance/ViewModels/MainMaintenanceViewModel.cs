@@ -414,7 +414,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
             {//make sure it is has changed...
                 if (SelectedMenuItemMirror.MenuItemID != SelectedMenuItem.MenuItemID)
                 {//convert to the Entity MenuItem...
-                    MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == SelectedMenuItem.AutoID);
+                    MenuItem menuItem = MenuItemList.FirstOrDefault(q => q.AutoID == SelectedMenuItem.AutoID);
                     EntityStates entityState = GetMenuItemState(menuItem);
 
                     if (entityState == EntityStates.Unchanged ||
@@ -557,7 +557,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                         errorMessage = "ID Is Required.";
                         return false;
                     }
-                    MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
+                    MenuItem menuItem = MenuItemList.FirstOrDefault(q => q.AutoID == item.AutoID);
                     EntityStates entityState = GetMenuItemState(menuItem);
                     if (entityState == EntityStates.Added && MenuItemExists(item.MenuItemID))
                     {
@@ -592,7 +592,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 errorMessage = "ID Is Required.";
                 return 1;
             }
-            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
+            MenuItem menuItem = MenuItemList.FirstOrDefault(q => q.AutoID == item.AutoID);
             EntityStates entityState = GetMenuItemState(menuItem);
             if (entityState == EntityStates.Added && MenuItemExists(item.MenuItemID))
             {
@@ -779,7 +779,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         //to commit it to the db...
         private bool Update(NestedMenuItem item, string propertyName, object propertyValue)
         {//get the menuItem from the Repository List...
-            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
+            MenuItem menuItem = MenuItemList.FirstOrDefault(q => q.AutoID == item.AutoID);
             //Set the edited field when present...
             if(! string.IsNullOrEmpty(propertyName))
                 menuItem.SetPropertyValue(propertyName, propertyValue);
@@ -796,7 +796,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         //commits repository to the db...
         private bool Commit()
         {   //reset UI state manage fields...
-            NestedMenuItem root = TreeNestedMenuItemList.SingleOrDefault(q => (q.ParentMenuID == null || q.ParentMenuID.Equals(string.Empty))
+            NestedMenuItem root = TreeNestedMenuItemList.FirstOrDefault(q => (q.ParentMenuID == null || q.ParentMenuID.Equals(string.Empty))
                                                                && q.CompanyID == ClientSessionSingleton.Instance.CompanyID);
 
             _serviceAgent.CommitMenuItemRepository();
@@ -817,7 +817,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 if (child.AutoID < 0)
                 {
                     //locate the record to fetch the seeded autoid value...
-                    MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.MenuItemID == child.MenuItemID
+                    MenuItem menuItem = MenuItemList.FirstOrDefault(q => q.MenuItemID == child.MenuItemID
                                                             && q.CompanyID == ClientSessionSingleton.Instance.CompanyID);
                     child.AutoID = menuItem.AutoID;
                 }
@@ -834,7 +834,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         private bool Delete(NestedMenuItem item)
         {//deletes are done indenpendently of the repository as a delete will not commit 
             //dirty records it will simply just delete the record...
-            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == item.AutoID);
+            MenuItem menuItem = MenuItemList.FirstOrDefault(q => q.AutoID == item.AutoID);
             _serviceAgent.DeleteFromMenuItemRepository(menuItem);
             //remove it from the cache repository list
             MenuItemList.Remove(menuItem);
@@ -948,7 +948,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
         }
         public void SaveCommand()
         {
-            MenuItem menuItem = MenuItemList.SingleOrDefault(q => q.AutoID == SelectedMenuItem.AutoID);
+            MenuItem menuItem = MenuItemList.FirstOrDefault(q => q.AutoID == SelectedMenuItem.AutoID);
             if (GetMenuItemState(menuItem) != EntityStates.Detached)
             {
                 if (Update(SelectedMenuItem, "", ""))
@@ -970,7 +970,7 @@ namespace XERP.Client.WPF.MenuItemMaintenance.ViewModels
                 Delete(SelectedMenuItem);
 
                 //remove it from the tree nested list
-                NestedMenuItem root = TreeNestedMenuItemList.SingleOrDefault(q => (q.ParentMenuID == null || q.ParentMenuID.Equals(string.Empty))
+                NestedMenuItem root = TreeNestedMenuItemList.FirstOrDefault(q => (q.ParentMenuID == null || q.ParentMenuID.Equals(string.Empty))
                                                                                && q.CompanyID == ClientSessionSingleton.Instance.CompanyID);
                 //need to itterate tree and find the item and remove it from the tree list...
                 RemoveNestedItem(root, SelectedMenuItem.AutoID);  

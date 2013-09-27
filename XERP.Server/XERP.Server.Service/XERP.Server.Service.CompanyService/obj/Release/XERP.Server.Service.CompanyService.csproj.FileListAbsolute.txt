@@ -6,6 +6,6 @@ C:\XERP\XERP.Server\ServerBuild\bin\XERP.Server.Service.CompanyService.dll
 C:\XERP\XERP.Server\ServerBuild\bin\XERP.Server.Service.CompanyService.pdb
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.CompanyService.dll
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.CompanyService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\obj\Release\XERP.Server.Service.CompanyService.csprojResolveAssemblyReference.cache
 C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\obj\Release\XERP.Server.Service.CompanyService.dll
 C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\obj\Release\XERP.Server.Service.CompanyService.pdb
-C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.CompanyService\obj\Release\XERP.Server.Service.CompanyService.csprojResolveAssemblyReference.cache

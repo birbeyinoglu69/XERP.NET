@@ -119,7 +119,7 @@ namespace XERP.Domain.SystemUserDomain.Services
                 context.IgnoreResourceNotFoundException = true;
                 SystemUserCode deletedSystemUserCode = (from q in context.SystemUserCodes
                                           where q.SystemUserCodeID == itemCode.SystemUserCodeID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedSystemUserCode != null)
                 {
                     context.DeleteObject(deletedSystemUserCode);

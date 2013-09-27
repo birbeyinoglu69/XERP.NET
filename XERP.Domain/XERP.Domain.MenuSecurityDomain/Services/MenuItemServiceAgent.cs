@@ -241,7 +241,7 @@ namespace XERP.Domain.MenuSecurityDomain.Services
                              where q.CompanyID == companyID &&
                                    q.MenuItemID == menuItemID &&
                                    q.SecurityGroupID == securityGroupID
-                             select q).SingleOrDefault();
+                             select q).FirstOrDefault();
             if (deleteItem != null)
             {
                 context.DeleteObject(deleteItem);

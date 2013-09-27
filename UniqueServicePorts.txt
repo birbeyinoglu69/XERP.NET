@@ -7,3 +7,5 @@ AddressDataService.svc = Port 1215
 UdListDataService.svc = Port 1220
 ExecutableProgramDataService.svc = Port 1225
 MenuItemDataService.svc = Port 1230
+PlantDataService.svc = Port 1240
+WarehouseService.svc = Port 1250

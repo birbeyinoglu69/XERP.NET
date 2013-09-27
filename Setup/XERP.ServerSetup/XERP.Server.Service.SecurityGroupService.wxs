@@ -22,26 +22,14 @@
                 <Component Id="cmp53E5C3C76646F824190F362BFF57E94E" Guid="*">
                     <File Id="filC17C5A28F14CCB66B651651B23F4C164" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.dll" />
                 </Component>
-                <Component Id="cmp51715B9F650F5E2650763478E3630523" Guid="*">
-                    <File Id="fil18BFC95FC4B1D7BCB50894138360C006" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.pdb" />
-                </Component>
                 <Component Id="cmpFEEFB7E97279D08EC2BC77FE553BB419" Guid="*">
                     <File Id="filCE6019036A052975DF73948A340E0489" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.SecurityGroupDAL.dll" />
-                </Component>
-                <Component Id="cmp051B7073A203FF6988DF245987BCDC9F" Guid="*">
-                    <File Id="filFB72BFD26726C6711D5C620EB8BF5CEA" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.DAL.SecurityGroupDAL.pdb" />
                 </Component>
                 <Component Id="cmpA4B49B69946A9731EA0BDCF90D160DDE" Guid="*">
                     <File Id="filD144765BF42FF9DAB3FC9583AA1B4F87" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.dll" />
                 </Component>
-                <Component Id="cmp7FF26A883ADCB056C68934096B196721" Guid="*">
-                    <File Id="fil8147509A119D45033C1EC0B27D69B196" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.pdb" />
-                </Component>
                 <Component Id="cmp638D100FF38726788A11EACB36FE8362" Guid="*">
                     <File Id="fil387EA7E555D4807F5DFCBE9011752A3E" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.Service.SecurityGroupService.dll" />
-                </Component>
-                <Component Id="cmpBA93E95DFB60987EB77BC67CDFB237B5" Guid="*">
-                    <File Id="fil5076E7399D672023A4E8B8A91650C80B" KeyPath="yes" Source="$(var.XERP.Server.Service.SecurityGroupService.BuildPath)\bin\XERP.Server.Service.SecurityGroupService.pdb" />
                 </Component>
             </Directory>
         </DirectoryRef>
@@ -51,13 +39,9 @@
             <ComponentRef Id="cmpC96E7056D706EEE2F20565D5D2D2F433" />
             <ComponentRef Id="cmpEFAA5810E954B1B833034EFC1FBA1DEE" />
             <ComponentRef Id="cmp53E5C3C76646F824190F362BFF57E94E" />
-            <ComponentRef Id="cmp51715B9F650F5E2650763478E3630523" />
             <ComponentRef Id="cmpFEEFB7E97279D08EC2BC77FE553BB419" />
-            <ComponentRef Id="cmp051B7073A203FF6988DF245987BCDC9F" />
             <ComponentRef Id="cmpA4B49B69946A9731EA0BDCF90D160DDE" />
-            <ComponentRef Id="cmp7FF26A883ADCB056C68934096B196721" />
             <ComponentRef Id="cmp638D100FF38726788A11EACB36FE8362" />
-            <ComponentRef Id="cmpBA93E95DFB60987EB77BC67CDFB237B5" />
         </ComponentGroup>
     </Fragment>
 </Wix>

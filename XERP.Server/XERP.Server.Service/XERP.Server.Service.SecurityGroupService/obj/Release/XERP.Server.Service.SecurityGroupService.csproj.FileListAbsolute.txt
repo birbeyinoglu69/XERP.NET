@@ -1,5 +1,5 @@
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.SecurityGroupService.dll
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.Service.SecurityGroupService.pdb
+C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\obj\Release\XERP.Server.Service.SecurityGroupService.csprojResolveAssemblyReference.cache
 C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\obj\Release\XERP.Server.Service.SecurityGroupService.dll
 C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\obj\Release\XERP.Server.Service.SecurityGroupService.pdb
-C:\XERP\XERP.Server\XERP.Server.Service\XERP.Server.Service.SecurityGroupService\obj\Release\XERP.Server.Service.SecurityGroupService.csprojResolveAssemblyReference.cache

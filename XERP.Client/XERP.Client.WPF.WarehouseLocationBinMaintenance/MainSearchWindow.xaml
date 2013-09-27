@@ -1,0 +1,10 @@
+﻿<Window x:Class="XERP.Client.WPF.WarehouseLocationBinMaintenance.MainSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:XERP.Client.WPF.WarehouseLocationBinMaintenance"
+        Title="XERP WarehouseLocationBin Search" Height="500" Width="550">
+    <Grid>
+        <my:MainMaintenanceSearchView 
+            xmlns:my="clr-namespace:XERP.Client.WPF.WarehouseLocationBinMaintenance.Views"  />
+    </Grid>
+</Window>

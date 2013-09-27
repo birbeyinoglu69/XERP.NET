@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-            d:DesignHeight="350" d:DesignWidth="600"
+            d:DesignHeight="350" d:DesignWidth="650"
              IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" PreviewKeyUp="UserControl_PreviewKeyUp">
 
     <Grid Style="{StaticResource BaseGrid}">
@@ -25,7 +25,7 @@
             Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <Menu Style="{StaticResource BaseMenu}"
-                IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="250" Height="20" 
                 VerticalAlignment="Top" HorizontalAlignment="Left">
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
@@ -224,7 +224,7 @@
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
                         <Button Style="{StaticResource BaseButton}" Content="Menu Item Code..." Width="145" Height="25" Margin="10" 
-                            KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
+                            KeyboardNavigation.IsTabStop="False">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <ei:CallMethodAction
@@ -255,13 +255,13 @@
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedMenuItemCode.Code, Mode=TwoWay}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding MenuItemCodeMaxFieldValueDictionary[Code]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <TextBox Style="{StaticResource BaseTextBox}"
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedMenuItemCode.Description, Mode=TwoWay}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding MenuItemCodeMaxFieldValueDictionary[Description]}"

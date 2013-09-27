@@ -76,7 +76,7 @@ namespace SimpleMvvmToolkit
                     var existing = (from w in weakSubscribers
                                     where w != null && w.IsAlive &&
                                         object.ReferenceEquals(w.Target, subscriber)
-                                    select w).SingleOrDefault();
+                                    select w).FirstOrDefault();
 
                     // Add if subcriber is already present
                     if (existing == null)
@@ -100,7 +100,7 @@ namespace SimpleMvvmToolkit
                     // Find subscriber
                     WeakReference weakSubscriber = weakSubscribers
                         .Where(w => w.IsAlive && object.ReferenceEquals
-                            (w.Target, subscriber)).SingleOrDefault();
+                            (w.Target, subscriber)).FirstOrDefault();
 
                     // Remove subscriber
                     if (weakSubscriber != null)

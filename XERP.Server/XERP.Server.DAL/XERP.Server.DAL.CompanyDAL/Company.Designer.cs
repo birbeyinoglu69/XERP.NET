@@ -184,25 +184,25 @@ namespace XERP.Server.DAL.CompanyDAL
         /// <summary>
         /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCompanies(Company item)
+        public void AddToCompanies(Company company)
         {
-            base.AddObject("Companies", item);
+            base.AddObject("Companies", company);
         }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the CompanyCodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCompanyCodes(CompanyCode item)
+        public void AddToCompanyCodes(CompanyCode companyCode)
         {
-            base.AddObject("CompanyCodes", item);
+            base.AddObject("CompanyCodes", companyCode);
         }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the CompanyTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCompanyTypes(CompanyType item)
+        public void AddToCompanyTypes(CompanyType companyType)
         {
-            base.AddObject("CompanyTypes", item);
+            base.AddObject("CompanyTypes", companyType);
         }
     
         /// <summary>

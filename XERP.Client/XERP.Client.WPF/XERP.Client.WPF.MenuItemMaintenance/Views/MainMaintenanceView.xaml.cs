@@ -82,9 +82,8 @@ namespace XERP.Client.WPF.MenuItemMaintenance.Views
 
         private void OpenExecutableCodeMaintenance_Click(object sender, RoutedEventArgs e)
         {
-            //CodeMaintenanceWindow maintenanceWindow = new CodeMaintenanceWindow();
-            //maintenanceWindow.Show();
-            MessageBox.Show("Not Implemented Yet");
+            XERP.Client.WPF.ExecutableProgramMaintenance.MainWindow maintenanceWindow = new XERP.Client.WPF.ExecutableProgramMaintenance.MainWindow();
+            maintenanceWindow.Show();
         }
 
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)

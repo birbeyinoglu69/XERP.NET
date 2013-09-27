@@ -9,7 +9,12 @@ namespace XERP.Client.WPF.MainMenu
             AddressMaintenance,
             MenuItemMaintenance, MenuItemTypeMaintenance, MenuItemCodeMaintenance,
             ExecutableProgramMaintenance, ExecutableProgramTypeMaintenance, ExecutableProgramCodeMaintenance,
-            UdListMaintenance
+            UdListMaintenance,
+            PlantMaintenance, PlantTypeMaintenance, PlantCodeMaintenance,
+            WarehouseMaintenance, WarehouseTypeMaintenance, WarehouseCodeMaintenance,
+            WarehouseLocationMaintenance, WarehouseLocationTypeMaintenance, WarehouseLocationCodeMaintenance,
+            WarehouseLocationBinMaintenance, WarehouseLocationBinTypeMaintenance, WarehouseLocationBinCodeMaintenance,
+            MenuIconMaintenance
         };
 
         private System.Windows.Window window;
@@ -21,6 +26,12 @@ namespace XERP.Client.WPF.MainMenu
         public void ShowWindow(string executableProgramID, out string errorMessage)
         {
             errorMessage = "";
+            if (String.IsNullOrEmpty(executableProgramID))
+            {
+                errorMessage = "Menu Item Selected Is Executable But Does Not Have An Executable Program Defined.  Check The Menu Maintenance Program For The Selected Menu Item To Ensure One Is Provided.";
+                return;
+            }
+
             _executableProgramEnum executableProgramEnum;
             if (Enum.IsDefined(typeof(_executableProgramEnum), executableProgramID))
             {
@@ -107,6 +118,58 @@ namespace XERP.Client.WPF.MainMenu
                     break;
                 case _executableProgramEnum.UdListMaintenance:
                     window = new UdListMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.PlantMaintenance:
+                    window = new PlantMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.PlantTypeMaintenance:
+                    window = new PlantMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.PlantCodeMaintenance:
+                    window = new PlantMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.MenuIconMaintenance:
+                    window = new DBStoredImageMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseMaintenance:
+                    window = new WarehouseMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseTypeMaintenance:
+                    window = new WarehouseMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseCodeMaintenance:
+                    window = new WarehouseMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseLocationMaintenance:
+                    window = new WarehouseLocationMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseLocationTypeMaintenance:
+                    window = new WarehouseLocationMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseLocationCodeMaintenance:
+                    window = new WarehouseLocationMaintenance.CodeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseLocationBinMaintenance:
+                    window = new WarehouseLocationBinMaintenance.MainWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseLocationBinTypeMaintenance:
+                    window = new WarehouseLocationBinMaintenance.TypeMaintenanceWindow();
+                    window.Show();
+                    break;
+                case _executableProgramEnum.WarehouseLocationBinCodeMaintenance:
+                    window = new WarehouseLocationBinMaintenance.CodeMaintenanceWindow();
                     window.Show();
                     break;
                 default:

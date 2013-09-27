@@ -6,7 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600"
+             d:DesignHeight="600" d:DesignWidth="650"
              IsEnabled="{Binding Path=FormIsEnabled}">
     <Grid Style="{StaticResource BaseGrid}">
         <Grid.RowDefinitions>
@@ -33,9 +33,9 @@
         </StackPanel>
         <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="1" Grid.Column="1"
             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" >
-            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="200"
+            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="250"
                 Text="{Binding Path=SearchObject.Name}"/>
-            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="200"
+            <TextBox Style="{StaticResource BaseTextBox}" Margin="5" Width="250"
                 Text="{Binding Path=SearchObject.Description}"/>
         </StackPanel>
         <StackPanel Style="{StaticResource BaseStackPanel}" Grid.Row="1" Grid.Column="2"

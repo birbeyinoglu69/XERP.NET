@@ -71,13 +71,13 @@ namespace XERP.Server.Service.AddressService
 
                 //test it...
                 //GetMetaData("Addresses");
-                //IQueryable<Address> AddressQuery = (from c in context.Addresses
-                //                                    select c);
+                IQueryable<Address> AddressQuery = (from c in context.Addresses
+                                                    select c);
 
-                //foreach (Address cc in AddressQuery)
-                //{
-                //    string s = cc.Name.ToString();
-                //}
+                foreach (Address cc in AddressQuery)
+                {
+                    string s = cc.Name.ToString();
+                }
                 //Address Address = new Address();
                 //IQueryable<Address> AddressQuery = Refresh("5,6");
                 return context;

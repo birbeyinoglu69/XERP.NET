@@ -169,8 +169,9 @@ namespace XERP.Client.WPF.CompanyMaintenance.Views
                 {
                     DataGridTextColumn dataGridTextColumn = ((DataGridTextColumn)dataGridColumn);
                     Binding binding = (Binding)dataGridTextColumn.Binding;
-
-                    int maxColumnLength = (int)_viewModel.CompanyCodeMaxFieldValueDictionary[binding.Path.Path.ToString()];
+                    int maxColumnLength;
+                    if (!_viewModel.CompanyCodeMaxFieldValueDictionary.TryGetValue(binding.Path.Path.ToString(), out maxColumnLength))
+                        continue;
                     Style newStyle = new Style(typeof(TextBox), dataGridTextColumn.EditingElementStyle);
                     newStyle.Setters.Add(new Setter(TextBox.MaxLengthProperty, maxColumnLength));
                     dataGridTextColumn.EditingElementStyle = newStyle;

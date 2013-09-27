@@ -154,7 +154,7 @@ namespace XERP.Domain.AddressDomain
                 context.IgnoreResourceNotFoundException = true;
                 Address deletedAddress = (from q in context.Addresses
                                           where q.AddressID == address.AddressID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedAddress != null)
                 {
                     context.DeleteObject(deletedAddress);

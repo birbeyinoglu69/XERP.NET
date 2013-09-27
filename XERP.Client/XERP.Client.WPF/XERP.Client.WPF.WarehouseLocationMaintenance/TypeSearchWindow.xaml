@@ -1,0 +1,9 @@
+﻿<Window x:Class="XERP.Client.WPF.WarehouseLocationMaintenance.TypeSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WarehouseLocation Type Search" Height="600" Width="650">
+    <Grid>
+        <my:TypeMaintenanceSearchView 
+            xmlns:my="clr-namespace:XERP.Client.WPF.WarehouseLocationMaintenance.Views"  />
+    </Grid>
+</Window>

@@ -25,23 +25,11 @@
                 <Component Id="cmp0CDF07B55BEA2207D112DF9D50DC6808" Guid="*">
                     <File Id="fil80D3B79726774AABD532AF594DA4796A" KeyPath="yes" Source="$(var.XERP.Server.Service.LogInService.BuildPath)\bin\XERP.Server.DAL.LogInDAL.dll" />
                 </Component>
-                <Component Id="cmp102A2EE79EE404C9E8BC55EF630416A3" Guid="*">
-                    <File Id="fil5AEA92C83CC87C7E7E4D41C27235BEEF" KeyPath="yes" Source="$(var.XERP.Server.Service.LogInService.BuildPath)\bin\XERP.Server.DAL.LogInDAL.pdb" />
-                </Component>
-                <Component Id="cmpB16E06720617238F6347BB451DBA28D4" Guid="*">
-                    <File Id="filD6831258178A1E669201E0B249EC9E76" KeyPath="yes" Source="$(var.XERP.Server.Service.LogInService.BuildPath)\bin\XERP.Server.DAL.pdb" />
-                </Component>
                 <Component Id="cmp55A3F0CE7B08621E6C8EF965DE6A6ADB" Guid="*">
                     <File Id="filA88B6FE99E63C86DF893EF964B36CFD6" KeyPath="yes" Source="$(var.XERP.Server.Service.LogInService.BuildPath)\bin\XERP.Server.dll" />
                 </Component>
-                <Component Id="cmp816CD519423118EFA1FC20508B1C3CCC" Guid="*">
-                    <File Id="filDE6A7C13975F0C86CF8FEB2C46908B18" KeyPath="yes" Source="$(var.XERP.Server.Service.LogInService.BuildPath)\bin\XERP.Server.pdb" />
-                </Component>
                 <Component Id="cmp44E195B341CE8E575BD436F958C3BF0C" Guid="*">
                     <File Id="fil2BED2E0A5764D827E919C60C9CCA74F2" KeyPath="yes" Source="$(var.XERP.Server.Service.LogInService.BuildPath)\bin\XERP.Server.Service.LogInService.dll" />
-                </Component>
-                <Component Id="cmp24FDD6660022ED1E05ED13268B5A4849" Guid="*">
-                    <File Id="fil73BAA8D44BB41D5778C1F9A1AF35B14B" KeyPath="yes" Source="$(var.XERP.Server.Service.LogInService.BuildPath)\bin\XERP.Server.Service.LogInService.pdb" />
                 </Component>
             </Directory>
         </DirectoryRef>
@@ -52,12 +40,8 @@
             <ComponentRef Id="cmpA0EC255EB03CCA195C25F44C2FB42DD6" />
             <ComponentRef Id="cmp8EA0617986754D28F155AE1C5679F26E" />
             <ComponentRef Id="cmp0CDF07B55BEA2207D112DF9D50DC6808" />
-            <ComponentRef Id="cmp102A2EE79EE404C9E8BC55EF630416A3" />
-            <ComponentRef Id="cmpB16E06720617238F6347BB451DBA28D4" />
             <ComponentRef Id="cmp55A3F0CE7B08621E6C8EF965DE6A6ADB" />
-            <ComponentRef Id="cmp816CD519423118EFA1FC20508B1C3CCC" />
             <ComponentRef Id="cmp44E195B341CE8E575BD436F958C3BF0C" />
-            <ComponentRef Id="cmp24FDD6660022ED1E05ED13268B5A4849" />
         </ComponentGroup>
     </Fragment>
 </Wix>

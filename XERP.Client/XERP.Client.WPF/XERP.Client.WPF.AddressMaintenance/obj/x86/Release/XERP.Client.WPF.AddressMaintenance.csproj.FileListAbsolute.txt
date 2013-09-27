@@ -1,4 +1,4 @@
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\XERP.Client.WPF.AddressMaintenance.csprojResolveAssemblyReference.cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\Views\MainMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\Views\MainMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\MainSearchWindow.g.cs
@@ -16,7 +16,6 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\R
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\MainWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\XERP.Client.WPF.AddressMaintenance.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\XERP.Client.WPF.AddressMaintenance.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\GenerateResource.write.1.tlog
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\XERP.Client.WPF.AddressMaintenance.csproj.GenerateResource.Cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\XERP.Client.WPF.AddressMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.AddressMaintenance\obj\x86\Release\XERP.Client.WPF.AddressMaintenance.pdb

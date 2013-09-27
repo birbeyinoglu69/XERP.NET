@@ -121,7 +121,7 @@ namespace XERP.Domain.SystemUserDomain
                 context.IgnoreResourceNotFoundException = true;
                 SystemUserType deletedSystemUserType = (from q in context.SystemUserTypes
                                           where q.SystemUserTypeID == itemType.SystemUserTypeID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedSystemUserType != null)
                 {
                     context.DeleteObject(deletedSystemUserType);

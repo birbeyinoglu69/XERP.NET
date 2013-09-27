@@ -406,7 +406,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedExecutableProgramCode.ExecutableProgramCodeID))
             {//check to see if key is part of the current companylist...
                 ExecutableProgramCode query = ExecutableProgramCodeList.Where(company => company.ExecutableProgramCodeID == SelectedExecutableProgramCode.ExecutableProgramCodeID &&
-                                                        company.AutoID != SelectedExecutableProgramCode.AutoID).SingleOrDefault();
+                                                        company.AutoID != SelectedExecutableProgramCode.AutoID).FirstOrDefault();
                 if (query != null)
                 {//revert it back...
                     SelectedExecutableProgramCode.ExecutableProgramCodeID = SelectedExecutableProgramCodeMirror.ExecutableProgramCodeID;
@@ -601,7 +601,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 ExecutableProgramCodeList = new BindingList<ExecutableProgramCode>(_serviceAgent.RefreshExecutableProgramCode(autoIDs).ToList());
                 SelectedExecutableProgramCode = (from q in ExecutableProgramCodeList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

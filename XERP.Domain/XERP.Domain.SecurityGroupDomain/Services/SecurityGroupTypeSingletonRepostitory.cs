@@ -123,7 +123,7 @@ namespace XERP.Domain.SecurityGroupDomain
                 context.IgnoreResourceNotFoundException = true;
                 SecurityGroupType deletedSecurityGroupType = (from q in context.SecurityGroupTypes
                                           where q.SecurityGroupTypeID == itemType.SecurityGroupTypeID
-                                          select q).SingleOrDefault();
+                                          select q).FirstOrDefault();
                 if (deletedSecurityGroupType != null)
                 {
                     context.DeleteObject(deletedSecurityGroupType);

@@ -22,26 +22,14 @@
                 <Component Id="cmpDAA59A732A27C4D758F8A0472979AFA3" Guid="*">
                     <File Id="fil5D2A8E593AEB40B24CACAC7CD1857D46" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.dll" />
                 </Component>
-                <Component Id="cmp0E89C528776D0E6B4D87574884230C68" Guid="*">
-                    <File Id="filD0E647C880231BF6F1C7E99F63DD948B" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.pdb" />
-                </Component>
                 <Component Id="cmp7CA54565AC66370E4C785E8F10A338FE" Guid="*">
                     <File Id="filC1D9DEC6F0DE95F0222575F64E359606" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.SystemUserDAL.dll" />
-                </Component>
-                <Component Id="cmpBAD781B9277CFD899D5B43E1BAE2CFA9" Guid="*">
-                    <File Id="fil2905833A38C12746D298B38EB8F3D9D0" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.DAL.SystemUserDAL.pdb" />
                 </Component>
                 <Component Id="cmp6FDF3BF30D20E91C07C9727C1AFF6BD5" Guid="*">
                     <File Id="fil0CC712EEC52AB7680032FDF7B249D06F" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.dll" />
                 </Component>
-                <Component Id="cmp9BFAD089D61989411BD38C8DCDAEC2EA" Guid="*">
-                    <File Id="fil7D0D2AC36DB3420E2AF67424AF1D9651" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.pdb" />
-                </Component>
                 <Component Id="cmpFD14B7091CD5B39CC494379FA4B4809C" Guid="*">
                     <File Id="fil7EF34C3A552180FDF1F7F6D7A376435E" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.Service.SystemUserService.dll" />
-                </Component>
-                <Component Id="cmp95C907A3DD679093D4B02425BA09820C" Guid="*">
-                    <File Id="filE21F0DF51FD1FC0062D2191FFCEA9D1A" KeyPath="yes" Source="$(var.XERP.Server.Service.SystemUserService.BuildPath)\bin\XERP.Server.Service.SystemUserService.pdb" />
                 </Component>
             </Directory>
         </DirectoryRef>
@@ -51,13 +39,9 @@
             <ComponentRef Id="cmp8A417B496061C1ED6A064BB626136C05" />
             <ComponentRef Id="cmp131980AAD1837D0EF241D912293E411E" />
             <ComponentRef Id="cmpDAA59A732A27C4D758F8A0472979AFA3" />
-            <ComponentRef Id="cmp0E89C528776D0E6B4D87574884230C68" />
             <ComponentRef Id="cmp7CA54565AC66370E4C785E8F10A338FE" />
-            <ComponentRef Id="cmpBAD781B9277CFD899D5B43E1BAE2CFA9" />
             <ComponentRef Id="cmp6FDF3BF30D20E91C07C9727C1AFF6BD5" />
-            <ComponentRef Id="cmp9BFAD089D61989411BD38C8DCDAEC2EA" />
             <ComponentRef Id="cmpFD14B7091CD5B39CC494379FA4B4809C" />
-            <ComponentRef Id="cmp95C907A3DD679093D4B02425BA09820C" />
         </ComponentGroup>
     </Fragment>
 </Wix>

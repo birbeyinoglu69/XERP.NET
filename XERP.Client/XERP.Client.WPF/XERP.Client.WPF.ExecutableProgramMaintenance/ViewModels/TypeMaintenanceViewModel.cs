@@ -409,7 +409,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
             if (!string.IsNullOrEmpty(SelectedExecutableProgramType.ExecutableProgramTypeID))
             {//check to see if key is part of the current companylist...
                 ExecutableProgramType query = ExecutableProgramTypeList.Where(company => company.ExecutableProgramTypeID == SelectedExecutableProgramType.ExecutableProgramTypeID &&
-                                                        company.AutoID != SelectedExecutableProgramType.AutoID).SingleOrDefault();
+                                                        company.AutoID != SelectedExecutableProgramType.AutoID).FirstOrDefault();
                 if (query != null)
                 {//revert it back...
                     SelectedExecutableProgramType.ExecutableProgramTypeID = SelectedExecutableProgramTypeMirror.ExecutableProgramTypeID;
@@ -605,7 +605,7 @@ namespace XERP.Client.WPF.ExecutableProgramMaintenance.ViewModels
                 ExecutableProgramTypeList = new BindingList<ExecutableProgramType>(_serviceAgent.RefreshExecutableProgramType(autoIDs).ToList());
                 SelectedExecutableProgramType = (from q in ExecutableProgramTypeList
                                    where q.AutoID == selectedAutoID
-                                   select q).SingleOrDefault();
+                                   select q).FirstOrDefault();
                 Dirty = false;
                 AllowCommit = false;
             }

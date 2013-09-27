@@ -1,12 +1,15 @@
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\ResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\XERP.Client.WPF.MenuItemMaintenance.csprojResolveAssemblyReference.cache
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\DBStoredImageMaintenanceWindow.baml
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\DBStoredImageSearchWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\CodeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\CodeMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\MainMaintenanceSearchView.baml
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\MainMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\TypeMaintenanceSearchView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\TypeMaintenanceView.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\CodeMaintenanceWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\CodeSearchWindow.g.cs
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\DBStoredImageMaintenanceWindow.g.cs
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\DBStoredImageSearchWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\MainSearchWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\MainWindow.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\TypeMaintenanceWindow.g.cs
@@ -14,7 +17,6 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\CodeMaintenanceSearchView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\CodeMaintenanceView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\MainMaintenanceSearchView.g.cs
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\MainMaintenanceView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\TypeMaintenanceSearchView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\TypeMaintenanceView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\App.g.cs
@@ -23,6 +25,8 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\XERP.Client.WPF.MenuItemMaintenance_MarkupCompile.lref
 C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.MenuItemMaintenance.exe
 C:\XERP\XERP.Client\XERPClientBuild\Bin\XERP.Client.WPF.MenuItemMaintenance.pdb
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\MainMaintenanceView.baml
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\Views\MainMaintenanceView.g.cs
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\App.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\CodeMaintenanceWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\CodeSearchWindow.baml
@@ -32,7 +36,6 @@ C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\TypeSearchWindow.baml
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\XERP.Client.WPF.MenuItemMaintenance.g.resources
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\XERP.Client.WPF.MenuItemMaintenance.Properties.Resources.resources
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\GenerateResource.read.1.tlog
-C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\GenerateResource.write.1.tlog
+C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\XERP.Client.WPF.MenuItemMaintenance.csproj.GenerateResource.Cache
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\XERP.Client.WPF.MenuItemMaintenance.exe
 C:\XERP\XERP.Client\XERP.Client.WPF\XERP.Client.WPF.MenuItemMaintenance\obj\x86\Release\XERP.Client.WPF.MenuItemMaintenance.pdb

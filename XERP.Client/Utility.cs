@@ -23,7 +23,20 @@ namespace XERP.Client
         ExecutableProgramSearchToken,
         ExecutableProgramTypeSearchToken,
         ExecutableProgramCodeSearchToken,
-        UdListSearchToken
+        UdListSearchToken,
+        PlantSearchToken,
+        PlantTypeSearchToken,
+        PlantCodeSearchToken,
+        DBStoredImageSearchToken,
+        WarehouseSearchToken,
+        WarehouseTypeSearchToken,
+        WarehouseCodeSearchToken,
+        WarehouseLocationSearchToken,
+        WarehouseLocationTypeSearchToken,
+        WarehouseLocationCodeSearchToken,
+        WarehouseLocationBinSearchToken,
+        WarehouseLocationBinTypeSearchToken,
+        WarehouseLocationBinCodeSearchToken
     };
 
     public class Utility

@@ -1,4 +1,3 @@
-C:\XERP\XERP.Domain\XERP.Domain.SecurityGroupDomain\obj\x86\Release\ResolveAssemblyReference.cache
 C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.SecurityGroupDomain.dll
 C:\XERP\XERP.Domain\XERPDomainBuild\bin\XERP.Domain.SecurityGroupDomain.pdb
 C:\XERP\XERP.Domain\XERP.Domain.SecurityGroupDomain\obj\x86\Release\XERP.Domain.SecurityGroupDomain.dll

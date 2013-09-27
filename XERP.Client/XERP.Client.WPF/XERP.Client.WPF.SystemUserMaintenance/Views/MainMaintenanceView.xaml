@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             d:DesignHeight="600" d:DesignWidth="600"
+             d:DesignHeight="600" d:DesignWidth="650"
              IsEnabled="{Binding Path=FormIsEnabled}" Loaded="UserControl_Loaded" 
              PreviewKeyUp="UserControl_PreviewKeyUp">
 
@@ -26,7 +26,7 @@
             Orientation="Vertical"  Width="271"  Height="50" Grid.ColumnSpan="2"
             HorizontalAlignment="Left" VerticalAlignment="Top">
             <Menu Style="{StaticResource BaseMenu}"
-                IsMainMenu="True" Grid.ColumnSpan="2" Width="200" Height="20" 
+                IsMainMenu="True" Grid.ColumnSpan="2" Width="250" Height="20" 
                 VerticalAlignment="Top" HorizontalAlignment="Left">
                 <MenuItem Style="{StaticResource BaseMenuItem}" Header="_File">
                     <MenuItem Style="{StaticResource BaseMenuItem}" Header="_New">
@@ -225,7 +225,7 @@
                         Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" Orientation="Horizontal" >
                         <Button Style="{StaticResource BaseButton}" Content="System User..." Width="108" Height="25" Margin="10" 
-                            KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabIndex="60">
+                            KeyboardNavigation.IsTabStop="False" >
                           <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                               <ei:CallMethodAction
@@ -286,13 +286,13 @@
                         Grid.Row="1" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                         Orientation="Vertical" IsEnabled="{Binding AllowEdit}">
-                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedSystemUser.Name, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding SystemUserMaxFieldValueDictionary[Name]}" 
                             KeyboardNavigation.TabIndex="20" Background="White" BorderBrush="DimGray"/>
                         <ComboBox  Style="{StaticResource BaseComboBox}"
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=SystemUserTypeList, Mode=TwoWay}"
                             DisplayMemberPath="Type"
                             SelectedValue="{Binding Path=SelectedSystemUser.SystemUserTypeID, Mode=TwoWay}"
@@ -318,7 +318,7 @@
                             </ComboBox.ContextMenu>
                         </ComboBox>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=SystemUserCodeList, Mode=TwoWay}"
                             DisplayMemberPath="Code"
                             SelectedValue="{Binding Path=SelectedSystemUser.SystemUserCodeID, Mode=TwoWay}"
@@ -343,33 +343,33 @@
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
                         </ComboBox>
-                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="9" 
                                   IsChecked="{Binding SelectedSystemUser.Active}"
                                   KeyboardNavigation.TabIndex="60">
                         </CheckBox>
-                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedSystemUser.Password, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding SystemUserMaxFieldValueDictionary[Password]}" 
                             KeyboardNavigation.TabIndex="80" Background="White" BorderBrush="DimGray"/>
-                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="9" 
                                   IsChecked="{Binding SelectedSystemUser.PasswordExpired}"
                                   KeyboardNavigation.TabIndex="100">
                         </CheckBox>
                         <DatePicker HorizontalAlignment="Left" 
                                     SelectedDate="{Binding Path=SelectedSystemUser.PasswordExpiresOn}"
-                                      Width="200" Margin="5,2,2,2" KeyboardNavigation.TabIndex="120" Height="25" />
-                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="8" 
+                                      Width="250" Margin="5" KeyboardNavigation.TabIndex="120" Height="25" />
+                        <CheckBox Style="{StaticResource BaseCheckBox}" Margin="9" 
                                   IsChecked="{Binding SelectedSystemUser.SystemManager}"
                                   KeyboardNavigation.TabIndex="140">
                         </CheckBox>
-                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200"
+                        <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="250"
                             Text="{Binding Path=SelectedSystemUser.EmailAddress, Mode=TwoWay, TargetNullValue=''}"
                             IsEnabled="{Binding AllowEdit}"
                             MaxLength= "{Binding SystemUserMaxFieldValueDictionary[EmailAddress]}" 
                             KeyboardNavigation.TabIndex="150" Background="White" BorderBrush="DimGray"/>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=CompanyList, Mode=TwoWay}"
                             DisplayMemberPath="Name"
                             SelectedValue="{Binding Path=SelectedSystemUser.DefaultCompanyID, Mode=TwoWay}"
@@ -378,24 +378,14 @@
                                 <ContextMenu Style="{StaticResource BaseContextMenu}">
                                     <ContextMenu.Items>
                                         <MenuItem Style="{StaticResource BaseMenuItem}" 
-                                            Header="Open Code Maintenance" 
-                                            Click="OpenCodeMaintenance_Click" />
-                                        <MenuItem Style="{StaticResource BaseMenuItem}"
-                                            Header="Search Code">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <ei:CallMethodAction
-                                                        TargetObject="{Binding}"
-                                                        MethodName="CodeSearchCommand"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </MenuItem>
+                                            Header="Open Company Maintenance" 
+                                            Click="OpenCompanyMaintenance_Click" />
                                     </ContextMenu.Items>
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
                         </ComboBox>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=PlantList, Mode=TwoWay}"
                             DisplayMemberPath="Name"
                             SelectedValue="{Binding Path=SelectedSystemUser.DefaultPlantID, Mode=TwoWay}"
@@ -404,24 +394,14 @@
                                 <ContextMenu Style="{StaticResource BaseContextMenu}">
                                     <ContextMenu.Items>
                                         <MenuItem Style="{StaticResource BaseMenuItem}" 
-                                            Header="Open Code Maintenance" 
-                                            Click="OpenCodeMaintenance_Click" />
-                                        <MenuItem Style="{StaticResource BaseMenuItem}"
-                                            Header="Search Code">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <ei:CallMethodAction
-                                                        TargetObject="{Binding}"
-                                                        MethodName="CodeSearchCommand"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </MenuItem>
+                                            Header="Open Plant Maintenance" 
+                                            Click="OpenPlantMaintenance_Click" />
                                     </ContextMenu.Items>
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
                         </ComboBox>
                         <ComboBox Style="{StaticResource BaseComboBox}" 
-                            HorizontalAlignment="Left" Width="200" Margin="5"
+                            HorizontalAlignment="Left" Width="250" Margin="5"
                             ItemsSource="{Binding Path=AddressList, Mode=TwoWay}"
                             DisplayMemberPath="Name"
                             SelectedValue="{Binding Path=SelectedSystemUser.AddressID, Mode=TwoWay}"
@@ -430,18 +410,8 @@
                                 <ContextMenu Style="{StaticResource BaseContextMenu}">
                                     <ContextMenu.Items>
                                         <MenuItem Style="{StaticResource BaseMenuItem}" 
-                                            Header="Open Code Maintenance" 
-                                            Click="OpenCodeMaintenance_Click" />
-                                        <MenuItem Style="{StaticResource BaseMenuItem}"
-                                            Header="Search Code">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="Click">
-                                                    <ei:CallMethodAction
-                                                        TargetObject="{Binding}"
-                                                        MethodName="CodeSearchCommand"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </MenuItem>
+                                            Header="Open Address Maintenance" 
+                                            Click="OpenAddressMaintenance_Click" />
                                     </ContextMenu.Items>
                                 </ContextMenu>
                             </ComboBox.ContextMenu>
@@ -517,6 +487,88 @@
                                     </Style>
                                 </DataGridComboBoxColumn.EditingElementStyle>
                             </DataGridComboBoxColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding Active, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Header="Active" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding PassWord, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="PassWord" Width="*">
+                            </DataGridTextColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding PasswordExpired, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Header="Expired" Width="50"/>
+                            <DataGridTemplateColumn Header="Expires On" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path= PasswordExpiresOn, StringFormat=\{0:d\}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding Path=PasswordExpiresOn, Mode=TwoWay,
+                                            ValidatesOnExceptions=true, NotifyOnValidationError=true}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding SystemManager, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Header="Manager" Width="50"/>
+                            <DataGridTextColumn Binding="{Binding EmailAddress, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    Header="Email" Width="*">
+                            </DataGridTextColumn>
+                            <DataGridComboBoxColumn Header="Default Company" Width="*"
+                                SelectedValueBinding ="{Binding CompanyID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                DisplayMemberPath="Name"  
+                                SelectedValuePath="CompanyID">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                        AncestorType={x:Type UserControl}}, Path=DataContext.CompanyList, Mode=TwoWay, 
+                                        UpdateSourceTrigger=LostFocus}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                            AncestorType={x:Type UserControl}}, Path=DataContext.CompanyList, Mode=TwoWay, 
+                                            UpdateSourceTrigger=LostFocus}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            <DataGridComboBoxColumn Header="Default Plant" Width="*"
+                                SelectedValueBinding ="{Binding PlantID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                DisplayMemberPath="Name"  
+                                SelectedValuePath="PlantID">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                        AncestorType={x:Type UserControl}}, Path=DataContext.PlantList, Mode=TwoWay, 
+                                        UpdateSourceTrigger=LostFocus}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                            AncestorType={x:Type UserControl}}, Path=DataContext.PlantList, Mode=TwoWay, 
+                                            UpdateSourceTrigger=LostFocus}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            <DataGridComboBoxColumn Header="Address" Width="*"
+                                SelectedValueBinding ="{Binding AddressID, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                DisplayMemberPath="Name"  
+                                SelectedValuePath="AddressID">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                        AncestorType={x:Type UserControl}}, Path=DataContext.AddressList, Mode=TwoWay, 
+                                        UpdateSourceTrigger=LostFocus}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                            AncestorType={x:Type UserControl}}, Path=DataContext.AddressList, Mode=TwoWay, 
+                                            UpdateSourceTrigger=LostFocus}"/>
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox Style="{StaticResource BaseTextBox}" Name="ghost2" Grid.Column="2" 
@@ -531,7 +583,7 @@
                         <RowDefinition Height="20"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition Width="250"></ColumnDefinition>
                         <ColumnDefinition Width="50"></ColumnDefinition>
                         <ColumnDefinition Width="200*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
