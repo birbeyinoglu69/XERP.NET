@@ -7,4 +7,3 @@ C:\XERP\XERP.Client\obj\x86\Release\XERP.Client.Properties.Resources.resources
 C:\XERP\XERP.Client\obj\x86\Release\XERP.Client.csproj.GenerateResource.Cache
 C:\XERP\XERP.Client\obj\x86\Release\XERP.Client.dll
 C:\XERP\XERP.Client\obj\x86\Release\XERP.Client.pdb
-C:\XERP\XERP.Client\obj\x86\Release\XERP.Client.csprojResolveAssemblyReference.cache

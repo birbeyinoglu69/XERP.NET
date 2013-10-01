@@ -8,3 +8,4 @@ C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.CompanyDAL.dll
 C:\XERP\XERP.Server\XERPServerBuild\bin\XERP.Server.DAL.CompanyDAL.pdb
 C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.CompanyDAL\obj\x86\Release\XERP.Server.DAL.CompanyDAL.dll
 C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.CompanyDAL\obj\x86\Release\XERP.Server.DAL.CompanyDAL.pdb
+C:\XERP\XERP.Server\XERP.Server.DAL\XERP.Server.DAL.CompanyDAL\obj\x86\Release\XERP.Server.DAL.CompanyDAL.csprojResolveAssemblyReference.cache

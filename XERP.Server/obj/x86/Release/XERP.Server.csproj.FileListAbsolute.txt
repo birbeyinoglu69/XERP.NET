@@ -4,4 +4,3 @@ C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.Properties.Resources.resources
 C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.csproj.GenerateResource.Cache
 C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.dll
 C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.pdb
-C:\XERP\XERP.Server\obj\x86\Release\XERP.Server.csprojResolveAssemblyReference.cache

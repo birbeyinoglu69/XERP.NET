@@ -15,10 +15,14 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -138,10 +142,6 @@
       <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
       <Name>XERP.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\XERP.Client.WPF.WarehouseLocationBinMaintenance\XERP.Client.WPF.WarehouseLocationBinMaintenance.csproj">
-      <Project>{15B7CF57-9423-4753-A5AF-043DE63F51C6}</Project>
-      <Name>XERP.Client.WPF.WarehouseLocationBinMaintenance</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.AddressMaintenance\XERP.Client.WPF.AddressMaintenance.csproj">
       <Project>{BDDC0122-946B-4A4C-8502-A3DFE2397D55}</Project>
       <Name>XERP.Client.WPF.AddressMaintenance</Name>
@@ -181,6 +181,10 @@
     <ProjectReference Include="..\XERP.Client.WPF.UdListMaintenance\XERP.Client.WPF.UdListMaintenance.csproj">
       <Project>{02B6109A-F0EE-4D36-A0AA-795D1E112DDE}</Project>
       <Name>XERP.Client.WPF.UdListMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XERP.Client.WPF.WarehouseLocationBinMaintenance\XERP.Client.WPF.WarehouseLocationBinMaintenance.csproj">
+      <Project>{15b7cf57-9423-4753-a5af-043de63f51c6}</Project>
+      <Name>XERP.Client.WPF.WarehouseLocationBinMaintenance</Name>
     </ProjectReference>
     <ProjectReference Include="..\XERP.Client.WPF.WarehouseLocationMaintenance\XERP.Client.WPF.WarehouseLocationMaintenance.csproj">
       <Project>{AA1E77C6-28E1-4565-BE91-7B77DCB60406}</Project>

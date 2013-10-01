@@ -15,10 +15,14 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -62,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\..\..\SharedAssemblyInfo.cs">
+      <Link>SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="CodeMaintenanceWindow.xaml.cs">
       <DependentUpon>CodeMaintenanceWindow.xaml</DependentUpon>
     </Compile>
@@ -119,9 +126,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="..\..\SharedAssemblyInfo.cs">
-      <Link>SharedAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -189,31 +193,31 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.csproj">
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.csproj">
       <Project>{37A9326D-E256-4081-A7C8-D8CE855CFD4F}</Project>
       <Name>XERP.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\XERP.Domain\XERP.Domain.WarehouseDomain\XERP.Domain.WarehouseDomain.csproj">
+    <ProjectReference Include="..\..\..\XERP.Domain\XERP.Domain.WarehouseDomain\XERP.Domain.WarehouseDomain.csproj">
       <Project>{3CE42969-D5F7-499D-AF13-6CAAF71F43C9}</Project>
       <Name>XERP.Domain.WarehouseDomain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\SimpleMvvmToolkit-WPF.csproj">
+    <ProjectReference Include="..\..\SimpleMvvm-Source\WPF\SimpleMvvmToolkit-WPF\SimpleMvvmToolkit-WPF.csproj">
       <Project>{6A6DD3AB-484B-48FD-8BE7-107728A26341}</Project>
       <Name>SimpleMvvmToolkit-WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XERP.Client.csproj">
+    <ProjectReference Include="..\..\XERP.Client.csproj">
       <Project>{00D7A8A5-DC13-4D16-BB53-96B2F23CD5D0}</Project>
       <Name>XERP.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XERP.Client.WPF\XERP.Client.WPF.csproj">
+    <ProjectReference Include="..\XERP.Client.WPF.csproj">
       <Project>{7F99A10A-2A68-48DA-B7F4-E09C14790BE0}</Project>
       <Name>XERP.Client.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XERP.Client.WPF\XERP.Client.WPF.LogIn\XERP.Client.WPF.LogIn.csproj">
+    <ProjectReference Include="..\XERP.Client.WPF.LogIn\XERP.Client.WPF.LogIn.csproj">
       <Project>{6201296D-4907-46E1-A57E-A2357B0AF04C}</Project>
       <Name>XERP.Client.WPF.LogIn</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XERP.Client.WPF\XERP.Client.WPF.WarehouseMaintenance\XERP.Client.WPF.WarehouseMaintenance.csproj">
+    <ProjectReference Include="..\XERP.Client.WPF.WarehouseMaintenance\XERP.Client.WPF.WarehouseMaintenance.csproj">
       <Project>{CB867003-A9C0-49F5-97A2-228415C76ADB}</Project>
       <Name>XERP.Client.WPF.WarehouseMaintenance</Name>
     </ProjectReference>
